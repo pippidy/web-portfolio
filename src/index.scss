@@ -1,0 +1,7 @@
+@use 'sass:math';
+@import './styles/vars';
+@import './styles/fonts';
+@import './styles/globals';
+@import './styles/app';
+@import './components/header/header';
+@import './components/Search/search';

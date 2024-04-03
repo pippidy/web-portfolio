@@ -1,0 +1,43 @@
+.header {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, auto) 25% max-content;
+  align-items: center;
+  padding: 10px 25px;
+}
+
+.logo {
+  & img {
+    width: 50px;
+  }
+}
+
+.menuMain {
+  display: flex;
+  gap: 10px;
+  font-family: $font-family-accent;
+  font-size: 2em;
+  font-weight: 500;
+  color: $color-grey-dark;
+
+  &__item {
+    display: block;
+    padding: 5px 15px;
+    border-radius: 10px;
+
+    &:hover {
+      background-color: #efc933;
+      outline: 2px solid $color-grey-dark;
+    }
+  }
+}
+
+.buttonAuth__svg {
+  color: #111;
+}
+
+@media (max-width: 768px) {
+  .menuMain {
+    gap: 0;
+  }
+}

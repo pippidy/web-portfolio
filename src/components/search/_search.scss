@@ -1,0 +1,36 @@
+.formSearch {
+  position: relative;
+
+  &__input {
+    float: right;
+    width: 100%;
+    padding: 10px 15px;
+    padding-right: 40px;
+    font-family: $font-family-main;
+    border: 2px solid $color-grey;
+    border-radius: 10px;
+
+    &:focus-visible {
+      width: 145%;
+      background-color: #eedb8e;
+      outline: 0;
+      border: 2px solid $color-grey-dark;
+
+      & + button .formSearch__svg {
+        color: $color-grey-dark;
+      }
+    }
+  }
+
+  &__submit {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 27px;
+  }
+
+  &__svg {
+    width: 100%;
+    color: $color-grey;
+  }
+}

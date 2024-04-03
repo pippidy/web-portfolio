@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 1024px;
+  min-height: 100vh;
+  padding: 10px;
+  margin: 0 auto;
+  font-family: $font-family-main;
+}
+
+.main {
+  flex: 1;
+}
+
+.blockDefault {
+  background-color: #fff;
+  border: 2px solid $color-grey-dark;
+  border-radius: 10px;
+}
