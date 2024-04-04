@@ -1,6 +1,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
+  gap: 30px;
   max-width: 1024px;
   min-height: 100vh;
   padding: 10px;
@@ -9,11 +10,38 @@
 }
 
 .main {
+  display: flex;
+  flex-direction: column;
   flex: 1;
+  padding-inline: 0;
 }
 
-.blockDefault {
+.block-default {
   background-color: #fff;
   border: 2px solid $color-grey-dark;
-  border-radius: 10px;
+  border-radius: $border-radius-main;
+
+  &_shadowDown {
+    box-shadow: 0px 3px 0px #111;
+    transition: box-shadow $transition-medium;
+  }
+
+  &_shadowUp {
+    box-shadow: 0px -3px 0px #111;
+    transition: box-shadow $transition-medium;
+  }
+
+  &:hover {
+    box-shadow: -3px 0px 0px #111;
+    transition: box-shadow $transition-medium;
+  }
+}
+
+.title-main {
+  padding: $padding-block-main;
+  font-family: $font-family-main;
+  font-size: 3em;
+  text-transform: uppercase;
+  text-align: center;
+  color: inherit;
 }

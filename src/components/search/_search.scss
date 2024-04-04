@@ -9,12 +9,14 @@
     font-family: $font-family-main;
     border: 2px solid $color-grey;
     border-radius: 10px;
+    transition: width $transition-medium ease-out;
 
     &:focus-visible {
-      width: 145%;
-      background-color: #eedb8e;
+      width: 140%;
+      background-color: $color-yellow-light;
       outline: 0;
       border: 2px solid $color-grey-dark;
+      transition: width 0.2s ease-in;
 
       & + button .formSearch__svg {
         color: $color-grey-dark;

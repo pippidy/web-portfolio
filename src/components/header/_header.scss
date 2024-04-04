@@ -3,22 +3,25 @@
   gap: 20px;
   grid-template-columns: repeat(2, auto) 25% max-content;
   align-items: center;
-  padding: 10px 25px;
+  padding: $padding-block-main;
 }
 
 .logo {
+  width: max-content;
+
   & img {
     width: 50px;
   }
 }
 
-.menuMain {
+.menu-main {
   display: flex;
   gap: 10px;
-  font-family: $font-family-accent;
+  font-family: $font-family-secondary;
+  color: $color-grey-dark;
   font-size: 2em;
   font-weight: 500;
-  color: $color-grey-dark;
+  text-transform: uppercase;
 
   &__item {
     display: block;
@@ -26,18 +29,36 @@
     border-radius: 10px;
 
     &:hover {
-      background-color: #efc933;
       outline: 2px solid $color-grey-dark;
+    }
+
+    &:active,
+    &.current {
+      background-color: $color-yellow;
     }
   }
 }
 
-.buttonAuth__svg {
-  color: #111;
+.button-auth {
+  padding: 4px;
+  border: 2px solid $color-red;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: $color-red-light;
+  }
+
+  &__svg {
+    color: $color-red;
+
+    & path {
+      fill: #fff;
+    }
+  }
 }
 
 @media (max-width: 768px) {
-  .menuMain {
+  .menu-main {
     gap: 0;
   }
 }

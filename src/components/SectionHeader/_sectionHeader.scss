@@ -1,0 +1,16 @@
+.section-header {
+  position: relative;
+  color: #fff;
+  background-color: $color-grey-dark;
+  border-bottom: 2px solid $color-grey-dark;
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+
+  &:hover {
+    & .icon-cross::after,
+    .icon-cross::before {
+      transition: background-color $transition-fast ease-out;
+      background-color: $color-yellow;
+    }
+  }
+}

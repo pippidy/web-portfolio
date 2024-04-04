@@ -10,7 +10,11 @@ export default function Search() {
         placeholder="Search..."
         name="search"
       />
-      <button type="submit" className="formSearch__submit">
+      <button
+        type="submit"
+        className="formSearch__submit"
+        title="submit search"
+      >
         <SearchIcon className="formSearch__svg" />
       </button>
     </form>

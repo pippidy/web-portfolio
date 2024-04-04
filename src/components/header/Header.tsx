@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Search from "../search/Search";
+import Search from "../Search/Search";
 // @ts-expect-error
 import logo from "../../assets/svg/logo.svg";
 // @ts-expect-error
@@ -7,25 +7,25 @@ import { ReactComponent as PersonIcon } from "../../assets/svg/person.svg";
 
 export default function Header() {
   return (
-    <header className="header blockDefault">
-      <a href="/" className="logo">
+    <header className="header block-default block-default_shadowDown">
+      <a href="/" className="logo" title="logo">
         <img src={logo} alt="" />
       </a>
 
       <nav>
-        <ul className="menuMain">
+        <ul className="menu-main">
           <li>
-            <Link className="menuMain__item" to="/">
+            <Link className="menu-main__item" to="/">
               Home
             </Link>
           </li>
           <li>
-            <Link className="menuMain__item" to="/">
+            <Link className="menu-main__item" to="/">
               Home
             </Link>
           </li>
           <li>
-            <Link className="menuMain__item" to="/">
+            <Link className="menu-main__item" to="/">
               Home
             </Link>
           </li>
@@ -34,8 +34,8 @@ export default function Header() {
 
       <Search />
 
-      <button className="buttonAuth">
-        <PersonIcon className="buttonAuth__svg" />
+      <button className="button-auth">
+        <PersonIcon className="button-auth__svg" width="25px" height="25px" />
       </button>
     </header>
   );
