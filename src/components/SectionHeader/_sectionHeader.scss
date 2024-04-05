@@ -7,10 +7,10 @@
   cursor: pointer;
 
   &:hover {
-    & .icon-cross::after,
-    .icon-cross::before {
-      transition: background-color $transition-fast ease-out;
-      background-color: $color-yellow;
+    & .icon-cross {
+      color: $color-yellow;
+      transition: transform $transition-medium ease-out,
+        color $transition-medium ease-out;
     }
   }
 }
