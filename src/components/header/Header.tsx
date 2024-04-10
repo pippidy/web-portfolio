@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
-import Search from "../Search/Search";
+import { Link } from 'react-router-dom';
+import Search from '../Search/Search';
 // @ts-expect-error
-import logo from "../../assets/svg/logo.svg";
+import logo from '../../assets/svg/logo.svg';
 // @ts-expect-error
-import { ReactComponent as PersonIcon } from "../../assets/svg/person.svg";
+import { ReactComponent as PersonIcon } from '../../assets/svg/person.svg';
 
 export default function Header() {
   return (
@@ -12,7 +12,7 @@ export default function Header() {
         <img src={logo} alt="" />
       </a>
 
-      <nav>
+      <nav className="header__nav">
         <ul className="menu-main">
           <li>
             <Link className="menu-main__item" to="/">

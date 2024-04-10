@@ -1,3 +1,7 @@
+.root {
+  overflow-x: clip;
+}
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -13,6 +17,7 @@
   display: flex;
   flex-direction: column;
   flex: 1;
+  gap: 30px;
   padding-inline: 0;
 }
 
@@ -38,10 +43,93 @@
 }
 
 .title-main {
+  width: 100vw;
+  padding: 5px 0;
+  margin: 0 calc(-50vw + 50%);
+  text-align: center;
+  font-size: 4em;
+  font-family: $font-family-accent;
+  text-transform: uppercase;
+  color: $color-grey-dark;
+  background-color: $color-yellow;
+  border: 2px solid $color-grey-dark;
+  border-left: 0;
+  border-right: 0;
+}
+
+.title-secondary {
   padding: $padding-block-main;
   font-family: $font-family-main;
   font-size: 3em;
   text-transform: uppercase;
   text-align: center;
   color: inherit;
+}
+
+.spinner {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 155px;
+  aspect-ratio: 1/1;
+  cursor: default;
+
+  &::before,
+  &::after,
+  &__line {
+    position: absolute;
+    z-index: 0;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 7px solid $color-yellow;
+    border-left-color: transparent;
+    border-right-color: transparent;
+  }
+
+  &::before {
+    content: '';
+    width: 100%;
+    animation: spin 1.3s linear infinite;
+    animation-timing-function: ease;
+  }
+
+  &::after {
+    content: '';
+    inset: 0;
+    margin: auto;
+    width: 40%;
+    animation: spin 1s linear infinite reverse;
+  }
+
+  &__center {
+    position: absolute;
+    width: 10%;
+    aspect-ratio: 1/1;
+    background-color: $color-yellow;
+    border-radius: 50%;
+  }
+
+  &__line {
+    inset: 0;
+    margin: auto;
+    width: 70%;
+    animation: spin 1s linear infinite;
+  }
+
+  &__text {
+    position: relative;
+    z-index: 1;
+    left: 46%;
+    font-size: 4em;
+    font-weight: bold;
+    transform: scaleY(0.8);
+    color: #333;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    margin: 0;
+  }
 }

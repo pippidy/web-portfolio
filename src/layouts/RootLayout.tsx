@@ -7,6 +7,8 @@ export default function RootLayout() {
     <div className="wrapper">
       <Header />
 
+      <h1 className="title-main">Browse our collections</h1>
+
       <main className="main">
         <Outlet />
       </main>

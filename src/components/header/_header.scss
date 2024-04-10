@@ -1,9 +1,14 @@
 .header {
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(2, auto) 25% max-content;
+  grid-template-columns: max-content auto 25% max-content;
   align-items: center;
   padding: $padding-block-main;
+
+  &__nav {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .logo {
@@ -22,6 +27,7 @@
   font-size: 2em;
   font-weight: 500;
   text-transform: uppercase;
+  transition: background-color $transition-instant ease;
 
   &__item {
     display: block;
@@ -43,9 +49,16 @@
   padding: 4px;
   border: 2px solid $color-red;
   border-radius: 50%;
+  transition: background-color $transition-medium ease;
 
   &:hover {
     background-color: $color-red-light;
+  }
+
+  &:active {
+    & .button-auth__svg path {
+      fill: $color-red;
+    }
   }
 
   &__svg {

@@ -1,39 +1,27 @@
 import { useState } from 'react';
 import SectionHeader from '../SectionHeader/SectionHeader';
+import { TSectionProps } from '../../types/types';
 
-export default function Section() {
-  const [active, setActive] = useState(false);
-  const activeClass = active ? 'section_collapsed' : '';
+export default function Section(props: TSectionProps) {
+  const { title, children } = props;
+  const [collapsed, setCollapsed] = useState(false);
+  const activeClass = collapsed ? 'section_collapsed' : '';
 
   return (
-    <section
-      className={`section ${activeClass} block-default block-default_shadowDown`}
-    >
-      <SectionHeader
-        title="Most Popular"
-        active={active}
-        setActive={setActive}
-      />
-      <div className="section-content">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quod
-          magnam quas placeat tempore maiores mollitia optio fuga ipsum quidem,
-          veritatis ratione animi quae recusandae nesciunt laudantium molestiae
-          tenetur provident!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quod
-          magnam quas placeat tempore maiores mollitia optio fuga ipsum quidem,
-          veritatis ratione animi quae recusandae nesciunt laudantium molestiae
-          tenetur provident!
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quod
-          magnam quas placeat tempore maiores mollitia optio fuga ipsum quidem,
-          veritatis ratione animi quae recusandae nesciunt laudantium molestiae
-          tenetur provident!
-        </p>
-      </div>
-    </section>
+    <>
+      <section
+        className={`section ${activeClass} block-default block-default_shadowDown`}
+      >
+        <SectionHeader
+          title={title}
+          collapsed={collapsed}
+          setCollapsed={setCollapsed}
+        />
+
+        <div className="section__content">{children}</div>
+      </section>
+
+      <div className="section-separator"></div>
+    </>
   );
 }

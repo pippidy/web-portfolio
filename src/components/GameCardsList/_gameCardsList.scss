@@ -1,0 +1,33 @@
+.game-cards-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+
+  &__item {
+    flex-basis: 25%;
+  }
+
+  &__loading {
+    position: absolute;
+    inset: 0;
+    top: 57px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &_compact {
+    & .game-cards-list__item {
+      flex-basis: 22%;
+    }
+
+    & .game-card__date {
+      display: none;
+    }
+
+    & .game-card__name {
+      font-size: 1em;
+    }
+  }
+}

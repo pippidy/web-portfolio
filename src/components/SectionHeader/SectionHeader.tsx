@@ -2,19 +2,19 @@ import { TSectionHeaderProps } from '../../types/types';
 
 export default function SectionHeader({
   title,
-  active,
-  setActive,
+  collapsed,
+  setCollapsed,
 }: TSectionHeaderProps) {
   function handleClick() {
-    setActive(!active);
+    setCollapsed(!collapsed);
   }
 
   return (
     <header onClick={handleClick} className={'section-header'}>
-      <h1 className="title-main">
+      <h2 className="title-secondary">
         {title}
         <div className="icon-cross"></div>
-      </h1>
+      </h2>
     </header>
   );
 }

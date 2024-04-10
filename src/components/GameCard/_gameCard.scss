@@ -1,0 +1,150 @@
+.game-card {
+  position: relative;
+  z-index: 0;
+  height: 100%;
+  border-radius: $border-radius-main;
+  transition: transform 0.15s ease-in, z-index $transition-medium ease,
+    box-shadow $transition-fast ease-in;
+  background-color: #eee;
+  overflow: hidden;
+
+  &:hover {
+    z-index: 2;
+    transform: scale(1.2);
+    box-shadow: 10px 10px 30px rgba($color-grey-dark, 0.6),
+      -10px -10px 30px rgba($color-grey-dark, 0.3);
+    transition: transform $transition-fast ease-out,
+      z-index $transition-medium ease, box-shadow $transition-medium ease-out,
+      $transition-medium ease;
+
+    & .heart-icon .heart-fill {
+      fill: $color-grey-dark;
+    }
+
+    & .heart-icon.liked {
+      & .heart-fill,
+      & .heart-stroke {
+        fill: $color-red;
+      }
+    }
+
+    & .game-card__image {
+      filter: grayscale(0%);
+      transition: filter $transition-medium ease;
+    }
+
+    & .game-card__rating {
+      color: $color-grey-dark;
+      background-color: $color-yellow;
+    }
+
+    & .game-card__name {
+      opacity: 1;
+    }
+  }
+
+  &:has(.image-dummy) .game-card__name {
+    opacity: 1;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    position: absolute;
+    top: 0;
+    inset-inline: 0;
+    z-index: 1;
+    background-color: rgba($color-grey-dark, 0.3);
+  }
+
+  &__rating {
+    left: 0;
+    padding: 5px 10px;
+    font-family: $font-family-secondary;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+    background-color: $color-yellow-light;
+    transition: color $transition-medium ease,
+      background-color $transition-medium ease;
+
+    & span {
+      color: $color-grey-darker;
+    }
+  }
+
+  &__like {
+    min-width: 50px;
+    color: #fff;
+
+    &-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      width: 100%;
+      height: 100%;
+
+      &:hover .heart-icon {
+        transform: scale(1.1);
+      }
+
+      &:active .heart-icon {
+        transform: scale(1);
+      }
+
+      & .heart-icon.liked {
+        & .heart-fill,
+        & .heart-stroke {
+          fill: $color-red-light;
+        }
+      }
+
+      & .heart-icon path {
+        transition: fill $transition-medium ease;
+      }
+
+      & .heart-icon .heart-fill {
+        fill: #666;
+      }
+
+      & .heart-icon .heart-stroke {
+        fill: #fff;
+      }
+    }
+  }
+
+  &__date {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #fff;
+  }
+
+  &__link {
+    display: block;
+    height: 100%;
+  }
+
+  &__image {
+    height: 100%;
+    filter: grayscale(100%);
+    transition: filter $transition-medium ease;
+    object-fit: cover;
+  }
+
+  &__name {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    background-color: $color-grey-dark;
+    font-size: 1.2em;
+    opacity: 0;
+    transition: opacity $transition-medium ease-in-out;
+  }
+}

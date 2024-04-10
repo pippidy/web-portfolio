@@ -2,9 +2,14 @@
 @import './styles/vars';
 @import './styles/fonts';
 @import './styles/globals';
+@import './styles/animations';
 @import './styles/app';
 @import './components/header/header';
 @import './components/Search/search';
-@import './components/SectionHeader/SectionHeader';
-@import './components/Section/Section';
-@import './components/footer/footer';
+@import './components/Section/section';
+@import './components/Pagination/pagination';
+@import './components/SectionHeader/sectionHeader';
+@import './components/GameCard/gameCard';
+@import './components/Footer/footer';
+@import './components/ImageDummy/imageDummy';
+@import './components/GameCardsList/gameCardsList';

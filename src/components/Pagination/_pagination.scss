@@ -1,0 +1,37 @@
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 0;
+  font-size: 1.6em;
+  color: $color-grey-darker;
+
+  &__link {
+    padding: 5px 10px;
+    font-family: $font-family-accent;
+
+    &:hover {
+      color: $color-grey-dark;
+      text-decoration: underline;
+    }
+
+    &.active {
+      color: #fff;
+      background-color: $color-grey-dark;
+      pointer-events: none;
+    }
+
+    &.inactive {
+      pointer-events: none;
+      opacity: 0.2;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .pagination {
+    &__link {
+      font-size: 0.9em;
+    }
+  }
+}
