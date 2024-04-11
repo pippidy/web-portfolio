@@ -8,7 +8,7 @@ import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg';
 import { ReactComponent as CalendarIcon } from '../../assets/svg/calendar.svg';
 
 export default function GameCard(props: TGame) {
-  const { name, cover, coverSize, aggregated_rating } = props;
+  const { name, cover, coverSize, aggregated_rating, release_dates } = props;
   const [isLiked, setIsLiked] = useState(false);
 
   function handleLikeClick() {
@@ -36,7 +36,7 @@ export default function GameCard(props: TGame) {
 
         <div className="game-card__date">
           <CalendarIcon className="calendar-icon" width="20px" height="20px" />
-          1995
+          {release_dates ? release_dates[0].y : ''}
         </div>
       </header>
 

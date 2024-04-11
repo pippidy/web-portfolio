@@ -50,6 +50,12 @@ export type TGameVideo = {
   video_id: string;
 };
 
+export type TGameReleaseDates = {
+  id?: number;
+  human?: string;
+  y?: number;
+};
+
 export type TGame = {
   id?: number;
   name?: string;
@@ -60,6 +66,7 @@ export type TGame = {
   summary?: string;
   story?: string;
   aggregated_rating?: number;
+  release_dates?: TGameReleaseDates[];
 };
 
 export type TGenre = {

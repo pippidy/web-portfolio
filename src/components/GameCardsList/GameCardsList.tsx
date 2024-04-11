@@ -17,7 +17,7 @@ export default function GameCardsList(props: TGameCardsListProps) {
       })
       .catch((err) => console.log(`Error: ${err}`))
       .finally(() => setLoading(false));
-  }, [loading]);
+  }, [loading, limit, sort, filter, offset]);
 
   useEffect(() => {
     setLoading(true);
@@ -48,6 +48,7 @@ export default function GameCardsList(props: TGameCardsListProps) {
                       cover={game.cover}
                       coverSize="cover_big"
                       aggregated_rating={game.aggregated_rating}
+                      release_dates={game ? game.release_dates : undefined}
                     />
                   </li>
                 );

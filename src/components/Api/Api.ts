@@ -43,7 +43,7 @@ export const getGames = (props: TGetGames): Promise<TGame[] | undefined> => {
   const { limit, sort, filter, offset } = props;
 
   // query example "fields name,cover.image_id,videos.*,screenshots.*,aggregated_rating; limit 6; sort first_release_date desc; where aggregated_rating > 0;"
-  const body = `fields name,cover.image_id,videos.*,screenshots.*,aggregated_rating; ${
+  const body = `fields name,cover.image_id,videos.*,screenshots.*,aggregated_rating,release_dates.*; ${
     limit ? `limit ${limit};` : ''
   } ${sort ? `sort ${sort};` : ''} ${filter ? `where ${filter};` : ''} ${
     offset ? `offset ${offset};` : ''
