@@ -1,7 +1,7 @@
 import {
   TConfigAPI,
   TGame,
-  TGenre,
+  TCategory,
   TGetGames,
   TGetGamesCount,
 } from '../../types/types';
@@ -71,8 +71,10 @@ export const getGamesCount = (props: TGetGamesCount) => {
   });
 };
 
-export const getGenres = (): Promise<TGenre[] | undefined> => {
-  return fetch(`${configAPI.baseURL}/genres`, {
+export const getCategories = (
+  category: string
+): Promise<TCategory[] | undefined> => {
+  return fetch(`${configAPI.baseURL}/${category}`, {
     method: 'POST',
     headers: configAPI.headers,
     body: `fields name;`,

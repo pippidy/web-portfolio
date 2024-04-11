@@ -69,7 +69,7 @@ export type TGame = {
   release_dates?: TGameReleaseDates[];
 };
 
-export type TGenre = {
+export type TCategory = {
   id: number;
   name: string;
 };
@@ -77,4 +77,8 @@ export type TGenre = {
 export type TPaginationProps = {
   id: string;
   pagesAmount: number;
+};
+
+export type TCatalogue = {
+  category: string; // 'genres', 'series', etc. Check API docs for details.
 };
