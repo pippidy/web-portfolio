@@ -88,3 +88,8 @@ export type TCatalogue = {
   endpoint?: string; // default is 'games'
   category: string;
 };
+
+export type TUsePaginationData = {
+  pageID: string | undefined;
+  dataFilter?: string;
+};

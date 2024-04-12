@@ -1,50 +1,49 @@
-import { NavLink, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import Section from '../Section/Section';
 import GameCardsList from '../GameCardsList/GameCardsList';
 import { useEffect, useState } from 'react';
-import { getDataCount, getCategories } from '../Api/Api';
+import { getCategories } from '../Api/Api';
 import { TCatalogue, TCategory } from '../../types/types';
 import Pagination from '../Pagination/Pagination';
+import usePaginationData from '../../hooks/usePaginationData/usePaginationData';
 
 export default function Catalogue(props: TCatalogue) {
   const { category, endpoint = 'games' } = props;
   const { id: pageID } = useParams();
-  const [genres, setGenres] = useState<TCategory[]>();
-  const [pagesAmount, setPagesAmount] = useState(0);
+
+  // Preparing data for pagination
+  const { pagesAmount, currentPage } = usePaginationData({
+    pageID: pageID,
+    dataFilter: pageID === 'all' ? '' : `where ${category} = ${pageID}`,
+  });
+
+  const [categoriesList, setCategoriesList] = useState<TCategory[]>();
   const [loadingMenu, setLoadingMenu] = useState(true);
-  const location = useLocation();
-  const currentPage = Number(location.hash.match(/[0-9]+/));
   const navigate = useNavigate();
   const fetchLimit = 100;
   const offset = fetchLimit * currentPage;
 
+  // Redirecting if wrong page
   if (currentPage > pagesAmount) {
     navigate(`/${endpoint}/${category}/${pageID}#page=${pagesAmount}`);
   }
 
+  // Fetching categories for the menu
   useEffect(() => {
     getCategories(category)
       .then((categories) => {
-        setGenres(categories);
+        setCategoriesList(categories);
       })
       .catch((err) => console.log(`Error: ${err}`))
       .finally(() => setLoadingMenu(false));
   }, [category]);
-
-  useEffect(() => {
-    getDataCount({
-      endpoint: 'games',
-      filter: pageID === 'all' ? '' : `where ${category} = ${pageID}`,
-    }).then((data) => {
-      setPagesAmount(Math.floor(data.count / fetchLimit));
-    });
-  }, [pageID, pagesAmount, category]);
 
   return (
     <Section title="Browse by genre">
       <div className="catalogue">
         <nav className="catalogue__nav">
           {loadingMenu ? (
+            /* Fake menu for loading */
             <ul className="menu-loading">
               <li>Loading...</li>
               <li>Loading...</li>
@@ -56,6 +55,7 @@ export default function Catalogue(props: TCatalogue) {
               <li>Loading...</li>
             </ul>
           ) : (
+            /* Actual catalogue menu */
             <ul className="catalogue-menu">
               <li key="all">
                 <NavLink
@@ -65,8 +65,8 @@ export default function Catalogue(props: TCatalogue) {
                   All
                 </NavLink>
               </li>
-              {genres
-                ? genres.map((genre, index) => {
+              {categoriesList
+                ? categoriesList.map((genre, index) => {
                     return (
                       <li key={genre.id}>
                         <NavLink
@@ -83,6 +83,7 @@ export default function Catalogue(props: TCatalogue) {
           )}
         </nav>
 
+        {/* Top pagination */}
         {pagesAmount !== 0 ? (
           <div className="catalogue__pagination_top">
             <Pagination
@@ -95,6 +96,7 @@ export default function Catalogue(props: TCatalogue) {
           ''
         )}
 
+        {/* Main part with cards */}
         <div className="catalogue__main">
           <GameCardsList
             endpoint={endpoint}
@@ -106,6 +108,8 @@ export default function Catalogue(props: TCatalogue) {
             offset={offset}
           />
         </div>
+
+        {/* Bottom pagination */}
         {pagesAmount !== 0 ? (
           <div className="catalogue__pagination_bottom">
             <Pagination

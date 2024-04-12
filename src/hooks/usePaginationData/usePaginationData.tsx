@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { getDataCount } from '../../components/Api/Api';
+import { TUsePaginationData } from '../../types/types';
 
-export default function usePaginationData(dataFilter?: string) {
-  const { id: pageID } = useParams();
+export default function usePaginationData({
+  pageID,
+  dataFilter,
+}: TUsePaginationData) {
   const [pagesAmount, setPagesAmount] = useState(0);
   const location = useLocation();
   const currentPage = Number(location.hash.match(/[0-9]+/));
