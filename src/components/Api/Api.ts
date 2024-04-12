@@ -2,8 +2,8 @@ import {
   TConfigAPI,
   TGame,
   TCategory,
-  TGetGames,
-  TGetGamesCount,
+  TGetData,
+  TGetDataCount,
 } from '../../types/types';
 
 const userID = 'owlnvuu4x73puzega7fmhzymfe3voy';
@@ -39,17 +39,17 @@ const configAPI: TConfigAPI = {
   },
 };
 
-export const getGames = (props: TGetGames): Promise<TGame[] | undefined> => {
-  const { limit, sort, filter, offset } = props;
+export const getData = (props: TGetData): Promise<TGame[] | undefined> => {
+  const { endpoint, limit, sort, filter, offset, fields } = props;
 
   // query example "fields name,cover.image_id,videos.*,screenshots.*,aggregated_rating; limit 6; sort first_release_date desc; where aggregated_rating > 0;"
-  const body = `fields name,cover.image_id,videos.*,screenshots.*,aggregated_rating,release_dates.*; ${
+  const body = `${fields ? `fields ${fields};` : ''} ${
     limit ? `limit ${limit};` : ''
   } ${sort ? `sort ${sort};` : ''} ${filter ? `where ${filter};` : ''} ${
     offset ? `offset ${offset};` : ''
   }`;
 
-  return fetch(`${configAPI.baseURL}/games`, {
+  return fetch(`${configAPI.baseURL}/${endpoint}`, {
     method: 'POST',
     headers: configAPI.headers,
     body: body,
@@ -58,14 +58,14 @@ export const getGames = (props: TGetGames): Promise<TGame[] | undefined> => {
   });
 };
 
-export const getGamesCount = (props: TGetGamesCount) => {
-  const { id, query } = props;
-  const body = id === 'all' ? '' : `where ${query} = ${id};`;
+// Query example "where genre = 2"
+export const getDataCount = (props: TGetDataCount) => {
+  const { endpoint, filter } = props;
 
-  return fetch(`${configAPI.baseURL}/games/count`, {
+  return fetch(`${configAPI.baseURL}/${endpoint}/count`, {
     method: 'POST',
     headers: configAPI.headers,
-    body: body,
+    body: `${filter};`,
   }).then((res) => {
     return handleFetchResults(res);
   });

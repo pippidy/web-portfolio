@@ -1,22 +1,26 @@
-import { NavLink, useLocation, useParams } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate, useParams } from 'react-router-dom';
 import Section from '../Section/Section';
 import GameCardsList from '../GameCardsList/GameCardsList';
 import { useEffect, useState } from 'react';
-import { getGamesCount, getCategories } from '../Api/Api';
+import { getDataCount, getCategories } from '../Api/Api';
 import { TCatalogue, TCategory } from '../../types/types';
 import Pagination from '../Pagination/Pagination';
 
 export default function Catalogue(props: TCatalogue) {
-  const { category } = props;
-
-  const { id } = useParams();
+  const { category, endpoint = 'games' } = props;
+  const { id: pageID } = useParams();
   const [genres, setGenres] = useState<TCategory[]>();
   const [pagesAmount, setPagesAmount] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const [loadingMenu, setLoadingMenu] = useState(true);
   const location = useLocation();
   const currentPage = Number(location.hash.match(/[0-9]+/));
+  const navigate = useNavigate();
   const fetchLimit = 100;
   const offset = fetchLimit * currentPage;
+
+  if (currentPage > pagesAmount) {
+    navigate(`/${endpoint}/${category}/${pageID}#page=${pagesAmount}`);
+  }
 
   useEffect(() => {
     getCategories(category)
@@ -24,21 +28,24 @@ export default function Catalogue(props: TCatalogue) {
         setGenres(categories);
       })
       .catch((err) => console.log(`Error: ${err}`))
-      .finally(() => setLoading(false));
+      .finally(() => setLoadingMenu(false));
   }, [category]);
 
   useEffect(() => {
-    getGamesCount({ id: id, query: category }).then((data) => {
+    getDataCount({
+      endpoint: 'games',
+      filter: pageID === 'all' ? '' : `where ${category} = ${pageID}`,
+    }).then((data) => {
       setPagesAmount(Math.floor(data.count / fetchLimit));
     });
-  }, [id, pagesAmount, category]);
+  }, [pageID, pagesAmount, category]);
 
   return (
     <Section title="Browse by genre">
-      <div className="section-catalogue">
-        <nav className="section-catalogue__nav">
-          {loading ? (
-            <ul className="section-menu-loading">
+      <div className="catalogue">
+        <nav className="catalogue__nav">
+          {loadingMenu ? (
+            <ul className="menu-loading">
               <li>Loading...</li>
               <li>Loading...</li>
               <li>Loading...</li>
@@ -49,27 +56,22 @@ export default function Catalogue(props: TCatalogue) {
               <li>Loading...</li>
             </ul>
           ) : (
-            <ul className="section-menu">
+            <ul className="catalogue-menu">
+              <li key="all">
+                <NavLink
+                  className="catalogue-menu__link"
+                  to={`/${endpoint}/${category}/all#page=1`}
+                >
+                  All
+                </NavLink>
+              </li>
               {genres
                 ? genres.map((genre, index) => {
-                    if (index === 0) {
-                      return (
-                        <li key="all">
-                          <NavLink
-                            className="section-menu__link"
-                            to={`/games/${category}/all#page=1`}
-                          >
-                            All
-                          </NavLink>
-                        </li>
-                      );
-                    }
-
                     return (
                       <li key={genre.id}>
                         <NavLink
-                          className="section-menu__link"
-                          to={`/games/${category}/${genre.id}#page=1`}
+                          className="catalogue-menu__link"
+                          to={`/${endpoint}/${category}/${genre.id}#page=1`}
                         >
                           {genre.name}
                         </NavLink>
@@ -81,23 +83,40 @@ export default function Catalogue(props: TCatalogue) {
           )}
         </nav>
 
-        <div className="section-catalogue__pagination_top">
-          <Pagination id="top" pagesAmount={pagesAmount} />
-        </div>
+        {pagesAmount !== 0 ? (
+          <div className="catalogue__pagination_top">
+            <Pagination
+              keyID="top"
+              pagesAmount={pagesAmount}
+              currentPage={currentPage}
+            />
+          </div>
+        ) : (
+          ''
+        )}
 
-        <div className="section-catalogue__main">
+        <div className="catalogue__main">
           <GameCardsList
+            endpoint={endpoint}
+            fields="name,cover.image_id,aggregated_rating,release_dates.*"
             limit={fetchLimit}
             sort="aggregated_rating desc"
-            filter={id === 'all' ? '' : `${category} = ${id}`}
+            filter={pageID === 'all' ? '' : `${category} = ${pageID}`}
             compact
             offset={offset}
           />
         </div>
-
-        <div className="section-catalogue__pagination_bottom">
-          <Pagination id="top" pagesAmount={pagesAmount} />
-        </div>
+        {pagesAmount !== 0 ? (
+          <div className="catalogue__pagination_bottom">
+            <Pagination
+              keyID="top"
+              pagesAmount={pagesAmount}
+              currentPage={currentPage}
+            />
+          </div>
+        ) : (
+          ''
+        )}
       </div>
     </Section>
   );

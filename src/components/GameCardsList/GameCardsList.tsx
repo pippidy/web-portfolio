@@ -1,23 +1,38 @@
 import { useEffect, useState } from 'react';
-import { getGames } from '../Api/Api';
+import { getData } from '../Api/Api';
 import GameCard from '../GameCard/GameCard';
 import { TGame, TGameCardsListProps } from '../../types/types';
 import { useLocation } from 'react-router-dom';
 
 export default function GameCardsList(props: TGameCardsListProps) {
-  const { limit, sort, filter, compact, offset = 52 } = props;
-  const [games, setGames] = useState<TGame[]>();
+  const {
+    endpoint = 'games',
+    limit,
+    sort,
+    filter,
+    compact,
+    offset,
+    fields,
+  } = props;
+  const [data, setData] = useState<TGame[]>();
   const [loading, setLoading] = useState(true);
   const location = useLocation();
 
   useEffect(() => {
-    getGames({ limit: limit, sort: sort, filter: filter, offset: offset })
-      .then((games) => {
-        setGames(games);
+    getData({
+      endpoint: endpoint,
+      fields,
+      limit: limit,
+      sort: sort,
+      filter: filter,
+      offset: offset,
+    })
+      .then((data) => {
+        setData(data);
       })
       .catch((err) => console.log(`Error: ${err}`))
       .finally(() => setLoading(false));
-  }, [loading, limit, sort, filter, offset]);
+  }, [loading, endpoint, fields, limit, sort, filter, offset]);
 
   useEffect(() => {
     setLoading(true);
@@ -39,8 +54,8 @@ export default function GameCardsList(props: TGameCardsListProps) {
             compact ? 'game-cards-list_compact' : ''
           }`}
         >
-          {games
-            ? games.map((game: TGame) => {
+          {data
+            ? data.map((game: TGame) => {
                 return (
                   <li className="game-cards-list__item" key={game.id}>
                     <GameCard

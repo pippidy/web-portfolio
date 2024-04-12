@@ -1,63 +1,67 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { TPaginationProps } from '../../types/types';
 
-export default function Pagination(props: TPaginationProps) {
-  const { id, pagesAmount } = props;
+export default function Pagination({
+  keyID,
+  pagesAmount,
+  currentPage,
+}: TPaginationProps) {
   const [pagesRender, setPagesRender] = useState<JSX.Element[]>([]);
-  const location = useLocation();
-  const currentPage = Number(location.hash.match(/[0-9]+/));
   const length = 10;
 
-  function fillPagesArray(
-    pagesArray: JSX.Element[],
-    page: number,
-    currentPage: number
-  ): JSX.Element[] {
-    pagesArray.push(
-      <li className="pagination__item" key={`${id}_${page}`}>
-        <Link
-          className={`pagination__link ${currentPage === page ? 'active' : ''}`}
-          to={`#page=${page}`}
-        >
-          {page}
-        </Link>
-      </li>
-    );
+  useEffect(() => {
+    function fillPagesArray(
+      pagesArray: JSX.Element[],
+      page: number,
+      currentPage: number
+    ): JSX.Element[] {
+      pagesArray.push(
+        <li className="pagination__item" key={`${keyID}_${page}`}>
+          <Link
+            className={`pagination__link ${
+              currentPage === page ? 'active' : ''
+            }`}
+            to={`#page=${page}`}
+          >
+            {page}
+          </Link>
+        </li>
+      );
 
-    return pagesArray;
-  }
-
-  function createPagination() {
-    let pagesArray: JSX.Element[] = [];
-
-    if (currentPage < length) {
-      // First chunk of pages
-      for (let i = 1; i <= length; i++) {
-        fillPagesArray(pagesArray, i, currentPage);
-      }
-    } else if (currentPage >= pagesAmount) {
-      // Last chunk of pages
-      for (let i = currentPage - (length - 1); i <= pagesAmount; i++) {
-        fillPagesArray(pagesArray, i, currentPage);
-      }
-    } else {
-      // Chunks inbetween
-      for (let i = currentPage - (length - 2); i <= currentPage + 1; i++) {
-        fillPagesArray(pagesArray, i, currentPage);
-      }
+      return pagesArray;
     }
 
-    setPagesRender(pagesArray);
-  }
+    function createPagination() {
+      let pagesArray: JSX.Element[] = [];
 
-  useEffect(() => {
+      if (currentPage < length) {
+        // First chunk of pages
+        for (let i = 1; i <= length; i++) {
+          if (i > pagesAmount) break;
+          fillPagesArray(pagesArray, i, currentPage);
+        }
+      } else if (currentPage >= pagesAmount) {
+        // Last chunk of pages
+        for (let i = currentPage - (length - 1); i <= pagesAmount; i++) {
+          fillPagesArray(pagesArray, i, currentPage);
+        }
+      } else {
+        // Chunks inbetween
+        for (let i = currentPage - (length - 2); i <= currentPage + 1; i++) {
+          fillPagesArray(pagesArray, i, currentPage);
+        }
+      }
+
+      setPagesRender(pagesArray);
+    }
+
     createPagination();
-  }, [location]);
+  }, [keyID, currentPage, pagesAmount]);
 
   return (
     <ul className="pagination">
-      <li className="pagination__item" key={`${id}_first`}>
+      <li className="pagination__item" key={`${keyID}_first`}>
         <Link
           className={`pagination__link ${currentPage === 1 ? 'inactive' : ''}`}
           to={`#page=${1}`}
@@ -66,7 +70,7 @@ export default function Pagination(props: TPaginationProps) {
         </Link>
       </li>
 
-      <li className="pagination__item" key={`${id}_prev`}>
+      <li className="pagination__item" key={`${keyID}_prev`}>
         <Link
           className={`pagination__link ${currentPage === 1 ? 'inactive' : ''}`}
           to={`#page=${currentPage - 1}`}
@@ -77,7 +81,7 @@ export default function Pagination(props: TPaginationProps) {
 
       {pagesRender.length > 0 ? pagesRender.map((page) => page) : ''}
 
-      <li className="pagination__item" key={`${id}_next`}>
+      <li className="pagination__item" key={`${keyID}_next`}>
         <Link
           className={`pagination__link ${
             currentPage === pagesAmount ? 'inactive' : ''
@@ -88,7 +92,7 @@ export default function Pagination(props: TPaginationProps) {
         </Link>
       </li>
 
-      <li className="pagination__item" key={`${id}_last`}>
+      <li className="pagination__item" key={`${keyID}_last`}>
         <Link
           className={`pagination__link ${
             currentPage === pagesAmount ? 'inactive' : ''

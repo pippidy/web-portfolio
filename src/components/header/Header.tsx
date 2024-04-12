@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Search from '../Search/Search';
 // @ts-expect-error
 import logo from '../../assets/svg/logo.svg';
@@ -15,17 +15,27 @@ export default function Header() {
       <nav className="header__nav">
         <ul className="menu-main">
           <li>
-            <Link className="menu-main__item" to="/">
+            <NavLink
+              className="menu-main__item menu-main__item_clickable"
+              to="/"
+            >
               Home
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link className="menu-main__item" to="/">
-              Home
-            </Link>
+            <div className="menu-main__item menu-main__submenu">
+              <span className="menu-main__submenu-name">Games</span>
+              <div className="menu-main__submenu-holder">
+                <ul className="menu-main__submenu-list">
+                  <li className="menu-main__submenu-item">
+                    <Link to="games/genres/all#page=1">Genres</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </li>
           <li>
-            <Link className="menu-main__item" to="/">
+            <Link className="menu-main__item menu-main__item_clickable" to="/">
               Home
             </Link>
           </li>
