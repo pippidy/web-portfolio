@@ -6,6 +6,7 @@
     'nav pagination-top'
     'nav main'
     'nav pagination-bottom';
+  gap: 20px 0;
   flex: 1;
 
   &__nav {
@@ -17,12 +18,10 @@
     &_top {
       grid-area: pagination-top;
       padding-top: 5px;
-      margin-bottom: 20px;
     }
 
     &_bottom {
       grid-area: pagination-bottom;
-      margin-top: 20px;
     }
   }
 

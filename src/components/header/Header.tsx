@@ -30,6 +30,9 @@ export default function Header() {
                   <li className="menu-main__submenu-item">
                     <Link to="games/genres/all#page=1">Genres</Link>
                   </li>
+                  <li className="menu-main__submenu-item">
+                    <Link to="/characters#page=1">Characters</Link>
+                  </li>
                 </ul>
               </div>
             </div>

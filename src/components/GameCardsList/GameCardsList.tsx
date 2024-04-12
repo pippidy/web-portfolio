@@ -40,7 +40,7 @@ export default function GameCardsList(props: TGameCardsListProps) {
 
   return (
     <>
-      {!loading ? (
+      {loading ? (
         <div className="game-cards-list__loading">
           <div className="spinner">
             <span className="spinner__text">LOADING...</span>

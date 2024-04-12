@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavigateFunction } from 'react-router-dom';
 
 export type TSectionHeaderProps = {
   title: string;
@@ -92,4 +93,10 @@ export type TCatalogue = {
 export type TUsePaginationData = {
   pageID: string | undefined;
   dataFilter?: string;
+};
+
+export type THandlePaginationRedirect = {
+  nav: NavigateFunction;
+  currentPage: number;
+  pagesAmount: number;
 };

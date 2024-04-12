@@ -6,6 +6,7 @@ import { getCategories } from '../Api/Api';
 import { TCatalogue, TCategory } from '../../types/types';
 import Pagination from '../Pagination/Pagination';
 import usePaginationData from '../../hooks/usePaginationData/usePaginationData';
+import { handlePaginationRedirect } from '../Utils/Utils';
 
 export default function Catalogue(props: TCatalogue) {
   const { category, endpoint = 'games' } = props;
@@ -24,9 +25,7 @@ export default function Catalogue(props: TCatalogue) {
   const offset = fetchLimit * currentPage;
 
   // Redirecting if wrong page
-  if (currentPage > pagesAmount) {
-    navigate(`/${endpoint}/${category}/${pageID}#page=${pagesAmount}`);
-  }
+  handlePaginationRedirect({ nav: navigate, currentPage, pagesAmount });
 
   // Fetching categories for the menu
   useEffect(() => {
