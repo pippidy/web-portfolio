@@ -32,7 +32,7 @@ export default function GameCardsList(props: TGameCardsListProps) {
       })
       .catch((err) => console.log(`Error: ${err}`))
       .finally(() => setLoading(false));
-  }, [loading, endpoint, fields, limit, sort, filter, offset]);
+  }, [endpoint, fields, limit, sort, filter, offset]);
 
   useEffect(() => {
     setLoading(true);

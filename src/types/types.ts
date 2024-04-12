@@ -26,8 +26,10 @@ export type TGetData = {
   offset?: number;
 };
 
+export type TEndpoint = 'games' | 'characters';
+
 export type TGetDataCount = {
-  endpoint: 'games' | 'characters';
+  endpoint: TEndpoint;
   filter?: string;
 };
 
@@ -86,17 +88,18 @@ export type TPaginationProps = {
 };
 
 export type TCatalogue = {
-  endpoint?: string; // default is 'games'
+  endpoint: TEndpoint;
   category: string;
 };
 
 export type TUsePaginationData = {
+  endpoint: TEndpoint;
   pageID: string | undefined;
   dataFilter?: string;
 };
 
 export type THandlePaginationRedirect = {
-  nav: NavigateFunction;
+  navigate: NavigateFunction;
   currentPage: number;
   pagesAmount: number;
 };

@@ -4,6 +4,7 @@ import { getDataCount } from '../../components/Api/Api';
 import { TUsePaginationData } from '../../types/types';
 
 export default function usePaginationData({
+  endpoint,
   pageID,
   dataFilter,
 }: TUsePaginationData) {
@@ -14,12 +15,12 @@ export default function usePaginationData({
 
   useEffect(() => {
     getDataCount({
-      endpoint: 'games',
+      endpoint: endpoint,
       filter: dataFilter ? dataFilter : '',
     }).then((data) => {
       setPagesAmount(Math.floor(data.count / fetchLimit));
     });
-  }, [pageID, pagesAmount, dataFilter]);
+  }, [endpoint, pageID, pagesAmount, dataFilter]);
 
   return { pagesAmount, currentPage, location };
 }

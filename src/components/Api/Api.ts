@@ -5,17 +5,10 @@ import {
   TGetData,
   TGetDataCount,
 } from '../../types/types';
+import { handleFetchResults } from '../Utils/Utils';
 
 const userID = 'owlnvuu4x73puzega7fmhzymfe3voy';
 const clientSecret = 'iiuek5lwve85c4z713d5o6bbmpaccm';
-
-export function handleFetchResults(res: Response) {
-  if (res.ok) {
-    return res.json();
-  } else {
-    return Promise.reject(`Ошибка: ${res.status}`);
-  }
-}
 
 // Getting API access token
 function fetchAuth(): Promise<void | { access_token: string }> {

@@ -6,26 +6,34 @@ import { getCategories } from '../Api/Api';
 import { TCatalogue, TCategory } from '../../types/types';
 import Pagination from '../Pagination/Pagination';
 import usePaginationData from '../../hooks/usePaginationData/usePaginationData';
-import { handlePaginationRedirect } from '../Utils/Utils';
 
-export default function Catalogue(props: TCatalogue) {
-  const { category, endpoint = 'games' } = props;
+export default function Catalogue({
+  category,
+  endpoint = 'games',
+}: TCatalogue) {
   const { id: pageID } = useParams();
 
   // Preparing data for pagination
   const { pagesAmount, currentPage } = usePaginationData({
+    endpoint: endpoint,
     pageID: pageID,
     dataFilter: pageID === 'all' ? '' : `where ${category} = ${pageID}`,
   });
 
+  const navigate = useNavigate();
   const [categoriesList, setCategoriesList] = useState<TCategory[]>();
   const [loadingMenu, setLoadingMenu] = useState(true);
-  const navigate = useNavigate();
   const fetchLimit = 100;
   const offset = fetchLimit * currentPage;
 
-  // Redirecting if wrong page
-  handlePaginationRedirect({ nav: navigate, currentPage, pagesAmount });
+  // Redirecting if page is non-existent
+  useEffect(() => {
+    if (currentPage > pagesAmount && pagesAmount > 0) {
+      navigate(`/${endpoint}/${category}/${pageID}#page=${pagesAmount}`);
+    } else if (currentPage <= 0) {
+      navigate(`/${endpoint}/${category}/${pageID}#page=1`);
+    }
+  }, [navigate, pagesAmount, currentPage, category, endpoint, pageID]);
 
   // Fetching categories for the menu
   useEffect(() => {
