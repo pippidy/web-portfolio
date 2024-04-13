@@ -18,7 +18,6 @@ export default function usePaginationData({
       endpoint: endpoint,
       filter: dataFilter ? dataFilter : '',
     }).then((data) => {
-      console.log(data.count);
       setPagesAmount(Math.floor(data.count / fetchLimit));
     });
   }, [endpoint, fetchLimit, pageID, pagesAmount, dataFilter]);

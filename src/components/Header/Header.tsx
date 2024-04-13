@@ -24,7 +24,7 @@ export default function Header() {
           </li>
           <li>
             <div className="menu-main__item menu-main__submenu">
-              <span className="menu-main__submenu-name">Games</span>
+              <span className="menu-main__submenu-name">Browse</span>
               <div className="menu-main__submenu-holder">
                 <ul className="menu-main__submenu-list">
                   <li className="menu-main__submenu-item">
@@ -33,13 +33,16 @@ export default function Header() {
                   <li className="menu-main__submenu-item">
                     <Link to="/characters#page=1">Characters</Link>
                   </li>
+                  <li className="menu-main__submenu-item">
+                    <Link to="/companies#page=1">Companies</Link>
+                  </li>
                 </ul>
               </div>
             </div>
           </li>
           <li>
             <Link className="menu-main__item menu-main__item_clickable" to="/">
-              Home
+              About
             </Link>
           </li>
         </ul>

@@ -13,6 +13,7 @@ import RootLayout from './layouts/RootLayout';
 import Home from './pages/Home';
 import Genres from './pages/Genres';
 import Characters from './pages/Characters';
+import Companies from './pages/Companies';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="games/genres/:id" element={<Genres />} />
       <Route path="characters" element={<Characters />} />
+      <Route path="companies" element={<Companies />} />
     </Route>
   )
 );

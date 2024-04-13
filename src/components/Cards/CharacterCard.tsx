@@ -10,7 +10,7 @@ export default function CharacterCard({ name, mug_shot }: TCharacter) {
           <img
             className="card__image"
             src={mug_shot.url}
-            alt={`Cover for ${name}`}
+            alt={`Mugshot of ${name}`}
           />
         ) : (
           <ImageDummy />

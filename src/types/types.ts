@@ -26,7 +26,7 @@ export type TGetData = {
   offset?: number;
 };
 
-export type TEndpoint = 'games' | 'characters';
+export type TEndpoint = 'games' | 'characters' | 'companies';
 
 export type TGetDataCount = {
   endpoint: TEndpoint;
@@ -88,6 +88,19 @@ export type TCharacter = {
   description?: string;
   games?: TGame[];
   gender?: number;
+};
+
+export type TCompany = {
+  id?: number;
+  name?: string;
+  logo?: {
+    url: string;
+  };
+  country?: string;
+  description?: string;
+  developed?: TGame[];
+  start_date?: string;
+  websites?: number[];
 };
 
 export type TCategory = {

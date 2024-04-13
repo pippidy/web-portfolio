@@ -1,9 +1,15 @@
 import { useEffect, useState } from 'react';
 import { getData } from '../Api/Api';
 import GameCard from '../Cards/GameCard';
-import { TCharacter, TGame, TGameCardsListProps } from '../../types/types';
+import {
+  TCharacter,
+  TCompany,
+  TGame,
+  TGameCardsListProps,
+} from '../../types/types';
 import { useLocation } from 'react-router-dom';
 import CharacterCard from '../Cards/CharacterCard';
+import CompaniesCard from '../Cards/CompaniesCard';
 
 export default function CardsList(props: TGameCardsListProps) {
   const {
@@ -19,7 +25,7 @@ export default function CardsList(props: TGameCardsListProps) {
   const [data, setData] = useState<TGame[]>();
   const [loading, setLoading] = useState(true);
   const location = useLocation();
-  console.log(offset);
+
   useEffect(() => {
     getData({
       endpoint: endpoint,
@@ -57,7 +63,7 @@ export default function CardsList(props: TGameCardsListProps) {
           }`}
         >
           {data
-            ? data.map((data: TGame & TCharacter) => {
+            ? data.map((data: TGame & TCharacter & TCompany) => {
                 return (
                   <li className="cards-list__item" key={data.id}>
                     {endpoint === 'games' ? (
@@ -73,6 +79,8 @@ export default function CardsList(props: TGameCardsListProps) {
                         name={data.name}
                         mug_shot={data.mug_shot}
                       />
+                    ) : endpoint === 'companies' ? (
+                      <CompaniesCard name={data.name} logo={data.logo} />
                     ) : (
                       ''
                     )}

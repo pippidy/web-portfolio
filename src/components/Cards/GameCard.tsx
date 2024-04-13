@@ -16,15 +16,15 @@ export default function GameCard(props: TGame) {
   }
 
   return (
-    <div className="game-card">
-      <header className="game-card__header">
-        <div className="game-card__rating">
+    <div className="card">
+      <header className="card__header">
+        <div className="card__rating">
           R:{' '}
           {aggregated_rating ? aggregated_rating.toFixed(1) : <span>n/a</span>}
         </div>
 
-        <div className="game-card__like">
-          <button onClick={handleLikeClick} className="game-card__like-button">
+        <div className="card__like">
+          <button onClick={handleLikeClick} className="card__like-button">
             <HeartIcon
               className={`heart-icon ${isLiked ? 'liked' : ''}`}
               width="2.1em"
@@ -34,16 +34,16 @@ export default function GameCard(props: TGame) {
           </button>
         </div>
 
-        <div className="game-card__date">
+        <div className="card__date">
           <CalendarIcon className="calendar-icon" width="20px" height="20px" />
           {release_dates ? release_dates[0].y : ''}
         </div>
       </header>
 
-      <Link className="game-card__link" to="/">
+      <Link className="card__link" to="/">
         {cover ? (
           <img
-            className="game-card__image"
+            className="card__image"
             src={`//images.igdb.com/igdb/image/upload/t_${coverSize}/${cover?.image_id}.jpg`}
             alt={`Cover for ${name}`}
           />
@@ -52,7 +52,7 @@ export default function GameCard(props: TGame) {
         )}
       </Link>
 
-      <p className="game-card__name">{name}</p>
+      <p className="card__name">{name}</p>
     </div>
   );
 }
