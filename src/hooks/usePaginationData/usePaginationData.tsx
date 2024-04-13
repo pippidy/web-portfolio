@@ -4,6 +4,7 @@ import { getDataCount } from '../../components/Api/Api';
 import { TUsePaginationData } from '../../types/types';
 
 export default function usePaginationData({
+  fetchLimit = 100,
   endpoint,
   pageID,
   dataFilter,
@@ -11,16 +12,16 @@ export default function usePaginationData({
   const [pagesAmount, setPagesAmount] = useState(0);
   const location = useLocation();
   const currentPage = Number(location.hash.match(/[0-9]+/));
-  const fetchLimit = 100;
 
   useEffect(() => {
     getDataCount({
       endpoint: endpoint,
       filter: dataFilter ? dataFilter : '',
     }).then((data) => {
+      console.log(data.count);
       setPagesAmount(Math.floor(data.count / fetchLimit));
     });
-  }, [endpoint, pageID, pagesAmount, dataFilter]);
+  }, [endpoint, fetchLimit, pageID, pagesAmount, dataFilter]);
 
   return { pagesAmount, currentPage, location };
 }

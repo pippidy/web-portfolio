@@ -1,4 +1,4 @@
-import GameCardsList from '../components/GameCardsList/GameCardsList';
+import CardsList from '../components/CardsList/CardsList';
 import Section from '../components/Section/Section';
 
 export default function Home() {
@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <Section title="Recent releases">
-        <GameCardsList
+        <CardsList
           fields={fields}
           limit={6}
           sort={'first_release_date desc'}
@@ -17,7 +17,7 @@ export default function Home() {
       </Section>
 
       <Section title="Most rated games">
-        <GameCardsList
+        <CardsList
           fields={fields}
           limit={6}
           sort={'aggregated_rating desc'}
@@ -26,7 +26,7 @@ export default function Home() {
       </Section>
 
       <Section title="Least rated games">
-        <GameCardsList
+        <CardsList
           fields={fields}
           limit={6}
           sort={'aggregated_rating asc'}

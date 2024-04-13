@@ -1,4 +1,4 @@
-.game-card {
+.card {
   position: relative;
   z-index: 0;
   height: 100%;
@@ -28,22 +28,22 @@
       }
     }
 
-    & .game-card__image {
+    & .card__image {
       filter: grayscale(0%);
       transition: filter $transition-medium ease;
     }
 
-    & .game-card__rating {
+    & .card__rating {
       color: $color-grey-dark;
       background-color: $color-yellow;
     }
 
-    & .game-card__name {
+    & .card__name {
       opacity: 1;
     }
   }
 
-  &:has(.image-dummy) .game-card__name {
+  &:has(.image-dummy) .card__name {
     opacity: 1;
   }
 
@@ -146,5 +146,24 @@
     font-size: 1.2em;
     opacity: 0;
     transition: opacity $transition-medium ease-in-out;
+  }
+}
+
+.cards-list_mini {
+  & .cards-list__item {
+    flex-basis: 15%;
+  }
+
+  & .card__image {
+    width: 100%;
+    min-height: 200px;
+    object-fit: scale-down;
+    object-position: center 33px;
+    border-radius: $border-radius-main;
+  }
+
+  & .card__name {
+    font-size: 1.2em;
+    opacity: 1;
   }
 }

@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import GameCardsList from '../components/GameCardsList/GameCardsList';
+import CardsList from '../components/CardsList/CardsList';
 import Pagination from '../components/Pagination/Pagination';
 import Section from '../components/Section/Section';
 import usePaginationData from '../hooks/usePaginationData/usePaginationData';
@@ -8,15 +8,14 @@ import { useEffect } from 'react';
 export default function Characters() {
   const navigate = useNavigate();
   const { id: pageID } = useParams();
+  const fetchLimit = 102;
 
   // Preparing data for pagination
   const { pagesAmount, currentPage } = usePaginationData({
+    fetchLimit: fetchLimit,
     endpoint: 'characters',
     pageID: pageID,
   });
-
-  const fetchLimit = 100;
-  const offset = fetchLimit * currentPage;
 
   // Redirecting if page is non-existent
   useEffect(() => {
@@ -35,12 +34,13 @@ export default function Characters() {
         currentPage={currentPage}
       />
 
-      <GameCardsList
+      <CardsList
         endpoint="characters"
-        fields={'*'}
+        fields={'name,mug_shot.url'}
         limit={fetchLimit}
-        offset={offset}
-        compact
+        offset={fetchLimit * currentPage}
+        sort="mug_shot"
+        mini
       />
 
       <Pagination

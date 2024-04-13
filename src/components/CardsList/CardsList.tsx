@@ -1,23 +1,25 @@
 import { useEffect, useState } from 'react';
 import { getData } from '../Api/Api';
-import GameCard from '../GameCard/GameCard';
-import { TGame, TGameCardsListProps } from '../../types/types';
+import GameCard from '../Cards/GameCard';
+import { TCharacter, TGame, TGameCardsListProps } from '../../types/types';
 import { useLocation } from 'react-router-dom';
+import CharacterCard from '../Cards/CharacterCard';
 
-export default function GameCardsList(props: TGameCardsListProps) {
+export default function CardsList(props: TGameCardsListProps) {
   const {
     endpoint = 'games',
     limit,
     sort,
     filter,
     compact,
+    mini,
     offset,
     fields,
   } = props;
   const [data, setData] = useState<TGame[]>();
   const [loading, setLoading] = useState(true);
   const location = useLocation();
-
+  console.log(offset);
   useEffect(() => {
     getData({
       endpoint: endpoint,
@@ -41,7 +43,7 @@ export default function GameCardsList(props: TGameCardsListProps) {
   return (
     <>
       {loading ? (
-        <div className="game-cards-list__loading">
+        <div className="cards-list__loading">
           <div className="spinner">
             <span className="spinner__text">LOADING...</span>
             <div className="spinner__line"></div>
@@ -50,21 +52,30 @@ export default function GameCardsList(props: TGameCardsListProps) {
         </div>
       ) : (
         <ul
-          className={`game-cards-list ${
-            compact ? 'game-cards-list_compact' : ''
+          className={`cards-list ${
+            compact ? 'cards-list_compact' : `${mini ? 'cards-list_mini' : ''}`
           }`}
         >
           {data
-            ? data.map((game: TGame) => {
+            ? data.map((data: TGame & TCharacter) => {
                 return (
-                  <li className="game-cards-list__item" key={game.id}>
-                    <GameCard
-                      name={game.name}
-                      cover={game.cover}
-                      coverSize="cover_big"
-                      aggregated_rating={game.aggregated_rating}
-                      release_dates={game ? game.release_dates : undefined}
-                    />
+                  <li className="cards-list__item" key={data.id}>
+                    {endpoint === 'games' ? (
+                      <GameCard
+                        name={data.name}
+                        cover={data?.cover}
+                        coverSize="cover_big"
+                        aggregated_rating={data?.aggregated_rating}
+                        release_dates={data ? data.release_dates : undefined}
+                      />
+                    ) : endpoint === 'characters' ? (
+                      <CharacterCard
+                        name={data.name}
+                        mug_shot={data.mug_shot}
+                      />
+                    ) : (
+                      ''
+                    )}
                   </li>
                 );
               })

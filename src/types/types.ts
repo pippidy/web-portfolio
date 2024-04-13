@@ -39,8 +39,10 @@ export type TGameCardsListProps = {
   limit: number;
   sort?: string;
   filter?: string;
-  compact?: boolean;
   offset?: number;
+  // Choose either compact or mini
+  compact?: boolean;
+  mini?: boolean;
 };
 
 export type TGameCover = {
@@ -65,15 +67,27 @@ export type TGameReleaseDates = {
 
 export type TGame = {
   id?: number;
-  name?: string;
+  name: string;
   cover?: TGameCover;
-  coverSize: string;
+  coverSize?: string;
   screenshots?: TGameScreenshot[];
   videos?: TGameVideo;
   summary?: string;
   story?: string;
   aggregated_rating?: number;
   release_dates?: TGameReleaseDates[];
+};
+
+export type TCharacter = {
+  id?: number;
+  name: string;
+  akas?: string[];
+  mug_shot?: {
+    url: string;
+  };
+  description?: string;
+  games?: TGame[];
+  gender?: number;
 };
 
 export type TCategory = {
@@ -94,6 +108,7 @@ export type TCatalogue = {
 
 export type TUsePaginationData = {
   endpoint: TEndpoint;
+  fetchLimit?: number;
   pageID: string | undefined;
   dataFilter?: string;
 };

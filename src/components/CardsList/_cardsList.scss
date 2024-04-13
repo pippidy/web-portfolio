@@ -1,4 +1,4 @@
-.game-cards-list {
+.cards-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -18,15 +18,15 @@
   }
 
   &_compact {
-    & .game-cards-list__item {
+    & .cards-list__item {
       flex-basis: 22%;
     }
 
-    & .game-card__date {
+    & .card__date {
       display: none;
     }
 
-    & .game-card__name {
+    & .card__name {
       font-size: 1em;
     }
   }

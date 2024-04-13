@@ -1,6 +1,6 @@
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import Section from '../Section/Section';
-import GameCardsList from '../GameCardsList/GameCardsList';
+import CardsList from '../CardsList/CardsList';
 import { useEffect, useState } from 'react';
 import { getCategories } from '../Api/Api';
 import { TCatalogue, TCategory } from '../../types/types';
@@ -24,7 +24,6 @@ export default function Catalogue({
   const [categoriesList, setCategoriesList] = useState<TCategory[]>();
   const [loadingMenu, setLoadingMenu] = useState(true);
   const fetchLimit = 100;
-  const offset = fetchLimit * currentPage;
 
   // Redirecting if page is non-existent
   useEffect(() => {
@@ -105,14 +104,14 @@ export default function Catalogue({
 
         {/* Main part with cards */}
         <div className="catalogue__main">
-          <GameCardsList
+          <CardsList
             endpoint={endpoint}
             fields="name,cover.image_id,aggregated_rating,release_dates.*"
             limit={fetchLimit}
             sort="aggregated_rating desc"
             filter={pageID === 'all' ? '' : `${category} = ${pageID}`}
+            offset={fetchLimit * currentPage}
             compact
-            offset={offset}
           />
         </div>
 
