@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import { TCharacter } from '../../types/types';
-import ImageDummy from '../ImageDummy/ImageDummy';
+import ImageDummyCharacters from '../ImageDummies/ImageDummyCharacters';
 
 export default function CharacterCard({ name, mug_shot }: TCharacter) {
   return (
-    <div className="card card_character">
+    <div className="card">
       <Link className="card__link" to="/">
         {mug_shot ? (
           <img
@@ -13,7 +13,7 @@ export default function CharacterCard({ name, mug_shot }: TCharacter) {
             alt={`Mugshot of ${name}`}
           />
         ) : (
-          <ImageDummy />
+          <ImageDummyCharacters />
         )}
       </Link>
 

@@ -8,28 +8,27 @@
   width: 100%;
   aspect-ratio: 1 / 1.5;
   font-family: $font-family-secondary;
-  font-size: 1.6em;
   color: $color-grey;
   background-color: #eee;
+  transition: font-weight 0.3s ease;
 
-  &:hover {
-    & .icon-exclamation {
-      color: $color-red-light;
-
-      & path {
-        stroke: $color-red;
-      }
-    }
+  &__text {
+    font-size: 150%;
   }
 
-  & .icon-exclamation {
+  & .icon-dummy {
     width: 50%;
     height: auto;
-    color: $color-grey;
-    transition: color $transition-medium ease;
 
     & path {
+      fill: $color-grey;
       stroke: #a8a8a8;
+      stroke-width: 5px;
     }
   }
+}
+
+.image-dummy_character {
+  position: relative;
+  top: -20px;
 }

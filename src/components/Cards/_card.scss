@@ -41,6 +41,22 @@
     & .card__name {
       opacity: 1;
     }
+
+    & .image-dummy {
+      color: $color-red-lighter;
+      font-weight: bold;
+
+      & .icon-dummy {
+        & path {
+          fill: $color-red-light;
+          stroke: $color-red;
+        }
+
+        & .accent {
+          fill: $color-red-lighter;
+        }
+      }
+    }
   }
 
   &:has(.image-dummy) .card__name {
@@ -154,15 +170,25 @@
     flex-basis: 15%;
   }
 
+  & .cards-list__item {
+    min-height: 200px;
+  }
+
+  & .image-dummy {
+    max-width: 142.5px;
+    min-height: 200px;
+    aspect-ratio: 1/1;
+  }
+
   & .card__image {
     width: 100%;
-    min-height: 200px;
     object-fit: scale-down;
     object-position: center 33px;
     border-radius: $border-radius-main;
   }
 
   & .card__name {
+    padding: 7px;
     font-size: 1.2em;
     opacity: 1;
   }

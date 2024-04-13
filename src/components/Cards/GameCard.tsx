@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { TGame } from '../../types/types';
-import ImageDummy from '../ImageDummy/ImageDummy';
+import ImageDummyGames from '../ImageDummies/ImageDummyDefault';
 // @ts-expect-error
 import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg';
 // @ts-expect-error
@@ -48,7 +48,7 @@ export default function GameCard(props: TGame) {
             alt={`Cover for ${name}`}
           />
         ) : (
-          <ImageDummy />
+          <ImageDummyGames />
         )}
       </Link>
 

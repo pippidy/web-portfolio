@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { TCompany } from '../../types/types';
-import ImageDummy from '../ImageDummy/ImageDummy';
+import ImageDummyDefault from '../ImageDummies/ImageDummyDefault';
 
 export default function CompaniesCard({ name, logo }: TCompany) {
   return (
@@ -9,7 +9,7 @@ export default function CompaniesCard({ name, logo }: TCompany) {
         {logo ? (
           <img className="card__image" src={logo.url} alt={`Logo of ${name}`} />
         ) : (
-          <ImageDummy />
+          <ImageDummyDefault />
         )}
       </Link>
 
