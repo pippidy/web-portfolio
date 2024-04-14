@@ -21,7 +21,7 @@ export default function GameCard(props: TGame) {
       <header className="card__header">
         <div className="card__rating">
           R:{' '}
-          {aggregated_rating ? aggregated_rating.toFixed(1) : <span>n/a</span>}
+          {aggregated_rating ? aggregated_rating.toFixed(0) : <span>n/a</span>}
         </div>
 
         <div className="card__like">

@@ -1,6 +1,8 @@
 .card {
   position: relative;
   z-index: 0;
+  display: grid;
+  grid-template-rows: max-content 1fr;
   height: 100%;
   border-radius: $border-radius-main;
   background-color: #eee;
@@ -14,11 +16,10 @@
     display: flex;
     justify-content: center;
     gap: 10px;
-    position: absolute;
     top: 0;
     inset-inline: 0;
     z-index: 1;
-    background-color: rgba($color-grey-dark, 0.3);
+    background-color: rgba($color-grey-dark, 1);
   }
 
   &__rating {
@@ -32,6 +33,8 @@
     background-color: $color-yellow-light;
     transition: color $transition-medium ease,
       background-color $transition-medium ease;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
 
     & span {
       color: $color-grey-darker;
@@ -116,6 +119,7 @@
   transition: transform 0.15s ease-in, z-index $transition-medium ease,
     box-shadow $transition-fast ease-out;
   box-shadow: -2px 2px 0 rgba($color-grey-dark, 0.9);
+  border: 5px solid $color-yellow-light;
 
   &:hover {
     z-index: 2;
@@ -124,6 +128,7 @@
     transition: transform $transition-fast ease-out,
       z-index $transition-medium ease, box-shadow $transition-medium ease-out,
       $transition-medium ease;
+    border: 5px solid $color-yellow;
 
     & .heart-icon .heart-fill {
       fill: $color-grey-dark;
@@ -139,6 +144,7 @@
     & .card__image {
       filter: grayscale(0%);
       transition: filter $transition-medium ease;
+      transform: scale(1.01);
     }
 
     & .card__rating {
