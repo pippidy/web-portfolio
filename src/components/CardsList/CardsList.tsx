@@ -1,17 +1,13 @@
 import { useEffect, useState } from 'react';
 import { getData } from '../Api/Api';
 import GameCard from '../Cards/GameCard';
-import {
-  TCharacter,
-  TCompany,
-  TGame,
-  TGameCardsListProps,
-} from '../../types/types';
+import { TCharacter, TCompany, TGame, TGameCardsList } from '../../types/types';
 import { useLocation } from 'react-router-dom';
 import CharacterCard from '../Cards/CharacterCard';
 import CompaniesCard from '../Cards/CompaniesCard';
+import SectionLoading from '../SectionLoading/SectionLoading';
 
-export default function CardsList(props: TGameCardsListProps) {
+export default function CardsList(props: TGameCardsList) {
   const {
     endpoint = 'games',
     limit,
@@ -49,13 +45,7 @@ export default function CardsList(props: TGameCardsListProps) {
   return (
     <>
       {loading ? (
-        <div className="cards-list__loading">
-          <div className="spinner">
-            <span className="spinner__text">LOADING...</span>
-            <div className="spinner__line"></div>
-            <span className="spinner__center"></span>
-          </div>
-        </div>
+        <SectionLoading />
       ) : (
         <ul
           className={`cards-list ${
@@ -68,6 +58,7 @@ export default function CardsList(props: TGameCardsListProps) {
                   <li className="cards-list__item" key={data.id}>
                     {endpoint === 'games' ? (
                       <GameCard
+                        id={data.id}
                         name={data.name}
                         cover={data?.cover}
                         coverSize="cover_big"

@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigateFunction } from 'react-router-dom';
 
-export type TSectionHeaderProps = {
+export type TSectionHeader = {
   title: string;
   collapsed: boolean;
   setCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
@@ -12,7 +12,7 @@ export type TConfigAPI = {
   headers: {};
 };
 
-export type TSectionProps = {
+export type TSection = {
   title: string;
   children?: React.ReactNode;
 };
@@ -26,6 +26,12 @@ export type TGetData = {
   offset?: number;
 };
 
+export type TGetDataByID = {
+  endpoint: TEndpoint;
+  id: number[] | string | undefined;
+  fields?: string;
+};
+
 export type TEndpoint = 'games' | 'characters' | 'companies';
 
 export type TGetDataCount = {
@@ -33,7 +39,7 @@ export type TGetDataCount = {
   filter?: string;
 };
 
-export type TGameCardsListProps = {
+export type TGameCardsList = {
   endpoint?: string; // default is 'games'
   fields?: string;
   limit: number;
@@ -46,7 +52,8 @@ export type TGameCardsListProps = {
 };
 
 export type TGameCover = {
-  image_id: string;
+  image_id?: string;
+  url?: string;
 };
 
 export type TGameScreenshot = {
@@ -62,6 +69,7 @@ export type TGameVideo = {
 export type TGameReleaseDates = {
   id?: number;
   human?: string;
+  m?: number;
   y?: number;
 };
 
@@ -73,7 +81,7 @@ export type TGame = {
   screenshots?: TGameScreenshot[];
   videos?: TGameVideo;
   summary?: string;
-  story?: string;
+  storyline?: string;
   aggregated_rating?: number;
   release_dates?: TGameReleaseDates[];
 };
@@ -108,7 +116,7 @@ export type TCategory = {
   name: string;
 };
 
-export type TPaginationProps = {
+export type TPagination = {
   keyID: string;
   pagesAmount: number;
   currentPage: number;
@@ -130,4 +138,9 @@ export type THandlePaginationRedirect = {
   navigate: NavigateFunction;
   currentPage: number;
   pagesAmount: number;
+};
+
+export type TExtractEnumData = {
+  id: number | undefined;
+  enumObject: any;
 };

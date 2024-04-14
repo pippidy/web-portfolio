@@ -3,61 +3,8 @@
   z-index: 0;
   height: 100%;
   border-radius: $border-radius-main;
-  transition: transform 0.15s ease-in, z-index $transition-medium ease,
-    box-shadow $transition-fast ease-in;
   background-color: #eee;
   overflow: hidden;
-
-  &:hover {
-    z-index: 2;
-    transform: scale(1.2);
-    box-shadow: 10px 10px 30px rgba($color-grey-dark, 0.6),
-      -10px -10px 30px rgba($color-grey-dark, 0.3);
-    transition: transform $transition-fast ease-out,
-      z-index $transition-medium ease, box-shadow $transition-medium ease-out,
-      $transition-medium ease;
-
-    & .heart-icon .heart-fill {
-      fill: $color-grey-dark;
-    }
-
-    & .heart-icon.liked {
-      & .heart-fill,
-      & .heart-stroke {
-        fill: $color-red;
-      }
-    }
-
-    & .card__image {
-      filter: grayscale(0%);
-      transition: filter $transition-medium ease;
-    }
-
-    & .card__rating {
-      color: $color-grey-dark;
-      background-color: $color-yellow;
-    }
-
-    & .card__name {
-      opacity: 1;
-    }
-
-    & .image-dummy {
-      color: $color-red-lighter;
-      font-weight: bold;
-
-      & .icon-dummy {
-        & path {
-          fill: $color-red-light;
-          stroke: $color-red;
-        }
-
-        & .accent {
-          fill: $color-red-lighter;
-        }
-      }
-    }
-  }
 
   &:has(.image-dummy) .card__name {
     opacity: 1;
@@ -162,6 +109,69 @@
     font-size: 1.2em;
     opacity: 0;
     transition: opacity $transition-medium ease-in-out;
+  }
+}
+
+.card-flying {
+  transition: transform 0.15s ease-in, z-index $transition-medium ease,
+    box-shadow $transition-fast ease-out;
+  box-shadow: -2px 2px 0 rgba($color-grey-dark, 0.9);
+
+  &:hover {
+    z-index: 2;
+    transform: scale(1.2);
+    box-shadow: -20px 25px 0 rgba($color-grey-dark, 0.9);
+    transition: transform $transition-fast ease-out,
+      z-index $transition-medium ease, box-shadow $transition-medium ease-out,
+      $transition-medium ease;
+
+    & .heart-icon .heart-fill {
+      fill: $color-grey-dark;
+    }
+
+    & .heart-icon.liked {
+      & .heart-fill,
+      & .heart-stroke {
+        fill: $color-red;
+      }
+    }
+
+    & .card__image {
+      filter: grayscale(0%);
+      transition: filter $transition-medium ease;
+    }
+
+    & .card__rating {
+      color: $color-grey-dark;
+      background-color: $color-yellow;
+    }
+
+    & .card__name {
+      opacity: 1;
+    }
+
+    & .image-dummy {
+      color: $color-red-lighter;
+      font-weight: bold;
+
+      & .icon-dummy {
+        & path {
+          fill: $color-red-light;
+          stroke: $color-red;
+        }
+
+        & .accent {
+          fill: $color-red-lighter;
+        }
+      }
+    }
+  }
+
+  &_slide-right {
+    &:hover {
+      transform: scale(1.2) translateX(25%);
+      box-shadow: -35px 35px 0 rgba($color-grey-dark, 0.9);
+    }
   }
 }
 

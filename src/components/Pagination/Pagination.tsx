@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { TPaginationProps } from '../../types/types';
+import { TPagination } from '../../types/types';
 
 export default function Pagination({
   keyID,
   pagesAmount,
   currentPage,
-}: TPaginationProps) {
+}: TPagination) {
   const [pagesRender, setPagesRender] = useState<JSX.Element[]>([]);
   const length = 10;
 

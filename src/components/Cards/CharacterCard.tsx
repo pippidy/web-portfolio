@@ -4,7 +4,7 @@ import ImageDummyCharacters from '../ImageDummies/ImageDummyCharacters';
 
 export default function CharacterCard({ name, mug_shot }: TCharacter) {
   return (
-    <div className="card">
+    <div className="card card-flying">
       <Link className="card__link" to="/">
         {mug_shot ? (
           <img

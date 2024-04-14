@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import SectionHeader from '../SectionHeader/SectionHeader';
-import { TSectionProps } from '../../types/types';
+import { TSection } from '../../types/types';
 
-export default function Section(props: TSectionProps) {
+export default function Section(props: TSection) {
   const { title, children } = props;
   const [collapsed, setCollapsed] = useState(false);
   const activeClass = collapsed ? 'section_collapsed' : '';

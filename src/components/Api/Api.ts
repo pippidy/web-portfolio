@@ -4,6 +4,7 @@ import {
   TCategory,
   TGetData,
   TGetDataCount,
+  TGetDataByID,
 } from '../../types/types';
 import { handleFetchResults } from '../Utils/Utils';
 
@@ -74,4 +75,19 @@ export const getCategories = (
   })
     .then((res) => handleFetchResults(res))
     .then((data) => data);
+};
+
+// Query example "fields *; where id = 23;"
+export const getDataByID = ({
+  endpoint,
+  id,
+  fields,
+}: TGetDataByID): Promise<TGame[] | undefined> => {
+  id = Array.isArray(id) ? `(${id.join(',')})` : id;
+
+  return fetch(`${configAPI.baseURL}/${endpoint}`, {
+    method: 'POST',
+    headers: configAPI.headers,
+    body: `fields ${fields}; where id = ${id};`,
+  }).then((res) => handleFetchResults(res));
 };

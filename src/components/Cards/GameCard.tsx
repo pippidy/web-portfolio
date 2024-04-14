@@ -8,7 +8,8 @@ import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg';
 import { ReactComponent as CalendarIcon } from '../../assets/svg/calendar.svg';
 
 export default function GameCard(props: TGame) {
-  const { name, cover, coverSize, aggregated_rating, release_dates } = props;
+  const { id, name, cover, coverSize, aggregated_rating, release_dates } =
+    props;
   const [isLiked, setIsLiked] = useState(false);
 
   function handleLikeClick() {
@@ -16,7 +17,7 @@ export default function GameCard(props: TGame) {
   }
 
   return (
-    <div className="card">
+    <div className="card card-flying">
       <header className="card__header">
         <div className="card__rating">
           R:{' '}
@@ -40,7 +41,7 @@ export default function GameCard(props: TGame) {
         </div>
       </header>
 
-      <Link className="card__link" to="/">
+      <Link className="card__link" to={`game/${id}`}>
         {cover ? (
           <img
             className="card__image"

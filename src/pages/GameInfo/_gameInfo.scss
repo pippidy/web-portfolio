@@ -1,0 +1,138 @@
+.info-page {
+  &__content {
+    position: relative;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 20px;
+  }
+
+  &__cover {
+    &-holder {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: max-content;
+      height: max-content;
+      border-radius: $border-radius-main;
+      border: 5px solid $color-yellow-light;
+      overflow: hidden;
+
+      &:hover {
+        border: 5px solid $color-yellow;
+      }
+    }
+  }
+
+  &__data-holder {
+    position: relative;
+    padding-left: 20px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset-block: 5%;
+      left: 0;
+      width: 2px;
+      background: linear-gradient(
+        to bottom,
+        rgba(17, 17, 17, 0),
+        #111111,
+        rgba(17, 17, 17, 0)
+      );
+    }
+  }
+
+  &__data-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &-item {
+      display: flex;
+      gap: 10px;
+      width: max-content;
+      font-family: $font-family-secondary;
+      font-size: 1.5em;
+      color: #fff;
+
+      & > div {
+        position: relative;
+        z-index: 0;
+        padding: 5px 15px;
+      }
+
+      & > div:first-child {
+        background-color: $color-grey-darker;
+
+        &::before,
+        &::after {
+          content: '';
+          position: absolute;
+          inset-block: 0;
+        }
+
+        &::before {
+          left: 100%;
+          width: 5px;
+          background-color: $color-grey-darker;
+        }
+
+        &::after {
+          right: -5px;
+          width: 2px;
+          background-color: $color-grey-dark;
+        }
+      }
+
+      & > div:last-child {
+        color: $color-grey-dark;
+        background-color: $color-yellow-light;
+        border-top-right-radius: $border-radius-main;
+        border-bottom-right-radius: $border-radius-main;
+        padding-right: 20px;
+
+        &::before {
+          content: '';
+          position: absolute;
+          inset-block: 0;
+          right: 100%;
+          width: 5px;
+          background-color: $color-yellow-light;
+        }
+      }
+    }
+  }
+}
+
+.info-article {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 20px;
+
+  &__title {
+    position: relative;
+    font-size: 1.6em;
+    text-transform: uppercase;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 90%;
+      height: 2px;
+      margin-block: 10px;
+      background: linear-gradient(
+        to right,
+        rgba(17, 17, 17, 0),
+        #111111 10%,
+        rgba(17, 17, 17, 0)
+      );
+    }
+  }
+
+  &__text {
+    font-size: 1.5em;
+  }
+}
