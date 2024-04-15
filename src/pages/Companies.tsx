@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import CardsList from '../components/CardsList/CardsList';
 import Pagination from '../components/Pagination/Pagination';
 import Section from '../components/Section/Section';
-import usePaginationData from '../hooks/usePaginationData/usePaginationData';
+import usePaginationData from '../hooks/usePaginationData';
 import { useEffect } from 'react';
 
 export default function Companies() {

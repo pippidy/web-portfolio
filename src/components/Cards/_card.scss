@@ -5,8 +5,9 @@
   grid-template-rows: max-content 1fr;
   height: 100%;
   border-radius: $border-radius-main;
-  background-color: #eee;
+  background-color: #444;
   overflow: hidden;
+  border: 5px solid $color-yellow-light;
 
   &:has(.image-dummy) .card__name {
     opacity: 1;
@@ -16,14 +17,12 @@
     display: flex;
     justify-content: center;
     gap: 10px;
-    top: 0;
     inset-inline: 0;
     z-index: 1;
     background-color: rgba($color-grey-dark, 1);
   }
 
   &__rating {
-    left: 0;
     padding: 5px 10px;
     font-family: $font-family-secondary;
     font-size: 1.2em;
@@ -98,7 +97,6 @@
     height: 100%;
     filter: grayscale(100%);
     transition: filter $transition-medium ease;
-    object-fit: cover;
   }
 
   &__name {
@@ -119,7 +117,6 @@
   transition: transform 0.15s ease-in, z-index $transition-medium ease,
     box-shadow $transition-fast ease-out;
   box-shadow: -2px 2px 0 rgba($color-grey-dark, 0.9);
-  border: 5px solid $color-yellow-light;
 
   &:hover {
     z-index: 2;
@@ -159,11 +156,14 @@
     & .image-dummy {
       color: $color-red-lighter;
       font-weight: bold;
+      transition: color $transition-medium ease;
 
       & .icon-dummy {
         & path {
           fill: $color-red-light;
           stroke: $color-red;
+          transition: fill $transition-medium ease,
+            stroke $transition-medium ease;
         }
 
         & .accent {
@@ -181,31 +181,10 @@
   }
 }
 
-.cards-list_mini {
-  & .cards-list__item {
-    flex-basis: 15%;
-  }
-
-  & .cards-list__item {
-    min-height: 200px;
-  }
-
-  & .image-dummy {
-    max-width: 142.5px;
-    min-height: 200px;
-    aspect-ratio: 1/1;
-  }
-
-  & .card__image {
-    width: 100%;
-    object-fit: scale-down;
-    object-position: center 33px;
-    border-radius: $border-radius-main;
-  }
-
-  & .card__name {
-    padding: 7px;
-    font-size: 1.2em;
-    opacity: 1;
+@media (max-width: 768px) {
+  .card {
+    &__like {
+      display: none;
+    }
   }
 }

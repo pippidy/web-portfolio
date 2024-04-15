@@ -1,24 +1,24 @@
 import { useEffect, useState } from 'react';
 import { getData } from '../Api/Api';
 import GameCard from '../Cards/GameCard';
-import { TCharacter, TCompany, TGame, TGameCardsList } from '../../types/types';
+import { TCardsList, TData } from '../../types/types';
 import { useLocation } from 'react-router-dom';
 import CharacterCard from '../Cards/CharacterCard';
 import CompaniesCard from '../Cards/CompaniesCard';
 import SectionLoading from '../SectionLoading/SectionLoading';
 
-export default function CardsList(props: TGameCardsList) {
-  const {
-    endpoint = 'games',
-    limit,
-    sort,
-    filter,
-    compact,
-    mini,
-    offset,
-    fields,
-  } = props;
-  const [data, setData] = useState<TGame[]>();
+export default function CardsList({
+  endpoint = 'games',
+  fields,
+  limit,
+  sort,
+  filter,
+  infoLinkPath,
+  compact,
+  mini,
+  offset,
+}: TCardsList) {
+  const [data, setData] = useState<TData[]>();
   const [loading, setLoading] = useState(true);
   const location = useLocation();
 
@@ -53,7 +53,7 @@ export default function CardsList(props: TGameCardsList) {
           }`}
         >
           {data
-            ? data.map((data: TGame & TCharacter & TCompany) => {
+            ? data.map((data) => {
                 return (
                   <li className="cards-list__item" key={data.id}>
                     {endpoint === 'games' ? (
@@ -64,14 +64,24 @@ export default function CardsList(props: TGameCardsList) {
                         coverSize="cover_big"
                         aggregated_rating={data?.aggregated_rating}
                         release_dates={data ? data.release_dates : undefined}
+                        infoLinkPath={infoLinkPath}
+                        compact={compact ? true : false}
+                        mini={mini ? true : false}
                       />
                     ) : endpoint === 'characters' ? (
                       <CharacterCard
                         name={data.name}
                         mug_shot={data.mug_shot}
+                        compact={compact ? true : false}
+                        mini={mini ? true : false}
                       />
                     ) : endpoint === 'companies' ? (
-                      <CompaniesCard name={data.name} logo={data.logo} />
+                      <CompaniesCard
+                        name={data.name}
+                        logo={data.logo}
+                        compact={compact ? true : false}
+                        mini={mini ? true : false}
+                      />
                     ) : (
                       ''
                     )}

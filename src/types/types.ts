@@ -19,17 +19,11 @@ export type TSection = {
 
 export type TGetData = {
   endpoint: string;
-  fields?: string;
+  fields: string;
   limit?: number;
   sort?: string; // example "sort aggregated_rating desc"
   filter?: string; // example "where genre = 2"
   offset?: number;
-};
-
-export type TGetDataByID = {
-  endpoint: TEndpoint;
-  id: number[] | string | undefined;
-  fields?: string;
 };
 
 export type TEndpoint = 'games' | 'characters' | 'companies';
@@ -39,21 +33,25 @@ export type TGetDataCount = {
   filter?: string;
 };
 
-export type TGameCardsList = {
+export type TInfoLinkPath = '../' | '';
+
+export type TCardsList = {
   endpoint?: string; // default is 'games'
-  fields?: string;
-  limit: number;
+  fields: string;
+  limit?: number;
   sort?: string;
   filter?: string;
   offset?: number;
+  infoLinkPath?: TInfoLinkPath;
+
   // Choose either compact or mini
   compact?: boolean;
   mini?: boolean;
 };
 
 export type TGameCover = {
-  image_id?: string;
-  url?: string;
+  image_id: string;
+  url: string;
 };
 
 export type TGameScreenshot = {
@@ -73,9 +71,11 @@ export type TGameReleaseDates = {
   y?: number;
 };
 
+export type TData = TGame & TCharacter & TCompany;
+
 export type TGame = {
   id?: number;
-  name: string;
+  name?: string;
   cover?: TGameCover;
   coverSize?: string;
   screenshots?: TGameScreenshot[];
@@ -84,11 +84,12 @@ export type TGame = {
   storyline?: string;
   aggregated_rating?: number;
   release_dates?: TGameReleaseDates[];
+  similar_games?: number[];
 };
 
 export type TCharacter = {
   id?: number;
-  name: string;
+  name?: string;
   akas?: string[];
   mug_shot?: {
     url: string;
@@ -96,6 +97,8 @@ export type TCharacter = {
   description?: string;
   games?: TGame[];
   gender?: number;
+  compact?: boolean;
+  mini?: boolean;
 };
 
 export type TCompany = {
@@ -109,11 +112,19 @@ export type TCompany = {
   developed?: TGame[];
   start_date?: string;
   websites?: number[];
+  compact?: boolean;
+  mini?: boolean;
 };
 
 export type TCategory = {
   id: number;
   name: string;
+};
+
+export type TGameCard = TGame & {
+  infoLinkPath?: TInfoLinkPath;
+  compact?: boolean;
+  mini?: boolean;
 };
 
 export type TPagination = {
@@ -125,6 +136,7 @@ export type TPagination = {
 export type TCatalogue = {
   endpoint: TEndpoint;
   category: string;
+  title: string;
 };
 
 export type TUsePaginationData = {
@@ -143,4 +155,10 @@ export type THandlePaginationRedirect = {
 export type TExtractEnumData = {
   id: number | undefined;
   enumObject: any;
+};
+
+export type TCutLongString = {
+  string: string;
+  length: number;
+  end?: string; // three dots at the end of the title for example
 };

@@ -66,35 +66,6 @@
   color: inherit;
 }
 
-.title-tertiary {
-  position: relative;
-  padding-bottom: 10px;
-  margin-bottom: 20px;
-  font-family: $font-family-secondary;
-  font-size: 2.5em;
-  color: $color-yellow;
-  text-align: center;
-  text-transform: uppercase;
-  -webkit-text-stroke: 1px $color-grey-dark;
-  letter-spacing: 3px;
-  text-shadow: -1px 1px 0 $color-grey-dark;
-  line-height: 1.1em;
-
-  &::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    inset-inline: 10%;
-    height: 2px;
-    background: linear-gradient(
-      to right,
-      rgba($color-grey-dark, 0),
-      rgba($color-grey-dark, 1),
-      rgba($color-grey-dark, 0)
-    );
-  }
-}
-
 .spinner {
   position: relative;
   display: flex;

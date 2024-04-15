@@ -1,24 +1,52 @@
 .cards-list {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
 
   &__item {
     flex-basis: 25%;
+    aspect-ratio: 1 / 1.5;
   }
 
   &_compact {
-    & .cards-list__item {
-      flex-basis: 22%;
-    }
+    gap: 10px;
 
-    & .card__date {
-      display: none;
+    & .cards-list__item {
+      flex-basis: 23%;
     }
 
     & .card__name {
-      font-size: 1em;
+      padding-block: 5px;
+      font-size: 1.2em;
+    }
+
+    & .icon-dummy {
+      width: 60%;
+    }
+  }
+
+  &_mini {
+    & .cards-list__item {
+      flex-basis: 15%;
+      aspect-ratio: 1 / 1;
+    }
+
+    & .card__image,
+    & .image-dummy {
+      min-width: 133px;
+      aspect-ratio: 1 / 1;
+    }
+
+    & .image-dummy {
+      position: relative;
+      top: -15px;
+    }
+
+    & .card__name {
+      padding: 7px;
+      font-size: 1.2em;
     }
   }
 }

@@ -5,11 +5,12 @@ import { useEffect, useState } from 'react';
 import { getCategories } from '../Api/Api';
 import { TCatalogue, TCategory } from '../../types/types';
 import Pagination from '../Pagination/Pagination';
-import usePaginationData from '../../hooks/usePaginationData/usePaginationData';
+import usePaginationData from '../../hooks/usePaginationData';
 
 export default function Catalogue({
   category,
   endpoint = 'games',
+  title,
 }: TCatalogue) {
   const { id: pageID } = useParams();
 
@@ -34,7 +35,7 @@ export default function Catalogue({
     }
   }, [navigate, pagesAmount, currentPage, category, endpoint, pageID]);
 
-  // Fetching categories for the menu
+  // Fetching categories for catalogue menu
   useEffect(() => {
     getCategories(category)
       .then((categories) => {
@@ -45,8 +46,9 @@ export default function Catalogue({
   }, [category]);
 
   return (
-    <Section title="Browse by genre">
+    <Section title={title}>
       <div className="catalogue">
+        <div className="catalogue__category-title">Genres</div>
         <nav className="catalogue__nav">
           {loadingMenu ? (
             /* Fake menu for loading */
@@ -67,6 +69,7 @@ export default function Catalogue({
                 <NavLink
                   className="catalogue-menu__link"
                   to={`/${endpoint}/${category}/all#page=1`}
+                  onClick={() => window.scrollTo(0, 0)}
                 >
                   All
                 </NavLink>
@@ -76,6 +79,7 @@ export default function Catalogue({
                     return (
                       <li key={genre.id}>
                         <NavLink
+                          onClick={() => window.scrollTo(0, 0)}
                           className="catalogue-menu__link"
                           to={`/${endpoint}/${category}/${genre.id}#page=1`}
                         >
@@ -111,6 +115,7 @@ export default function Catalogue({
             sort="aggregated_rating desc"
             filter={pageID === 'all' ? '' : `${category} = ${pageID}`}
             offset={fetchLimit * currentPage}
+            infoLinkPath="../"
             compact
           />
         </div>

@@ -1,4 +1,4 @@
-import { TExtractEnumData } from '../../types/types';
+import { TCutLongString, TExtractEnumData } from '../../types/types';
 
 export function handleFetchResults(res: Response) {
   if (res.ok) {
@@ -11,4 +11,10 @@ export function handleFetchResults(res: Response) {
 export function extractEnumData({ id, enumObject }: TExtractEnumData) {
   if (!id) return undefined;
   return enumObject[id];
+}
+
+export function cutLongString({ string, length, end }: TCutLongString): string {
+  return string.length > length
+    ? `${string.substring(0, length)}${end}`
+    : string;
 }

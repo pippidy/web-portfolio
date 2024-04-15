@@ -10,10 +10,11 @@
   font-family: $font-family-secondary;
   color: $color-grey;
   background-color: #eee;
-  transition: font-weight 0.3s ease;
+  transition: font-weight $transition-medium ease,
+    color $transition-fast ease-out;
 
   &__text {
-    font-size: 150%;
+    font-size: 140%;
   }
 
   & .icon-dummy {
@@ -24,6 +25,8 @@
       fill: $color-grey;
       stroke: #a8a8a8;
       stroke-width: 5px;
+      transition: fill $transition-fast ease-out,
+        stroke $transition-fast ease-out;
     }
   }
 }
