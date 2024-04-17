@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 import CharacterCard from '../Cards/CharacterCard';
 import CompaniesCard from '../Cards/CompaniesCard';
 import SectionLoading from '../SectionLoading/SectionLoading';
+import cn from 'classnames';
 
 export default function CardsList({
   endpoint = 'games',
@@ -13,14 +14,19 @@ export default function CardsList({
   limit,
   sort,
   filter,
-  infoLinkPath,
-  compact,
-  mini,
+  infoLinkPath: linkPath,
+  cardSize = 'default',
   offset,
 }: TCardsList) {
   const [data, setData] = useState<TData[]>();
   const [loading, setLoading] = useState(true);
   const location = useLocation();
+
+  // Classnames
+  const classCardList = cn('cards-list', {
+    'cards-list_compact': cardSize === 'compact',
+    'cards-list_mini': cardSize === 'mini',
+  });
 
   useEffect(() => {
     getData({
@@ -47,11 +53,7 @@ export default function CardsList({
       {loading ? (
         <SectionLoading />
       ) : (
-        <ul
-          className={`cards-list ${
-            compact ? 'cards-list_compact' : `${mini ? 'cards-list_mini' : ''}`
-          }`}
-        >
+        <ul className={classCardList}>
           {data
             ? data.map((data) => {
                 return (
@@ -64,23 +66,20 @@ export default function CardsList({
                         coverSize="cover_big"
                         aggregated_rating={data?.aggregated_rating}
                         release_dates={data ? data.release_dates : undefined}
-                        infoLinkPath={infoLinkPath}
-                        compact={compact ? true : false}
-                        mini={mini ? true : false}
+                        linkPath={linkPath}
+                        cardSize={cardSize}
                       />
                     ) : endpoint === 'characters' ? (
                       <CharacterCard
                         name={data.name}
                         mug_shot={data.mug_shot}
-                        compact={compact ? true : false}
-                        mini={mini ? true : false}
+                        cardSize={cardSize}
                       />
                     ) : endpoint === 'companies' ? (
                       <CompaniesCard
                         name={data.name}
                         logo={data.logo}
-                        compact={compact ? true : false}
-                        mini={mini ? true : false}
+                        cardSize={cardSize}
                       />
                     ) : (
                       ''

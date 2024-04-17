@@ -8,7 +8,7 @@ export default function Pagination({
   currentPage,
 }: TPagination) {
   const [pagesRender, setPagesRender] = useState<JSX.Element[]>([]);
-  const length = 10;
+  const length = 11;
 
   useEffect(() => {
     function fillPagesArray(
@@ -19,9 +19,8 @@ export default function Pagination({
       pagesArray.push(
         <li className="pagination__item" key={`${keyID}_${page}`}>
           <Link
-            className={`pagination__link ${
-              currentPage === page ? 'active' : ''
-            }`}
+            onClick={() => window.scrollTo(0, 0)}
+            className={`pagination__link ${currentPage === page && 'current'}`}
             to={`#page=${page}`}
           >
             {page}
@@ -67,7 +66,7 @@ export default function Pagination({
           <li className="pagination__item" key={`${keyID}_first`}>
             <Link
               className={`pagination__link ${
-                currentPage === 1 ? 'inactive' : ''
+                currentPage < length ? 'inactive' : ''
               }`}
               to={`#page=${1}`}
             >

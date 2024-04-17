@@ -40,7 +40,7 @@ export const getData = ({
   offset,
   fields,
 }: TGetData): Promise<TData[] | undefined> => {
-  // query example "fields name,cover.image_id,videos.*,screenshots.*,aggregated_rating; limit 6; sort first_release_date desc; where aggregated_rating > 0;"
+  // Query example: "fields name,cover.image_id,videos.*,screenshots.*,aggregated_rating; limit 6; sort first_release_date desc; where aggregated_rating > 0;"
   const body = `${fields ? `fields ${fields};` : ''} ${
     limit ? `limit ${limit};` : ''
   } ${sort ? `sort ${sort};` : ''} ${filter ? `where ${filter};` : ''} ${
@@ -56,7 +56,7 @@ export const getData = ({
   });
 };
 
-// Query example "where genre = 2"
+// Query example: "where genre = 2"
 export const getDataCount = (props: TGetDataCount) => {
   const { endpoint, filter } = props;
 

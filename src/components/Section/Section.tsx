@@ -1,17 +1,20 @@
 import { useState } from 'react';
 import SectionHeader from '../SectionHeader/SectionHeader';
 import { TSection } from '../../types/types';
+import cn from 'classnames';
 
 export default function Section(props: TSection) {
   const { title, children } = props;
   const [collapsed, setCollapsed] = useState(false);
-  const activeClass = collapsed ? 'section_collapsed' : '';
+
+  // Classnames
+  const classSection = cn('section block-default block-default_shadowDown', {
+    collapsed: collapsed,
+  });
 
   return (
     <>
-      <section
-        className={`section ${activeClass} block-default block-default_shadowDown`}
-      >
+      <section className={classSection}>
         <SectionHeader
           title={title}
           collapsed={collapsed}

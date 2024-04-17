@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavigateFunction } from 'react-router-dom';
 
+export type TComponentChildren = React.ReactNode;
+
 export type TSectionHeader = {
   title: string;
   collapsed: boolean;
@@ -14,7 +16,7 @@ export type TConfigAPI = {
 
 export type TSection = {
   title: string;
-  children?: React.ReactNode;
+  children?: TComponentChildren;
 };
 
 export type TGetData = {
@@ -22,7 +24,7 @@ export type TGetData = {
   fields: string;
   limit?: number;
   sort?: string; // example "sort aggregated_rating desc"
-  filter?: string; // example "where genre = 2"
+  filter?: string; // example "genre = 2" or "id = (2254,5534,2523)"
   offset?: number;
 };
 
@@ -33,7 +35,9 @@ export type TGetDataCount = {
   filter?: string;
 };
 
-export type TInfoLinkPath = '../' | '';
+export type TLinkPath = '../' | '';
+
+export type TCardSize = 'default' | 'compact' | 'mini';
 
 export type TCardsList = {
   endpoint?: string; // default is 'games'
@@ -42,11 +46,8 @@ export type TCardsList = {
   sort?: string;
   filter?: string;
   offset?: number;
-  infoLinkPath?: TInfoLinkPath;
-
-  // Choose either compact or mini
-  compact?: boolean;
-  mini?: boolean;
+  infoLinkPath?: TLinkPath;
+  cardSize?: TCardSize;
 };
 
 export type TGameCover = {
@@ -97,8 +98,7 @@ export type TCharacter = {
   description?: string;
   games?: TGame[];
   gender?: number;
-  compact?: boolean;
-  mini?: boolean;
+  cardSize?: TCardSize;
 };
 
 export type TCompany = {
@@ -112,8 +112,7 @@ export type TCompany = {
   developed?: TGame[];
   start_date?: string;
   websites?: number[];
-  compact?: boolean;
-  mini?: boolean;
+  cardSize?: TCardSize;
 };
 
 export type TCategory = {
@@ -122,9 +121,8 @@ export type TCategory = {
 };
 
 export type TGameCard = TGame & {
-  infoLinkPath?: TInfoLinkPath;
-  compact?: boolean;
-  mini?: boolean;
+  linkPath?: TLinkPath;
+  cardSize?: TCardSize;
 };
 
 export type TPagination = {
@@ -161,4 +159,10 @@ export type TCutLongString = {
   string: string;
   length: number;
   end?: string; // three dots at the end of the title for example
+};
+
+export type TTabs = {
+  children?: TComponentChildren;
+  tabs: string[];
+  title?: string | undefined; // Inserts title in the tabs' header
 };

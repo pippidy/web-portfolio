@@ -1,4 +1,6 @@
 .image-dummy {
+  position: relative;
+  top: -20px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -14,11 +16,11 @@
     color $transition-fast ease-out;
 
   &__text {
-    font-size: 140%;
+    font-size: 2em;
   }
 
   & .icon-dummy {
-    width: 50%;
+    width: 60%;
     height: auto;
 
     & path {

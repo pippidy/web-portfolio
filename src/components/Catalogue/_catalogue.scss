@@ -94,9 +94,9 @@
   justify-content: center;
   gap: 10px;
   width: 100%;
-  height: 390px;
+  min-height: 530px;
   border-radius: $border-radius-main;
-  background: linear-gradient(135deg, $color-yellow-light, #fff);
+  background: linear-gradient(135deg, $color-grey-light, #fff);
   background-size: 150% 150%;
   animation: gradient-loading 3s linear infinite;
   filter: blur(1px);

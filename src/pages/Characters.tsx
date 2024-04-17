@@ -40,7 +40,7 @@ export default function Characters() {
         limit={fetchLimit}
         offset={fetchLimit * currentPage}
         sort="mug_shot"
-        mini
+        cardSize="mini"
       />
 
       <Pagination

@@ -25,6 +25,10 @@
     & .icon-dummy {
       width: 60%;
     }
+
+    & .image-dummy__text {
+      font-size: 1.8em;
+    }
   }
 
   &_mini {
@@ -42,6 +46,14 @@
     & .image-dummy {
       position: relative;
       top: -15px;
+    }
+
+    & .icon-dummy {
+      width: 50%;
+    }
+
+    & .image-dummy__text {
+      font-size: 1.3em;
     }
 
     & .card__name {

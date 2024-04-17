@@ -61,6 +61,9 @@ export default function Catalogue({
               <li>Loading...</li>
               <li>Loading...</li>
               <li>Loading...</li>
+              <li>Loading...</li>
+              <li>Loading...</li>
+              <li>Loading...</li>
             </ul>
           ) : (
             /* Actual catalogue menu */
@@ -116,7 +119,7 @@ export default function Catalogue({
             filter={pageID === 'all' ? '' : `${category} = ${pageID}`}
             offset={fetchLimit * currentPage}
             infoLinkPath="../"
-            compact
+            cardSize="compact"
           />
         </div>
 

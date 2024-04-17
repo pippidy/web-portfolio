@@ -3,21 +3,24 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px 0;
-  font-size: 1.6em;
   color: $color-grey-darker;
+  background-color: transparent;
+  transition: background-color $transition-medium ease;
 
   &__link {
     padding: 5px 10px;
     font-family: $font-family-accent;
+    font-size: 1.5em;
 
     &:hover {
       color: $color-grey-dark;
       text-decoration: underline;
     }
 
-    &.active {
+    &.current {
       color: #fff;
       background-color: $color-grey-dark;
+      transition: background-color $transition-medium ease;
       pointer-events: none;
     }
 

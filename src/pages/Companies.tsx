@@ -40,7 +40,7 @@ export default function Companies() {
         limit={fetchLimit}
         offset={fetchLimit * currentPage}
         sort="logo"
-        mini
+        cardSize="mini"
       />
 
       <Pagination
