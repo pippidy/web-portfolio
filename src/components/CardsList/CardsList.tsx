@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { getData } from '../Api/Api';
-import GameCard from '../Cards/GameCard';
+import GameCard from '../Card/GameCard';
 import { TCardsList, TData } from '../../types/types';
 import { useLocation } from 'react-router-dom';
-import CharacterCard from '../Cards/CharacterCard';
-import CompaniesCard from '../Cards/CompaniesCard';
+import CharacterCard from '../Card/CharacterCard';
+import CompaniesCard from '../Card/CompaniesCard';
 import SectionLoading from '../SectionLoading/SectionLoading';
 import cn from 'classnames';
 

@@ -40,16 +40,16 @@ export default function GameInfo() {
     <>
       <Section title="Game info">
         <Tabs
-          tabs={['Info', 'Screenshots', 'Artwork', 'Similar games']}
+          tabs={['Info', 'Screenshots', 'Artworks', 'Similar games']}
           title={pageData ? pageData[0].name : ''}
         >
           {/* INFO TAB*/}
-          <div className="tabs__content info-page">
+          <>
             {loadingInfo ? (
               <SectionLoading />
             ) : (
               <>
-                <section className="info-page__content">
+                <div className="info-page__content">
                   <div className="info-page__cover-holder card-flying card-flying_slide-right">
                     <img
                       className="info-page__cover-image"
@@ -139,12 +139,19 @@ export default function GameInfo() {
                       </div>
                     </article>
                   </div>
-                </section>
+                </div>
               </>
             )}
-          </div>
+          </>
 
-          <div className="tabs__content" style={{ display: 'flex' }}>
+          {/* SCREENSHOTS TAB*/}
+          <></>
+
+          {/* ARTWORKS TAB*/}
+          <></>
+
+          {/* SIMILAR GAMES TAB */}
+          <>
             {pageData ? (
               pageData[0].similar_games ? (
                 <CardsList
@@ -168,9 +175,10 @@ export default function GameInfo() {
                 <h3>No similar games available</h3>
               </div>
             )}
-          </div>
+          </>
         </Tabs>
       </Section>
+
       <Section title="Comments"></Section>
     </>
   );

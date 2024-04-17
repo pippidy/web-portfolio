@@ -162,7 +162,7 @@ export type TCutLongString = {
 };
 
 export type TTabs = {
-  children?: TComponentChildren;
+  children?: TComponentChildren[];
   tabs: string[];
-  title?: string | undefined; // Inserts title in the tabs' header
+  title?: string | undefined;
 };
