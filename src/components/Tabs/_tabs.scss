@@ -78,16 +78,31 @@
     position: absolute;
     grid-row: 1;
     grid-column: 1;
+    height: 0;
     opacity: 0;
+    overflow: hidden;
     pointer-events: none;
-    transform: translate(0, 50%);
     transition: opacity $transition-medium ease,
       transform $transition-medium ease-in;
+
+    &.pos-left {
+      transform: translate(-50%, 0%);
+      transition: opacity $transition-medium ease,
+        transform $transition-medium ease-in;
+    }
+
+    &.pos-right {
+      transform: translate(50%, 0%);
+      transition: opacity $transition-medium ease,
+        transform $transition-medium ease-in;
+    }
 
     &.displayed {
       position: relative;
       display: flex;
+      height: auto;
       opacity: 1;
+      overflow: visible;
       pointer-events: all;
       transform: translate(0);
       transition: visibility 0s, opacity $transition-medium,
@@ -99,10 +114,15 @@
     }
 
     &.move-out_left,
-    &.move-out_right {
+    &.move-out_right,
+    &.move-out_front {
       opacity: 0;
       transition: opacity $transition-medium ease,
         transform $transition-medium ease-in;
+    }
+
+    &.move-out_front {
+      transform: translate(0) scale(3);
     }
 
     &.move-out_left {

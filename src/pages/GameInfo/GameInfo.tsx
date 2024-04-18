@@ -178,8 +178,6 @@ export default function GameInfo() {
           </>
         </Tabs>
       </Section>
-
-      <Section title="Comments"></Section>
     </>
   );
 }

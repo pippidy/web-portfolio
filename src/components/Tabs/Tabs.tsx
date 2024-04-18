@@ -5,31 +5,38 @@ import { useLocation } from 'react-router-dom';
 
 export default function Tabs({ children, tabs, title = '' }: TTabs) {
   const [toggle, setToggle] = useState<string | number>(0);
+  const [startingPosition, setStartingPosition] = useState('right');
   const location = useLocation();
 
-  // Fixing bug with loading indicator when you choose another game
+  // Switch to the first tab on page change
   useEffect(() => {
     const activeTab = document.querySelector('.displayed');
 
     activeTab?.classList.add('hidden');
     setTimeout(() => {
-      activeTab?.classList.remove('hidden');
+      activeTab?.classList.remove('hidden'); // Fixing bug with loading indicator
     }, 100);
 
     setToggle(0);
+    setStartingPosition('right');
   }, [location]);
 
   function toggleTab(id: number) {
     const activeTab = document.querySelector('.displayed');
+    let tabsPos: string; // starting position of hidden tabs
 
-    if (id < Math.floor(tabs.length / 2)) {
-      activeTab?.classList.add('move-out_left');
-    } else {
+    // Animation changes sides depending on tab position
+    if (id <= Math.floor(tabs.length / 2)) {
       activeTab?.classList.add('move-out_right');
+      tabsPos = 'right';
+    } else {
+      activeTab?.classList.add('move-out_left');
+      tabsPos = 'left';
     }
 
     setTimeout(() => {
       setToggle(id);
+      setStartingPosition(tabsPos);
     }, 200);
   }
 
@@ -58,11 +65,17 @@ export default function Tabs({ children, tabs, title = '' }: TTabs) {
         {children &&
           children.map((child, index) => {
             const className = cn('tabs__content', {
+              'pos-left': startingPosition === 'left',
+              'pos-right': startingPosition === 'right',
               displayed: toggle === index,
             });
 
             return (
-              <div className={className} key={`tabContent_${index}`}>
+              <div
+                id={`tab_${index}`}
+                className={className}
+                key={`tabContent_${index}`}
+              >
                 {child}
               </div>
             );
