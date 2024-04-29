@@ -169,6 +169,7 @@ export default function GameInfo() {
                   endpoint="screenshots"
                   imageSize="screenshot_huge"
                   fields="image_id"
+                  limit={100}
                   filter={`id = ${
                     Array.isArray(pageData[0].screenshots)
                       ? `(${pageData[0].screenshots.join(',')})`

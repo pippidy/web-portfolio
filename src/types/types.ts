@@ -177,6 +177,7 @@ export type TImageGallery = {
   endpoint: 'screenshots' | 'artworks';
   imageSize: string;
   fields?: string;
+  limit?: number;
   filter?: string;
   text?: 'Image' | 'Screenshot' | 'Artwork';
 };
@@ -191,4 +192,10 @@ export type TImageSlider = {
   text: string;
   currentImage: number;
   setCurrentImage: Dispatch<SetStateAction<number>>;
+};
+
+export type TModal = {
+  children: TComponentChildren;
+  isOpened: boolean;
+  setIsOpened: Dispatch<SetStateAction<boolean>>;
 };

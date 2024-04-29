@@ -4,19 +4,12 @@ import cn from 'classnames';
 import { useLocation } from 'react-router-dom';
 
 export default function Tabs({ children, tabs, title = '' }: TTabs) {
-  const [toggle, setToggle] = useState<number>(1);
+  const [toggle, setToggle] = useState<number>(0);
   const [startingPosition, setStartingPosition] = useState('right');
   const location = useLocation();
 
   // Switch to the first tab on page change
   useEffect(() => {
-    const activeTab = document.querySelector('.displayed');
-
-    activeTab?.classList.add('display-hidden');
-    setTimeout(() => {
-      activeTab?.classList.remove('display-hidden'); // Fixing bug with loading indicator
-    }, 100);
-
     setToggle(0);
     setStartingPosition('right');
   }, [location]);
@@ -77,7 +70,6 @@ export default function Tabs({ children, tabs, title = '' }: TTabs) {
                 id={`tab_${index}`}
                 className={className}
                 key={`tabContent_${index}`}
-                style={{ transform: 'none' }}
               >
                 {child}
               </div>
