@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { NavigateFunction } from 'react-router-dom';
 
 export type TComponentChildren = React.ReactNode;
+
+export type TNameAndID = {
+  id?: number;
+  name?: string;
+};
 
 export type TSectionHeader = {
   title: string;
@@ -21,7 +26,7 @@ export type TSection = {
 
 export type TGetData = {
   endpoint: string;
-  fields: string;
+  fields?: string;
   limit?: number;
   sort?: string; // example "sort aggregated_rating desc"
   filter?: string; // example "genre = 2" or "id = (2254,5534,2523)"
@@ -40,8 +45,8 @@ export type TLinkPath = '../' | '';
 export type TCardSize = 'default' | 'compact' | 'mini';
 
 export type TCardsList = {
-  endpoint?: string; // default is 'games'
-  fields: string;
+  endpoint?: string;
+  fields?: string;
   limit?: number;
   sort?: string;
   filter?: string;
@@ -55,9 +60,9 @@ export type TGameCover = {
   url: string;
 };
 
-export type TGameScreenshot = {
+export type TScreenshot = {
   image_id: string;
-  url: string;
+  url?: string;
 };
 
 export type TGameVideo = {
@@ -72,19 +77,20 @@ export type TGameReleaseDates = {
   y?: number;
 };
 
-export type TData = TGame & TCharacter & TCompany;
+export type TData = TGame & TCharacter & TCompany & TScreenshot;
 
 export type TGame = {
   id?: number;
   name?: string;
+  aggregated_rating?: number;
+  genres?: TNameAndID[];
   cover?: TGameCover;
   coverSize?: string;
-  screenshots?: TGameScreenshot[];
-  videos?: TGameVideo;
-  summary?: string;
   storyline?: string;
-  aggregated_rating?: number;
+  summary?: string;
   release_dates?: TGameReleaseDates[];
+  screenshots?: TScreenshot[];
+  videos?: TGameVideo;
   similar_games?: number[];
 };
 
@@ -165,4 +171,24 @@ export type TTabs = {
   children?: TComponentChildren[];
   tabs: string[];
   title?: string | undefined;
+};
+
+export type TImageGallery = {
+  endpoint: 'screenshots' | 'artworks';
+  imageSize: string;
+  fields?: string;
+  filter?: string;
+  text?: 'Image' | 'Screenshot' | 'Artwork';
+};
+
+export type TDataNotAvailable = {
+  text?: string;
+};
+
+export type TImageSlider = {
+  data: TData[] | undefined;
+  imageSize: string;
+  text: string;
+  currentImage: number;
+  setCurrentImage: Dispatch<SetStateAction<number>>;
 };

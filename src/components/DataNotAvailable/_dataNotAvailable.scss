@@ -1,0 +1,12 @@
+.data-not-available {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  font-family: $font-family-thin;
+  font-size: 2.5em;
+  font-style: italic;
+  color: $color-grey;
+}

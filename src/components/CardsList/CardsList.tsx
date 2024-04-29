@@ -7,10 +7,11 @@ import CharacterCard from '../Card/CharacterCard';
 import CompaniesCard from '../Card/CompaniesCard';
 import SectionLoading from '../SectionLoading/SectionLoading';
 import cn from 'classnames';
+import DataNotAvailable from '../DataNotAvailable/DataNotAvailable';
 
 export default function CardsList({
   endpoint = 'games',
-  fields,
+  fields = '*',
   limit,
   sort,
   filter,
@@ -52,43 +53,43 @@ export default function CardsList({
     <>
       {loading ? (
         <SectionLoading />
-      ) : (
+      ) : data && data.length > 0 ? (
         <ul className={classCardList}>
-          {data
-            ? data.map((data) => {
-                return (
-                  <li className="cards-list__item" key={data.id}>
-                    {endpoint === 'games' ? (
-                      <GameCard
-                        id={data.id}
-                        name={data.name}
-                        cover={data?.cover}
-                        coverSize="cover_big"
-                        aggregated_rating={data?.aggregated_rating}
-                        release_dates={data ? data.release_dates : undefined}
-                        linkPath={linkPath}
-                        cardSize={cardSize}
-                      />
-                    ) : endpoint === 'characters' ? (
-                      <CharacterCard
-                        name={data.name}
-                        mug_shot={data.mug_shot}
-                        cardSize={cardSize}
-                      />
-                    ) : endpoint === 'companies' ? (
-                      <CompaniesCard
-                        name={data.name}
-                        logo={data.logo}
-                        cardSize={cardSize}
-                      />
-                    ) : (
-                      ''
-                    )}
-                  </li>
-                );
-              })
-            : ''}
+          {data.map((data) => {
+            return (
+              <li className="cards-list__item" key={data.id}>
+                {endpoint === 'games' ? (
+                  <GameCard
+                    id={data.id}
+                    name={data.name}
+                    cover={data?.cover}
+                    coverSize="cover_big"
+                    aggregated_rating={data?.aggregated_rating}
+                    release_dates={data ? data.release_dates : undefined}
+                    linkPath={linkPath}
+                    cardSize={cardSize}
+                  />
+                ) : endpoint === 'characters' ? (
+                  <CharacterCard
+                    name={data.name}
+                    mug_shot={data.mug_shot}
+                    cardSize={cardSize}
+                  />
+                ) : endpoint === 'companies' ? (
+                  <CompaniesCard
+                    name={data.name}
+                    logo={data.logo}
+                    cardSize={cardSize}
+                  />
+                ) : (
+                  ''
+                )}
+              </li>
+            );
+          })}
         </ul>
+      ) : (
+        <DataNotAvailable />
       )}
     </>
   );

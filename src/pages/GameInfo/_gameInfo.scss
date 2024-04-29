@@ -45,11 +45,11 @@
       width: max-content;
       height: max-content;
       border-radius: $border-radius-main;
-      border: 5px solid $color-yellow-light;
+      border: 6px solid $color-yellow-light;
       overflow: hidden;
 
       &:hover {
-        border: 5px solid $color-yellow;
+        border-color: $color-yellow;
       }
     }
   }

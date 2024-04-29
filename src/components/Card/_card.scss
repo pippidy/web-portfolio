@@ -7,7 +7,7 @@
   border-radius: $border-radius-main;
   background-color: #444;
   overflow: hidden;
-  border: 5px solid $color-yellow-light;
+  border: 6px solid $color-yellow-light;
 
   &:has(.image-dummy) .card__name {
     opacity: 1;
@@ -114,18 +114,24 @@
 }
 
 .card-flying {
-  transition: transform 0.15s ease-in, z-index $transition-medium ease,
-    box-shadow $transition-fast ease-out;
+  position: relative;
+  z-index: 0;
   box-shadow: -2px 2px 0 rgba($color-grey-dark, 0.9);
+  transition: transform 0.15s ease-in, z-index $transition-medium ease,
+    box-shadow $transition-fast ease-out,
+    background-color $transition-medium ease,
+    border-color $transition-medium ease;
 
   &:hover {
     z-index: 2;
-    transform: scale(1.2);
+    border-color: $color-yellow;
     box-shadow: -20px 25px 0 rgba($color-grey-dark, 0.9);
+    transform: scale(1.2);
+    filter: grayscale(0);
     transition: transform $transition-fast ease-out,
       z-index $transition-medium ease, box-shadow $transition-medium ease-out,
-      $transition-medium ease;
-    border: 5px solid $color-yellow;
+      $transition-medium ease, background-color $transition-medium ease,
+      border-color $transition-medium ease;
 
     & .heart-icon .heart-fill {
       fill: $color-grey-dark;
@@ -138,10 +144,9 @@
       }
     }
 
-    & .card__image {
+    & img {
       filter: grayscale(0%);
       transition: filter $transition-medium ease;
-      transform: scale(1.01);
     }
 
     & .card__rating {
@@ -171,6 +176,10 @@
         }
       }
     }
+  }
+
+  & img {
+    transform: scale(1.01); // Fixes a minor glitch on images' borders
   }
 
   &_slide-right {

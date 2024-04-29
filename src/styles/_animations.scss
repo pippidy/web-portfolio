@@ -29,3 +29,17 @@
     transform: scaleX(0.95) scaleY(1);
   }
 }
+
+@keyframes squishY {
+  0% {
+    transform: scaleY(1);
+  }
+
+  50% {
+    transform: scaleY(0.75);
+  }
+
+  100% {
+    transform: scaleY(1);
+  }
+}

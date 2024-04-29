@@ -1,0 +1,81 @@
+.image-slider {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  border-radius: $border-radius-main;
+  overflow: hidden;
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-column: 1/-1;
+    grid-row: 1/-1;
+    background-color: $color-yellow;
+    border-radius: 10px;
+    opacity: 0;
+    transform: translateX(-100vw);
+    transition: transform $transition-medium ease-out,
+      opacity $transition-fast ease-out;
+
+    &.current {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    &.prev {
+      transform: translateX(-100vw);
+    }
+
+    &.next {
+      transform: translateX(100vw);
+    }
+  }
+
+  &__button {
+    position: absolute;
+    z-index: 101;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8.1%;
+    height: 100%;
+    background-color: rgba($color-grey-dark, 0.2);
+    transition: background-color $transition-fast ease-in-out;
+
+    &:hover {
+      background-color: rgba($color-grey-dark, 0.8);
+
+      & svg {
+        opacity: 1;
+      }
+    }
+
+    &:active svg {
+      animation: squishY 0.3s linear;
+    }
+
+    &_prev {
+      left: 0;
+      transform: rotate(180deg);
+    }
+
+    &_next {
+      right: 0;
+    }
+
+    & svg {
+      opacity: 0.2;
+      width: 60%;
+      aspect-ratio: 1 / 1;
+      transition: opacity $transition-fast ease-in-out;
+    }
+  }
+
+  &__text {
+    padding-block: 15px;
+    font-family: $font-family-handwriting;
+    font-size: 4rem;
+  }
+}

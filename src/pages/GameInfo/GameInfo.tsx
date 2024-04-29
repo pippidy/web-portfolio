@@ -8,16 +8,20 @@ import { EnumMonthsShort } from '../../components/Utils/Data';
 import { extractEnumData } from '../../components/Utils/Utils';
 import CardsList from '../../components/CardsList/CardsList';
 import Tabs from '../../components/Tabs/Tabs';
+import ImageGallery from '../../components/ImageGallery/ImageGallery';
+import DataNotAvailable from '../../components/DataNotAvailable/DataNotAvailable';
 
 export default function GameInfo() {
   const { id: pageID } = useParams();
   const [pageData, setPageData] = useState<TGame[]>();
+  const [genres, setGenres] = useState<string[]>([]);
   const location = useLocation();
 
   // Loadings
   const [loadingInfo, setLoadingInfo] = useState(true);
 
   useEffect(() => {
+    setGenres([]);
     setLoadingInfo(true);
   }, [location]);
 
@@ -27,10 +31,20 @@ export default function GameInfo() {
       filter: `id = ${pageID}`,
       limit: 100,
       fields:
-        'name,cover.image_id,aggregated_rating,release_dates.m,release_dates.y,summary,storyline,similar_games',
+        'name,cover.image_id,aggregated_rating,genres.name,release_dates.m,release_dates.y,summary,storyline,similar_games,screenshots',
     })
       .then((data) => {
         setPageData(data);
+
+        // Setting genres array
+        if (data && data[0].genres) {
+          data[0].genres.forEach((item) => {
+            setGenres((prevState) => {
+              if (item.name) prevState?.push(item.name);
+              return prevState;
+            });
+          });
+        }
       })
       .catch((err) => console.log(`Error: ${err}`))
       .finally(() => setLoadingInfo(false));
@@ -61,47 +75,50 @@ export default function GameInfo() {
                   </div>
 
                   <div className="info-page__data-holder">
-                    <ul className="info-page__data-list">
-                      <li className="info-page__data-list-item">
-                        <div>Rating:</div>{' '}
-                        <div>
-                          {pageData
-                            ? !pageData[0].aggregated_rating
+                    {pageData ? (
+                      <ul className="info-page__data-list">
+                        <li className="info-page__data-list-item">
+                          <div>Rating:</div>{' '}
+                          <div>
+                            {!pageData[0].aggregated_rating
                               ? 'n/a'
                               : Number(
                                   pageData[0].aggregated_rating?.toFixed(0)
-                                )
-                            : 'n/a'}
-                        </div>
-                      </li>
+                                )}
+                          </div>
+                        </li>
 
-                      <li className="info-page__data-list-item">
-                        <div>Release date: </div>
-                        <div>
-                          {pageData
-                            ? pageData[0].release_dates
+                        <li className="info-page__data-list-item">
+                          <div>Release date: </div>
+                          <div>
+                            {pageData[0].release_dates
                               ? !pageData[0].release_dates[0].y &&
                                 !pageData[0].release_dates[0].m
-                                ? 'n/a'
-                                : ''
-                              : ''
-                            : ''}
-                          {pageData
-                            ? pageData[0].release_dates
+                              : 'n/a'}
+                            {pageData[0].release_dates
                               ? extractEnumData({
                                   id: pageData[0].release_dates[0].m,
                                   enumObject: EnumMonthsShort,
                                 })
-                              : '?'
-                            : '?'}{' '}
-                          {pageData
-                            ? pageData[0].release_dates
+                              : ''}{' '}
+                            {pageData[0].release_dates
                               ? pageData[0].release_dates[0].y
-                              : '?'
-                            : '?'}
-                        </div>
-                      </li>
-                    </ul>
+                              : ''}
+                          </div>
+                        </li>
+
+                        {pageData[0].genres ? (
+                          <li className="info-page__data-list-item">
+                            <div>Genres: </div>
+                            <div>{genres.join(', ')}</div>
+                          </li>
+                        ) : (
+                          ''
+                        )}
+                      </ul>
+                    ) : (
+                      ''
+                    )}
 
                     <article className="info-article">
                       <div>
@@ -144,8 +161,28 @@ export default function GameInfo() {
             )}
           </>
 
-          {/* SCREENSHOTS TAB*/}
-          <></>
+          {/* SCREENSHOTS TAB */}
+          <>
+            {pageData ? (
+              pageData[0].screenshots ? (
+                <ImageGallery
+                  endpoint="screenshots"
+                  imageSize="screenshot_huge"
+                  fields="image_id"
+                  filter={`id = ${
+                    Array.isArray(pageData[0].screenshots)
+                      ? `(${pageData[0].screenshots.join(',')})`
+                      : pageData[0].screenshots
+                  }`}
+                  text="Screenshot"
+                />
+              ) : (
+                <DataNotAvailable text="No screenshots available" />
+              )
+            ) : (
+              ''
+            )}
+          </>
 
           {/* ARTWORKS TAB*/}
           <></>
@@ -166,14 +203,10 @@ export default function GameInfo() {
                   cardSize="compact"
                 />
               ) : (
-                <div className="data-not-available">
-                  <h3>No similar games available</h3>
-                </div>
+                <DataNotAvailable text="No smilar games available" />
               )
             ) : (
-              <div className="data-not-available">
-                <h3>No similar games available</h3>
-              </div>
+              <DataNotAvailable text="No smilar games available" />
             )}
           </>
         </Tabs>

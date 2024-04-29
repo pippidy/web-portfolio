@@ -8,6 +8,10 @@
   &__item {
     flex-basis: 25%;
     aspect-ratio: 1 / 1.5;
+    // You should try to keep these numbers even bacause of poor subpixel rendering causing blur with translate
+    height: max-content;
+    max-width: 230px;
+    min-height: 350px;
   }
 
   &_compact {
@@ -15,6 +19,9 @@
 
     & .cards-list__item {
       flex-basis: 23%;
+      // You should try to keep these numbers even bacause of poor subpixel rendering causing blur with translate
+      max-width: 160px;
+      min-height: 218px;
     }
 
     & .card__name {
@@ -35,6 +42,8 @@
     & .cards-list__item {
       flex-basis: 15%;
       aspect-ratio: 1 / 1;
+      max-width: auto;
+      min-height: auto;
     }
 
     & .card__image,

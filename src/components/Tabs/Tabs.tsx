@@ -4,7 +4,7 @@ import cn from 'classnames';
 import { useLocation } from 'react-router-dom';
 
 export default function Tabs({ children, tabs, title = '' }: TTabs) {
-  const [toggle, setToggle] = useState<string | number>(0);
+  const [toggle, setToggle] = useState<number>(1);
   const [startingPosition, setStartingPosition] = useState('right');
   const location = useLocation();
 
@@ -12,9 +12,9 @@ export default function Tabs({ children, tabs, title = '' }: TTabs) {
   useEffect(() => {
     const activeTab = document.querySelector('.displayed');
 
-    activeTab?.classList.add('hidden');
+    activeTab?.classList.add('display-hidden');
     setTimeout(() => {
-      activeTab?.classList.remove('hidden'); // Fixing bug with loading indicator
+      activeTab?.classList.remove('display-hidden'); // Fixing bug with loading indicator
     }, 100);
 
     setToggle(0);
@@ -26,13 +26,15 @@ export default function Tabs({ children, tabs, title = '' }: TTabs) {
     let tabsPos: string; // starting position of hidden tabs
 
     // Animation changes sides depending on tab position
-    if (id <= Math.floor(tabs.length / 2)) {
+    if (id < toggle) {
       activeTab?.classList.add('move-out_right');
       tabsPos = 'right';
     } else {
       activeTab?.classList.add('move-out_left');
       tabsPos = 'left';
     }
+
+    document.querySelector(`#tab_${id}`)?.classList.add('displayed');
 
     setTimeout(() => {
       setToggle(id);
@@ -75,6 +77,7 @@ export default function Tabs({ children, tabs, title = '' }: TTabs) {
                 id={`tab_${index}`}
                 className={className}
                 key={`tabContent_${index}`}
+                style={{ transform: 'none' }}
               >
                 {child}
               </div>

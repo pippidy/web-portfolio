@@ -34,18 +34,16 @@ const configAPI: TConfigAPI = {
 
 export const getData = ({
   endpoint,
+  fields = '*',
+  filter,
   limit,
   sort,
-  filter,
   offset,
-  fields,
 }: TGetData): Promise<TData[] | undefined> => {
   // Query example: "fields name,cover.image_id,videos.*,screenshots.*,aggregated_rating; limit 6; sort first_release_date desc; where aggregated_rating > 0;"
-  const body = `${fields ? `fields ${fields};` : ''} ${
-    limit ? `limit ${limit};` : ''
-  } ${sort ? `sort ${sort};` : ''} ${filter ? `where ${filter};` : ''} ${
-    offset ? `offset ${offset};` : ''
-  }`;
+  const body = `fields ${fields}; ${limit ? `limit ${limit};` : ''} ${
+    sort ? `sort ${sort};` : ''
+  } ${filter ? `where ${filter};` : ''} ${offset ? `offset ${offset};` : ''}`;
 
   return fetch(`${configAPI.baseURL}/${endpoint}`, {
     method: 'POST',
