@@ -48,11 +48,7 @@ export default function ImageGallery({
       {loading ? (
         <SectionLoading />
       ) : data ? (
-        <ul
-          className={`image-gallery ${
-            data.length === 1 && 'align-items-center'
-          }`}
-        >
+        <ul className="image-gallery">
           {data.map((item, index) => {
             return (
               <li

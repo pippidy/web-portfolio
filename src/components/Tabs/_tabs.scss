@@ -38,10 +38,12 @@
       width: 100%;
       padding: 15px 25px;
       text-align: center;
-      font-size: 1.6em;
+      font-size: 1.6rem;
+      font-weight: normal;
       color: $color-grey-darker;
       text-transform: uppercase;
-      transition: color $transition-medium ease;
+      transition: color $transition-medium, font-weight $transition-fast;
+      transition-timing-function: ease;
 
       &:hover {
         color: $color-grey-dark;
@@ -70,8 +72,8 @@
   }
 
   &__holder {
-    display: grid;
     flex: 1;
+    display: grid;
   }
 
   &__content {
@@ -85,8 +87,9 @@
 
     &.pos-left,
     &.pos-right {
-      transition: opacity $transition-medium ease,
-        transform $transition-medium ease;
+      transition: opacity, transform;
+      transition-duration: $transition-medium;
+      transition-timing-function: ease;
     }
 
     &.pos-left {

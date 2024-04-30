@@ -16,7 +16,7 @@ export default function Tabs({ children, tabs, title = '' }: TTabs) {
     const activeTabElement = document.querySelector('.displayed');
 
     // Animation changes sides depending on tab index
-    if (id < Math.floor(tabs.length / 2) && id === 0) {
+    if (id < toggle || id === 0) {
       activeTabElement?.classList.add('move-out_right');
     } else {
       activeTabElement?.classList.add('move-out_left');
