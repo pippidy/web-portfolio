@@ -60,7 +60,7 @@ export type TGameCover = {
   url: string;
 };
 
-export type TScreenshot = {
+export type TImage = {
   image_id: string;
   url?: string;
 };
@@ -77,7 +77,7 @@ export type TGameReleaseDates = {
   y?: number;
 };
 
-export type TData = TGame & TCharacter & TCompany & TScreenshot;
+export type TData = TGame & TCharacter & TCompany & TImage;
 
 export type TGame = {
   id?: number;
@@ -89,7 +89,8 @@ export type TGame = {
   storyline?: string;
   summary?: string;
   release_dates?: TGameReleaseDates[];
-  screenshots?: TScreenshot[];
+  screenshots?: TImage[];
+  artworks?: TImage[];
   videos?: TGameVideo;
   similar_games?: number[];
 };

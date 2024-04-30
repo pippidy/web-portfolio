@@ -3,6 +3,8 @@ import cn from 'classnames';
 
 // @ts-expect-error
 import { ReactComponent as ArrowIcon } from '../../assets/svg/arrow-circle.svg';
+// @ts-expect-error
+import { ReactComponent as ZoomIcon } from '../../assets/svg/zoom.svg';
 
 export default function ImageSlider({
   data,
@@ -28,43 +30,59 @@ export default function ImageSlider({
   }
 
   return (
-    <div className="image-slider">
-      {/* Button PREV */}
-      <button
-        onClick={prevImage}
-        className="image-slider__button image-slider__button_prev"
-      >
-        <ArrowIcon />
-      </button>
+    <>
+      {data && (
+        <div className="image-slider">
+          {data.length > 1 && (
+            <>
+              {/* Button PREV */}
+              <button
+                onClick={prevImage}
+                className="image-slider__button image-slider__button_prev"
+              >
+                <ArrowIcon />
+              </button>
 
-      {/* Button NEXT */}
-      <button
-        onClick={nextImage}
-        className="image-slider__button image-slider__button_next"
-      >
-        <ArrowIcon />
-      </button>
+              {/* Button NEXT */}
+              <button
+                onClick={nextImage}
+                className="image-slider__button image-slider__button_next"
+              >
+                <ArrowIcon />
+              </button>
+            </>
+          )}
 
-      {data?.map((item, index) => {
-        const cardClass = cn('image-slider__card', {
-          current: index === currentImage,
-          prev: index < currentImage,
-          next: index > currentImage,
-        });
+          {data?.map((item, index) => {
+            const cardClass = cn('image-slider__card', {
+              current: index === currentImage,
+              prev: index < currentImage,
+              next: index > currentImage,
+            });
 
-        return (
-          <div key={`slider-card_${index}`} className={cardClass}>
-            <img
-              className="image-slider__image"
-              src={`//images.igdb.com/igdb/image/upload/t_${imageSize}/${item.image_id}.jpg`}
-              alt=""
-            />
-            <span className="image-slider__text">{`${text} №${
-              index + 1
-            }`}</span>
-          </div>
-        );
-      })}
-    </div>
+            return (
+              <div key={`slider-card_${index}`} className={cardClass}>
+                <a
+                  className="image-slider__link"
+                  href={`//images.igdb.com/igdb/image/upload/t_1080p/${item.image_id}.jpg`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <ZoomIcon />
+                  <img
+                    className="image-slider__image"
+                    src={`//images.igdb.com/igdb/image/upload/t_${imageSize}/${item.image_id}.jpg`}
+                    alt=""
+                  />
+                </a>
+                <span className="image-slider__text">{`${text} №${
+                  index + 1
+                }`}</span>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </>
   );
 }

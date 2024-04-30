@@ -5,33 +5,27 @@ import { useLocation } from 'react-router-dom';
 
 export default function Tabs({ children, tabs, title = '' }: TTabs) {
   const [toggle, setToggle] = useState<number>(0);
-  const [startingPosition, setStartingPosition] = useState('right');
   const location = useLocation();
 
   // Switch to the first tab on page change
   useEffect(() => {
     setToggle(0);
-    setStartingPosition('right');
   }, [location]);
 
   function toggleTab(id: number) {
-    const activeTab = document.querySelector('.displayed');
-    let tabsPos: string; // starting position of hidden tabs
+    const activeTabElement = document.querySelector('.displayed');
 
-    // Animation changes sides depending on tab position
-    if (id < toggle) {
-      activeTab?.classList.add('move-out_right');
-      tabsPos = 'right';
+    // Animation changes sides depending on tab index
+    if (id < Math.floor(tabs.length / 2) && id === 0) {
+      activeTabElement?.classList.add('move-out_right');
     } else {
-      activeTab?.classList.add('move-out_left');
-      tabsPos = 'left';
+      activeTabElement?.classList.add('move-out_left');
     }
 
     document.querySelector(`#tab_${id}`)?.classList.add('displayed');
 
     setTimeout(() => {
       setToggle(id);
-      setStartingPosition(tabsPos);
     }, 200);
   }
 
@@ -60,8 +54,8 @@ export default function Tabs({ children, tabs, title = '' }: TTabs) {
         {children &&
           children.map((child, index) => {
             const className = cn('tabs__content', {
-              'pos-left': startingPosition === 'left',
-              'pos-right': startingPosition === 'right',
+              'pos-left': index < toggle,
+              'pos-right': index > toggle,
               displayed: toggle === index,
             });
 

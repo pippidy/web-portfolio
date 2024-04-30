@@ -8,7 +8,7 @@ import Modal from '../Modal/Modal';
 
 export default function ImageGallery({
   endpoint,
-  imageSize,
+  imageSize = 't_thumb',
   fields = '*',
   limit,
   filter,
@@ -48,7 +48,11 @@ export default function ImageGallery({
       {loading ? (
         <SectionLoading />
       ) : data ? (
-        <ul className="image-gallery">
+        <ul
+          className={`image-gallery ${
+            data.length === 1 && 'align-items-center'
+          }`}
+        >
           {data.map((item, index) => {
             return (
               <li
