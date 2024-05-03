@@ -113,12 +113,12 @@ export default function Catalogue({
         <div className="catalogue__main">
           <CardsList
             endpoint={endpoint}
-            fields="name,cover.image_id,aggregated_rating,release_dates.*"
+            fields="name,cover.image_id,aggregated_rating,first_release_date"
             limit={fetchLimit}
             sort="aggregated_rating desc"
             filter={pageID === 'all' ? '' : `${category} = ${pageID}`}
             offset={fetchLimit * currentPage}
-            infoLinkPrefix="../"
+            linkPrefix="../"
             cardSize="compact"
           />
         </div>

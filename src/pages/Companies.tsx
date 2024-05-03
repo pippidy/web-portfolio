@@ -41,7 +41,7 @@ export default function Companies() {
         offset={fetchLimit * currentPage}
         sort="logo"
         cardSize="mini"
-        infoLinkPrefix="../"
+        linkPrefix="../"
       />
 
       <Pagination

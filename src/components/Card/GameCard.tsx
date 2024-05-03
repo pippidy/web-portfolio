@@ -17,7 +17,7 @@ export default function GameCard({
   coverSize,
   aggregated_rating,
   first_release_date,
-  linkPath: infoLinkPath = '',
+  linkPrefix: infoLinkPath = '',
   cardSize = 'default',
 }: TGameCard) {
   const [isLiked, setIsLiked] = useState(false);
@@ -34,7 +34,7 @@ export default function GameCard({
     <div className="card card-flying" title={name}>
       {cardSize !== 'mini' ? (
         <header className="card__header">
-          <div className="card__rating">
+          <div className="card__rating" title="Aggregated rating">
             R:{' '}
             {aggregated_rating ? (
               aggregated_rating.toFixed(0)

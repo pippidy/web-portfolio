@@ -15,7 +15,7 @@ export default function CardsList({
   limit,
   sort,
   filter,
-  infoLinkPrefix: linkPrefix,
+  linkPrefix,
   cardSize = 'default',
   offset,
 }: TCardsList) {
@@ -68,14 +68,16 @@ export default function CardsList({
                     first_release_date={
                       data ? data.first_release_date : undefined
                     }
-                    linkPath={linkPrefix}
+                    linkPrefix={linkPrefix}
                     cardSize={cardSize}
                   />
                 ) : endpoint === 'characters' ? (
                   <CharacterCard
+                    id={data.id}
                     name={data.name}
                     mug_shot={data.mug_shot}
                     cardSize={cardSize}
+                    linkPrefix={linkPrefix}
                   />
                 ) : endpoint === 'companies' ? (
                   <CompanyCard
@@ -83,7 +85,7 @@ export default function CardsList({
                     name={data.name}
                     logo={data.logo}
                     cardSize={cardSize}
-                    linkPath={linkPrefix}
+                    linkPrefix={linkPrefix}
                   />
                 ) : (
                   ''

@@ -5,7 +5,7 @@ import { cutLongString } from '../Utils/Utils';
 
 export default function CompanyCard({
   id,
-  linkPath,
+  linkPrefix: linkPath,
   name,
   logo,
 }: TCompanyCard) {

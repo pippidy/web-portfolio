@@ -2,16 +2,17 @@ import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import Section from '../../components/Section/Section';
 import { getData } from '../../components/Api/Api';
-import { TCompany } from '../../types/types';
+import { TCharacter } from '../../types/types';
 import SectionLoading from '../../components/SectionLoading/SectionLoading';
-import { formatDate, getCountryFromISO } from '../../components/Utils/Utils';
 import CardsList from '../../components/CardsList/CardsList';
 import Tabs from '../../components/Tabs/Tabs';
 import DataNotAvailable from '../../components/DataNotAvailable/DataNotAvailable';
+import { extractEnumData } from '../../components/Utils/Utils';
+import { Gender, Species } from '../../components/Utils/Data';
 
-export default function CompanyInfo() {
+export default function CharacterInfo() {
   const { id: pageID } = useParams();
-  const [pageData, setPageData] = useState<TCompany[]>();
+  const [pageData, setPageData] = useState<TCharacter[]>();
   const [loadingInfo, setLoadingInfo] = useState(true);
   const location = useLocation();
 
@@ -23,10 +24,9 @@ export default function CompanyInfo() {
   // Fetching data
   useEffect(() => {
     getData({
-      endpoint: 'companies',
+      endpoint: 'characters',
       filter: `id = ${pageID}`,
-      fields:
-        'name,logo.image_id,published,developed,start_date,description,websites.url,country',
+      fields: 'name,mug_shot.image_id,games,description,gender,species',
     })
       .then((data) => {
         setPageData(data);
@@ -37,11 +37,8 @@ export default function CompanyInfo() {
 
   return (
     <>
-      <Section title="Company info">
-        <Tabs
-          tabs={['Info', 'Developed games', 'Published games']}
-          title={pageData && pageData[0].name}
-        >
+      <Section title="Character info">
+        <Tabs tabs={['Info', 'Games']} title={pageData && pageData[0].name}>
           {/* INFO TAB*/}
           <>
             {loadingInfo ? (
@@ -54,42 +51,42 @@ export default function CompanyInfo() {
                       <img
                         className="info-page__cover-image"
                         src={`//images.igdb.com/igdb/image/upload/t_thumb_2x/${
-                          pageData[0].logo && pageData[0].logo.image_id
+                          pageData[0].mug_shot && pageData[0].mug_shot.image_id
                         }.jpg`}
                         alt=""
                       />
                     </div>
                     <div className="info-page__data-holder">
                       <ul className="info-page__data-list">
-                        <li className="info-page__data-list-item">
-                          <div>Foundation date:</div>
-                          <div>
-                            {formatDate({ timestamp: pageData[0].start_date })}
-                          </div>
-                        </li>
-
-                        {pageData[0].country && (
+                        {pageData[0].country_name && (
                           <li className="info-page__data-list-item">
                             <div>Country: </div>
-                            <div>
-                              {getCountryFromISO({
-                                isoCode: pageData[0].country,
-                              })}
-                            </div>
+                            <div>{pageData[0].country_name}</div>
                           </li>
                         )}
 
-                        {pageData[0].websites && (
+                        {pageData[0].gender !== undefined ? (
                           <li className="info-page__data-list-item">
-                            <div>Website: </div>
+                            <div>Gender: </div>
                             <div>
-                              <a
-                                href={pageData[0].websites[0].url}
-                                target="_blank"
-                                rel="noreferrer"
-                              >
-                                {pageData[0].websites[0].url}
-                              </a>
+                              {extractEnumData({
+                                id: pageData[0].gender + 1,
+                                enumObject: Gender,
+                              })}
+                            </div>
+                          </li>
+                        ) : (
+                          ''
+                        )}
+
+                        {pageData[0].species && (
+                          <li className="info-page__data-list-item">
+                            <div>Species: </div>
+                            <div>
+                              {extractEnumData({
+                                id: pageData[0].species,
+                                enumObject: Species,
+                              })}
                             </div>
                           </li>
                         )}
@@ -118,41 +115,22 @@ export default function CompanyInfo() {
             )}
           </>
 
-          {/* DEVELOPED GAMES TAB */}
+          {/* GAMES TAB */}
           <>
-            {pageData && pageData[0].developed ? (
+            {pageData && pageData[0].games ? (
               <CardsList
                 endpoint="games"
                 fields="name,cover.url,cover.image_id,aggregated_rating"
                 filter={`id = ${
-                  Array.isArray(pageData[0].developed)
-                    ? `(${pageData[0].developed.join(',')})`
-                    : pageData[0].developed
+                  Array.isArray(pageData[0].games)
+                    ? `(${pageData[0].games.join(',')})`
+                    : pageData[0].games
                 }`}
                 linkPrefix="../"
                 cardSize="compact"
               />
             ) : (
-              <DataNotAvailable text="No developed games available" />
-            )}
-          </>
-
-          {/* PUBLISHED GAMES TAB */}
-          <>
-            {pageData && pageData[0].published ? (
-              <CardsList
-                endpoint="games"
-                fields="name,cover.url,cover.image_id,aggregated_rating"
-                filter={`id = ${
-                  Array.isArray(pageData[0].published)
-                    ? `(${pageData[0].published.join(',')})`
-                    : pageData[0].published
-                }`}
-                linkPrefix="../"
-                cardSize="compact"
-              />
-            ) : (
-              <DataNotAvailable text="No published games available" />
+              <DataNotAvailable text="No games available" />
             )}
           </>
         </Tabs>

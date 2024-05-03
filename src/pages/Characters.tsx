@@ -41,6 +41,7 @@ export default function Characters() {
         offset={fetchLimit * currentPage}
         sort="mug_shot"
         cardSize="mini"
+        linkPrefix="../"
       />
 
       <Pagination

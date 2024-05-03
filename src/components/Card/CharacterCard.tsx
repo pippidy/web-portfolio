@@ -1,14 +1,19 @@
 import { Link } from 'react-router-dom';
-import { TCharacter } from '../../types/types';
+import { TCharacterCard } from '../../types/types';
 import ImageDummyCharacters from '../ImageDummies/ImageDummyCharacters';
 import { cutLongString } from '../Utils/Utils';
 
-export default function CharacterCard({ name, mug_shot }: TCharacter) {
+export default function CharacterCard({
+  id,
+  name,
+  mug_shot,
+  linkPrefix,
+}: TCharacterCard) {
   const nameLength = 16;
 
   return (
     <div className="card card-flying" title={name}>
-      <Link className="card__link" to="/">
+      <Link className="card__link" to={`${linkPrefix}character/${id}`}>
         {mug_shot ? (
           <img
             className="card__image"

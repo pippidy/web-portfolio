@@ -3,7 +3,7 @@ import Section from '../components/Section/Section';
 
 export default function Home() {
   const filter = 'aggregated_rating > 0;';
-  const fields = 'name,cover.image_id,aggregated_rating,release_dates.*';
+  const fields = 'name,cover.image_id,aggregated_rating,first_release_date';
 
   return (
     <>

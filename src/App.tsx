@@ -16,6 +16,7 @@ import Characters from './pages/Characters';
 import Companies from './pages/Companies';
 import GameInfo from './pages/InfoPages/GameInfo';
 import CompanyInfo from './pages/InfoPages/CompanyInfo';
+import CharacterInfo from './pages/InfoPages/CharacterInfo';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
       <Route path="game/:id" element={<GameInfo />} />
 
       <Route path="characters" element={<Characters />} />
+      <Route path="character/:id" element={<CharacterInfo />} />
 
       <Route path="companies" element={<Companies />} />
       <Route path="company/:id" element={<CompanyInfo />} />

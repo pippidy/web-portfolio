@@ -40,7 +40,7 @@ export type TGetDataCount = {
   filter?: string;
 };
 
-export type TLinkPath = '../' | '';
+export type TLinkPrefix = '../' | '';
 
 export type TCardSize = 'default' | 'compact' | 'mini';
 
@@ -51,7 +51,7 @@ export type TCardsList = {
   sort?: string;
   filter?: string;
   offset?: number;
-  infoLinkPrefix?: TLinkPath;
+  linkPrefix?: TLinkPrefix;
   cardSize?: TCardSize;
 };
 
@@ -92,12 +92,12 @@ export type TCharacter = {
   id?: number;
   name?: string;
   akas?: string[];
-  mug_shot?: {
-    url: string;
-  };
+  mug_shot?: TImage;
   description?: string;
   games?: TGame[];
   gender?: number;
+  species?: number;
+  country_name?: string;
   cardSize?: TCardSize;
 };
 
@@ -122,12 +122,16 @@ export type TCategory = {
 };
 
 export type TGameCard = TGame & {
-  linkPath?: TLinkPath;
+  linkPrefix?: TLinkPrefix;
   cardSize?: TCardSize;
 };
 
 export type TCompanyCard = TCompany & {
-  linkPath?: TLinkPath;
+  linkPrefix?: TLinkPrefix;
+};
+
+export type TCharacterCard = TCharacter & {
+  linkPrefix?: TLinkPrefix;
 };
 
 export type TPagination = {

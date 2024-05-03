@@ -34,6 +34,7 @@
       background-color $transition-medium ease;
     border-bottom-left-radius: 50%;
     border-bottom-right-radius: 50%;
+    cursor: default;
 
     & span {
       color: $color-grey-darker;

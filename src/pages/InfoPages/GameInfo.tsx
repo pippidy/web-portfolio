@@ -93,13 +93,11 @@ export default function GameInfo() {
                           </div>
                         </li>
 
-                        {pageData[0].genres ? (
+                        {pageData[0].genres && (
                           <li className="info-page__data-list-item">
                             <div>Genres: </div>
                             <div>{prepareGenres()}</div>
                           </li>
-                        ) : (
-                          ''
                         )}
                       </ul>
 
@@ -190,7 +188,7 @@ export default function GameInfo() {
                     ? `(${pageData[0].similar_games.join(',')})`
                     : pageData[0].similar_games
                 }`}
-                infoLinkPrefix="../"
+                linkPrefix="../"
                 cardSize="compact"
               />
             ) : (
