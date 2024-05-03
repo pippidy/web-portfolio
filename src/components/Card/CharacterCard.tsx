@@ -9,7 +9,7 @@ export default function CharacterCard({
   mug_shot,
   linkPrefix,
 }: TCharacterCard) {
-  const nameLength = 16;
+  const nameLength = 15;
 
   return (
     <div className="card card-flying" title={name}>

@@ -17,10 +17,11 @@ export default function GameCard({
   coverSize,
   aggregated_rating,
   first_release_date,
-  linkPrefix: infoLinkPath = '',
+  linkPrefix = '',
   cardSize = 'default',
 }: TGameCard) {
   const [isLiked, setIsLiked] = useState(false);
+  const [likeCount, setLikeCount] = useState(0);
   const nameLength = 20;
 
   // Classnames
@@ -28,6 +29,13 @@ export default function GameCard({
 
   function handleLikeClick() {
     setIsLiked((prevState) => (prevState = !prevState));
+    setLikeCount((prevState) => {
+      if (!isLiked) {
+        return (prevState += 1);
+      } else {
+        return (prevState -= 1);
+      }
+    });
   }
 
   return (
@@ -46,7 +54,7 @@ export default function GameCard({
           <div className="card__like">
             <button onClick={handleLikeClick} className="card__like-button">
               <HeartIcon className={classHeart} width="2.1em" height="2.1em" />{' '}
-              0
+              {likeCount}
             </button>
           </div>
 
@@ -72,7 +80,7 @@ export default function GameCard({
       <Link
         onClick={() => window.scrollTo(0, 0)}
         className="card__link"
-        to={`${infoLinkPath}game/${id ? id : ''}`}
+        to={`${linkPrefix}game/${id ? id : ''}`}
       >
         {cover ? (
           <img

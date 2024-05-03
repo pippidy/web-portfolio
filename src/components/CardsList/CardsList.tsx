@@ -88,7 +88,7 @@ export default function CardsList({
                     linkPrefix={linkPrefix}
                   />
                 ) : (
-                  ''
+                  <DataNotAvailable />
                 )}
               </li>
             );

@@ -51,7 +51,7 @@ export default function Catalogue({
         <div className="catalogue__category-title">Genres</div>
         <nav className="catalogue__nav">
           {loadingMenu ? (
-            /* Fake menu for loading */
+            // Fake menu for loading
             <ul className="menu-loading">
               <li>Loading...</li>
               <li>Loading...</li>
@@ -66,7 +66,7 @@ export default function Catalogue({
               <li>Loading...</li>
             </ul>
           ) : (
-            /* Actual catalogue menu */
+            // Actual catalogue menu
             <ul className="catalogue-menu">
               <li key="all">
                 <NavLink
@@ -77,27 +77,26 @@ export default function Catalogue({
                   All
                 </NavLink>
               </li>
-              {categoriesList
-                ? categoriesList.map((genre, index) => {
-                    return (
-                      <li key={genre.id}>
-                        <NavLink
-                          onClick={() => window.scrollTo(0, 0)}
-                          className="catalogue-menu__link"
-                          to={`/${endpoint}/${category}/${genre.id}#page=1`}
-                        >
-                          {genre.name}
-                        </NavLink>
-                      </li>
-                    );
-                  })
-                : ''}
+              {categoriesList &&
+                categoriesList.map((genre) => {
+                  return (
+                    <li key={genre.id}>
+                      <NavLink
+                        onClick={() => window.scrollTo(0, 0)}
+                        className="catalogue-menu__link"
+                        to={`/${endpoint}/${category}/${genre.id}#page=1`}
+                      >
+                        {genre.name}
+                      </NavLink>
+                    </li>
+                  );
+                })}
             </ul>
           )}
         </nav>
 
         {/* Top pagination */}
-        {pagesAmount !== 0 ? (
+        {pagesAmount !== 0 && (
           <div className="catalogue__pagination_top">
             <Pagination
               keyID="top"
@@ -105,8 +104,6 @@ export default function Catalogue({
               currentPage={currentPage}
             />
           </div>
-        ) : (
-          ''
         )}
 
         {/* Main part with cards */}
@@ -124,7 +121,7 @@ export default function Catalogue({
         </div>
 
         {/* Bottom pagination */}
-        {pagesAmount !== 0 ? (
+        {pagesAmount !== 0 && (
           <div className="catalogue__pagination_bottom">
             <Pagination
               keyID="top"
@@ -132,8 +129,6 @@ export default function Catalogue({
               currentPage={currentPage}
             />
           </div>
-        ) : (
-          ''
         )}
       </div>
     </Section>

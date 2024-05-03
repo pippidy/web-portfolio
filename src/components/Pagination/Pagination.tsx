@@ -6,9 +6,9 @@ export default function Pagination({
   keyID,
   pagesAmount,
   currentPage,
+  length = 11,
 }: TPagination) {
   const [pagesRender, setPagesRender] = useState<JSX.Element[]>([]);
-  const length = 11;
 
   useEffect(() => {
     function fillPagesArray(
@@ -56,7 +56,7 @@ export default function Pagination({
     }
 
     createPagination();
-  }, [keyID, currentPage, pagesAmount]);
+  }, [keyID, currentPage, pagesAmount, length]);
 
   return (
     <ul className="pagination">

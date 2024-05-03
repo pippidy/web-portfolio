@@ -16,19 +16,6 @@ export default function GameInfo() {
   const location = useLocation();
   const [loadingInfo, setLoadingInfo] = useState(true);
 
-  function prepareGenres(): string {
-    let genres: string[] = [''];
-
-    if (pageData && pageData[0].genres) {
-      pageData[0].genres.forEach((genre) => {
-        if (genre.name) genres.push(genre.name);
-      });
-    }
-
-    genres.shift();
-    return genres.join(', ');
-  }
-
   // Resetting loading after page change
   useEffect(() => {
     setLoadingInfo(true);
@@ -40,7 +27,7 @@ export default function GameInfo() {
       endpoint: 'games',
       filter: `id = ${pageID}`,
       fields:
-        'name,cover.image_id,aggregated_rating,genres.name,first_release_date,summary,storyline,similar_games,screenshots,artworks',
+        'name,cover.image_id,aggregated_rating,genres.name,first_release_date,summary,storyline,similar_games,screenshots,artworks,platforms.abbreviation',
     })
       .then((data) => {
         setPageData(data);
@@ -93,10 +80,33 @@ export default function GameInfo() {
                           </div>
                         </li>
 
+                        {pageData[0].platforms && (
+                          <li className="info-page__data-list-item">
+                            <div>Platforms: </div>
+                            <div>
+                              {pageData[0].platforms.map(
+                                (platform, index, arr) => {
+                                  if (index !== arr.length - 1) {
+                                    return `${platform.abbreviation}, `;
+                                  }
+                                  return platform.abbreviation;
+                                }
+                              )}
+                            </div>
+                          </li>
+                        )}
+
                         {pageData[0].genres && (
                           <li className="info-page__data-list-item">
                             <div>Genres: </div>
-                            <div>{prepareGenres()}</div>
+                            <div>
+                              {pageData[0].genres.map((genre, index, arr) => {
+                                if (index !== arr.length - 1) {
+                                  return `${genre.name}, `;
+                                }
+                                return genre.name;
+                              })}
+                            </div>
                           </li>
                         )}
                       </ul>

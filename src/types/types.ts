@@ -77,6 +77,9 @@ export type TGame = {
   name?: string;
   aggregated_rating?: number;
   genres?: TNameAndID[];
+  platforms?: {
+    abbreviation: string;
+  }[];
   cover?: TGameCover;
   coverSize?: string;
   storyline?: string;
@@ -138,6 +141,7 @@ export type TPagination = {
   keyID: string;
   pagesAmount: number;
   currentPage: number;
+  length?: number;
 };
 
 export type TCatalogue = {
