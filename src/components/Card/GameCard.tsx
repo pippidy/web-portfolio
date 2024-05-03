@@ -16,7 +16,7 @@ export default function GameCard({
   cover,
   coverSize,
   aggregated_rating,
-  release_dates,
+  first_release_date,
   linkPath: infoLinkPath = '',
   cardSize = 'default',
 }: TGameCard) {
@@ -57,7 +57,9 @@ export default function GameCard({
                 width="20px"
                 height="20px"
               />
-              {release_dates ? release_dates[0].y : ''}
+              {first_release_date
+                ? new Date(first_release_date * 1000).getFullYear()
+                : 'n/a'}
             </div>
           ) : (
             ''

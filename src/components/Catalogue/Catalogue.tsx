@@ -118,7 +118,7 @@ export default function Catalogue({
             sort="aggregated_rating desc"
             filter={pageID === 'all' ? '' : `${category} = ${pageID}`}
             offset={fetchLimit * currentPage}
-            infoLinkPath="../"
+            infoLinkPrefix="../"
             cardSize="compact"
           />
         </div>

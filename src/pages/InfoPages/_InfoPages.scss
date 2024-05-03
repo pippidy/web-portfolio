@@ -43,6 +43,7 @@
       flex-direction: column;
       gap: 20px;
       width: max-content;
+      min-width: 192px;
       height: max-content;
       border-radius: $border-radius-main;
       border: 6px solid $color-yellow-light;
@@ -90,6 +91,14 @@
         position: relative;
         z-index: 0;
         padding: 5px 15px;
+
+        & a {
+          color: $color-blue;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
       }
 
       & > div:first-child {
@@ -163,5 +172,13 @@
 
   &__text {
     font-size: 1.5em;
+  }
+}
+
+@media (max-width: 768px) {
+  .info-page {
+    &__data-list-item {
+      font-size: 1.3rem;
+    }
   }
 }

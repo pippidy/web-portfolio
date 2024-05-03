@@ -51,7 +51,7 @@ export type TCardsList = {
   sort?: string;
   filter?: string;
   offset?: number;
-  infoLinkPath?: TLinkPath;
+  infoLinkPrefix?: TLinkPath;
   cardSize?: TCardSize;
 };
 
@@ -70,13 +70,6 @@ export type TGameVideo = {
   video_id: string;
 };
 
-export type TGameReleaseDates = {
-  id?: number;
-  human?: string;
-  m?: number;
-  y?: number;
-};
-
 export type TData = TGame & TCharacter & TCompany & TImage;
 
 export type TGame = {
@@ -88,7 +81,7 @@ export type TGame = {
   coverSize?: string;
   storyline?: string;
   summary?: string;
-  release_dates?: TGameReleaseDates[];
+  first_release_date?: number;
   screenshots?: TImage[];
   artworks?: TImage[];
   videos?: TGameVideo;
@@ -111,14 +104,15 @@ export type TCharacter = {
 export type TCompany = {
   id?: number;
   name?: string;
-  logo?: {
-    url: string;
-  };
-  country?: string;
+  logo?: TImage;
+  country?: number;
   description?: string;
   developed?: TGame[];
-  start_date?: string;
-  websites?: number[];
+  published?: TGame[];
+  start_date?: number;
+  websites?: {
+    url: string;
+  }[];
   cardSize?: TCardSize;
 };
 
@@ -130,6 +124,10 @@ export type TCategory = {
 export type TGameCard = TGame & {
   linkPath?: TLinkPath;
   cardSize?: TCardSize;
+};
+
+export type TCompanyCard = TCompany & {
+  linkPath?: TLinkPath;
 };
 
 export type TPagination = {
@@ -199,4 +197,15 @@ export type TModal = {
   children: TComponentChildren;
   isOpened: boolean;
   setIsOpened: Dispatch<SetStateAction<boolean>>;
+};
+
+export type TFormatDate = {
+  timestamp: number | undefined;
+  options?: Intl.DateTimeFormatOptions;
+  locale?: string;
+};
+
+export type TGetCountryFromISO = {
+  isoCode: number;
+  length?: 'short' | 'medium' | 'full';
 };

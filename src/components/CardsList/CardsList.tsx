@@ -4,7 +4,7 @@ import GameCard from '../Card/GameCard';
 import { TCardsList, TData } from '../../types/types';
 import { useLocation } from 'react-router-dom';
 import CharacterCard from '../Card/CharacterCard';
-import CompaniesCard from '../Card/CompaniesCard';
+import CompanyCard from '../Card/CompanyCard';
 import SectionLoading from '../SectionLoading/SectionLoading';
 import cn from 'classnames';
 import DataNotAvailable from '../DataNotAvailable/DataNotAvailable';
@@ -15,7 +15,7 @@ export default function CardsList({
   limit,
   sort,
   filter,
-  infoLinkPath: linkPath,
+  infoLinkPrefix: linkPrefix,
   cardSize = 'default',
   offset,
 }: TCardsList) {
@@ -65,8 +65,10 @@ export default function CardsList({
                     cover={data?.cover}
                     coverSize="cover_big"
                     aggregated_rating={data?.aggregated_rating}
-                    release_dates={data ? data.release_dates : undefined}
-                    linkPath={linkPath}
+                    first_release_date={
+                      data ? data.first_release_date : undefined
+                    }
+                    linkPath={linkPrefix}
                     cardSize={cardSize}
                   />
                 ) : endpoint === 'characters' ? (
@@ -76,10 +78,12 @@ export default function CardsList({
                     cardSize={cardSize}
                   />
                 ) : endpoint === 'companies' ? (
-                  <CompaniesCard
+                  <CompanyCard
+                    id={data.id}
                     name={data.name}
                     logo={data.logo}
                     cardSize={cardSize}
+                    linkPath={linkPrefix}
                   />
                 ) : (
                   ''

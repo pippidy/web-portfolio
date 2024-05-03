@@ -4,8 +4,7 @@ import Section from '../../components/Section/Section';
 import { getData } from '../../components/Api/Api';
 import { TGame } from '../../types/types';
 import SectionLoading from '../../components/SectionLoading/SectionLoading';
-import { EnumMonthsShort } from '../../components/Utils/Data';
-import { extractEnumData } from '../../components/Utils/Utils';
+import { formatDate } from '../../components/Utils/Utils';
 import CardsList from '../../components/CardsList/CardsList';
 import Tabs from '../../components/Tabs/Tabs';
 import ImageGallery from '../../components/ImageGallery/ImageGallery';
@@ -16,32 +15,6 @@ export default function GameInfo() {
   const [pageData, setPageData] = useState<TGame[]>();
   const location = useLocation();
   const [loadingInfo, setLoadingInfo] = useState(true);
-
-  function prepareDate(): string {
-    let date = '';
-
-    if (pageData && pageData[0].release_dates) {
-      // If month and year are undefined return "n/a"
-      if (!pageData[0].release_dates[0].y && !pageData[0].release_dates[0].m) {
-        date = 'n/a';
-      } else {
-        // Extract month from enum
-        date = pageData[0].release_dates[0].m
-          ? extractEnumData({
-              id: pageData[0].release_dates[0].m,
-              enumObject: EnumMonthsShort,
-            })
-          : '';
-
-        // Concatenate year
-        date = date += pageData[0].release_dates[0].y
-          ? pageData[0].release_dates[0].y
-          : '';
-      }
-    }
-
-    return date;
-  }
 
   function prepareGenres(): string {
     let genres: string[] = [''];
@@ -66,9 +39,8 @@ export default function GameInfo() {
     getData({
       endpoint: 'games',
       filter: `id = ${pageID}`,
-      limit: 100,
       fields:
-        'name,cover.image_id,aggregated_rating,genres.name,release_dates.m,release_dates.y,summary,storyline,similar_games,screenshots,artworks',
+        'name,cover.image_id,aggregated_rating,genres.name,first_release_date,summary,storyline,similar_games,screenshots,artworks',
     })
       .then((data) => {
         setPageData(data);
@@ -114,7 +86,11 @@ export default function GameInfo() {
 
                         <li className="info-page__data-list-item">
                           <div>Release date: </div>
-                          <div>{prepareDate()}</div>
+                          <div>
+                            {formatDate({
+                              timestamp: pageData[0].first_release_date,
+                            })}
+                          </div>
                         </li>
 
                         {pageData[0].genres ? (
@@ -214,7 +190,7 @@ export default function GameInfo() {
                     ? `(${pageData[0].similar_games.join(',')})`
                     : pageData[0].similar_games
                 }`}
-                infoLinkPath="../"
+                infoLinkPrefix="../"
                 cardSize="compact"
               />
             ) : (
