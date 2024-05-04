@@ -9,6 +9,7 @@ import CardsList from '../../components/CardsList/CardsList';
 import Tabs from '../../components/Tabs/Tabs';
 import ImageGallery from '../../components/ImageGallery/ImageGallery';
 import DataNotAvailable from '../../components/DataNotAvailable/DataNotAvailable';
+import ImageDummyDefault from '../../components/ImageDummies/ImageDummyDefault';
 
 export default function GameInfo() {
   const { id: pageID } = useParams();
@@ -51,13 +52,19 @@ export default function GameInfo() {
               <>
                 {pageData ? (
                   <div className="info-page__content">
-                    <div className="info-page__cover-holder card-flying card-flying_slide-right">
-                      <img
-                        className="info-page__cover-image"
-                        src={`//images.igdb.com/igdb/image/upload/t_cover_big/${pageData[0].cover?.image_id}.jpg`}
-                        alt=""
-                      />
-                    </div>
+                    {pageData[0].cover ? (
+                      <div className="info-page__cover-holder card-flying card-flying_slide-right">
+                        <img
+                          className="info-page__cover-image"
+                          src={`//images.igdb.com/igdb/image/upload/t_cover_big/${pageData[0].cover?.image_id}.jpg`}
+                          alt=""
+                        />
+                      </div>
+                    ) : (
+                      <div className="info-page__cover-holder info-page__cover-holder_no-image">
+                        <ImageDummyDefault />
+                      </div>
+                    )}
                     <div className="info-page__data-holder">
                       <ul className="info-page__data-list">
                         <li className="info-page__data-list-item">

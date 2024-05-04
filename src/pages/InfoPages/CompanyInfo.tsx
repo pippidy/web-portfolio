@@ -8,6 +8,7 @@ import { formatDate, getCountryFromISO } from '../../components/Utils/Utils';
 import CardsList from '../../components/CardsList/CardsList';
 import Tabs from '../../components/Tabs/Tabs';
 import DataNotAvailable from '../../components/DataNotAvailable/DataNotAvailable';
+import ImageDummyDefault from '../../components/ImageDummies/ImageDummyDefault';
 
 export default function CompanyInfo() {
   const { id: pageID } = useParams();
@@ -50,15 +51,19 @@ export default function CompanyInfo() {
               <>
                 {pageData ? (
                   <div className="info-page__content">
-                    <div className="info-page__cover-holder card-flying card-flying_slide-right">
-                      <img
-                        className="info-page__cover-image"
-                        src={`//images.igdb.com/igdb/image/upload/t_thumb_2x/${
-                          pageData[0].logo && pageData[0].logo.image_id
-                        }.jpg`}
-                        alt=""
-                      />
-                    </div>
+                    {pageData[0].logo ? (
+                      <div className="info-page__cover-holder card-flying card-flying_slide-right">
+                        <img
+                          className="info-page__cover-image"
+                          src={`//images.igdb.com/igdb/image/upload/t_thumb_2x/${pageData[0].logo.image_id}.jpg`}
+                          alt=""
+                        />
+                      </div>
+                    ) : (
+                      <div className="info-page__cover-holder info-page__cover-holder_no-image">
+                        <ImageDummyDefault />
+                      </div>
+                    )}
                     <div className="info-page__data-holder">
                       <ul className="info-page__data-list">
                         <li className="info-page__data-list-item">

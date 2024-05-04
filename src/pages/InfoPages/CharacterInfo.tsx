@@ -9,6 +9,7 @@ import Tabs from '../../components/Tabs/Tabs';
 import DataNotAvailable from '../../components/DataNotAvailable/DataNotAvailable';
 import { extractEnumData } from '../../components/Utils/Utils';
 import { Gender, Species } from '../../components/Utils/Data';
+import ImageDummyCharacters from '../../components/ImageDummies/ImageDummyCharacters';
 
 export default function CharacterInfo() {
   const { id: pageID } = useParams();
@@ -47,15 +48,22 @@ export default function CharacterInfo() {
               <>
                 {pageData ? (
                   <div className="info-page__content">
-                    <div className="info-page__cover-holder card-flying card-flying_slide-right">
-                      <img
-                        className="info-page__cover-image"
-                        src={`//images.igdb.com/igdb/image/upload/t_thumb_2x/${
-                          pageData[0].mug_shot && pageData[0].mug_shot.image_id
-                        }.jpg`}
-                        alt=""
-                      />
-                    </div>
+                    {pageData[0].mug_shot ? (
+                      <div className="info-page__cover-holder card-flying card-flying_slide-right">
+                        <img
+                          className="info-page__cover-image"
+                          src={`//images.igdb.com/igdb/image/upload/t_thumb_2x/${
+                            pageData[0].mug_shot &&
+                            pageData[0].mug_shot.image_id
+                          }.jpg`}
+                          alt=""
+                        />
+                      </div>
+                    ) : (
+                      <div className="info-page__cover-holder info-page__cover-holder_no-image">
+                        <ImageDummyCharacters />
+                      </div>
+                    )}
                     <div className="info-page__data-holder">
                       <ul className="info-page__data-list">
                         {pageData[0].country_name && (
