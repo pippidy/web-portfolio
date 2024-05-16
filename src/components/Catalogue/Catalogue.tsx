@@ -49,10 +49,10 @@ export default function Catalogue({
     <Section title={title}>
       <div className="catalogue">
         <div className="catalogue__category-title">Genres</div>
-        <nav className="catalogue__nav">
+        <nav className="catalogue__nav" role="menu">
           {loadingMenu ? (
             // Fake menu for loading
-            <ul className="menu-loading">
+            <ul className="menu-loading" aria-hidden="true">
               <li>Loading...</li>
               <li>Loading...</li>
               <li>Loading...</li>
@@ -73,6 +73,7 @@ export default function Catalogue({
                   className="catalogue-menu__link"
                   to={`/${endpoint}/${category}/all#page=1`}
                   onClick={() => window.scrollTo(0, 0)}
+                  title="Browse all genres"
                 >
                   All
                 </NavLink>
@@ -85,6 +86,7 @@ export default function Catalogue({
                         onClick={() => window.scrollTo(0, 0)}
                         className="catalogue-menu__link"
                         to={`/${endpoint}/${category}/${genre.id}#page=1`}
+                        title={`Browse ${genre.name} genre`}
                       >
                         {genre.name}
                       </NavLink>

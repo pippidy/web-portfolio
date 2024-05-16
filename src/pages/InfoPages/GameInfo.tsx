@@ -57,7 +57,7 @@ export default function GameInfo() {
                         <img
                           className="info-page__cover-image"
                           src={`//images.igdb.com/igdb/image/upload/t_cover_big/${pageData[0].cover?.image_id}.jpg`}
-                          alt=""
+                          alt={`${pageData && pageData[0].name} cover`}
                         />
                       </div>
                     ) : (
@@ -120,28 +120,24 @@ export default function GameInfo() {
 
                       <article className="info-article">
                         <>
-                          {pageData[0].summary ? (
+                          {pageData[0].summary && (
                             <div>
                               <h3 className="info-article__title">Summary</h3>
                               <p className="info-article__text">
                                 {pageData[0].summary}
                               </p>
                             </div>
-                          ) : (
-                            ''
                           )}
                         </>
 
                         <>
-                          {pageData[0].storyline ? (
+                          {pageData[0].storyline && (
                             <div>
                               <h3 className="info-article__title">Storyline</h3>
                               <p className="info-article__text">
                                 {pageData[0].storyline}
                               </p>
                             </div>
-                          ) : (
-                            ''
                           )}
                         </>
                       </article>

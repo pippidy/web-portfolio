@@ -56,7 +56,7 @@ export default function CompanyInfo() {
                         <img
                           className="info-page__cover-image"
                           src={`//images.igdb.com/igdb/image/upload/t_thumb_2x/${pageData[0].logo.image_id}.jpg`}
-                          alt=""
+                          alt={`${pageData[0].name && pageData[0].name} logo`}
                         />
                       </div>
                     ) : (

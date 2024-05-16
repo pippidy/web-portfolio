@@ -1,13 +1,17 @@
 import { useEffect, useRef } from 'react';
 import { TModal } from '../../types/types';
 import { createPortal } from 'react-dom';
+import { useLocation } from 'react-router-dom';
 
 export default function Modal({ children, isOpened, setIsOpened }: TModal) {
   const modalRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
 
   function closeModal() {
     setIsOpened(false);
   }
+
+  useEffect(() => setIsOpened(false), [location, setIsOpened]);
 
   useEffect(() => {
     if (modalRef.current) {
@@ -26,11 +30,15 @@ export default function Modal({ children, isOpened, setIsOpened }: TModal) {
       {createPortal(
         <div ref={modalRef} className="modal">
           <div onClick={closeModal} className="modal__overlay"></div>
+
           <div className="modal__container">
-            <button
-              onClick={closeModal}
-              className="icon-cross modal__button-close"
-            ></button>
+            <div className="modal__close-container">
+              <button
+                onClick={closeModal}
+                className="modal__close-button icon-cross"
+                title="Close modal"
+              ></button>
+            </div>
             {children}
           </div>
         </div>,

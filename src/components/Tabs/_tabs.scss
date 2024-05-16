@@ -132,3 +132,11 @@
     }
   }
 }
+
+@media (prefers-contrast) {
+  .tabs {
+    &__menu-button {
+      color: $color-grey-dark;
+    }
+  }
+}

@@ -1,38 +1,133 @@
-.formSearch {
+.search {
   position: relative;
+  height: 45px;
 
-  &__input {
-    float: right;
+  &__form {
+    position: absolute;
+    right: 0;
     width: 100%;
-    padding: 10px 15px;
-    padding-right: 40px;
-    font-family: $font-family-main;
-    border: 2px solid $color-grey;
-    border-radius: 10px;
-    transition: width $transition-medium ease-out;
+    height: 100%;
+    transition: width 0.2s ease-in;
 
-    &:focus-visible {
+    &.focused {
       width: 140%;
-      background-color: $color-blue-light;
-      outline: 0;
-      border: 2px solid $color-grey-dark;
-      transition: width 0.2s ease-in;
 
-      & + button .formSearch__svg {
-        color: $color-grey-dark;
+      & .search__inner {
+        border-color: $color-grey-dark;
+      }
+
+      & .search__button_submit svg {
+        fill: $color-grey-dark;
       }
     }
   }
 
-  &__submit {
+  &__inner {
     position: absolute;
-    top: 8px;
-    right: 8px;
-    width: 27px;
+    z-index: 1; // Will encouter bug if removed
+    width: 100%;
+    border: 2px solid $color-grey;
+    border-radius: 10px;
+    overflow: hidden;
   }
 
-  &__svg {
+  &__input {
+    position: relative;
+    z-index: 11;
     width: 100%;
-    color: $color-grey;
+    padding: 10px 15px;
+    padding-left: 40px;
+    padding-right: 40px;
+    font-family: $font-family-main;
+    border: none;
+    border-bottom: 1px solid transparent;
+
+    &:focus-visible {
+      outline: 0;
+    }
+  }
+
+  &__results {
+    position: relative;
+    z-index: 10;
+    display: none;
+    width: 100%;
+    background-color: #fff;
+
+    &.active {
+      display: block;
+    }
+
+    &-list {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      border-top: 1px solid $color-grey-dark;
+      padding: 10px;
+    }
+
+    &-link {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      font-size: 1.2rem;
+      overflow: hidden;
+      text-wrap: nowrap;
+      text-overflow: ellipsis;
+      border-radius: $border-radius-main;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+
+      &:focus {
+        outline: 0;
+      }
+
+      &:hover,
+      &:focus {
+        background-color: $color-grey-dark;
+        color: #fff;
+      }
+
+      & img {
+        width: 25px;
+      }
+    }
+  }
+
+  &__button {
+    position: absolute;
+    z-index: 11;
+    width: 35px;
+    height: 43px;
+
+    &_submit {
+      left: 0;
+
+      & svg {
+        left: 8px;
+        fill: $color-grey;
+      }
+    }
+
+    &_reset {
+      right: 0;
+
+      &:hover svg {
+        fill: $color-red;
+      }
+
+      & svg {
+        right: 8px;
+        fill: $color-red-light;
+      }
+    }
+  }
+
+  & svg {
+    position: absolute;
+    inset-block: 0;
+    margin: auto 0;
+    width: 25px;
+    transition: fill $transition-instant ease;
   }
 }

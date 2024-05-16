@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { TGameCard } from '../../types/types';
 import { cutLongString } from '../Utils/Utils';
 import cn from 'classnames';
-
 import ImageDummyGames from '../ImageDummies/ImageDummyDefault';
+
 // @ts-expect-error
 import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg';
 // @ts-expect-error
@@ -22,7 +22,6 @@ export default function GameCard({
 }: TGameCard) {
   const [isLiked, setIsLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
-  const nameLength = 20;
 
   // Classnames
   const classHeart = cn('heart-icon', { liked: isLiked });
@@ -39,9 +38,9 @@ export default function GameCard({
   }
 
   return (
-    <div className="card card-flying" title={name}>
-      {cardSize !== 'mini' ? (
-        <header className="card__header">
+    <div className="card card-flying">
+      {cardSize !== 'mini' && (
+        <header className="card__header" aria-hidden="true">
           <div className="card__rating" title="Aggregated rating">
             R:{' '}
             {aggregated_rating ? (
@@ -52,14 +51,18 @@ export default function GameCard({
           </div>
 
           <div className="card__like">
-            <button onClick={handleLikeClick} className="card__like-button">
+            <button
+              onClick={handleLikeClick}
+              className="card__like-button"
+              title="Like game"
+            >
               <HeartIcon className={classHeart} width="2.1em" height="2.1em" />{' '}
               {likeCount}
             </button>
           </div>
 
-          {cardSize !== 'compact' ? (
-            <div className="card__date">
+          {cardSize !== 'compact' && (
+            <div className="card__date" title="Release date">
               <CalendarIcon
                 className="calendar-icon"
                 width="20px"
@@ -69,18 +72,15 @@ export default function GameCard({
                 ? new Date(first_release_date * 1000).getFullYear()
                 : 'n/a'}
             </div>
-          ) : (
-            ''
           )}
         </header>
-      ) : (
-        ''
       )}
 
       <Link
         onClick={() => window.scrollTo(0, 0)}
         className="card__link"
         to={`${linkPrefix}game/${id ? id : ''}`}
+        title={name}
       >
         {cover ? (
           <img
@@ -92,11 +92,7 @@ export default function GameCard({
           <ImageDummyGames />
         )}
 
-        <p className="card__name">
-          {name
-            ? cutLongString({ string: name, length: nameLength, end: '...' })
-            : ''}
-        </p>
+        <p className="card__name">{name}</p>
       </Link>
     </div>
   );

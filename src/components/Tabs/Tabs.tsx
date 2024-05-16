@@ -3,7 +3,7 @@ import { TTabs } from '../../types/types';
 import cn from 'classnames';
 import { useLocation } from 'react-router-dom';
 
-export default function Tabs({ children, tabs, title = '' }: TTabs) {
+export default function Tabs({ tabs, children, title = '' }: TTabs) {
   const [toggle, setToggle] = useState<number>(0);
   const location = useLocation();
 
@@ -33,16 +33,21 @@ export default function Tabs({ children, tabs, title = '' }: TTabs) {
     <div className="tabs">
       <header>
         <h2 className="info-page__title">{title}</h2>
-        <ul className="tabs__menu">
-          {tabs.map((name, index) => {
+        <ul className="tabs__menu" role="tablist">
+          {tabs.map((tabName, index) => {
             const className = cn('tabs__menu-button', {
               current: toggle === index,
             });
 
             return (
               <li className="tabs__menu-item" key={`tabLink_${index}`}>
-                <button className={className} onClick={() => toggleTab(index)}>
-                  {name}
+                <button
+                  className={className}
+                  onClick={() => toggleTab(index)}
+                  title={`Switch to ${tabName} tab`}
+                  role="tab"
+                >
+                  {tabName}
                 </button>
               </li>
             );

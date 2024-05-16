@@ -26,6 +26,7 @@ export type TSection = {
 
 export type TGetData = {
   endpoint: string;
+  search?: string;
   fields?: string;
   limit?: number;
   sort?: string; // example "sort aggregated_rating desc"
@@ -57,7 +58,7 @@ export type TCardsList = {
 
 export type TGameCover = {
   image_id: string;
-  url: string;
+  url?: string;
 };
 
 export type TImage = {
@@ -175,8 +176,8 @@ export type TCutLongString = {
 };
 
 export type TTabs = {
-  children?: TComponentChildren[];
   tabs: string[];
+  children?: TComponentChildren[];
   title?: string | undefined;
 };
 

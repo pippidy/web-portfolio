@@ -5,7 +5,7 @@ export default function DataNotAvailable({
 }: TDataNotAvailable) {
   return (
     <div className="data-not-available">
-      <h3>{text}</h3>
+      <span>{text}</span>
     </div>
   );
 }

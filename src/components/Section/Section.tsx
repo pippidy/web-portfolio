@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import SectionHeader from '../SectionHeader/SectionHeader';
+import SectionHeader from './SectionHeader/SectionHeader';
 import { TSection } from '../../types/types';
 import cn from 'classnames';
 

@@ -45,28 +45,37 @@
     transition-timing-function: ease;
   }
 
-  &__button-close {
-    position: absolute;
-    top: -40px;
-    right: 10px;
-    z-index: 101;
-    margin: 0 auto;
-    color: $color-grey-dark;
-    opacity: 0.75;
-    transform: scale(2) rotate(45deg);
+  &__close {
+    &-container {
+      position: absolute;
+      z-index: 102;
+      top: 0;
+      right: 0;
+      display: flex;
+      place-content: center;
+      width: 8.1%;
+      aspect-ratio: 1 / 1;
+      cursor: pointer;
 
-    &::before {
-      height: 4px;
+      &:hover .modal__close-button {
+        color: $color-red;
+        opacity: 1;
+        transform: scale(2.2) rotate(45deg);
+      }
     }
 
-    &::after {
-      width: 4px;
-    }
+    &-button {
+      color: #fff;
+      opacity: 0.75;
+      transform: scale(2) rotate(45deg);
 
-    &:hover {
-      color: $color-red;
-      opacity: 1;
-      transform: scale(2.2) rotate(45deg);
+      &::before {
+        height: 4px;
+      }
+
+      &::after {
+        width: 4px;
+      }
     }
   }
 }

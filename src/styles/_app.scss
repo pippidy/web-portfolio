@@ -1,13 +1,13 @@
-// body:has(.modal.opened) {
-//   overflow: hidden;
-// }
+p::selection,
+h1::selection,
+h2::selection,
+h3::selection {
+  background-color: $color-yellow;
+  color: #fff;
+}
 
 .root {
   overflow-x: clip;
-}
-
-.no-transform {
-  transform: none !important;
 }
 
 .wrapper {
@@ -50,7 +50,7 @@
   padding: 5px 0;
   margin: 0 calc(-50vw + 50%);
   text-align: center;
-  font-size: 4em;
+  font-size: 4rem;
   font-family: $font-family-accent;
   text-transform: uppercase;
   color: $color-grey-dark;
@@ -63,7 +63,7 @@
 .title-secondary {
   padding: $padding-block-main;
   font-family: $font-family-main;
-  font-size: 3em;
+  font-size: 3rem;
   text-transform: uppercase;
   text-align: center;
   color: inherit;
@@ -172,6 +172,17 @@
     margin: 0 auto;
     transition: opacity $transition-medium ease-out;
   }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }
 
 @media (max-width: 768px) {

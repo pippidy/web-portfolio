@@ -5,6 +5,7 @@ import cn from 'classnames';
 import { ReactComponent as ArrowIcon } from '../../assets/svg/arrow-circle.svg';
 // @ts-expect-error
 import { ReactComponent as ZoomIcon } from '../../assets/svg/zoom.svg';
+import { Link } from 'react-router-dom';
 
 export default function ImageSlider({
   data,
@@ -39,6 +40,7 @@ export default function ImageSlider({
               <button
                 onClick={prevImage}
                 className="image-slider__button image-slider__button_prev"
+                title="Switch to the previous image"
               >
                 <ArrowIcon />
               </button>
@@ -47,6 +49,7 @@ export default function ImageSlider({
               <button
                 onClick={nextImage}
                 className="image-slider__button image-slider__button_next"
+                title="Switch to the next image"
               >
                 <ArrowIcon />
               </button>
@@ -62,11 +65,12 @@ export default function ImageSlider({
 
             return (
               <div key={`slider-card_${index}`} className={cardClass}>
-                <a
+                <Link
                   className="image-slider__link"
-                  href={`//images.igdb.com/igdb/image/upload/t_1080p/${item.image_id}.jpg`}
+                  to={`//images.igdb.com/igdb/image/upload/t_1080p/${item.image_id}.jpg`}
                   target="_blank"
                   rel="noreferrer"
+                  title="Open full size image"
                 >
                   <ZoomIcon />
                   <img
@@ -74,7 +78,7 @@ export default function ImageSlider({
                     src={`//images.igdb.com/igdb/image/upload/t_${imageSize}/${item.image_id}.jpg`}
                     alt=""
                   />
-                </a>
+                </Link>
                 <span className="image-slider__text">{`${text} №${
                   index + 1
                 }`}</span>

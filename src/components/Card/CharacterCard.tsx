@@ -9,7 +9,6 @@ export default function CharacterCard({
   mug_shot,
   linkPrefix,
 }: TCharacterCard) {
-  const nameLength = 15;
 
   return (
     <div className="card card-flying" title={name}>
@@ -25,9 +24,7 @@ export default function CharacterCard({
         )}
 
         <p className="card__name">
-          {name
-            ? cutLongString({ string: name, length: nameLength, end: '...' })
-            : ''}
+          {name}
         </p>
       </Link>
     </div>

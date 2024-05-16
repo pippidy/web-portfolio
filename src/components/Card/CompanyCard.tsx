@@ -9,7 +9,6 @@ export default function CompanyCard({
   name,
   logo,
 }: TCompanyCard) {
-  const nameLength = 15;
 
   return (
     <div className="card card-flying" title={name}>
@@ -21,9 +20,7 @@ export default function CompanyCard({
         )}
 
         <p className="card__name">
-          {name
-            ? cutLongString({ string: name, length: nameLength, end: '...' })
-            : ''}
+          {name}
         </p>
       </Link>
     </div>

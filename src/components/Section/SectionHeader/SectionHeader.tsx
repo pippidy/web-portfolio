@@ -1,4 +1,4 @@
-import { TSectionHeader } from '../../types/types';
+import { TSectionHeader } from '../../../types/types';
 
 export default function SectionHeader({
   title,
@@ -10,7 +10,11 @@ export default function SectionHeader({
   }
 
   return (
-    <header onClick={handleClick} className={'section-header'}>
+    <header
+      onClick={handleClick}
+      className={'section-header'}
+      title={`Collapse section ${title}`}
+    >
       <h2 className="title-secondary">
         {title}
         <div className="icon-cross"></div>

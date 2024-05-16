@@ -25,7 +25,7 @@
   &__rating {
     padding: 5px 10px;
     font-family: $font-family-secondary;
-    font-size: 1.2em;
+    font-size: 1.2rem;
     font-weight: bold;
     color: #555;
     text-align: center;
@@ -108,7 +108,10 @@
     text-align: center;
     color: #fff;
     background-color: $color-grey-dark;
-    font-size: 1.2em;
+    font-size: 1.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     opacity: 0;
     transition: opacity $transition-medium ease-in-out;
   }

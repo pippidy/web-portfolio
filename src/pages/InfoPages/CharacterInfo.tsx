@@ -56,7 +56,7 @@ export default function CharacterInfo() {
                             pageData[0].mug_shot &&
                             pageData[0].mug_shot.image_id
                           }.jpg`}
-                          alt=""
+                          alt={`Mugshot of ${pageData[0].name}`}
                         />
                       </div>
                     ) : (

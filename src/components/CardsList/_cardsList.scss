@@ -9,7 +9,7 @@
   &__item {
     flex-basis: 25%;
     aspect-ratio: 1 / 1.5;
-    // You should try to keep these numbers even bacause of poor subpixel rendering causing blur during translate
+    // You should try to keep these numbers even because of poor subpixel rendering causing blur during translate
     height: max-content;
     max-width: 230px;
     min-height: 350px;
@@ -20,7 +20,7 @@
 
     & .cards-list__item {
       flex-basis: 23%;
-      // You should try to keep these numbers even bacause of poor subpixel rendering causing blur during translate
+      // You should try to keep these numbers even because of poor subpixel rendering causing blur during translate
       max-width: 160px;
       min-height: 218px;
     }
@@ -63,12 +63,12 @@
     }
 
     & .image-dummy__text {
-      font-size: 1.3em;
+      font-size: 1.3rem;
     }
 
     & .card__name {
       padding: 7px;
-      font-size: 1.2em;
+      font-size: 1.2rem;
     }
   }
 }
