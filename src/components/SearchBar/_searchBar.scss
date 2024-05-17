@@ -103,6 +103,7 @@
 
       & svg {
         left: 8px;
+        width: 25px;
         fill: $color-grey;
       }
     }
@@ -116,6 +117,7 @@
 
       & svg {
         right: 8px;
+        width: 20px;
         fill: $color-red-light;
       }
     }
@@ -125,7 +127,6 @@
     position: absolute;
     inset-block: 0;
     margin: auto 0;
-    width: 20px;
     transition: fill $transition-instant ease;
   }
 

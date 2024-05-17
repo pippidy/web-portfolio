@@ -1,11 +1,4 @@
-import {
-  ChangeEvent,
-  FormEvent,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { FormEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { getData } from '../Api/Api';
 import { TGame } from '../../types/types';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -16,6 +9,7 @@ import { cutLongString } from '../Utils/Utils';
 import { ReactComponent as SearchIcon } from '../../assets/svg/search.svg';
 // @ts-expect-error
 import { ReactComponent as CrossIcon } from '../../assets/svg/cross.svg';
+import LoadingSimple from '../LoadingSimple/LoadingSimple';
 
 export default function SearchBar() {
   const [data, setData] = useState<TGame[] | undefined>();
@@ -29,7 +23,7 @@ export default function SearchBar() {
 
   // Reset the form visually when clicked outside it. Simple onBlur for input didn't work in this case
   useOutsideClick(() => {
-    formRef.current?.classList.remove('focused'); // Used for better control over the block with results and styling
+    formRef.current?.classList.remove('focused'); // "focused" class is used for better control over the results block and overall styling
     setIsSearching(false);
   }, formRef);
 
@@ -73,7 +67,7 @@ export default function SearchBar() {
     if (inputRef.current) inputRef.current.value = '';
   }, []);
 
-  // Resetting search field on page change
+  // Resetting search field and form on page change
   useEffect(() => {
     handleReset();
     formRef.current?.classList.remove('focused');
@@ -81,10 +75,11 @@ export default function SearchBar() {
 
   // Sending request only when user stopped typing
   useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
+    const delayDebounce = setTimeout(() => {
       initSearch(searchQuery);
     }, 300);
-    return () => clearTimeout(delayDebounceFn);
+
+    return () => clearTimeout(delayDebounce);
   }, [searchQuery]);
 
   return (
@@ -114,7 +109,7 @@ export default function SearchBar() {
 
           {isLoading && (
             <div className="search__loading">
-              <div className="loading-simple"></div>
+              <LoadingSimple />
             </div>
           )}
 
