@@ -121,6 +121,16 @@ h3::selection {
   overflow: hidden;
 }
 
+.link-default {
+  color: $color-grey-dark;
+  font-weight: bold;
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 @media (max-width: 768px) {
   html {
     margin: 0;

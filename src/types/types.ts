@@ -22,6 +22,7 @@ export type TConfigAPI = {
 export type TSection = {
   title: string;
   children?: TComponentChildren;
+  className?: string;
 };
 
 export type TGetData = {

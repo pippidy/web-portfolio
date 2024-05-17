@@ -9,6 +9,34 @@
     display: none;
   }
 
+  &__header {
+    position: relative;
+    color: #fff;
+    background-color: $color-grey-dark;
+    border-bottom: 2px solid $color-grey-dark;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
+
+    &:hover {
+      & .icon-cross {
+        color: $color-yellow;
+        transition: transform $transition-medium ease-out,
+          color $transition-medium ease-out;
+      }
+    }
+
+    & .icon-cross {
+      position: absolute;
+      top: 0;
+      right: 20px;
+      bottom: 0;
+
+      &::after {
+        opacity: 0;
+      }
+    }
+  }
+
   &__content {
     position: relative;
     display: flex;
@@ -24,7 +52,7 @@
     box-shadow: none;
     min-height: 0;
 
-    & .section-header {
+    & .section__header {
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px;
     }
@@ -47,6 +75,10 @@
     & .spinner:before {
       height: 0;
     }
+  }
+
+  &_error {
+    // background-color: $color-red-light;
   }
 }
 

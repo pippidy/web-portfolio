@@ -6,11 +6,21 @@ export default function Footer() {
     >
       <h2>
         2024 | Made by{' '}
-        <a href="https://vk.com/id319692238" target="_blank" rel="noreferrer">
+        <a
+          className="link-default"
+          href="https://vk.com/id319692238"
+          target="_blank"
+          rel="noreferrer"
+        >
           Andrey K.
         </a>{' '}
         | Powered by{' '}
-        <a href="https://www.igdb.com/api" target="_blank" rel="noreferrer">
+        <a
+          className="link-default"
+          href="https://www.igdb.com/api"
+          target="_blank"
+          rel="noreferrer"
+        >
           IGDB API
         </a>
       </h2>

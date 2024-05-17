@@ -18,6 +18,7 @@ import GameInfo from './pages/InfoPages/GameInfo';
 import CompanyInfo from './pages/InfoPages/CompanyInfo';
 import CharacterInfo from './pages/InfoPages/CharacterInfo';
 import Search from './pages/Search';
+import ErrorPage from './pages/ErrorPage/ErrorPage';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,6 +34,8 @@ const router = createBrowserRouter(
 
       <Route path="companies" element={<Companies />} />
       <Route path="company/:id" element={<CompanyInfo />} />
+
+      <Route path="*" element={<ErrorPage />} />
     </Route>
   )
 );
