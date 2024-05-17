@@ -23,7 +23,7 @@ export default function SearchBar() {
 
   // Reset the form visually when clicked outside it. Simple onBlur for input didn't work in this case
   useOutsideClick(() => {
-    formRef.current?.classList.remove('focused'); // "focused" class is used for better control over the results block and overall styling
+    formRef.current?.classList.remove('focused');
     setIsSearching(false);
   }, formRef);
 
@@ -41,7 +41,7 @@ export default function SearchBar() {
     if (query.length > 0) {
       setIsSearching(true);
 
-      if (query.length > 1) {
+      if (query.length > 2) {
         setIsLoading(true);
 
         getData({
@@ -102,7 +102,7 @@ export default function SearchBar() {
               }}
               type="text"
               className="search__input"
-              placeholder="Search for games..."
+              placeholder="Search games..."
               name="search"
             />
           </label>
