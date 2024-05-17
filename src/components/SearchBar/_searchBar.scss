@@ -64,6 +64,17 @@
       gap: 5px;
       border-top: 1px solid $color-grey-dark;
       padding: 10px;
+      font-size: 1.2rem;
+
+      &_not-found {
+        text-align: center;
+        font-family: $font-family-thin;
+        font-size: 1.8rem;
+        font-weight: bold;
+        font-style: italic;
+        color: $color-grey-darker;
+        background-color: #eee;
+      }
     }
 
     &-link {
@@ -71,7 +82,6 @@
       gap: 5px;
       min-height: 25px;
       align-items: center;
-      font-size: 1.2rem;
       border-radius: $border-radius-main;
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;

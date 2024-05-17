@@ -133,7 +133,7 @@ export default function SearchBar() {
           )}
 
           <div className={`search__results ${isSearching ? 'active' : ''}`}>
-            {data && (
+            {data && data.length > 0 ? (
               <ul className="search__results-list">
                 {data.map((item, index) => {
                   return (
@@ -157,6 +157,12 @@ export default function SearchBar() {
                   );
                 })}
               </ul>
+            ) : (
+              !isLoading && (
+                <ul className="search__results-list search__results-list_not-found">
+                  <li>No games found</li>
+                </ul>
+              )
             )}
           </div>
         </div>
