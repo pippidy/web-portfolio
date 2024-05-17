@@ -19,7 +19,11 @@ export function extractEnumData({ id, enumObject }: TExtractEnumData) {
   return enumObject[id];
 }
 
-export function cutLongString({ string, length, end }: TCutLongString): string {
+export function cutLongString({
+  string,
+  length,
+  end = '...',
+}: TCutLongString): string {
   return string.length > length
     ? `${string.substring(0, length)}${end}`
     : string;

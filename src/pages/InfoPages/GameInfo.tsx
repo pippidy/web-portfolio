@@ -3,7 +3,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import Section from '../../components/Section/Section';
 import { getData } from '../../components/Api/Api';
 import { TGame } from '../../types/types';
-import SectionLoading from '../../components/SectionLoading/SectionLoading';
+import SectionLoading from '../../components/Section/SectionLoading/SectionLoading';
 import { formatDate } from '../../components/Utils/Utils';
 import CardsList from '../../components/CardsList/CardsList';
 import Tabs from '../../components/Tabs/Tabs';

@@ -17,11 +17,14 @@ import Companies from './pages/Companies';
 import GameInfo from './pages/InfoPages/GameInfo';
 import CompanyInfo from './pages/InfoPages/CompanyInfo';
 import CharacterInfo from './pages/InfoPages/CharacterInfo';
+import Search from './pages/Search';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />} />
+      <Route path="search" element={<Search />} />
+
       <Route path="games/genres/:id" element={<Genres />} />
       <Route path="game/:id" element={<GameInfo />} />
 

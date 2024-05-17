@@ -69,11 +69,9 @@
     &-link {
       display: flex;
       gap: 5px;
+      min-height: 25px;
       align-items: center;
       font-size: 1.2rem;
-      overflow: hidden;
-      text-wrap: nowrap;
-      text-overflow: ellipsis;
       border-radius: $border-radius-main;
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
@@ -127,7 +125,27 @@
     position: absolute;
     inset-block: 0;
     margin: auto 0;
-    width: 25px;
+    width: 20px;
     transition: fill $transition-instant ease;
+  }
+
+  &__loading {
+    position: absolute;
+    z-index: 11;
+    width: 15px;
+    aspect-ratio: 1 / 1;
+    top: 12px;
+    left: 10px;
+
+    & .loading-simple {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 75%;
+
+      &::before {
+        border-width: 2px;
+      }
+    }
   }
 }

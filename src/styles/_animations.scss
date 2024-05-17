@@ -1,6 +1,12 @@
-@keyframes spin {
+@keyframes spin_180 {
   to {
     transform: rotate(180deg);
+  }
+}
+
+@keyframes spin_360 {
+  to {
+    transform: rotate(360deg);
   }
 }
 

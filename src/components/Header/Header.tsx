@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
-import Search from '../Search/Search';
+import SearchBar from '../SearchBar/SearchBar';
 // @ts-expect-error
 import logo from '../../assets/svg/logo.svg';
 // @ts-expect-error
@@ -62,7 +62,7 @@ export default function Header() {
         </ul>
       </nav>
 
-      <Search />
+      <SearchBar />
 
       <div className="button-auth">
         <PersonIcon className="button-auth__svg" width="25px" height="25px" />

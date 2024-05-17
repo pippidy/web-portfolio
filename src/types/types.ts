@@ -47,6 +47,7 @@ export type TCardSize = 'default' | 'compact' | 'mini';
 
 export type TCardsList = {
   endpoint?: string;
+  search?: string;
   fields?: string;
   limit?: number;
   sort?: string;

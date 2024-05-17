@@ -5,12 +5,13 @@ import { TCardsList, TData } from '../../types/types';
 import { useLocation } from 'react-router-dom';
 import CharacterCard from '../Card/CharacterCard';
 import CompanyCard from '../Card/CompanyCard';
-import SectionLoading from '../SectionLoading/SectionLoading';
+import SectionLoading from '../Section/SectionLoading/SectionLoading';
 import cn from 'classnames';
 import DataNotAvailable from '../DataNotAvailable/DataNotAvailable';
 
 export default function CardsList({
   endpoint = 'games',
+  search,
   fields = '*',
   limit,
   sort,
@@ -32,7 +33,8 @@ export default function CardsList({
   useEffect(() => {
     getData({
       endpoint: endpoint,
-      fields,
+      search: search,
+      fields: fields,
       limit: limit,
       sort: sort,
       filter: filter,
@@ -43,7 +45,7 @@ export default function CardsList({
       })
       .catch((err) => console.log(`Error: ${err}`))
       .finally(() => setLoading(false));
-  }, [endpoint, fields, limit, sort, filter, offset]);
+  }, [endpoint, search, fields, limit, sort, filter, offset]);
 
   useEffect(() => {
     setLoading(true);

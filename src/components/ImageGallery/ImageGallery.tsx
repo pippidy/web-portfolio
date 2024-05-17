@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getData } from '../Api/Api';
 import { TData, TImageGallery } from '../../types/types';
-import SectionLoading from '../SectionLoading/SectionLoading';
+import SectionLoading from '../Section/SectionLoading/SectionLoading';
 import ImageSlider from '../ImageSlider/ImageSlider';
 import Modal from '../Modal/Modal';
 

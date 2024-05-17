@@ -3,7 +3,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import Section from '../../components/Section/Section';
 import { getData } from '../../components/Api/Api';
 import { TCharacter } from '../../types/types';
-import SectionLoading from '../../components/SectionLoading/SectionLoading';
+import SectionLoading from '../../components/Section/SectionLoading/SectionLoading';
 import CardsList from '../../components/CardsList/CardsList';
 import Tabs from '../../components/Tabs/Tabs';
 import DataNotAvailable from '../../components/DataNotAvailable/DataNotAvailable';
