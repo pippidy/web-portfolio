@@ -64,7 +64,11 @@ export default function SearchBar() {
   // Resetting search proccess and clearing the input
   const handleReset = useCallback(() => {
     initSearch('');
-    if (inputRef.current) inputRef.current.value = '';
+
+    if (inputRef.current) {
+      inputRef.current.value = '';
+      inputRef.current.focus();
+    }
   }, []);
 
   // Resetting search field and form on page change
@@ -121,16 +125,16 @@ export default function SearchBar() {
             <SearchIcon className="search__svg" />
           </button>
 
-          {isSearching && (
-            <button
-              onClick={handleReset}
-              type="reset"
-              className="search__button search__button_reset"
-              title="Reset search"
-            >
-              <CrossIcon className="search__svg" />
-            </button>
-          )}
+          <button
+            onClick={handleReset}
+            type="reset"
+            className={`search__button search__button_reset ${
+              isSearching ? 'active' : ''
+            }`}
+            title="Reset search"
+          >
+            <CrossIcon className="search__svg" />
+          </button>
 
           <div className={`search__results ${isSearching ? 'active' : ''}`}>
             {data && data.length > 0 ? (

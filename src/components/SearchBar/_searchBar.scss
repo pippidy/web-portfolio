@@ -120,9 +120,14 @@
 
     &_reset {
       right: 0;
+      visibility: hidden;
 
       &:hover svg {
         fill: $color-red;
+      }
+
+      &.active {
+        visibility: visible;
       }
 
       & svg {

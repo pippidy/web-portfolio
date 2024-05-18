@@ -7,7 +7,9 @@ export default function RootLayout() {
     <div className="wrapper">
       <Header />
 
-      <h1 className="title-main">Browse our collections</h1>
+      <h1 className="title-main block-default_shadowDown">
+        Browse our collections
+      </h1>
 
       <main className="main">
         <Outlet />

@@ -7,7 +7,21 @@ h3::selection {
 }
 
 .root {
+  position: relative;
   overflow-x: clip;
+
+  &::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background-image: url(../assets/img/grunge.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    mix-blend-mode: multiply;
+    opacity: 0.1;
+  }
 }
 
 .wrapper {

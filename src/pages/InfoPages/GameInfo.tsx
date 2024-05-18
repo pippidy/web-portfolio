@@ -28,7 +28,7 @@ export default function GameInfo() {
       endpoint: 'games',
       filter: `id = ${pageID}`,
       fields:
-        'name,cover.image_id,aggregated_rating,genres.name,first_release_date,summary,storyline,similar_games,screenshots,artworks,platforms.abbreviation',
+        'name,cover.image_id,aggregated_rating,genres.name,first_release_date,summary,storyline,similar_games,screenshots,artworks,platforms.abbreviation,involved_companies.*',
     })
       .then((data) => {
         setPageData(data);
