@@ -22,7 +22,6 @@ export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
   const [values, setValues] = useState<TAuthValues>({
     email: '',
     password: '',
-    passwordConfirm: '',
   });
 
   // Resetting form when modal is opened/closed
@@ -93,7 +92,7 @@ export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
 
     if (authType === 'signUp') {
       // SIGN UP with email and password
-      doCreateWithEmailAndPassword()
+      doCreateWithEmailAndPassword(values.email, values.password)
         .then((userCredentials) => {
           if (userCredentials) setIsSuccess(true);
         })
@@ -102,7 +101,7 @@ export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
       return;
     } else if (authType === 'signIn') {
       // SIGN IN with email and password
-      doSignInWithEmailAndPassword()
+      doSignInWithEmailAndPassword(values.email, values.password)
         .then((userCredentials) => {
           if (userCredentials) setIsSuccess(true);
         })

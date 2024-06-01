@@ -291,7 +291,6 @@ export type TAuthValues = {
   [key: string]: string | undefined; // index signature
   email: string;
   password: string;
-  passwordConfirm: string;
 };
 
 export type TSignOutButton = {
