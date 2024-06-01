@@ -1,6 +1,7 @@
 .error-page {
   position: absolute;
-  inset: 0;
+  inset-block: 0;
+  inset-inline: 10%;
   display: flex;
   flex-direction: column;
   justify-content: center;

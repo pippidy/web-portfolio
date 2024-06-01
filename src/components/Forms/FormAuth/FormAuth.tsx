@@ -19,9 +19,11 @@ import {
 import { catchFetchError } from '../../Utils/Utils';
 import InputDefault from '../InputDefault/InputDefault';
 import ModalContext from '../../../contexts/ModalContext';
+import LoadingSimple from '../../LoadingSimple/LoadingSimple';
 
 export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
   const formRef = useRef<HTMLFormElement>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [fetchError, setFetchError] = useState<TError>();
   const [isSuccess, setIsSuccess] = useState(false);
   const isModalOpened = useContext(ModalContext);
@@ -101,13 +103,16 @@ export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
   function onSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
 
+    setIsLoading(true);
+
     if (authType === 'signUp') {
       // SIGN UP with email and password
       doCreateWithEmailAndPassword(values.email, values.password)
         .then((userCredentials) => {
           if (userCredentials) setIsSuccess(true);
         })
-        .catch((error) => catchFetchError(error, setFetchError));
+        .catch((error) => catchFetchError(error, setFetchError))
+        .finally(() => setIsLoading(false));
 
       return;
     } else if (authType === 'signIn') {
@@ -116,7 +121,8 @@ export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
         .then((userCredentials) => {
           if (userCredentials) setIsSuccess(true);
         })
-        .catch((error) => catchFetchError(error, setFetchError));
+        .catch((error) => catchFetchError(error, setFetchError))
+        .finally(() => setIsLoading(false));
 
       return;
     }
@@ -159,6 +165,9 @@ export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
 
           {/* INPUTS */}
           <div className="form-auth__input-holder">
+            {/* On loading blocker */}
+            {isLoading && <div className="form-auth__blocker"></div>}
+
             {inputs.map((input) => {
               // Skipping passwordConfirm input when Sign In is active
               if (
@@ -183,12 +192,20 @@ export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
 
           {/* SUBMIT BUTTON */}
           <button
+            disabled={isLoading ? true : false}
             className="form-auth__button-submit modal__button-default"
             type="submit"
           >
-            {authType === 'signUp'
-              ? 'Sign up'
-              : authType === 'signIn' && 'Sign in'}
+            {isLoading ? (
+              <div className="form-auth__loading-button">
+                <LoadingSimple />
+                Loading...
+              </div>
+            ) : authType === 'signUp' ? (
+              'Sign up'
+            ) : (
+              authType === 'signIn' && 'Sign in'
+            )}
           </button>
 
           {/* ERROR */}

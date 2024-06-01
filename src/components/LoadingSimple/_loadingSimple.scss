@@ -1,13 +1,17 @@
 .loading-simple {
+  position: relative;
   width: 100%;
   aspect-ratio: 1 / 1;
+  color: $color-yellow;
 
   &::before {
     content: '';
     position: absolute;
+    inset: 0;
+    margin: auto;
     width: 100%;
     aspect-ratio: 1 / 1;
-    border: 3px solid $color-yellow;
+    border: 3px solid currentColor;
     border-radius: 50%;
     border-bottom-color: transparent;
     animation: spin_360 1s linear infinite;

@@ -3,6 +3,7 @@
   flex-direction: column;
   width: min(100vw, 360px);
 
+  // TODO: use scss functions and also create component
   &:invalid .form-auth__button-submit {
     background-color: $color-grey;
     box-shadow: none;
@@ -14,7 +15,16 @@
     }
   }
 
+  &__blocker {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-color: #fff;
+    opacity: 0.75;
+  }
+
   &__input-holder {
+    position: relative;
     display: flex;
     flex-direction: column;
     margin-block: 20px;
@@ -40,6 +50,16 @@
       &:hover {
         text-decoration: underline;
       }
+    }
+  }
+
+  &__loading-button {
+    display: flex;
+    gap: 5px;
+
+    & .loading-simple {
+      width: 1.8rem;
+      color: #fff;
     }
   }
 

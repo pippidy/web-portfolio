@@ -9,7 +9,7 @@ export default function Profile() {
 
   // Redirect if not signed in
   useEffect(() => {
-    !auth?.userSignedIn && nav('/');
+    !auth?.userSignedIn && nav('/auth-error');
   }, [auth?.userSignedIn, nav]);
 
   return (
