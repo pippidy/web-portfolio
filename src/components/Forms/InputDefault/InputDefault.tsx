@@ -57,7 +57,7 @@ export default function InputDefault({
         id={label && label.for}
         className={isError.status ? 'error' : ''}
         onChange={(evt) => {
-          if (isError.status) validateInput(evt); // When error have been shown start dynamic validation on change
+          if (isError.status) validateInput(evt); // If error has been shown start dynamic validation on change
           onChange && onChange(evt);
         }}
         onBlur={(evt) => {

@@ -10,14 +10,20 @@ import {
   doCreateWithEmailAndPassword,
   doSignInWithEmailAndPassword,
 } from '../../../firebase/auth';
-import { TAuthForm, TAuthValues, TInputElement } from '../../../types/types';
+import {
+  TAuthForm,
+  TAuthValues,
+  TError,
+  TInputElement,
+} from '../../../types/types';
 import { catchFetchError } from '../../Utils/Utils';
 import InputDefault from '../InputDefault/InputDefault';
 import ModalContext from '../../../contexts/ModalContext';
 
 export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
-  const [isSuccess, setIsSuccess] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
+  const [fetchError, setFetchError] = useState<TError>();
+  const [isSuccess, setIsSuccess] = useState(false);
   const isModalOpened = useContext(ModalContext);
   const [values, setValues] = useState<TAuthValues>({
     email: '',
@@ -30,6 +36,11 @@ export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
       formRef.current.reset();
     }
   }, [isModalOpened]);
+
+  // Clearing fetch errors on authType change
+  useEffect(() => {
+    setFetchError({ status: false });
+  }, [authType]);
 
   const inputs: TInputElement[] = [
     {
@@ -86,6 +97,7 @@ export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
   function onChange(evt: ChangeEvent<HTMLInputElement>) {
     setValues(values && { ...values, [evt.target.name]: evt.target.value });
   }
+  console.log(fetchError && fetchError.message);
 
   function onSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
@@ -96,7 +108,7 @@ export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
         .then((userCredentials) => {
           if (userCredentials) setIsSuccess(true);
         })
-        .catch((error) => catchFetchError(error));
+        .catch((error) => catchFetchError(error, setFetchError));
 
       return;
     } else if (authType === 'signIn') {
@@ -105,7 +117,7 @@ export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
         .then((userCredentials) => {
           if (userCredentials) setIsSuccess(true);
         })
-        .catch((error) => catchFetchError(error));
+        .catch((error) => catchFetchError(error, setFetchError));
 
       return;
     }
@@ -174,6 +186,11 @@ export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
               ? 'Sign up'
               : authType === 'signIn' && 'Sign in'}
           </button>
+
+          {/* ERROR */}
+          {fetchError && fetchError.status && (
+            <p className="form-auth__error">{fetchError.message}</p>
+          )}
 
           {/* ADDITIONAL INFO */}
           {authType === 'signUp' ? (

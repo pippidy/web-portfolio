@@ -17,8 +17,9 @@ export function handleFetchResults(res: Response) {
 
 export function catchFetchError(error: TError, callback?: Function) {
   const errorObj = {
-    errorCode: error.code,
-    errorMessage: error.message,
+    status: true,
+    code: error.code,
+    message: error.message,
   };
 
   if (callback) {
