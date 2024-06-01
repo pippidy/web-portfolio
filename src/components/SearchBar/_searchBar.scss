@@ -1,6 +1,7 @@
 .search {
   position: relative;
   height: 45px;
+  color: $color-grey-dark;
 
   &__form {
     position: absolute;
@@ -39,6 +40,7 @@
     padding-left: 40px;
     padding-right: 40px;
     font-family: $font-family-main;
+    color: inherit;
     border: none;
     border-bottom: 1px solid transparent;
 
@@ -151,7 +153,7 @@
     width: 15px;
     aspect-ratio: 1 / 1;
     top: 12px;
-    left: 10px;
+    left: 11px;
 
     & .loading-simple {
       position: absolute;

@@ -7,7 +7,7 @@ import SectionLoading from '../../components/Section/SectionLoading/SectionLoadi
 import CardsList from '../../components/CardsList/CardsList';
 import Tabs from '../../components/Tabs/Tabs';
 import DataNotAvailable from '../../components/DataNotAvailable/DataNotAvailable';
-import { extractEnumData } from '../../components/Utils/Utils';
+import { catchFetchError, extractEnumData } from '../../components/Utils/Utils';
 import { Gender, Species } from '../../components/Utils/Data';
 import ImageDummyCharacters from '../../components/ImageDummies/ImageDummyCharacters';
 
@@ -32,7 +32,9 @@ export default function CharacterInfo() {
       .then((data) => {
         setPageData(data);
       })
-      .catch((err) => console.log(`Error: ${err}`))
+      .catch((error) => {
+        catchFetchError(error);
+      })
       .finally(() => setLoadingInfo(false));
   }, [pageID]);
 
@@ -64,6 +66,7 @@ export default function CharacterInfo() {
                         <ImageDummyCharacters />
                       </div>
                     )}
+
                     <div className="info-page__data-holder">
                       <ul className="info-page__data-list">
                         {pageData[0].country_name && (

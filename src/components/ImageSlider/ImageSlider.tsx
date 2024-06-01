@@ -1,11 +1,11 @@
 import { TImageSlider } from '../../types/types';
 import cn from 'classnames';
+import { Link } from 'react-router-dom';
 
 // @ts-expect-error
 import { ReactComponent as ArrowIcon } from '../../assets/svg/arrow-circle.svg';
 // @ts-expect-error
 import { ReactComponent as ZoomIcon } from '../../assets/svg/zoom.svg';
-import { Link } from 'react-router-dom';
 
 export default function ImageSlider({
   data,
@@ -77,8 +77,10 @@ export default function ImageSlider({
                     className="image-slider__image"
                     src={`//images.igdb.com/igdb/image/upload/t_${imageSize}/${item.image_id}.jpg`}
                     alt=""
+                    loading="lazy"
                   />
                 </Link>
+
                 <span className="image-slider__text">{`${text} №${
                   index + 1
                 }`}</span>

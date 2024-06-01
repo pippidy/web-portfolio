@@ -8,6 +8,7 @@ import CompanyCard from '../Card/CompanyCard';
 import SectionLoading from '../Section/SectionLoading/SectionLoading';
 import cn from 'classnames';
 import DataNotAvailable from '../DataNotAvailable/DataNotAvailable';
+import { catchFetchError } from '../Utils/Utils';
 
 export default function CardsList({
   endpoint = 'games',
@@ -43,7 +44,9 @@ export default function CardsList({
       .then((data) => {
         setData(data);
       })
-      .catch((err) => console.log(`Error: ${err}`))
+      .catch((error) => {
+        catchFetchError(error);
+      })
       .finally(() => setLoading(false));
   }, [endpoint, search, fields, limit, sort, filter, offset]);
 

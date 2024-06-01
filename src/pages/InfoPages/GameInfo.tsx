@@ -4,7 +4,7 @@ import Section from '../../components/Section/Section';
 import { getData } from '../../components/Api/Api';
 import { TGame } from '../../types/types';
 import SectionLoading from '../../components/Section/SectionLoading/SectionLoading';
-import { formatDate } from '../../components/Utils/Utils';
+import { catchFetchError, formatDate } from '../../components/Utils/Utils';
 import CardsList from '../../components/CardsList/CardsList';
 import Tabs from '../../components/Tabs/Tabs';
 import ImageGallery from '../../components/ImageGallery/ImageGallery';
@@ -33,7 +33,9 @@ export default function GameInfo() {
       .then((data) => {
         setPageData(data);
       })
-      .catch((err) => console.log(`Error: ${err}`))
+      .catch((error) => {
+        catchFetchError(error);
+      })
       .finally(() => setLoadingInfo(false));
   }, [pageID]);
 

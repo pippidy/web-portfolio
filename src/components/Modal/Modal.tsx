@@ -2,8 +2,14 @@ import { useEffect, useRef } from 'react';
 import { TModal } from '../../types/types';
 import { createPortal } from 'react-dom';
 import { useLocation } from 'react-router-dom';
+import ModalContext from '../../contexts/ModalContext';
 
-export default function Modal({ children, isOpened, setIsOpened }: TModal) {
+export default function Modal({
+  children,
+  isOpened,
+  setIsOpened,
+  classList = '',
+}: TModal) {
   const modalRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
@@ -28,20 +34,22 @@ export default function Modal({ children, isOpened, setIsOpened }: TModal) {
   return (
     <>
       {createPortal(
-        <div ref={modalRef} className="modal">
-          <div onClick={closeModal} className="modal__overlay"></div>
+        <ModalContext.Provider value={isOpened}>
+          <div ref={modalRef} className={`modal ${classList}`}>
+            <div onClick={closeModal} className="modal__overlay"></div>
 
-          <div className="modal__container">
-            <div className="modal__close-container">
-              <button
-                onClick={closeModal}
-                className="modal__close-button icon-cross"
-                title="Close modal"
-              ></button>
+            <div className="modal__container">
+              <div className="modal__close-container">
+                <button
+                  onClick={closeModal}
+                  className="modal__close-button icon-cross"
+                  title="Close modal"
+                ></button>
+              </div>
+              {children}
             </div>
-            {children}
           </div>
-        </div>,
+        </ModalContext.Provider>,
         document.body
       )}
     </>

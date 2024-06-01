@@ -1,0 +1,123 @@
+.header-auth {
+  position: relative;
+  padding-block: 5px;
+  padding-right: 5px;
+
+  &:hover {
+    & .header-auth__content {
+      display: block;
+    }
+
+    & .icon-auth path {
+      fill: $color-blue;
+    }
+  }
+
+  & .icon-auth {
+    position: relative;
+    z-index: 2;
+    border: 2px solid $color-blue;
+
+    &__svg {
+      color: $color-blue;
+    }
+  }
+
+  &__content {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    display: none;
+    min-width: 250px;
+    font-family: $font-family-secondary;
+    font-size: 1.7rem;
+    text-align: center;
+    line-height: 100%;
+    background-color: #fff;
+    color: $color-blue;
+    border: 2px solid $color-blue;
+    border-radius: $border-radius-main;
+    overflow: hidden;
+
+    &-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 46px;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: $color-blue;
+      text-transform: uppercase;
+      background-color: $color-blue-light;
+      border-bottom: 1px solid $color-blue;
+    }
+
+    &-title {
+      text-transform: uppercase;
+    }
+
+    &-button {
+      display: block;
+      width: 100%;
+      text-align: center;
+      color: $color-grey-dark;
+      font-size: 1.1em;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__menu {
+    display: flex;
+    flex-direction: column;
+
+    &-item {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      font-family: $font-family-secondary;
+      font-size: 1.6rem;
+      text-transform: uppercase;
+      transition: color $transition-fast ease,
+        background-color $transition-fast ease;
+
+      &:hover {
+        color: #fff;
+        background-color: $color-blue;
+      }
+    }
+  }
+}
+
+.header-auth_error {
+  &:hover {
+    & .icon-auth path {
+      fill: $color-red;
+    }
+  }
+
+  & .header-auth__content {
+    padding-bottom: 10px;
+    color: $color-red;
+    border: 2px solid $color-red;
+  }
+
+  & .header-auth__content-header {
+    margin-bottom: 10px;
+    color: $color-red;
+    background-color: $color-red-light;
+    border-bottom: 1px solid $color-red;
+  }
+
+  & .icon-auth {
+    border: 2px solid $color-red;
+
+    &__svg {
+      color: $color-red;
+    }
+  }
+}

@@ -6,7 +6,7 @@ import usePaginationData from '../hooks/usePaginationData';
 import { useEffect } from 'react';
 
 export default function Companies() {
-  const navigate = useNavigate();
+  const nav = useNavigate();
   const { id: pageID } = useParams();
   const fetchLimit = 102;
 
@@ -20,11 +20,11 @@ export default function Companies() {
   // Redirecting if page is non-existent
   useEffect(() => {
     if (currentPage > pagesAmount && pagesAmount > 0) {
-      navigate(`/characters#page=${pagesAmount}`);
+      nav(`/characters#page=${pagesAmount}`);
     } else if (currentPage <= 0) {
-      navigate(`/characters#page=1`);
+      nav(`/characters#page=1`);
     }
-  }, [navigate, pagesAmount, currentPage]);
+  }, [nav, pagesAmount, currentPage]);
 
   return (
     <Section title="Companies">

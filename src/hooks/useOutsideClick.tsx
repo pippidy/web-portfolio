@@ -4,17 +4,17 @@ export default function useOutsideClick(
   callback: Function,
   ref: RefObject<HTMLElement>
 ) {
-  function handleClick(event: MouseEvent) {
+  function onClick(event: MouseEvent) {
     if (ref.current && !ref.current.contains(event.target as Node)) {
       callback();
     }
   }
 
   useEffect(() => {
-    document.addEventListener('click', handleClick);
+    document.addEventListener('click', onClick);
 
     return () => {
-      document.removeEventListener('click', handleClick);
+      document.removeEventListener('click', onClick);
     };
   });
 }

@@ -2,6 +2,7 @@ import iso from 'iso-3166-1';
 import {
   TCutLongString,
   TExtractEnumData,
+  TError,
   TFormatDate,
   TGetCountryFromISO,
 } from '../../types/types';
@@ -12,6 +13,19 @@ export function handleFetchResults(res: Response) {
   } else {
     return Promise.reject(`Ошибка: ${res.status}`);
   }
+}
+
+export function catchFetchError(error: TError, callback?: Function) {
+  const errorObj = {
+    errorCode: error.code,
+    errorMessage: error.message,
+  };
+
+  if (callback) {
+    callback(errorObj);
+  }
+
+  console.log(error.code, error.message);
 }
 
 export function extractEnumData({ id, enumObject }: TExtractEnumData) {

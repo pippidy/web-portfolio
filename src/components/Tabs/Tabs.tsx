@@ -32,7 +32,7 @@ export default function Tabs({ tabs, children, title = '' }: TTabs) {
   return (
     <div className="tabs">
       <header>
-        <h2 className="info-page__title">{title}</h2>
+        <h3 className="section__title-accent">{title}</h3>
         <ul className="tabs__menu" role="tablist">
           {tabs.map((tabName, index) => {
             const className = cn('tabs__menu-button', {

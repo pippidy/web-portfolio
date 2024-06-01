@@ -3,13 +3,13 @@ import { getData } from '../Api/Api';
 import { TGame } from '../../types/types';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useOutsideClick from '../../hooks/useOutsideClick';
-import { cutLongString } from '../Utils/Utils';
+import { catchFetchError, cutLongString } from '../Utils/Utils';
+import LoadingSimple from '../LoadingSimple/LoadingSimple';
 
 // @ts-expect-error
 import { ReactComponent as SearchIcon } from '../../assets/svg/search.svg';
 // @ts-expect-error
 import { ReactComponent as CrossIcon } from '../../assets/svg/cross.svg';
-import LoadingSimple from '../LoadingSimple/LoadingSimple';
 
 export default function SearchBar() {
   const [data, setData] = useState<TGame[] | undefined>();
@@ -19,7 +19,7 @@ export default function SearchBar() {
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const location = useLocation();
-  const navigate = useNavigate();
+  const nav = useNavigate();
 
   // Reset the form visually when clicked outside it. Simple onBlur for input didn't work in this case
   useOutsideClick(() => {
@@ -28,9 +28,9 @@ export default function SearchBar() {
   }, formRef);
 
   // Redirecting to game page on submit
-  function handleSubmit(e: FormEvent) {
+  function onSubmit(e: FormEvent) {
     e.preventDefault();
-    if (searchQuery) navigate(`/search#${searchQuery}`);
+    if (searchQuery) nav(`/search#${searchQuery}`);
   }
 
   // Initializing search by resetting current Data and sending new request if needed
@@ -53,7 +53,9 @@ export default function SearchBar() {
           .then((data) => {
             setData(data);
           })
-          .catch((err) => console.log(`Error: ${err}`))
+          .catch((error) => {
+            catchFetchError(error);
+          })
           .finally(() => setIsLoading(false));
       }
     } else {
@@ -62,20 +64,19 @@ export default function SearchBar() {
   }
 
   // Resetting search proccess and clearing the input
-  const handleReset = useCallback(() => {
+  const onReset = useCallback(() => {
     initSearch('');
 
     if (inputRef.current) {
       inputRef.current.value = '';
-      inputRef.current.focus();
     }
   }, []);
 
   // Resetting search field and form on page change
   useEffect(() => {
-    handleReset();
+    onReset();
     formRef.current?.classList.remove('focused');
-  }, [location, handleReset]);
+  }, [location, onReset]);
 
   // Sending request only when user stopped typing
   useEffect(() => {
@@ -89,7 +90,7 @@ export default function SearchBar() {
   return (
     <div className="search">
       <form
-        onSubmit={(e) => handleSubmit(e)}
+        onSubmit={(e) => onSubmit(e)}
         ref={formRef}
         className="search__form"
       >
@@ -126,7 +127,12 @@ export default function SearchBar() {
           </button>
 
           <button
-            onClick={handleReset}
+            onClick={() => {
+              onReset();
+              if (inputRef.current) {
+                inputRef.current.focus();
+              }
+            }}
             type="reset"
             className={`search__button search__button_reset ${
               isSearching ? 'active' : ''

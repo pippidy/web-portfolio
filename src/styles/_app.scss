@@ -145,6 +145,23 @@ h3::selection {
   }
 }
 
+.icon-auth {
+  padding: 4px;
+  border: 2px solid $color-grey-dark;
+  border-radius: 50%;
+  transition: background-color $transition-medium ease;
+  background-color: #fff;
+
+  &__svg {
+    color: $color-grey-dark;
+    transition: color $transition-fast ease;
+
+    & path {
+      fill: #fff;
+    }
+  }
+}
+
 @media (max-width: 768px) {
   html {
     margin: 0;

@@ -8,7 +8,7 @@ export default function Section({ title, children, className = '' }: TSection) {
 
   // Classnames
   const classSection = cn(
-    `section ${className} block-default block-default_shadowDown`,
+    `section block-default block-default_shadowDown ${className}`,
     {
       collapsed: collapsed,
     }

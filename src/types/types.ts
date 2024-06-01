@@ -1,17 +1,44 @@
+import { User } from 'firebase/auth';
 import React, { Dispatch, SetStateAction } from 'react';
 import { NavigateFunction } from 'react-router-dom';
 
 export type TComponentChildren = React.ReactNode;
 
+export type TEndpoint = 'games' | 'characters' | 'companies';
+
+export type TError = {
+  status?: boolean;
+  code?: number;
+  message?: string;
+};
+
+export type TInputElement = {
+  id: number | string;
+  customError?: string;
+  className?: string;
+  onChange?: Function;
+  resetTrigger?: string | number | boolean;
+  value?: string;
+  attributes: {
+    name: string;
+    type: string;
+    placeholder?: string;
+    autoComplete?: string;
+    pattern?: string;
+    required?: boolean;
+  };
+  label?: TLabelElement;
+};
+
+export type TLabelElement = {
+  for: string;
+  text: string;
+  className?: string;
+};
+
 export type TNameAndID = {
   id?: number;
   name?: string;
-};
-
-export type TSectionHeader = {
-  title: string;
-  collapsed: boolean;
-  setCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type TConfigAPI = {
@@ -19,60 +46,45 @@ export type TConfigAPI = {
   headers: {};
 };
 
-export type TSection = {
-  title: string;
-  children?: TComponentChildren;
-  className?: string;
-};
-
-export type TGetData = {
-  endpoint: string;
-  search?: string;
-  fields?: string;
-  limit?: number;
-  sort?: string; // example "sort aggregated_rating desc"
-  filter?: string; // example "genre = 2" or "id = (2254,5534,2523)"
-  offset?: number;
-};
-
-export type TEndpoint = 'games' | 'characters' | 'companies';
-
-export type TGetDataCount = {
+export type TCatalogue = {
   endpoint: TEndpoint;
-  filter?: string;
+  category: string;
+  title: string;
 };
 
-export type TLinkPrefix = '../' | '';
-
-export type TCardSize = 'default' | 'compact' | 'mini';
-
-export type TCardsList = {
-  endpoint?: string;
-  search?: string;
-  fields?: string;
-  limit?: number;
-  sort?: string;
-  filter?: string;
-  offset?: number;
-  linkPrefix?: TLinkPrefix;
-  cardSize?: TCardSize;
+export type TExtractEnumData = {
+  id: number | undefined;
+  enumObject: any;
 };
 
-export type TGameCover = {
-  image_id: string;
-  url?: string;
+export type TCutLongString = {
+  string: string;
+  length: number;
+  end?: string; // three dots at the end of the title for example
 };
 
-export type TImage = {
-  image_id: string;
-  url?: string;
+export type TTabs = {
+  tabs: string[];
+  children?: TComponentChildren[];
+  title?: string | undefined;
 };
 
-export type TGameVideo = {
-  name: string;
-  video_id: string;
+export type TDataNotAvailable = {
+  text?: string;
 };
 
+export type TFormatDate = {
+  timestamp: number | undefined;
+  options?: Intl.DateTimeFormatOptions;
+  locale?: string;
+};
+
+export type TGetCountryFromISO = {
+  isoCode: number;
+  length?: 'short' | 'medium' | 'full';
+};
+
+// DATA
 export type TData = TGame & TCharacter & TCompany & TImage;
 
 export type TGame = {
@@ -92,6 +104,16 @@ export type TGame = {
   artworks?: TImage[];
   videos?: TGameVideo;
   similar_games?: number[];
+};
+
+export type TGameCover = {
+  image_id: string;
+  url?: string;
+};
+
+export type TGameVideo = {
+  name: string;
+  video_id: string;
 };
 
 export type TCharacter = {
@@ -127,6 +149,29 @@ export type TCategory = {
   name: string;
 };
 
+export type TImage = {
+  image_id: string;
+  url?: string;
+};
+
+export type TGetData = {
+  endpoint: string;
+  search?: string;
+  fields?: string;
+  limit?: number;
+  sort?: string; // example "sort aggregated_rating desc"
+  filter?: string; // example "genre = 2" or "id = (2254,5534,2523)"
+  offset?: number;
+};
+
+export type TGetDataCount = {
+  endpoint: TEndpoint;
+  filter?: string;
+};
+
+// CARDS
+export type TLinkPrefix = '../' | '';
+
 export type TGameCard = TGame & {
   linkPrefix?: TLinkPrefix;
   cardSize?: TCardSize;
@@ -140,17 +185,72 @@ export type TCharacterCard = TCharacter & {
   linkPrefix?: TLinkPrefix;
 };
 
+export type TCardSize = 'default' | 'compact' | 'mini';
+
+export type TCardsList = {
+  endpoint?: string;
+  search?: string;
+  fields?: string;
+  limit?: number;
+  sort?: string;
+  filter?: string;
+  offset?: number;
+  linkPrefix?: TLinkPrefix;
+  cardSize?: TCardSize;
+};
+
+// SECTION
+export type TSection = {
+  title: string;
+  children?: TComponentChildren;
+  className?: string;
+};
+
+export type TSectionHeader = {
+  title: string;
+  collapsed: boolean;
+  setCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+// IMAGES
+export type TImageGallery = {
+  endpoint: 'screenshots' | 'artworks';
+  imageSize: string;
+  fields?: string;
+  limit?: number;
+  filter?: string;
+  text?: 'Image' | 'Screenshot' | 'Artwork';
+};
+
+export type TImageSlider = {
+  data: TData[] | undefined;
+  imageSize: string;
+  text: string;
+  currentImage: number;
+  setCurrentImage: Dispatch<SetStateAction<number>>;
+};
+
+// MODAL
+export type TModal = TModalControl & {
+  children: TComponentChildren;
+  classList?: string; // Custom classes separeted by a space
+};
+
+export type TModalControl = {
+  isOpened: boolean;
+  setIsOpened: Dispatch<SetStateAction<boolean>>;
+};
+
+export type TDefaultModalBlock = {
+  children?: TComponentChildren;
+};
+
+// PAGINATION
 export type TPagination = {
   keyID: string;
   pagesAmount: number;
   currentPage: number;
   length?: number;
-};
-
-export type TCatalogue = {
-  endpoint: TEndpoint;
-  category: string;
-  title: string;
 };
 
 export type TUsePaginationData = {
@@ -166,57 +266,35 @@ export type THandlePaginationRedirect = {
   pagesAmount: number;
 };
 
-export type TExtractEnumData = {
-  id: number | undefined;
-  enumObject: any;
+// AUTHENTICATION
+export type TAuthType = 'signUp' | 'signIn';
+export type TUser = User | undefined | null; // User is Firebase provided type
+
+export type TAuthForm = {
+  authType: TAuthType;
+  setAuthType: Dispatch<SetStateAction<TAuthType>>;
+  modal: TModalControl;
 };
 
-export type TCutLongString = {
-  string: string;
-  length: number;
-  end?: string; // three dots at the end of the title for example
-};
-
-export type TTabs = {
-  tabs: string[];
-  children?: TComponentChildren[];
-  title?: string | undefined;
-};
-
-export type TImageGallery = {
-  endpoint: 'screenshots' | 'artworks';
-  imageSize: string;
-  fields?: string;
-  limit?: number;
-  filter?: string;
-  text?: 'Image' | 'Screenshot' | 'Artwork';
-};
-
-export type TDataNotAvailable = {
-  text?: string;
-};
-
-export type TImageSlider = {
-  data: TData[] | undefined;
-  imageSize: string;
-  text: string;
-  currentImage: number;
-  setCurrentImage: Dispatch<SetStateAction<number>>;
-};
-
-export type TModal = {
+export type TProtectedRoute = {
   children: TComponentChildren;
-  isOpened: boolean;
-  setIsOpened: Dispatch<SetStateAction<boolean>>;
+  user: TUser;
 };
 
-export type TFormatDate = {
-  timestamp: number | undefined;
-  options?: Intl.DateTimeFormatOptions;
-  locale?: string;
+export type TAuthContext = {
+  currentUser: TUser;
+  userSignedIn: boolean;
+  loading: boolean;
+} | null;
+
+export type TAuthValues = {
+  [key: string]: string | undefined; // index signature
+  email: string;
+  password: string;
+  passwordConfirm: string;
 };
 
-export type TGetCountryFromISO = {
-  isoCode: number;
-  length?: 'short' | 'medium' | 'full';
+export type TSignOutButton = {
+  children: TComponentChildren;
+  className?: string;
 };

@@ -5,6 +5,7 @@ import { TData, TImageGallery } from '../../types/types';
 import SectionLoading from '../Section/SectionLoading/SectionLoading';
 import ImageSlider from '../ImageSlider/ImageSlider';
 import Modal from '../Modal/Modal';
+import { catchFetchError } from '../Utils/Utils';
 
 export default function ImageGallery({
   endpoint,
@@ -35,7 +36,9 @@ export default function ImageGallery({
       .then((data) => {
         setData(data);
       })
-      .catch((err) => console.log(`Error: ${err}`))
+      .catch((error) => {
+        catchFetchError(error);
+      })
       .finally(() => setLoading(false));
   }, [endpoint, fields, limit, filter]);
 
@@ -61,6 +64,7 @@ export default function ImageGallery({
                   className="image-gallery__image"
                   src={`//images.igdb.com/igdb/image/upload/t_${imageSize}/${item.image_id}.jpg`}
                   alt=""
+                  loading="lazy"
                 />
                 <span className="image-gallery__text">{`${text} №${
                   index + 1
@@ -75,7 +79,11 @@ export default function ImageGallery({
         </div>
       )}
 
-      <Modal isOpened={isModalOpened} setIsOpened={setIsModalOpened}>
+      <Modal
+        isOpened={isModalOpened}
+        setIsOpened={setIsModalOpened}
+        classList="modal-image-slider"
+      >
         <ImageSlider
           data={data}
           imageSize={imageSize}

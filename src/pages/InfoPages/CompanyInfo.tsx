@@ -4,7 +4,11 @@ import Section from '../../components/Section/Section';
 import { getData } from '../../components/Api/Api';
 import { TCompany } from '../../types/types';
 import SectionLoading from '../../components/Section/SectionLoading/SectionLoading';
-import { formatDate, getCountryFromISO } from '../../components/Utils/Utils';
+import {
+  catchFetchError,
+  formatDate,
+  getCountryFromISO,
+} from '../../components/Utils/Utils';
 import CardsList from '../../components/CardsList/CardsList';
 import Tabs from '../../components/Tabs/Tabs';
 import DataNotAvailable from '../../components/DataNotAvailable/DataNotAvailable';
@@ -32,7 +36,9 @@ export default function CompanyInfo() {
       .then((data) => {
         setPageData(data);
       })
-      .catch((err) => console.log(`Error: ${err}`))
+      .catch((error) => {
+        catchFetchError(error);
+      })
       .finally(() => setLoadingInfo(false));
   }, [pageID]);
 

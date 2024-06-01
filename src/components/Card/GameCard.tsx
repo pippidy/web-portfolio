@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { TGameCard } from '../../types/types';
-import { cutLongString } from '../Utils/Utils';
 import cn from 'classnames';
 import ImageDummyGames from '../ImageDummies/ImageDummyDefault';
 
@@ -26,7 +25,7 @@ export default function GameCard({
   // Classnames
   const classHeart = cn('heart-icon', { liked: isLiked });
 
-  function handleLikeClick() {
+  function onLikeClick() {
     setIsLiked((prevState) => (prevState = !prevState));
     setLikeCount((prevState) => {
       if (!isLiked) {
@@ -52,7 +51,7 @@ export default function GameCard({
 
           <div className="card__like">
             <button
-              onClick={handleLikeClick}
+              onClick={onLikeClick}
               className="card__like-button"
               title="Like game"
             >
@@ -87,6 +86,7 @@ export default function GameCard({
             className="card__image"
             src={`//images.igdb.com/igdb/image/upload/t_${coverSize}/${cover?.image_id}.jpg`}
             alt={`Cover for ${name}`}
+            loading="lazy"
           />
         ) : (
           <ImageDummyGames />

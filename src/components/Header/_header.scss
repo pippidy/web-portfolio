@@ -98,31 +98,6 @@
   }
 }
 
-.button-auth {
-  padding: 4px;
-  border: 2px solid $color-red;
-  border-radius: 50%;
-  transition: background-color $transition-medium ease;
-
-  &:hover {
-    background-color: $color-red-light;
-  }
-
-  &:active {
-    & .button-auth__svg path {
-      fill: $color-red;
-    }
-  }
-
-  &__svg {
-    color: $color-red;
-
-    & path {
-      fill: #fff;
-    }
-  }
-}
-
 @media (max-width: 768px) {
   .menu-main {
     gap: 0;

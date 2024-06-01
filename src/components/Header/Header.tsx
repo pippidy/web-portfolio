@@ -2,8 +2,7 @@ import { Link, NavLink } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar';
 // @ts-expect-error
 import logo from '../../assets/svg/logo.svg';
-// @ts-expect-error
-import { ReactComponent as PersonIcon } from '../../assets/svg/person.svg';
+import HeaderAuth from './HeaderAuth/HeaderAuth';
 
 export default function Header() {
   return (
@@ -63,10 +62,7 @@ export default function Header() {
       </nav>
 
       <SearchBar />
-
-      <div className="button-auth">
-        <PersonIcon className="button-auth__svg" width="25px" height="25px" />
-      </div>
+      <HeaderAuth />
     </header>
   );
 }

@@ -23,23 +23,18 @@
     visibility: hidden;
   }
 
-  &.test {
-    & .modal__container {
-      transform: scale(1) rotate(0) translateY(100);
-    }
-  }
-
   &__overlay {
     position: absolute;
     inset: 0;
-    backdrop-filter: blur(50px);
+    background-color: $color-grey-dark;
+    opacity: 0.8;
   }
 
   &__container {
     position: relative;
     text-align: center;
     opacity: 0;
-    transform: scale(0) rotate(-720deg);
+    transform: scale(0) rotate(-360deg);
     transition: transform $transition-medium, opacity $transition-medium;
     transition-delay: 10ms;
     transition-timing-function: ease;
@@ -53,9 +48,13 @@
       right: 0;
       display: flex;
       place-content: center;
-      width: 8.1%;
+      width: 40px;
       aspect-ratio: 1 / 1;
       cursor: pointer;
+
+      & .icon-cross {
+        height: 14px;
+      }
 
       &:hover .modal__close-button {
         color: $color-red;
@@ -65,8 +64,7 @@
     }
 
     &-button {
-      color: #fff;
-      opacity: 0.75;
+      color: $color-grey-dark;
       transform: scale(2) rotate(45deg);
 
       &::before {
@@ -76,6 +74,35 @@
       &::after {
         width: 4px;
       }
+    }
+  }
+
+  &__button-default {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: $color-blue;
+    border-radius: $border-radius-main;
+    font-family: $font-family-secondary;
+    font-size: 1.8rem;
+    color: #fff;
+    text-transform: capitalize;
+    box-shadow: 0px 3px 0px $color-grey-dark;
+    transition: box-shadow $transition-fast ease,
+      transform $transition-fast ease;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+      transform: scale(1.02);
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      box-shadow: none;
+      transform: scale(0.98);
     }
   }
 }

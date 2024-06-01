@@ -6,6 +6,7 @@ import { getCategories } from '../Api/Api';
 import { TCatalogue, TCategory } from '../../types/types';
 import Pagination from '../Pagination/Pagination';
 import usePaginationData from '../../hooks/usePaginationData';
+import { catchFetchError } from '../Utils/Utils';
 
 export default function Catalogue({
   category,
@@ -21,7 +22,7 @@ export default function Catalogue({
     dataFilter: pageID === 'all' ? '' : `where ${category} = ${pageID}`,
   });
 
-  const navigate = useNavigate();
+  const nav = useNavigate();
   const [categoriesList, setCategoriesList] = useState<TCategory[]>();
   const [loadingMenu, setLoadingMenu] = useState(true);
   const fetchLimit = 100;
@@ -29,11 +30,11 @@ export default function Catalogue({
   // Redirecting if page is non-existent
   useEffect(() => {
     if (currentPage > pagesAmount && pagesAmount > 0) {
-      navigate(`/${endpoint}/${category}/${pageID}#page=${pagesAmount}`);
+      nav(`/${endpoint}/${category}/${pageID}#page=${pagesAmount}`);
     } else if (currentPage <= 0) {
-      navigate(`/${endpoint}/${category}/${pageID}#page=1`);
+      nav(`/${endpoint}/${category}/${pageID}#page=1`);
     }
-  }, [navigate, pagesAmount, currentPage, category, endpoint, pageID]);
+  }, [nav, pagesAmount, currentPage, category, endpoint, pageID]);
 
   // Fetching categories for catalogue menu
   useEffect(() => {
@@ -41,7 +42,9 @@ export default function Catalogue({
       .then((categories) => {
         setCategoriesList(categories);
       })
-      .catch((err) => console.log(`Error: ${err}`))
+      .catch((error) => {
+        catchFetchError(error);
+      })
       .finally(() => setLoadingMenu(false));
   }, [category]);
 

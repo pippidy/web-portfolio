@@ -5,13 +5,13 @@ export default function SectionHeader({
   collapsed,
   setCollapsed,
 }: TSectionHeader) {
-  function handleClick() {
+  function onClick() {
     setCollapsed(!collapsed);
   }
 
   return (
     <header
-      onClick={handleClick}
+      onClick={onClick}
       className="section__header"
       title={`Collapse section ${title}`}
     >

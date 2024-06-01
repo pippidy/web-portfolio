@@ -4,21 +4,42 @@
 @import './styles/globals';
 @import './styles/animations';
 @import './styles/app';
-@import './components/header/header';
+
+// Pages
+@import './pages/InfoPages/infoPages';
+@import './pages/ErrorPage/errorPage';
+
+// Header
+@import './components/Header/header';
+@import './components/Header/HeaderAuth/headerAuth';
+
 @import './components/Footer/footer';
 @import './components/SearchBar/searchBar';
+
+// Section
 @import './components/Section/section';
 @import './components/Section/SectionLoading/sectionLoading';
-@import './components/Catalogue/catalogue';
-@import './components/Card/card';
-@import './components/Modal/modal';
-@import './components/DataNotAvailable/dataNotAvailable';
-@import './components/ImageDummies/imageDummy';
+
+// Cards
 @import './components/CardsList/cardsList';
+@import './components/Card/card';
+
+// Modal
+@import './components/Modal/modal';
+@import './components/Modal/DefaultModalBlock/defaultModalBlock';
+
+// Images
 @import './components/ImageGallery/imageGallery';
 @import './components/ImageSlider/imageSlider';
-@import './pages/InfoPages/infoPages';
+@import './components/ImageDummies/imageDummy';
+
+// Forms
+@import './components/Forms/FormAuth/formAuth';
+@import './components/Forms/InputDefault/inputDefault';
+
+// Various components
+@import './components/Catalogue/catalogue';
+@import './components/DataNotAvailable/dataNotAvailable';
 @import './components/Pagination/pagination';
 @import './components/Tabs/tabs';
 @import './components/LoadingSimple/loadingSimple';
-@import './pages/ErrorPage/errorPage';

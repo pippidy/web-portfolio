@@ -125,3 +125,20 @@
     background-color: $color-yellow;
   }
 }
+
+.modal-image-slider {
+  & .modal__close-container {
+    top: 0;
+    right: 0;
+    width: 8.1%;
+  }
+
+  & .modal__close-button {
+    color: #fff;
+    opacity: 0.75;
+  }
+
+  & .icon-cross {
+    height: 20px;
+  }
+}
