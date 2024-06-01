@@ -97,7 +97,6 @@ export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
   function onChange(evt: ChangeEvent<HTMLInputElement>) {
     setValues(values && { ...values, [evt.target.name]: evt.target.value });
   }
-  console.log(fetchError && fetchError.message);
 
   function onSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
@@ -127,7 +126,12 @@ export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
     <>
       {isSuccess ? (
         <div className="auth-success">
-          <h2 className="auth-title">You successfully signed in!</h2>
+          <h2 className="auth-title">
+            {authType === 'signIn'
+              ? 'You successfully signed in!'
+              : authType === 'signUp' &&
+                'You successfully created new account!'}
+          </h2>
           <button
             onClick={() => modal.setIsOpened(false)}
             className="modal__button-default"
