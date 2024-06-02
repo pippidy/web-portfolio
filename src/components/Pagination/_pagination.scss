@@ -6,6 +6,7 @@
   color: $color-grey-darker;
   background-color: transparent;
   transition: background-color $transition-medium ease;
+  container-type: inline-size;
 
   &__link {
     padding: 5px 10px;
@@ -31,11 +32,17 @@
   }
 }
 
+@container (min-width: 730px) {
+  .pagination__link {
+    padding-inline: 7px;
+  }
+}
+
 @media (max-width: 768px) {
   .pagination {
     &__link {
-      padding-inline: 9px;
-      font-size: 0.9rem;
+      padding-inline: 5px;
+      font-size: 1.1rem;
     }
   }
 }

@@ -6,7 +6,7 @@ export default function Pagination({
   keyID,
   pagesAmount,
   currentPage,
-  length = 11,
+  length = 11, // Odd numbers look better
 }: TPagination) {
   const [pagesRender, setPagesRender] = useState<JSX.Element[]>([]);
 
@@ -47,8 +47,17 @@ export default function Pagination({
           fillPagesArray(pagesArray, i, currentPage);
         }
       } else {
-        // Chunks inbetween
-        for (let i = currentPage - (length - 2); i <= currentPage + 1; i++) {
+        // Middle chunk of pages
+        const halfLength = Math.floor(length / 2);
+        const isLengthOdd = length % 2 !== 0;
+        const leftSide = isLengthOdd ? halfLength : halfLength - 1; // Amount of pages before current
+        const rightSide = halfLength; // Amount of pages after current
+
+        for (
+          let i = currentPage - leftSide;
+          i <= currentPage + rightSide;
+          i++
+        ) {
           fillPagesArray(pagesArray, i, currentPage);
         }
       }
