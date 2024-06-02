@@ -25,6 +25,10 @@
     &.error {
       border: 2px solid $color-red;
 
+      &::placeholder {
+        color: $color-red-light;
+      }
+
       & ~ .input-default__error {
         display: block;
       }
