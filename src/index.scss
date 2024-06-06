@@ -7,7 +7,9 @@
 
 // Pages
 @import './pages/InfoPages/infoPages';
-@import './pages/ErrorPage/errorPage';
+@import './pages/InfoPages/InfoBullet/infoBullet';
+@import './pages/ErrorPages/errorPages';
+@import './pages/ProfilePage/profilePage';
 
 // Header
 @import './components/Header/header';
@@ -35,7 +37,7 @@
 
 // Forms
 @import './components/Forms/FormAuth/formAuth';
-@import './components/Forms/InputDefault/inputDefault';
+@import './components/Forms/InputBlock/inputBlock';
 
 // Various components
 @import './components/Catalogue/catalogue';

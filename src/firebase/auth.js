@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signInWithPopup,
+  updateProfile,
 } from 'firebase/auth';
 import { auth } from './firebase';
 
@@ -23,4 +24,11 @@ export async function doSignInWithGoogle() {
 
 export async function doSignOut() {
   return auth.signOut();
+}
+
+export async function doUpdateProfile({ userName, userAvatar }) {
+  return updateProfile(auth.currentUser, {
+    displayName: userName,
+    photoURL: userAvatar,
+  });
 }

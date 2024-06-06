@@ -1,8 +1,9 @@
 import { ChangeEvent, useContext, useEffect, useRef, useState } from 'react';
 import { TError, TInputElement } from '../../../types/types';
 import ModalContext from '../../../contexts/ModalContext';
+import cn from 'classnames';
 
-export default function InputDefault({
+export default function InputBlock({
   id,
   customError = '',
   className = '',
@@ -13,8 +14,13 @@ export default function InputDefault({
   label,
 }: TInputElement) {
   const [isError, setIsError] = useState<TError>({ status: false });
+  const [isActive, setIsActive] = useState(false);
   const isModalOpened = useContext(ModalContext);
   const inputRef = useRef<HTMLInputElement>(null);
+  let inputClass = cn('', {
+    error: isError.status,
+    active: isActive,
+  });
 
   // Resetting input when parent component changes trigger or when parent modal is closed/opened
   useEffect(() => {
@@ -47,7 +53,7 @@ export default function InputDefault({
   }
 
   return (
-    <div className={`${className} input-default`}>
+    <div className={`${className} input-block`}>
       {/** LABEL */}
       {label && <label htmlFor={label.for}>{label.text}</label>}
 
@@ -55,19 +61,29 @@ export default function InputDefault({
       <input
         ref={inputRef}
         id={label && label.for}
-        className={isError.status ? 'error' : ''}
+        className={inputClass}
         onChange={(evt) => {
+          if (evt.target.value.length > 0) {
+            setIsActive(true);
+          } else {
+            setIsActive(false);
+          }
+
           if (isError.status) validateInput(evt); // If error has been shown start dynamic validation on change
+
           onChange && onChange(evt);
         }}
         onBlur={(evt) => {
           validateInput(evt);
         }}
+        onReset={() => {
+          console.log(123);
+        }}
         {...attributes}
       />
 
       {/** ERROR */}
-      <span className="input-default__error">{isError.message}</span>
+      <span className="input-block__error">{isError.message}</span>
     </div>
   );
 }

@@ -16,8 +16,8 @@ import {
   TError,
   TInputElement,
 } from '../../../types/types';
-import { catchFetchError } from '../../Utils/Utils';
-import InputDefault from '../InputDefault/InputDefault';
+import { catchFetchError, validateForm } from '../../../utils/utils';
+import InputBlock from '../InputBlock/InputBlock';
 import ModalContext from '../../../contexts/ModalContext';
 import LoadingSimple from '../../LoadingSimple/LoadingSimple';
 
@@ -102,29 +102,32 @@ export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
 
   function onSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
+    const isValid = validateForm(evt.target as HTMLFormElement);
 
-    setIsLoading(true);
+    if (isValid) {
+      setIsLoading(true);
 
-    if (authType === 'signUp') {
-      // SIGN UP with email and password
-      doCreateWithEmailAndPassword(values.email, values.password)
-        .then((userCredentials) => {
-          if (userCredentials) setIsSuccess(true);
-        })
-        .catch((error) => catchFetchError(error, setFetchError))
-        .finally(() => setIsLoading(false));
+      if (authType === 'signUp') {
+        // SIGN UP with email and password
+        doCreateWithEmailAndPassword(values.email, values.password)
+          .then((userCredentials) => {
+            if (userCredentials) setIsSuccess(true);
+          })
+          .catch((error) => catchFetchError(error, setFetchError))
+          .finally(() => setIsLoading(false));
 
-      return;
-    } else if (authType === 'signIn') {
-      // SIGN IN with email and password
-      doSignInWithEmailAndPassword(values.email, values.password)
-        .then((userCredentials) => {
-          if (userCredentials) setIsSuccess(true);
-        })
-        .catch((error) => catchFetchError(error, setFetchError))
-        .finally(() => setIsLoading(false));
+        return;
+      } else if (authType === 'signIn') {
+        // SIGN IN with email and password
+        doSignInWithEmailAndPassword(values.email, values.password)
+          .then((userCredentials) => {
+            if (userCredentials) setIsSuccess(true);
+          })
+          .catch((error) => catchFetchError(error, setFetchError))
+          .finally(() => setIsLoading(false));
 
-      return;
+        return;
+      }
     }
   }
 
@@ -175,7 +178,7 @@ export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
                 input.attributes.name !== 'passwordConfirm'
               ) {
                 return (
-                  <InputDefault
+                  <InputBlock
                     key={input.id}
                     {...input}
                     value={values && values[input.attributes.name]}

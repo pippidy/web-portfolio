@@ -4,8 +4,8 @@ import {
   TGetData,
   TGetDataCount,
   TData,
-} from '../../types/types';
-import { handleFetchResults } from '../Utils/Utils';
+} from '../types/types';
+import { handleFetchResults } from '../utils/utils';
 
 const userID = 'owlnvuu4x73puzega7fmhzymfe3voy';
 const clientSecret = 'iiuek5lwve85c4z713d5o6bbmpaccm';

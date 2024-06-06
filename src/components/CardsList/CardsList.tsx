@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getData } from '../Api/Api';
+import { getData } from '../../api/api';
 import GameCard from '../Card/GameCard';
 import { TCardsList, TData } from '../../types/types';
 import { useLocation } from 'react-router-dom';
@@ -8,7 +8,7 @@ import CompanyCard from '../Card/CompanyCard';
 import SectionLoading from '../Section/SectionLoading/SectionLoading';
 import cn from 'classnames';
 import DataNotAvailable from '../DataNotAvailable/DataNotAvailable';
-import { catchFetchError } from '../Utils/Utils';
+import { catchFetchError } from '../../utils/utils';
 
 export default function CardsList({
   endpoint = 'games',

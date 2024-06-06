@@ -1,0 +1,67 @@
+.info-bullet {
+  display: flex;
+  gap: 10px;
+  width: max-content;
+  font-family: $font-family-secondary;
+  font-size: 1.5rem;
+  color: #fff;
+
+  & > div {
+    position: relative;
+    z-index: 0;
+    padding: 5px 15px;
+
+    &::selection {
+      background-color: #000;
+      color: #fff;
+    }
+
+    & a {
+      color: $color-blue;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__name {
+    background-color: $color-grey-darker;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      inset-block: 0;
+    }
+
+    &::before {
+      left: 100%;
+      width: 5px;
+      background-color: $color-grey-darker;
+    }
+
+    &::after {
+      right: -5px;
+      width: 2px;
+      background-color: $color-grey-dark;
+    }
+  }
+
+  &__text {
+    color: $color-grey-dark;
+    background-color: $color-yellow-light;
+    border-top-right-radius: $border-radius-main;
+    border-bottom-right-radius: $border-radius-main;
+    padding-right: 20px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset-block: 0;
+      right: 100%;
+      width: 5px;
+      background-color: $color-yellow-light;
+    }
+  }
+}

@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import Section from '../../components/Section/Section';
-import { getData } from '../../components/Api/Api';
+import { getData } from '../../api/api';
 import { TGame } from '../../types/types';
 import SectionLoading from '../../components/Section/SectionLoading/SectionLoading';
-import { catchFetchError, formatDate } from '../../components/Utils/Utils';
+import { catchFetchError, formatDate } from '../../utils/utils';
 import CardsList from '../../components/CardsList/CardsList';
 import Tabs from '../../components/Tabs/Tabs';
 import ImageGallery from '../../components/ImageGallery/ImageGallery';
 import DataNotAvailable from '../../components/DataNotAvailable/DataNotAvailable';
 import ImageDummyDefault from '../../components/ImageDummies/ImageDummyDefault';
+import InfoBullet from './InfoBullet/InfoBullet';
 
 export default function GameInfo() {
   const { id: pageID } = useParams();
@@ -69,30 +70,27 @@ export default function GameInfo() {
                     )}
                     <div className="info-page__data-holder">
                       <ul className="info-page__data-list">
-                        <li className="info-page__data-list-item">
-                          <div>Rating:</div>{' '}
-                          <div>
+                        <li>
+                          <InfoBullet name="Rating">
                             {!pageData[0].aggregated_rating
                               ? 'n/a'
                               : Number(
                                   pageData[0].aggregated_rating?.toFixed(0)
                                 )}
-                          </div>
+                          </InfoBullet>
                         </li>
 
-                        <li className="info-page__data-list-item">
-                          <div>Release date: </div>
-                          <div>
+                        <li>
+                          <InfoBullet name="Release date">
                             {formatDate({
                               timestamp: pageData[0].first_release_date,
                             })}
-                          </div>
+                          </InfoBullet>
                         </li>
 
                         {pageData[0].platforms && (
-                          <li className="info-page__data-list-item">
-                            <div>Platforms: </div>
-                            <div>
+                          <li>
+                            <InfoBullet name="Platforms">
                               {pageData[0].platforms.map(
                                 (platform, index, arr) => {
                                   if (index !== arr.length - 1) {
@@ -101,47 +99,42 @@ export default function GameInfo() {
                                   return platform.abbreviation;
                                 }
                               )}
-                            </div>
+                            </InfoBullet>
                           </li>
                         )}
 
                         {pageData[0].genres && (
-                          <li className="info-page__data-list-item">
-                            <div>Genres: </div>
-                            <div>
+                          <li>
+                            <InfoBullet name="Genres">
                               {pageData[0].genres.map((genre, index, arr) => {
                                 if (index !== arr.length - 1) {
                                   return `${genre.name}, `;
                                 }
                                 return genre.name;
                               })}
-                            </div>
+                            </InfoBullet>
                           </li>
                         )}
                       </ul>
 
                       <article className="info-article">
-                        <>
-                          {pageData[0].summary && (
-                            <div>
-                              <h3 className="info-article__title">Summary</h3>
-                              <p className="info-article__text">
-                                {pageData[0].summary}
-                              </p>
-                            </div>
-                          )}
-                        </>
+                        {pageData[0].summary && (
+                          <div>
+                            <h3 className="info-article__title">Summary</h3>
+                            <p className="info-article__text">
+                              {pageData[0].summary}
+                            </p>
+                          </div>
+                        )}
 
-                        <>
-                          {pageData[0].storyline && (
-                            <div>
-                              <h3 className="info-article__title">Storyline</h3>
-                              <p className="info-article__text">
-                                {pageData[0].storyline}
-                              </p>
-                            </div>
-                          )}
-                        </>
+                        {pageData[0].storyline && (
+                          <div>
+                            <h3 className="info-article__title">Storyline</h3>
+                            <p className="info-article__text">
+                              {pageData[0].storyline}
+                            </p>
+                          </div>
+                        )}
                       </article>
                     </div>
                   </div>

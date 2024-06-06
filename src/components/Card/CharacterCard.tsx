@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { TCharacterCard } from '../../types/types';
-import ImageDummyCharacters from '../ImageDummies/ImageDummyCharacters';
-import { cutLongString } from '../Utils/Utils';
+import ImageDummyAvatar from '../ImageDummies/ImageDummyAvatar';
 
 export default function CharacterCard({
   id,
@@ -9,7 +8,6 @@ export default function CharacterCard({
   mug_shot,
   linkPrefix,
 }: TCharacterCard) {
-
   return (
     <div className="card card-flying" title={name}>
       <Link className="card__link" to={`${linkPrefix}character/${id}`}>
@@ -20,12 +18,10 @@ export default function CharacterCard({
             alt={`Mugshot of ${name}`}
           />
         ) : (
-          <ImageDummyCharacters />
+          <ImageDummyAvatar />
         )}
 
-        <p className="card__name">
-          {name}
-        </p>
+        <p className="card__name">{name}</p>
       </Link>
     </div>
   );

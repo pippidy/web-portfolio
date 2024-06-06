@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import Section from '../../components/Section/Section';
-import { getData } from '../../components/Api/Api';
+import { getData } from '../../api/api';
 import { TCompany } from '../../types/types';
 import SectionLoading from '../../components/Section/SectionLoading/SectionLoading';
 import {
   catchFetchError,
   formatDate,
   getCountryFromISO,
-} from '../../components/Utils/Utils';
+} from '../../utils/utils';
 import CardsList from '../../components/CardsList/CardsList';
 import Tabs from '../../components/Tabs/Tabs';
 import DataNotAvailable from '../../components/DataNotAvailable/DataNotAvailable';
 import ImageDummyDefault from '../../components/ImageDummies/ImageDummyDefault';
+import InfoBullet from './InfoBullet/InfoBullet';
 
 export default function CompanyInfo() {
   const { id: pageID } = useParams();
@@ -72,28 +73,25 @@ export default function CompanyInfo() {
                     )}
                     <div className="info-page__data-holder">
                       <ul className="info-page__data-list">
-                        <li className="info-page__data-list-item">
-                          <div>Foundation date:</div>
-                          <div>
+                        <li>
+                          <InfoBullet name="Foundation date">
                             {formatDate({ timestamp: pageData[0].start_date })}
-                          </div>
+                          </InfoBullet>
                         </li>
 
                         {pageData[0].country && (
-                          <li className="info-page__data-list-item">
-                            <div>Country: </div>
-                            <div>
+                          <li>
+                            <InfoBullet name="Country">
                               {getCountryFromISO({
                                 isoCode: pageData[0].country,
                               })}
-                            </div>
+                            </InfoBullet>
                           </li>
                         )}
 
                         {pageData[0].websites && (
-                          <li className="info-page__data-list-item">
-                            <div>Website: </div>
-                            <div>
+                          <li>
+                            <InfoBullet name="Website">
                               <a
                                 href={pageData[0].websites[0].url}
                                 target="_blank"
@@ -101,24 +99,20 @@ export default function CompanyInfo() {
                               >
                                 {pageData[0].websites[0].url}
                               </a>
-                            </div>
+                            </InfoBullet>
                           </li>
                         )}
                       </ul>
 
                       <article className="info-article">
-                        <>
-                          {pageData[0].description && (
-                            <div>
-                              <h3 className="info-article__title">
-                                Description
-                              </h3>
-                              <p className="info-article__text">
-                                {pageData[0].description}
-                              </p>
-                            </div>
-                          )}
-                        </>
+                        {pageData[0].description && (
+                          <div>
+                            <h3 className="info-article__title">Description</h3>
+                            <p className="info-article__text">
+                              {pageData[0].description}
+                            </p>
+                          </div>
+                        )}
                       </article>
                     </div>
                   </div>

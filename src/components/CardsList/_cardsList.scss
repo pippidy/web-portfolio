@@ -60,7 +60,7 @@
     }
 
     & .icon-dummy {
-      width: 50%;
+      width: 50% !important; // TODO: remove important and try @container instead
     }
 
     & .image-dummy__text {

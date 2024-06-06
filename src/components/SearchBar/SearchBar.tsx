@@ -1,9 +1,9 @@
 import { FormEvent, useCallback, useEffect, useRef, useState } from 'react';
-import { getData } from '../Api/Api';
+import { getData } from '../../api/api';
 import { TGame } from '../../types/types';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useOutsideClick from '../../hooks/useOutsideClick';
-import { catchFetchError, cutLongString } from '../Utils/Utils';
+import { catchFetchError, cutLongString } from '../../utils/utils';
 import LoadingSimple from '../LoadingSimple/LoadingSimple';
 
 // @ts-expect-error

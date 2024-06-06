@@ -5,7 +5,7 @@
 
   // TODO: use scss functions and also create component
   &:invalid .form-auth__button-submit {
-    background-color: $color-grey;
+    background-color: $color-grey-light;
     box-shadow: none;
     pointer-events: none;
 

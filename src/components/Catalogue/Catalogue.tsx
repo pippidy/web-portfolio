@@ -2,11 +2,11 @@ import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import Section from '../Section/Section';
 import CardsList from '../CardsList/CardsList';
 import { useEffect, useState } from 'react';
-import { getCategories } from '../Api/Api';
+import { getCategories } from '../../api/api';
 import { TCatalogue, TCategory } from '../../types/types';
 import Pagination from '../Pagination/Pagination';
 import usePaginationData from '../../hooks/usePaginationData';
-import { catchFetchError } from '../Utils/Utils';
+import { catchFetchError } from '../../utils/utils';
 
 export default function Catalogue({
   category,

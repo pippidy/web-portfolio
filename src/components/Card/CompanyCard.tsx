@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import { TCompanyCard } from '../../types/types';
 import ImageDummyDefault from '../ImageDummies/ImageDummyDefault';
-import { cutLongString } from '../Utils/Utils';
 
 export default function CompanyCard({
   id,
@@ -9,7 +8,6 @@ export default function CompanyCard({
   name,
   logo,
 }: TCompanyCard) {
-
   return (
     <div className="card card-flying" title={name}>
       <Link className="card__link" to={`${linkPath}company/${id}`}>
@@ -19,9 +17,7 @@ export default function CompanyCard({
           <ImageDummyDefault />
         )}
 
-        <p className="card__name">
-          {name}
-        </p>
+        <p className="card__name">{name}</p>
       </Link>
     </div>
   );

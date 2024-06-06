@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { getData } from '../Api/Api';
+import { getData } from '../../api/api';
 import { TData, TImageGallery } from '../../types/types';
 import SectionLoading from '../Section/SectionLoading/SectionLoading';
 import ImageSlider from '../ImageSlider/ImageSlider';
 import Modal from '../Modal/Modal';
-import { catchFetchError } from '../Utils/Utils';
+import { catchFetchError } from '../../utils/utils';
 
 export default function ImageGallery({
   endpoint,

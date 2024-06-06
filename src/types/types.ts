@@ -1,4 +1,4 @@
-import { User } from 'firebase/auth';
+import { User as TUserFirebase } from 'firebase/auth';
 import React, { Dispatch, SetStateAction } from 'react';
 import { NavigateFunction } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ export type TError = {
 };
 
 export type TInputElement = {
-  id: number | string;
+  id?: number | string;
   customError?: string;
   className?: string;
   onChange?: Function;
@@ -26,6 +26,8 @@ export type TInputElement = {
     autoComplete?: string;
     pattern?: string;
     required?: boolean;
+    maxLength?: number;
+    minLength?: number;
   };
   label?: TLabelElement;
 };
@@ -66,7 +68,7 @@ export type TCutLongString = {
 export type TTabs = {
   tabs: string[];
   children?: TComponentChildren[];
-  title?: string | undefined;
+  title?: string | null | undefined;
 };
 
 export type TDataNotAvailable = {
@@ -268,7 +270,7 @@ export type THandlePaginationRedirect = {
 
 // AUTHENTICATION
 export type TAuthType = 'signUp' | 'signIn';
-export type TUser = User | undefined | null; // User is Firebase provided type
+export type TUser = TUserFirebase | undefined | null;
 
 export type TAuthForm = {
   authType: TAuthType;

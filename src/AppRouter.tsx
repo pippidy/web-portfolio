@@ -16,16 +16,16 @@ import GameInfo from './pages/InfoPages/GameInfo';
 import CompanyInfo from './pages/InfoPages/CompanyInfo';
 import CharacterInfo from './pages/InfoPages/CharacterInfo';
 import Search from './pages/Search';
-import NotFound from './pages/ErrorPage/NotFound';
-import Profile from './pages/Profile';
-import AuthError from './pages/ErrorPage/AuthError';
+import NotFound from './pages/ErrorPages/NotFound';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
+import AuthError from './pages/ErrorPages/AuthError';
 
 const AppRouter = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />} />
 
-      <Route path="profile" element={<Profile />} />
+      <Route path="profile" element={<ProfilePage />} />
 
       <Route path="search" element={<Search />} />
 

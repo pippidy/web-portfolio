@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { getDataCount } from '../components/Api/Api';
+import { getDataCount } from '../api/api';
 import { TUsePaginationData } from '../types/types';
 
 export default function usePaginationData({

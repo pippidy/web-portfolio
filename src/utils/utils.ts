@@ -5,7 +5,7 @@ import {
   TError,
   TFormatDate,
   TGetCountryFromISO,
-} from '../../types/types';
+} from '../types/types';
 
 export function handleFetchResults(res: Response) {
   if (res.ok) {
@@ -81,4 +81,14 @@ export function getCountryFromISO({
   }
 
   return 'n/a';
+}
+
+export function validateForm(form: HTMLFormElement): boolean {
+  const inputsArray = form.querySelectorAll('input');
+
+  for (let i = 0; i < inputsArray.length; i++) {
+    if (!inputsArray[i].validity.valid) return false;
+  }
+
+  return true;
 }

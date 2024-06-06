@@ -1,11 +1,11 @@
 // @ts-expect-error
 import { ReactComponent as IconAvatar } from '../../assets/svg/avatar.svg';
 
-export default function ImageDummyCharacters() {
+export default function ImageDummyAvatar() {
   return (
-    <div className="image-dummy image-dummy_character">
+    <div className="image-dummy image-dummy_avatar">
       <IconAvatar className="icon-dummy" />
-      <span className="image-dummy__text">Mugshot not found</span>
+      <span className="image-dummy__text">Avatar not found</span>
     </div>
   );
 }

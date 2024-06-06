@@ -1,0 +1,74 @@
+.input-block {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+
+  & label {
+    padding-left: 10px;
+    text-align: left;
+    font-family: $font-family-secondary;
+    font-size: 1.8rem;
+    line-height: 100%;
+    transition: color $transition-medium ease;
+  }
+
+  & input {
+    width: 100%;
+    padding: 10px 20px;
+    border: 2px solid $color-grey-light;
+    border-radius: $border-radius-main;
+    transition: border-color $transition-medium ease;
+
+    &:focus,
+    &:focus-visible {
+      border-color: $color-grey-dark;
+    }
+
+    &.error {
+      border-color: $color-red;
+      color: $color-red;
+
+      &:focus,
+      &:focus-visible {
+        border-color: $color-red;
+        outline: 0;
+      }
+
+      &::placeholder {
+        color: $color-red-light;
+        transition: color $transition-medium ease;
+      }
+
+      & ~ .input-block__error {
+        display: block;
+      }
+    }
+
+    &.success {
+      border-color: $color-blue;
+
+      &::placeholder {
+        color: $color-blue-light;
+      }
+    }
+  }
+
+  &__error,
+  &__success {
+    padding-inline: 10px;
+    font-family: $font-family-thin;
+    font-size: 1.6rem;
+    text-align: left;
+  }
+
+  &__error {
+    display: none;
+    color: $color-red;
+  }
+
+  &__success {
+    color: $color-blue;
+  }
+}

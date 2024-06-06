@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import Section from '../../components/Section/Section';
-import { getData } from '../../components/Api/Api';
+import { getData } from '../../api/api';
 import { TCharacter } from '../../types/types';
 import SectionLoading from '../../components/Section/SectionLoading/SectionLoading';
 import CardsList from '../../components/CardsList/CardsList';
 import Tabs from '../../components/Tabs/Tabs';
 import DataNotAvailable from '../../components/DataNotAvailable/DataNotAvailable';
-import { catchFetchError, extractEnumData } from '../../components/Utils/Utils';
-import { Gender, Species } from '../../components/Utils/Data';
-import ImageDummyCharacters from '../../components/ImageDummies/ImageDummyCharacters';
+import { catchFetchError, extractEnumData } from '../../utils/utils';
+import ImageDummyAvatar from '../../components/ImageDummies/ImageDummyAvatar';
+import InfoBullet from './InfoBullet/InfoBullet';
+import { Gender, Species } from '../../utils/data';
 
 export default function CharacterInfo() {
   const { id: pageID } = useParams();
@@ -63,59 +64,52 @@ export default function CharacterInfo() {
                       </div>
                     ) : (
                       <div className="info-page__cover-holder info-page__cover-holder_no-image">
-                        <ImageDummyCharacters />
+                        <ImageDummyAvatar />
                       </div>
                     )}
 
                     <div className="info-page__data-holder">
                       <ul className="info-page__data-list">
                         {pageData[0].country_name && (
-                          <li className="info-page__data-list-item">
-                            <div>Country: </div>
-                            <div>{pageData[0].country_name}</div>
+                          <li>
+                            <InfoBullet name="Country">
+                              {pageData[0].country_name}
+                            </InfoBullet>
                           </li>
                         )}
 
-                        {pageData[0].gender !== undefined ? (
-                          <li className="info-page__data-list-item">
-                            <div>Gender: </div>
-                            <div>
+                        {pageData[0].gender !== undefined && (
+                          <li>
+                            <InfoBullet name="Gender">
                               {extractEnumData({
                                 id: pageData[0].gender + 1,
                                 enumObject: Gender,
                               })}
-                            </div>
+                            </InfoBullet>
                           </li>
-                        ) : (
-                          ''
                         )}
 
                         {pageData[0].species && (
-                          <li className="info-page__data-list-item">
-                            <div>Species: </div>
-                            <div>
+                          <li>
+                            <InfoBullet name="Species">
                               {extractEnumData({
                                 id: pageData[0].species,
                                 enumObject: Species,
                               })}
-                            </div>
+                            </InfoBullet>
                           </li>
                         )}
                       </ul>
 
                       <article className="info-article">
-                        <>
-                          {pageData[0].description && (
-                            <div>
-                              <h3 className="info-article__title">
-                                Description
-                              </h3>
-                              <p className="info-article__text">
-                                {pageData[0].description}
-                              </p>
-                            </div>
-                          )}
-                        </>
+                        {pageData[0].description && (
+                          <div>
+                            <h3 className="info-article__title">Description</h3>
+                            <p className="info-article__text">
+                              {pageData[0].description}
+                            </p>
+                          </div>
+                        )}
                       </article>
                     </div>
                   </div>

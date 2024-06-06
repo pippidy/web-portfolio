@@ -145,6 +145,10 @@ h3::selection {
   }
 }
 
+.overflow-hidden {
+  overflow: hidden;
+}
+
 .icon-auth {
   padding: 4px;
   border: 2px solid $color-grey-dark;
