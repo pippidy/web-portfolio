@@ -52,7 +52,7 @@ export default function Header() {
           <li>
             <Link
               className="menu-main__item menu-main__item_clickable"
-              to="/"
+              to="/about"
               title="Browse About page"
             >
               About

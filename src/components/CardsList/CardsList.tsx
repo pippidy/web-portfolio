@@ -93,14 +93,14 @@ export default function CardsList({
                     linkPrefix={linkPrefix}
                   />
                 ) : (
-                  <DataNotAvailable />
+                  <DataNotAvailable text="No data available. Try reloading the page." />
                 )}
               </li>
             );
           })}
         </ul>
       ) : (
-        <DataNotAvailable />
+        <DataNotAvailable text="No data available. Try reloading the page." />
       )}
     </>
   );
