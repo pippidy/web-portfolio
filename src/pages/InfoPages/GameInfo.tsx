@@ -121,7 +121,7 @@ export default function GameInfo() {
                         {pageData[0].summary && (
                           <div>
                             <h3 className="info-article__title">Summary</h3>
-                            <p className="info-article__text">
+                            <p className="text-default">
                               {pageData[0].summary}
                             </p>
                           </div>
@@ -130,7 +130,7 @@ export default function GameInfo() {
                         {pageData[0].storyline && (
                           <div>
                             <h3 className="info-article__title">Storyline</h3>
-                            <p className="info-article__text">
+                            <p className="text-default">
                               {pageData[0].storyline}
                             </p>
                           </div>

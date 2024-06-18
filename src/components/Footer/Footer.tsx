@@ -7,7 +7,7 @@ export default function Footer() {
       <h2>
         2024 | Made by{' '}
         <a
-          className="link-default"
+          className="link-accent"
           href="https://vk.com/id319692238"
           target="_blank"
           rel="noreferrer"
@@ -16,7 +16,7 @@ export default function Footer() {
         </a>{' '}
         | Powered by{' '}
         <a
-          className="link-default"
+          className="link-accent"
           href="https://www.igdb.com/api"
           target="_blank"
           rel="noreferrer"

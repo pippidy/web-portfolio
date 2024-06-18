@@ -50,13 +50,13 @@ export default function Header() {
             </div>
           </li>
           <li>
-            <Link
+            <NavLink
               className="menu-main__item menu-main__item_clickable"
               to="/about"
               title="Browse About page"
             >
               About
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>

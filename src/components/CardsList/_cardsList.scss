@@ -4,23 +4,20 @@
   flex-wrap: wrap;
   justify-content: center;
   align-content: flex-start;
-  gap: 20px;
+  gap: 25px;
   width: 100%;
 
   &__item {
     flex-basis: 25%;
     aspect-ratio: 1 / 1.5;
-    // You should try to keep these numbers even because of poor subpixel rendering causing blur during translate
     height: max-content;
     max-width: 230px;
     min-height: 350px;
   }
 
   &_compact {
-    gap: 10px;
-
     & .cards-list__item {
-      flex-basis: 23%;
+      flex-basis: 50%;
       // You should try to keep these numbers even because of poor subpixel rendering causing blur during translate
       max-width: 160px;
       min-height: 218px;
@@ -70,6 +67,26 @@
     & .card__name {
       padding: 7px;
       font-size: 1.2rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .cards-list {
+    &__item {
+      flex-basis: 48%;
+      max-width: 100%;
+      min-height: 100%;
+    }
+  }
+}
+
+@media (max-width: 827px) {
+  .cards-list {
+    &_compact {
+      & .cards-list__item {
+        max-width: 220px;
+      }
     }
   }
 }

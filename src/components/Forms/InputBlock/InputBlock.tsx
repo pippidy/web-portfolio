@@ -1,10 +1,16 @@
-import { ChangeEvent, useContext, useEffect, useRef, useState } from 'react';
+import {
+  ChangeEvent,
+  useContext,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+} from 'react';
 import { TError, TInputElement } from '../../../types/types';
 import ModalContext from '../../../contexts/ModalContext';
 import cn from 'classnames';
 
 export default function InputBlock({
-  id,
   customError = '',
   className = '',
   onChange,
@@ -14,12 +20,11 @@ export default function InputBlock({
   label,
 }: TInputElement) {
   const [isError, setIsError] = useState<TError>({ status: false });
-  const [isActive, setIsActive] = useState(false);
   const isModalOpened = useContext(ModalContext);
   const inputRef = useRef<HTMLInputElement>(null);
-  let inputClass = cn('', {
+  const id = useId();
+  let mainClass = cn(`${className} input-block`, {
     error: isError.status,
-    active: isActive,
   });
 
   // Resetting input when parent component changes trigger or when parent modal is closed/opened
@@ -53,24 +58,16 @@ export default function InputBlock({
   }
 
   return (
-    <div className={`${className} input-block`}>
+    <div className={mainClass}>
       {/** LABEL */}
-      {label && <label htmlFor={label.for}>{label.text}</label>}
+      {label && <label htmlFor={id}>{label.text}</label>}
 
       {/** INPUT */}
       <input
         ref={inputRef}
-        id={label && label.for}
-        className={inputClass}
+        id={id}
         onChange={(evt) => {
-          if (evt.target.value.length > 0) {
-            setIsActive(true);
-          } else {
-            setIsActive(false);
-          }
-
           if (isError.status) validateInput(evt); // If error has been shown start dynamic validation on change
-
           onChange && onChange(evt);
         }}
         onBlur={(evt) => {

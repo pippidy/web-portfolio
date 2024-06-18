@@ -55,7 +55,6 @@ export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
         required: true,
       },
       label: {
-        for: 'email',
         text: 'Email',
         className: 'form-auth__label',
       },
@@ -73,7 +72,6 @@ export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
         required: true,
       },
       label: {
-        for: 'password',
         text: 'Password',
         className: 'form-auth__label',
       },
@@ -89,7 +87,6 @@ export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
         required: true,
       },
       label: {
-        for: 'passwordConfirm',
         text: 'Password confirmation',
         className: 'form-auth__label',
       },

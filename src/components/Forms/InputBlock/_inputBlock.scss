@@ -5,6 +5,32 @@
   gap: 10px;
   width: 100%;
 
+  &.error {
+    & label,
+    & input {
+      color: $color-red;
+    }
+
+    & input {
+      border-color: $color-red;
+
+      &:focus,
+      &:focus-visible {
+        border-color: $color-red;
+        outline: 0;
+      }
+
+      &::placeholder {
+        color: $color-red-light;
+        transition: color $transition-medium ease;
+      }
+    }
+
+    & .input-block__error {
+      display: block;
+    }
+  }
+
   & label {
     padding-left: 10px;
     text-align: left;
@@ -24,26 +50,6 @@
     &:focus,
     &:focus-visible {
       border-color: $color-grey-dark;
-    }
-
-    &.error {
-      border-color: $color-red;
-      color: $color-red;
-
-      &:focus,
-      &:focus-visible {
-        border-color: $color-red;
-        outline: 0;
-      }
-
-      &::placeholder {
-        color: $color-red-light;
-        transition: color $transition-medium ease;
-      }
-
-      & ~ .input-block__error {
-        display: block;
-      }
     }
 
     &.success {

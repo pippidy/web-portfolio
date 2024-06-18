@@ -135,7 +135,31 @@ h3::selection {
   overflow: hidden;
 }
 
+.text-default {
+  font-size: 1.5rem;
+
+  &::first-letter {
+    font-size: 1.1em;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+}
+
 .link-default {
+  color: $color-blue;
+  text-decoration: underline;
+
+  &::selection {
+    background-color: $color-grey-dark;
+    color: #fff;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.link-accent {
   color: $color-grey-dark;
   font-weight: bold;
   text-decoration: underline;

@@ -133,6 +133,14 @@
   }
 }
 
+@media (max-width: 768px) {
+  .tabs {
+    &__menu-button {
+      font-size: 1.5rem;
+    }
+  }
+}
+
 @media (prefers-contrast) {
   .tabs {
     &__menu-button {

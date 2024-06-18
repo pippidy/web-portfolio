@@ -161,7 +161,7 @@ export default function SearchBar() {
                           />
                         )}
                         {item.name &&
-                          cutLongString({ string: item.name, length: 48 })}
+                          cutLongString({ string: item.name, length: 45 })}
                       </Link>
                     </li>
                   );

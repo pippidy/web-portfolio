@@ -15,7 +15,7 @@ export default function NotFound() {
             </p>
             <p className="error-page__text">
               You may return to{' '}
-              <Link to="/" className="link-default">
+              <Link to="/" className="link-accent">
                 Homepage
               </Link>
             </p>

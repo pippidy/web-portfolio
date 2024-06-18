@@ -1,0 +1,100 @@
+.about {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 70%;
+  margin: 0 auto;
+
+  & p {
+    font-size: 1.6rem;
+  }
+
+  & strong {
+    text-transform: uppercase;
+  }
+
+  & ul {
+    margin-left: 20px;
+    list-style: disc;
+
+    & li::marker {
+      font-size: 2rem;
+      color: $color-yellow;
+    }
+  }
+
+  &__lang {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    width: max(30%, 150px);
+    margin: 0 auto;
+    font-size: 1.8rem;
+    color: $color-grey-dark;
+    text-transform: uppercase;
+
+    & > * {
+      flex-basis: 50%;
+    }
+
+    & button {
+      padding-block: 10px;
+      font-weight: bold;
+      background-color: #fff;
+      border-radius: $border-radius-main;
+      border: 2px solid $color-grey-dark;
+      user-select: none;
+      transition: transform $transition-medium ease,
+        box-shadow $transition-medium ease,
+        background-color $transition-medium ease, color $transition-medium ease;
+
+      &:hover {
+        color: #fff;
+        transform: scale(1.05);
+        background-color: $color-grey-dark;
+      }
+
+      &:first-child {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        box-shadow: -2px 2px 0 0 #fff, -4px 4px 0 0 $color-grey-dark;
+
+        &:hover {
+          box-shadow: -4px 4px 0 0 #fff, -6px 6px 0 0 $color-grey-dark;
+        }
+      }
+
+      &:last-child {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        box-shadow: 2px 2px 0 0 #fff, 4px 4px 0 0 $color-grey-dark;
+
+        &:hover {
+          box-shadow: 4px 4px 0 0 #fff, 6px 6px 0 0 $color-grey-dark;
+        }
+      }
+
+      &.active {
+        position: relative;
+        top: 1px;
+        color: #fff;
+        background-color: $color-blue;
+        border-color: $color-blue-dark;
+        box-shadow: none;
+        pointer-events: none;
+        transform: scale(0.92);
+      }
+    }
+  }
+
+  &__separator {
+    height: 2px;
+    margin-block: 10px;
+    background: linear-gradient(
+      to right,
+      rgba(17, 17, 17, 0),
+      #111111,
+      rgba(17, 17, 17, 0)
+    );
+  }
+}

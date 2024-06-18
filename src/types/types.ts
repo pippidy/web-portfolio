@@ -33,8 +33,8 @@ export type TInputElement = {
 };
 
 export type TLabelElement = {
-  for: string;
   text: string;
+  for?: string;
   className?: string;
 };
 

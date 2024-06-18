@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import DataNotAvailable from '../../components/DataNotAvailable/DataNotAvailable';
 import ImageDummyAvatar from '../../components/ImageDummies/ImageDummyAvatar';
 import Tabs from '../../components/Tabs/Tabs';
-import { User as TUserFirebase } from 'firebase/auth';
 import InfoBullet from '../InfoPages/InfoBullet/InfoBullet';
 import FormUpdateUsername from './FormUpdateUsername';
 import FormUpdateAvatar from './FormUpdateAvatar';
@@ -15,15 +14,20 @@ import { ReactComponent as IconAvatar } from '../../assets/svg/avatar.svg';
 
 export default function Profile() {
   const auth = useAuth();
-  const { displayName, email, photoURL } = auth?.currentUser as TUserFirebase;
   const nav = useNavigate();
-  const [username, setUsername] = useState(displayName);
-  const [avatar, setAvatar] = useState(photoURL);
 
   // Redirect if not signed in
   useEffect(() => {
     !auth?.userSignedIn && nav('/auth-error');
   }, [auth?.userSignedIn, nav]);
+
+  const [username, setUsername] = useState(
+    auth?.currentUser ? auth?.currentUser.displayName : null
+  );
+  const [avatar, setAvatar] = useState(
+    auth?.currentUser ? auth?.currentUser.photoURL : null
+  );
+  const [email] = useState(auth?.currentUser ? auth?.currentUser.email : null);
 
   return (
     <Section title="Profile" className="profile-page">

@@ -72,7 +72,7 @@
   }
 
   &__image {
-    max-width: 1280px;
+    width: min(90vw, 1280px);
     max-height: 720px;
     object-fit: contain;
   }

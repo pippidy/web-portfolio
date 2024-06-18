@@ -19,7 +19,7 @@ import Search from './pages/Search';
 import NotFound from './pages/ErrorPages/NotFound';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import AuthError from './pages/ErrorPages/AuthError';
-import About from './pages/About';
+import About from './pages/About/About';
 
 const AppRouter = createBrowserRouter(
   createRoutesFromElements(

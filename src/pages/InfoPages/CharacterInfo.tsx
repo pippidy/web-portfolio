@@ -105,7 +105,7 @@ export default function CharacterInfo() {
                         {pageData[0].description && (
                           <div>
                             <h3 className="info-article__title">Description</h3>
-                            <p className="info-article__text">
+                            <p className="text-default">
                               {pageData[0].description}
                             </p>
                           </div>
