@@ -49,7 +49,7 @@ export const getData = ({
     offset ? `offset ${offset};` : ''
   }`;
 
-  return fetch(`/api/${endpoint}`, {
+  return fetch(`${process.env.REACT_APP_PROXY_PREFIX || ''}/${endpoint}`, {
     method: 'POST',
     headers: configAPI.headers,
     body: body,
@@ -62,11 +62,14 @@ export const getData = ({
 export const getDataCount = (props: TGetDataCount) => {
   const { endpoint, filter } = props;
 
-  return fetch(`/${endpoint}/count`, {
-    method: 'POST',
-    headers: configAPI.headers,
-    body: `${filter};`,
-  }).then((res) => {
+  return fetch(
+    `${process.env.REACT_APP_PROXY_PREFIX || ''}/${endpoint}/count`,
+    {
+      method: 'POST',
+      headers: configAPI.headers,
+      body: `${filter};`,
+    }
+  ).then((res) => {
     return handleFetchResults(res);
   });
 };
@@ -74,7 +77,7 @@ export const getDataCount = (props: TGetDataCount) => {
 export const getCategories = (
   category: string
 ): Promise<TCategory[] | undefined> => {
-  return fetch(`/${category}`, {
+  return fetch(`${process.env.REACT_APP_PROXY_PREFIX || ''}/${category}`, {
     method: 'POST',
     headers: configAPI.headers,
     body: `fields name;`,
