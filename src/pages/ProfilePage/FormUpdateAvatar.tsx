@@ -1,7 +1,6 @@
 import { ChangeEvent, FormEvent, useRef, useState } from 'react';
 import { validateForm } from '../../utils/utils';
 import { doUpdateProfile } from '../../firebase/auth';
-import InputBlock from '../../components/Forms/InputBlock/InputBlock';
 import { TError } from '../../types/types';
 import LoadingSimple from '../../components/LoadingSimple/LoadingSimple';
 
