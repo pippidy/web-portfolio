@@ -49,7 +49,7 @@ export const getData = ({
     offset ? `offset ${offset};` : ''
   }`;
 
-  return fetch(`/${endpoint}`, {
+  return fetch(`/api/${endpoint}`, {
     method: 'POST',
     headers: configAPI.headers,
     body: body,
