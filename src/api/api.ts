@@ -22,6 +22,7 @@ function fetchAuth(): Promise<void | { access_token: string }> {
     .then((data) => data);
 }
 
+// Free CORS proxy https://thingproxy.freeboard.io/fetch/
 const auth = await fetchAuth();
 const configAPI: TConfigAPI = {
   baseURL: 'https://api.igdb.com/v4',
@@ -48,7 +49,7 @@ export const getData = ({
     offset ? `offset ${offset};` : ''
   }`;
 
-  return fetch(`${configAPI.baseURL}/${endpoint}`, {
+  return fetch(`/${endpoint}`, {
     method: 'POST',
     headers: configAPI.headers,
     body: body,
@@ -61,7 +62,7 @@ export const getData = ({
 export const getDataCount = (props: TGetDataCount) => {
   const { endpoint, filter } = props;
 
-  return fetch(`${configAPI.baseURL}/${endpoint}/count`, {
+  return fetch(`/${endpoint}/count`, {
     method: 'POST',
     headers: configAPI.headers,
     body: `${filter};`,
@@ -73,7 +74,7 @@ export const getDataCount = (props: TGetDataCount) => {
 export const getCategories = (
   category: string
 ): Promise<TCategory[] | undefined> => {
-  return fetch(`${configAPI.baseURL}/${category}`, {
+  return fetch(`/${category}`, {
     method: 'POST',
     headers: configAPI.headers,
     body: `fields name;`,

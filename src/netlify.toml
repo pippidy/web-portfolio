@@ -1,5 +1,0 @@
-[[redirects]]
-  force = true
-  from = "https://api.igdb.com/v4"
-  status = 200
-  to = "https://thingproxy.freeboard.io/fetch"
