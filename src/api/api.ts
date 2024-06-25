@@ -32,6 +32,8 @@ const configAPI: TConfigAPI = {
   },
 };
 
+console.log(auth);
+
 export const getData = ({
   endpoint,
   search,
