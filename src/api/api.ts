@@ -24,15 +24,13 @@ function fetchAuth(): Promise<void | { access_token: string }> {
 
 const auth = await fetchAuth();
 const configAPI: TConfigAPI = {
-  baseURL: 'https://thingproxy.freeboard.io/fetch/https://api.igdb.com/v4',
+  baseURL: 'https://api.igdb.com/v4',
   headers: {
     Authorization: `Bearer ${auth?.access_token}`,
     'Client-ID': userID,
     'Content-Type': 'application/json',
   },
 };
-
-console.log(auth);
 
 export const getData = ({
   endpoint,
