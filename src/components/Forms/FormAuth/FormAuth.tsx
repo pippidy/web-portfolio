@@ -3,6 +3,7 @@ import {
   FormEvent,
   useContext,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -44,54 +45,57 @@ export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
     setFetchError({ status: false });
   }, [authType]);
 
-  const inputs: TInputElement[] = [
-    {
-      id: 1,
-      attributes: {
-        name: 'email',
-        type: 'email',
-        placeholder: 'name@mail.com',
-        autoComplete: 'email',
-        required: true,
+  const inputs: TInputElement[] = useMemo(
+    () => [
+      {
+        id: 1,
+        attributes: {
+          name: 'email',
+          type: 'email',
+          placeholder: 'name@mail.com',
+          autoComplete: 'email',
+          required: true,
+        },
+        label: {
+          text: 'Email',
+          className: 'form-auth__label',
+        },
       },
-      label: {
-        text: 'Email',
-        className: 'form-auth__label',
+      {
+        id: 2,
+        customError:
+          'Password should be 8-20 characters long and also include at least 1 letter and 1 number and 1 special character!',
+        attributes: {
+          name: 'password',
+          type: 'password',
+          placeholder: '*********',
+          autoComplete: 'password-new',
+          pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-z0-9!@#$%^&*]{8,20}$`,
+          required: true,
+        },
+        label: {
+          text: 'Password',
+          className: 'form-auth__label',
+        },
       },
-    },
-    {
-      id: 2,
-      customError:
-        'Password should be 8-20 characters long and also include at least 1 letter and 1 number and 1 special character!',
-      attributes: {
-        name: 'password',
-        type: 'password',
-        placeholder: '*********',
-        autoComplete: 'password-new',
-        pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-z0-9!@#$%^&*]{8,20}$`,
-        required: true,
+      {
+        id: 3,
+        customError: 'Passwords do not match!',
+        attributes: {
+          name: 'passwordConfirm',
+          type: 'password',
+          placeholder: '*********',
+          pattern: values.password,
+          required: true,
+        },
+        label: {
+          text: 'Password confirmation',
+          className: 'form-auth__label',
+        },
       },
-      label: {
-        text: 'Password',
-        className: 'form-auth__label',
-      },
-    },
-    {
-      id: 3,
-      customError: 'Passwords do not match!',
-      attributes: {
-        name: 'passwordConfirm',
-        type: 'password',
-        placeholder: '*********',
-        pattern: values.password,
-        required: true,
-      },
-      label: {
-        text: 'Password confirmation',
-        className: 'form-auth__label',
-      },
-    },
-  ];
+    ],
+    [values.password]
+  );
 
   function onChange(evt: ChangeEvent<HTMLInputElement>) {
     setValues(values && { ...values, [evt.target.name]: evt.target.value });

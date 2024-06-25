@@ -58,7 +58,6 @@ export default function ImageGallery({
                 onClick={() => openImage(index)}
                 key={`image-gallery-card_${index}`}
                 className="image-gallery__card card-flying cursor-pointer"
-                title={`Open image №${index + 1}`}
               >
                 <img
                   className="image-gallery__image"
