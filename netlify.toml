@@ -1,6 +1,6 @@
 [[redirects]]
   from = "/api/*"
-  to = "https://api.igdb.com/v4/:splat"
+  to = "https://api.igdb.com/v4:splat"
   status = 200
   force = true
 
