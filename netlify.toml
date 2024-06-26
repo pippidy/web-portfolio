@@ -1,44 +1,9 @@
 [[redirects]]
-  from = "/games/count"
-  to = "https://api.igdb.com/v4/games/count"
+  from = "/api/*"
+  to = "https://api.igdb.com/v4/:splat"
   status = 200
   force = true
 
-[[redirects]]
-  from = "/games"
-  to = "https://api.igdb.com/v4/games"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/characters"
-  to = "https://api.igdb.com/v4/characters"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/companies"
-  to = "https://api.igdb.com/v4/companies"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/screenshots"
-  to = "https://api.igdb.com/v4/screenshots"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/artworks"
-  to = "https://api.igdb.com/v4/artworks"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/genres"
-  to = "https://api.igdb.com/v4/genres"
-  status = 200
-  force = true
 
 [[redirects]]
   from = "/*"

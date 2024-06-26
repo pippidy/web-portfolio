@@ -24,6 +24,7 @@ async function fetchAuth(): Promise<void | { access_token: string }> {
 
 const auth = await fetchAuth();
 const configAPI: TConfigAPI = {
+  baseURL: process.env.REACT_APP_PROXY_PREFIX || '', // Proxy prefix is used for production only
   headers: {
     Authorization: `Bearer ${auth?.access_token}`,
     'Client-ID': userID,
@@ -48,7 +49,7 @@ export const getData = async ({
     offset ? `offset ${offset};` : ''
   }`;
 
-  return fetch(`/${endpoint}`, {
+  return fetch(configAPI.baseURL + `/${endpoint}`, {
     method: 'POST',
     headers: configAPI.headers,
     body: body,
@@ -64,7 +65,7 @@ export const getDataCount = async ({
   filter,
   signal,
 }: TGetDataCount) => {
-  return fetch(`/${endpoint}/count`, {
+  return fetch(configAPI.baseURL + `/${endpoint}/count`, {
     method: 'POST',
     headers: configAPI.headers,
     body: `${filter};`,
@@ -78,7 +79,7 @@ export const getCategories = async (
   category: string,
   signal?: AbortSignal
 ): Promise<TCategory[] | undefined> => {
-  return fetch(`/${category}`, {
+  return fetch(configAPI.baseURL + `/${category}`, {
     method: 'POST',
     headers: configAPI.headers,
     body: `fields name;`,
