@@ -11,7 +11,7 @@ const userID = 'owlnvuu4x73puzega7fmhzymfe3voy';
 const clientSecret = 'iiuek5lwve85c4z713d5o6bbmpaccm';
 
 // Getting API access token
-function fetchAuth(): Promise<void | { access_token: string }> {
+async function fetchAuth(): Promise<void | { access_token: string }> {
   return fetch(
     `https://id.twitch.tv/oauth2/token?client_id=${userID}&client_secret=${clientSecret}&grant_type=client_credentials`,
     {
@@ -22,10 +22,9 @@ function fetchAuth(): Promise<void | { access_token: string }> {
     .then((data) => data);
 }
 
-// Free CORS proxy https://thingproxy.freeboard.io/fetch/
 const auth = await fetchAuth();
 const configAPI: TConfigAPI = {
-  baseURL: 'https://api.igdb.com/v4',
+  baseURL: process.env.REACT_APP_PROXY_PREFIX || '/', // Proxy prefix is used for production only
   headers: {
     Authorization: `Bearer ${auth?.access_token}`,
     'Client-ID': userID,
@@ -33,7 +32,7 @@ const configAPI: TConfigAPI = {
   },
 };
 
-export const getData = ({
+export const getData = async ({
   endpoint,
   search,
   fields = '*',
@@ -41,6 +40,7 @@ export const getData = ({
   limit,
   sort,
   offset,
+  signal,
 }: TGetData): Promise<TData[] | undefined> => {
   // Query example: "fields name,cover.image_id,videos.*,screenshots.*,aggregated_rating; limit 6; sort first_release_date desc; where aggregated_rating > 0;"
   const body = `${search ? `search "${search}";` : ''}fields ${fields}; ${
@@ -49,37 +49,40 @@ export const getData = ({
     offset ? `offset ${offset};` : ''
   }`;
 
-  return fetch(`${process.env.REACT_APP_PROXY_PREFIX || ''}/${endpoint}`, {
+  return fetch(configAPI.baseURL + endpoint, {
     method: 'POST',
     headers: configAPI.headers,
     body: body,
+    signal: signal,
   }).then((res) => {
     return handleFetchResults(res);
   });
 };
 
 // Query example: "where genre = 2"
-export const getDataCount = (props: TGetDataCount) => {
-  const { endpoint, filter } = props;
-
-  return fetch(
-    `${process.env.REACT_APP_PROXY_PREFIX || ''}/${endpoint}/count`,
-    {
-      method: 'POST',
-      headers: configAPI.headers,
-      body: `${filter};`,
-    }
-  ).then((res) => {
+export const getDataCount = async ({
+  endpoint,
+  filter,
+  signal,
+}: TGetDataCount) => {
+  return fetch(configAPI.baseURL + `${endpoint}/count`, {
+    method: 'POST',
+    headers: configAPI.headers,
+    body: `${filter};`,
+    signal: signal,
+  }).then((res) => {
     return handleFetchResults(res);
   });
 };
 
-export const getCategories = (
-  category: string
+export const getCategories = async (
+  category: string,
+  signal?: AbortSignal
 ): Promise<TCategory[] | undefined> => {
-  return fetch(`${process.env.REACT_APP_PROXY_PREFIX || ''}/${category}`, {
+  return fetch(configAPI.baseURL + category, {
     method: 'POST',
     headers: configAPI.headers,
     body: `fields name;`,
+    signal: signal,
   }).then((res) => handleFetchResults(res));
 };

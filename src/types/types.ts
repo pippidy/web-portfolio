@@ -164,11 +164,13 @@ export type TGetData = {
   sort?: string; // example "sort aggregated_rating desc"
   filter?: string; // example "genre = 2" or "id = (2254,5534,2523)"
   offset?: number;
+  signal?: AbortSignal;
 };
 
 export type TGetDataCount = {
   endpoint: TEndpoint;
   filter?: string;
+  signal?: AbortSignal;
 };
 
 // CARDS

@@ -14,12 +14,20 @@ export default function usePaginationData({
   const currentPage = Number(location.hash.match(/[0-9]+/));
 
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     getDataCount({
       endpoint: endpoint,
       filter: dataFilter ? dataFilter : '',
+      signal: signal,
     }).then((data) => {
       setPagesAmount(Math.floor(data.count / fetchLimit));
     });
+
+    return () => {
+      controller.abort();
+    };
   }, [endpoint, fetchLimit, pageID, pagesAmount, dataFilter]);
 
   return { pagesAmount, currentPage, location };

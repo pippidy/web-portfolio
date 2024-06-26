@@ -38,7 +38,10 @@ export default function Catalogue({
 
   // Fetching categories for catalogue menu
   useEffect(() => {
-    getCategories(category)
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    getCategories(category, signal)
       .then((categories) => {
         setCategoriesList(categories);
       })
@@ -46,6 +49,10 @@ export default function Catalogue({
         catchFetchError(error);
       })
       .finally(() => setLoadingMenu(false));
+
+    return () => {
+      controller.abort();
+    };
   }, [category]);
 
   return (

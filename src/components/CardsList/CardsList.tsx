@@ -32,6 +32,9 @@ export default function CardsList({
   });
 
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     getData({
       endpoint: endpoint,
       search: search,
@@ -40,6 +43,7 @@ export default function CardsList({
       sort: sort,
       filter: filter,
       offset: offset,
+      signal: signal,
     })
       .then((data) => {
         setData(data);
@@ -48,6 +52,10 @@ export default function CardsList({
         catchFetchError(error);
       })
       .finally(() => setLoading(false));
+
+    return () => {
+      controller.abort();
+    };
   }, [endpoint, search, fields, limit, sort, filter, offset]);
 
   useEffect(() => {
