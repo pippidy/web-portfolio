@@ -41,8 +41,11 @@
 @import './components/Forms/FormAuth/formAuth';
 @import './components/Forms/InputBlock/inputBlock';
 
-// Various components
+// Catalogue
 @import './components/Catalogue/catalogue';
+@import './components/Catalogue/CatalogueMenu/catalogueMenu';
+
+// Various components
 @import './components/DataNotAvailable/dataNotAvailable';
 @import './components/Pagination/pagination';
 @import './components/Tabs/tabs';

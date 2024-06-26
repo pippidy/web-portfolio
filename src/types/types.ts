@@ -54,6 +54,11 @@ export type TCatalogue = {
   title: string;
 };
 
+export type TCatalogueMenu = {
+  endpoint: TEndpoint;
+  category: string;
+};
+
 export type TExtractEnumData = {
   id: number | undefined;
   enumObject: any;
