@@ -39,3 +39,8 @@
   to = "https://api.igdb.com/v4/genres"
   status = 200
   force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/"
+  status = 200
