@@ -26,13 +26,13 @@ export default function Characters() {
     }
   }, [nav, pagesAmount, currentPage]);
 
+  const pagination = (
+    <Pagination pagesAmount={pagesAmount} currentPage={currentPage} />
+  );
+
   return (
     <Section title="Characters">
-      <Pagination
-        keyID="top"
-        pagesAmount={pagesAmount}
-        currentPage={currentPage}
-      />
+      {pagination}
 
       <CardsList
         endpoint="characters"
@@ -44,11 +44,7 @@ export default function Characters() {
         linkPrefix="../"
       />
 
-      <Pagination
-        keyID="bottom"
-        pagesAmount={pagesAmount}
-        currentPage={currentPage}
-      />
+      {pagination}
     </Section>
   );
 }

@@ -256,7 +256,6 @@ export type TDefaultModalBlock = {
 
 // PAGINATION
 export type TPagination = {
-  keyID: string;
   pagesAmount: number;
   currentPage: number;
   length?: number;

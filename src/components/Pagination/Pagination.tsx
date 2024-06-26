@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { TPagination } from '../../types/types';
 
-export default function Pagination({
-  keyID,
+function Pagination({
   pagesAmount,
   currentPage,
   length = 11, // Odd numbers look better
@@ -17,7 +16,7 @@ export default function Pagination({
       currentPage: number
     ): JSX.Element[] {
       pagesArray.push(
-        <li className="pagination__item" key={`${keyID}_${page}`}>
+        <li className="pagination__item" key={`pag_${page}`}>
           <Link
             onClick={() => window.scrollTo(0, 0)}
             className={`pagination__link ${currentPage === page && 'current'}`}
@@ -66,14 +65,14 @@ export default function Pagination({
     }
 
     createPagination();
-  }, [keyID, currentPage, pagesAmount, length]);
+  }, [currentPage, pagesAmount, length]);
 
   return (
     <ul className="pagination">
       {/* First and Prev links */}
       {pagesAmount > length && (
         <>
-          <li className="pagination__item" key={`${keyID}_first`}>
+          <li className="pagination__item" key="pag_first">
             <Link
               className={`pagination__link ${
                 currentPage < length ? 'inactive' : ''
@@ -85,7 +84,7 @@ export default function Pagination({
             </Link>
           </li>
 
-          <li className="pagination__item" key={`${keyID}_prev`}>
+          <li className="pagination__item" key="pag_prev">
             <Link
               className={`pagination__link ${
                 currentPage === 1 ? 'inactive' : ''
@@ -105,7 +104,7 @@ export default function Pagination({
       {/* Last and Next links */}
       {pagesAmount > 10 && (
         <>
-          <li className="pagination__item" key={`${keyID}_next`}>
+          <li className="pagination__item" key="pag_next">
             <Link
               className={`pagination__link ${
                 currentPage === pagesAmount ? 'inactive' : ''
@@ -117,7 +116,7 @@ export default function Pagination({
             </Link>
           </li>
 
-          <li className="pagination__item" key={`${keyID}_last`}>
+          <li className="pagination__item" key="pag_last">
             <Link
               className={`pagination__link ${
                 currentPage === pagesAmount ? 'inactive' : ''
@@ -133,3 +132,5 @@ export default function Pagination({
     </ul>
   );
 }
+
+export default React.memo(Pagination);

@@ -58,16 +58,16 @@ export default function CatalogueMenu({ category, endpoint }: TCatalogueMenu) {
           </li>
 
           {categoriesList &&
-            categoriesList.map((genre) => {
+            categoriesList.map((category) => {
               return (
-                <li key={genre.id}>
+                <li key={category.id}>
                   <NavLink
                     onClick={() => window.scrollTo(0, 0)}
                     className="catalogue-menu__link"
-                    to={`/${endpoint}/${category}/${genre.id}#page=1`}
-                    title={`Browse ${genre.name} genre`}
+                    to={`/${endpoint}/${category}/${category.id}#page=1`}
+                    title={`Browse ${category.name} category`}
                   >
-                    {genre.name}
+                    {category.name}
                   </NavLink>
                 </li>
               );

@@ -33,6 +33,10 @@ export default function Catalogue({
     }
   }, [nav, pagesAmount, currentPage, category, endpoint, pageID]);
 
+  const pagination = (
+    <Pagination pagesAmount={pagesAmount} currentPage={currentPage} />
+  );
+
   return (
     <Section title={title}>
       <div className="catalogue">
@@ -44,13 +48,7 @@ export default function Catalogue({
 
         {/* Top pagination */}
         {pagesAmount !== 0 && (
-          <div className="catalogue__pagination_top">
-            <Pagination
-              keyID="top"
-              pagesAmount={pagesAmount}
-              currentPage={currentPage}
-            />
-          </div>
+          <div className="catalogue__pagination_top">{pagination}</div>
         )}
 
         {/* Main part with cards */}
@@ -69,13 +67,7 @@ export default function Catalogue({
 
         {/* Bottom pagination */}
         {pagesAmount !== 0 && (
-          <div className="catalogue__pagination_bottom">
-            <Pagination
-              keyID="top"
-              pagesAmount={pagesAmount}
-              currentPage={currentPage}
-            />
-          </div>
+          <div className="catalogue__pagination_bottom">{pagination}</div>
         )}
       </div>
     </Section>

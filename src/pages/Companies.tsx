@@ -26,13 +26,13 @@ export default function Companies() {
     }
   }, [nav, pagesAmount, currentPage]);
 
+  const pagination = (
+    <Pagination pagesAmount={pagesAmount} currentPage={currentPage} />
+  );
+
   return (
     <Section title="Companies">
-      <Pagination
-        keyID="top"
-        pagesAmount={pagesAmount}
-        currentPage={currentPage}
-      />
+      {pagination}
 
       <CardsList
         endpoint="companies"
@@ -44,11 +44,7 @@ export default function Companies() {
         linkPrefix="../"
       />
 
-      <Pagination
-        keyID="bottom"
-        pagesAmount={pagesAmount}
-        currentPage={currentPage}
-      />
+      {pagination}
     </Section>
   );
 }
