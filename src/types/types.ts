@@ -44,7 +44,6 @@ export type TNameAndID = {
 };
 
 export type TConfigAPI = {
-  baseURL: string;
   headers: {};
 };
 
