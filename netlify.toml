@@ -1,4 +1,10 @@
 [[redirects]]
+  from = "/games/count"
+  to = "https://api.igdb.com/v4/games/count"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/games"
   to = "https://api.igdb.com/v4/games"
   status = 200
