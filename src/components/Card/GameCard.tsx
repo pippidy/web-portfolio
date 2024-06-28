@@ -1,13 +1,10 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { TGameCard } from '../../types/types';
-import cn from 'classnames';
 import ImageDummyGames from '../ImageDummies/ImageDummyDefault';
 
 // @ts-expect-error
-import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg';
-// @ts-expect-error
 import { ReactComponent as CalendarIcon } from '../../assets/svg/calendar.svg';
+import ButtonLike from '../UI/Buttons/ButtonLike/ButtonLike';
 
 export default function GameCard({
   id,
@@ -19,23 +16,6 @@ export default function GameCard({
   linkPrefix = '',
   cardSize = 'default',
 }: TGameCard) {
-  const [isLiked, setIsLiked] = useState(false);
-  const [likeCount, setLikeCount] = useState(0);
-
-  // Classnames
-  const classHeart = cn('heart-icon', { liked: isLiked });
-
-  function onLikeClick() {
-    setIsLiked((prevState) => (prevState = !prevState));
-    setLikeCount((prevState) => {
-      if (!isLiked) {
-        return (prevState += 1);
-      } else {
-        return (prevState -= 1);
-      }
-    });
-  }
-
   return (
     <div className="card card-flying">
       {cardSize !== 'mini' && (
@@ -50,14 +30,7 @@ export default function GameCard({
           </div>
 
           <div className="card__like">
-            <button
-              onClick={onLikeClick}
-              className="card__like-button"
-              title="Like game"
-            >
-              <HeartIcon className={classHeart} width="2.1em" height="2.1em" />{' '}
-              {likeCount}
-            </button>
+            <ButtonLike />
           </div>
 
           {cardSize !== 'compact' && (
