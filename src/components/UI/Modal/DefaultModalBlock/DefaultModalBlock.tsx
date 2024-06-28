@@ -1,4 +1,4 @@
-import { TDefaultModalBlock } from '../../../types/types';
+import { TDefaultModalBlock } from '../../../../types/types';
 
 export default function DefaultModalBlock({ children }: TDefaultModalBlock) {
   return (

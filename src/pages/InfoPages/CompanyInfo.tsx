@@ -10,7 +10,7 @@ import {
   getCountryFromISO,
 } from '../../utils/utils';
 import CardsList from '../../components/CardsList/CardsList';
-import Tabs from '../../components/Tabs/Tabs';
+import Tabs from '../../components/UI/Tabs/Tabs';
 import DataNotAvailable from '../../components/DataNotAvailable/DataNotAvailable';
 import ImageDummyDefault from '../../components/ImageDummies/ImageDummyDefault';
 import InfoBullet from './InfoBullet/InfoBullet';

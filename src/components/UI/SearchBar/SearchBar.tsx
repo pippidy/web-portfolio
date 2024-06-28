@@ -1,15 +1,15 @@
 import { FormEvent, useCallback, useEffect, useRef, useState } from 'react';
-import { getData } from '../../api/api';
-import { TGame } from '../../types/types';
+import { getData } from '../../../api/api';
+import { TGame } from '../../../types/types';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import useOutsideClick from '../../hooks/useOutsideClick';
-import { catchFetchError, cutLongString } from '../../utils/utils';
+import useOutsideClick from '../../../hooks/useOutsideClick';
+import { catchFetchError, cutLongString } from '../../../utils/utils';
 import LoadingSimple from '../LoadingSimple/LoadingSimple';
 
 // @ts-expect-error
-import { ReactComponent as SearchIcon } from '../../assets/svg/search.svg';
+import { ReactComponent as SearchIcon } from '../../../assets/svg/search.svg';
 // @ts-expect-error
-import { ReactComponent as CrossIcon } from '../../assets/svg/cross.svg';
+import { ReactComponent as CrossIcon } from '../../../assets/svg/cross.svg';
 
 export default function SearchBar() {
   const [data, setData] = useState<TGame[] | undefined>();

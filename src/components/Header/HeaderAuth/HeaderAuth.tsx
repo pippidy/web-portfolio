@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Modal from '../../Modal/Modal';
-import FormAuth from '../../Forms/FormAuth/FormAuth';
-import DefaultModalBlock from '../../Modal/DefaultModalBlock/DefaultModalBlock';
+import Modal from '../../UI/Modal/Modal';
+import FormAuth from '../../UI/Forms/FormAuth/FormAuth';
+import DefaultModalBlock from '../../UI/Modal/DefaultModalBlock/DefaultModalBlock';
 import { TAuthType } from '../../../types/types';
 import { useAuth } from '../../../contexts/AuthContext';
 import { Link } from 'react-router-dom';

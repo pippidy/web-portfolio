@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useRef, useState } from 'react';
 import { validateForm } from '../../utils/utils';
 import { doUpdateProfile } from '../../firebase/auth';
 import { TError } from '../../types/types';
-import LoadingSimple from '../../components/LoadingSimple/LoadingSimple';
+import LoadingSimple from '../../components/UI/LoadingSimple/LoadingSimple';
 
 export default function FormUpdateUsername({
   setUsername,

@@ -6,8 +6,8 @@ import {
   useRef,
   useState,
 } from 'react';
-import { TError, TInputElement } from '../../../types/types';
-import ModalContext from '../../../contexts/ModalContext';
+import { TError, TInputElement } from '../../../../types/types';
+import ModalContext from '../../../../contexts/ModalContext';
 import cn from 'classnames';
 
 export default function InputBlock({

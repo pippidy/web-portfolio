@@ -12,13 +12,24 @@
 @import './pages/ProfilePage/profilePage';
 @import './pages/About/about';
 
+// UI
+@import './components/UI/Forms/FormAuth/formAuth';
+@import './components/UI/Inputs/InputBlock/inputBlock';
+@import './components/UI/LoadingSimple/loadingSimple';
+@import './components/UI/Tabs/tabs';
+@import './components/UI/SearchBar/searchBar';
+
+// Modal
+@import './components/UI/Modal/modal';
+@import './components/UI/Modal/DefaultModalBlock/defaultModalBlock';
+
 // Header
 @import './components/Header/header';
 @import './components/Header/HeaderAuth/headerAuth';
 @import './components/Header/HeaderMenu/headerMenu';
 
+// Footer
 @import './components/Footer/footer';
-@import './components/SearchBar/searchBar';
 
 // Section
 @import './components/Section/section';
@@ -28,18 +39,10 @@
 @import './components/CardsList/cardsList';
 @import './components/Card/card';
 
-// Modal
-@import './components/Modal/modal';
-@import './components/Modal/DefaultModalBlock/defaultModalBlock';
-
 // Images
 @import './components/ImageGallery/imageGallery';
 @import './components/ImageSlider/imageSlider';
 @import './components/ImageDummies/imageDummy';
-
-// Forms
-@import './components/Forms/FormAuth/formAuth';
-@import './components/Forms/InputBlock/inputBlock';
 
 // Catalogue
 @import './components/Catalogue/catalogue';
@@ -48,5 +51,3 @@
 // Various components
 @import './components/DataNotAvailable/dataNotAvailable';
 @import './components/Pagination/pagination';
-@import './components/Tabs/tabs';
-@import './components/LoadingSimple/loadingSimple';

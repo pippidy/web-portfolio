@@ -4,7 +4,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useEffect, useState } from 'react';
 import DataNotAvailable from '../../components/DataNotAvailable/DataNotAvailable';
 import ImageDummyAvatar from '../../components/ImageDummies/ImageDummyAvatar';
-import Tabs from '../../components/Tabs/Tabs';
+import Tabs from '../../components/UI/Tabs/Tabs';
 import InfoBullet from '../InfoPages/InfoBullet/InfoBullet';
 import FormUpdateUsername from './FormUpdateUsername';
 import FormUpdateAvatar from './FormUpdateAvatar';

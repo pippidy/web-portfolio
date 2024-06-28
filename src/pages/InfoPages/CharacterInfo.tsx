@@ -5,7 +5,7 @@ import { getData } from '../../api/api';
 import { TCharacter } from '../../types/types';
 import SectionLoading from '../../components/Section/SectionLoading/SectionLoading';
 import CardsList from '../../components/CardsList/CardsList';
-import Tabs from '../../components/Tabs/Tabs';
+import Tabs from '../../components/UI/Tabs/Tabs';
 import DataNotAvailable from '../../components/DataNotAvailable/DataNotAvailable';
 import { catchFetchError, extractEnumData } from '../../utils/utils';
 import ImageDummyAvatar from '../../components/ImageDummies/ImageDummyAvatar';

@@ -6,7 +6,7 @@ import { TGame } from '../../types/types';
 import SectionLoading from '../../components/Section/SectionLoading/SectionLoading';
 import { catchFetchError, formatDate } from '../../utils/utils';
 import CardsList from '../../components/CardsList/CardsList';
-import Tabs from '../../components/Tabs/Tabs';
+import Tabs from '../../components/UI/Tabs/Tabs';
 import ImageGallery from '../../components/ImageGallery/ImageGallery';
 import DataNotAvailable from '../../components/DataNotAvailable/DataNotAvailable';
 import ImageDummyDefault from '../../components/ImageDummies/ImageDummyDefault';
