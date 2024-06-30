@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { TCompanyCard } from '../../types/types';
+import { TCompanyCard } from '../../types/cards';
 import ImageDummyDefault from '../ImageDummies/ImageDummyDefault';
 
 export default function CompanyCard({

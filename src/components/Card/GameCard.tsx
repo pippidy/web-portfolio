@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { TGameCard } from '../../types/types';
+import { TGameCard } from '../../types/cards';
 import ImageDummyGames from '../ImageDummies/ImageDummyDefault';
 
 // @ts-expect-error

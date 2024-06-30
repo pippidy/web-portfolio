@@ -11,16 +11,13 @@ import {
   doCreateWithEmailAndPassword,
   doSignInWithEmailAndPassword,
 } from '../../../../firebase/auth';
-import {
-  TAuthForm,
-  TAuthValues,
-  TError,
-  TInputElement,
-} from '../../../../types/types';
+import { TError } from '../../../../types/main';
 import { catchFetchError, validateForm } from '../../../../utils/utils';
 import InputBlock from '../../Inputs/InputBlock/InputBlock';
 import ModalContext from '../../../../contexts/ModalContext';
 import LoadingSimple from '../../LoadingSimple/LoadingSimple';
+import { TAuthForm, TAuthValues } from '../../../../types/auth';
+import { TInputElement } from '../../../../types/ui';
 
 export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
   const formRef = useRef<HTMLFormElement>(null);

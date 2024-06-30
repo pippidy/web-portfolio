@@ -1,10 +1,5 @@
-import {
-  TConfigAPI,
-  TCategory,
-  TGetData,
-  TGetDataCount,
-  TData,
-} from '../types/types';
+import { TDataFull, TGetData, TGetDataCount } from '../types/data';
+import { TConfigAPI, TCategory } from '../types/main';
 import { handleFetchResults } from '../utils/utils';
 
 const userID = 'owlnvuu4x73puzega7fmhzymfe3voy';
@@ -41,7 +36,7 @@ export const getData = async ({
   sort,
   offset,
   signal,
-}: TGetData): Promise<TData[] | undefined> => {
+}: TGetData): Promise<TDataFull[] | undefined> => {
   // Query example: "fields name,cover.image_id,videos.*,screenshots.*,aggregated_rating; limit 6; sort first_release_date desc; where aggregated_rating > 0;"
   const body = `${search ? `search "${search}";` : ''}fields ${fields}; ${
     limit ? `limit ${limit};` : ''

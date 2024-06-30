@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { TTabs } from '../../../types/types';
+import { TTabs } from '../../../types/main';
 import cn from 'classnames';
 import { useLocation } from 'react-router-dom';
 

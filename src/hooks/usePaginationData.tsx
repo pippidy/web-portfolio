@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getDataCount } from '../api/api';
-import { TUsePaginationData } from '../types/types';
+import { TUsePaginationData } from '../types/pagination';
 
 export default function usePaginationData({
   fetchLimit = 100,

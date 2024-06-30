@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { TDataFull } from '../../types/data';
+import { TCardsList } from '../../types/cards';
 import { getData } from '../../api/api';
 import GameCard from '../Card/GameCard';
-import { TCardsList, TData } from '../../types/types';
-import { useLocation } from 'react-router-dom';
 import CharacterCard from '../Card/CharacterCard';
 import CompanyCard from '../Card/CompanyCard';
 import SectionLoading from '../Section/SectionLoading/SectionLoading';
@@ -21,7 +22,7 @@ export default function CardsList({
   cardSize = 'default',
   offset,
 }: TCardsList) {
-  const [data, setData] = useState<TData[]>();
+  const [data, setData] = useState<TDataFull[]>();
   const [loading, setLoading] = useState(true);
   const location = useLocation();
 

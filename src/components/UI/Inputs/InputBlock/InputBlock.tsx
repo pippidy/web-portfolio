@@ -6,7 +6,8 @@ import {
   useRef,
   useState,
 } from 'react';
-import { TError, TInputElement } from '../../../../types/types';
+import { TError } from '../../../../types/main';
+import { TInputElement } from '../../../../types/ui';
 import ModalContext from '../../../../contexts/ModalContext';
 import cn from 'classnames';
 

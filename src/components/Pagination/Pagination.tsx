@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { TPagination } from '../../types/types';
+import { TPagination } from '../../types/pagination';
 
 function Pagination({
   pagesAmount,

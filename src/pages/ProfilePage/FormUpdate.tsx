@@ -1,20 +1,41 @@
-import { ChangeEvent, FormEvent, useRef, useState } from 'react';
+import { ChangeEvent, FormEvent, useMemo, useRef, useState } from 'react';
 import { validateForm } from '../../utils/utils';
 import { doUpdateProfile } from '../../firebase/auth';
-import { TError } from '../../types/types';
+import { TError } from '../../types/main';
 import LoadingSimple from '../../components/UI/LoadingSimple/LoadingSimple';
 
-export default function FormUpdateUsername({
-  setUsername,
+export default function FormUpdate({
+  setter,
+  type,
 }: {
-  setUsername: React.Dispatch<React.SetStateAction<string | null>>;
+  type: string;
+  setter: React.Dispatch<React.SetStateAction<string | null>>;
 }) {
   const [value, setValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState<TError>({ status: false });
   const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState<TError>({ status: false });
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Markup data
+  const config = useMemo(() => {
+    return {
+      id: `update-${type}`,
+      label: `Update your ${type}`,
+      name: type,
+      type: type === 'avatar' ? 'url' : 'text',
+      placeholder:
+        type === 'avatar'
+          ? 'www.imagehost/image123...'
+          : '2-24 characters long...',
+      length: {
+        min: type === 'username' ? 2 : undefined,
+        max: type === 'username' ? 24 : undefined,
+      },
+      autocomplete: type === 'username' ? 'username' : '',
+    };
+  }, [type]);
 
   function onSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
@@ -25,18 +46,18 @@ export default function FormUpdateUsername({
 
       doUpdateProfile({ userName: value, userAvatar: undefined })
         .then(() => {
-          setUsername(value);
+          setter(value);
           formRef.current && formRef.current.reset();
         })
-        .then(() => {
+        .finally(() => {
           setIsSuccess(true);
           setTimeout(() => setIsSuccess(false), 2000);
           setValue('');
-        })
-        .finally(() => setIsLoading(false));
+          setIsLoading(false);
+        });
     } else {
       if (inputRef.current) {
-        setIsError({
+        setError({
           status: true,
           message: inputRef.current.validationMessage,
         });
@@ -46,7 +67,7 @@ export default function FormUpdateUsername({
 
   function onChange(evt: ChangeEvent<HTMLInputElement>) {
     setValue(evt.target.value);
-    if (isError && evt.target.validity.valid) setIsError({ status: false });
+    if (error && evt.target.validity.valid) setError({ status: false });
   }
 
   return (
@@ -58,22 +79,25 @@ export default function FormUpdateUsername({
       className="profile-menu__form"
       noValidate
     >
-      <div className="input-block">
-        <label htmlFor="update-username" className={isSuccess ? 'success' : ''}>
-          Update your username
+      <div
+        className={`input-block ${
+          error.status ? 'error' : isSuccess ? 'success' : ''
+        }`}
+      >
+        <label htmlFor={config.id} className={isSuccess ? 'success' : ''}>
+          {config.label}
         </label>
 
         <div className="profile-menu__form-input-holder">
           <input
             ref={inputRef}
-            id="update-username"
-            name="username"
-            className={isError.status ? 'error' : isSuccess ? 'success' : ''}
-            type="text"
-            placeholder={isLoading ? 'Loading...' : '2-24 characters long...'}
-            minLength={2}
-            maxLength={24}
-            autoComplete="username"
+            id={config.id}
+            name={config.name}
+            type={config.type}
+            placeholder={isLoading ? 'Loading...' : config.placeholder}
+            minLength={config.length.min}
+            maxLength={config.length.max}
+            autoComplete={config.autocomplete}
             onChange={(evt) => {
               onChange(evt);
             }}
@@ -85,12 +109,12 @@ export default function FormUpdateUsername({
           >
             Done!
           </span>
-          <span className="input-block__error">{isError.message}</span>
+          <span className="input-block__error">{error.message}</span>
         </div>
       </div>
 
       <button
-        disabled={(!value.length || isError.status) && true}
+        disabled={(!value.length || error.status) && true}
         type="submit"
         className="profile-menu__form-submit"
       >

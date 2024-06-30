@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import SectionHeader from './SectionHeader';
-import { TSection } from '../../types/types';
+import { TSection } from '../../types/main';
 import cn from 'classnames';
 
 export default function Section({ title, children, className = '' }: TSection) {

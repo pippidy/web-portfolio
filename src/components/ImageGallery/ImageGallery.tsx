@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { TImageGallery } from '../../types/main';
+import { TDataFull } from '../../types/data';
 import { getData } from '../../api/api';
-import { TData, TImageGallery } from '../../types/types';
 import SectionLoading from '../Section/SectionLoading/SectionLoading';
 import ImageSlider from '../ImageSlider/ImageSlider';
 import Modal from '../UI/Modal/Modal';
@@ -15,7 +16,7 @@ export default function ImageGallery({
   filter,
   text = 'Image',
 }: TImageGallery) {
-  const [data, setData] = useState<TData[]>();
+  const [data, setData] = useState<TDataFull[]>();
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
   const [loading, setLoading] = useState(true);

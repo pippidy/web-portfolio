@@ -5,7 +5,7 @@ import {
   TError,
   TFormatDate,
   TGetCountryFromISO,
-} from '../types/types';
+} from '../types/main';
 
 export function handleFetchResults(res: Response) {
   if (res.ok) {

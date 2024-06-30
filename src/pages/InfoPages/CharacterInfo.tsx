@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import Section from '../../components/Section/Section';
+import { TDataCharacter } from '../../types/data';
 import { getData } from '../../api/api';
-import { TCharacter } from '../../types/types';
+import Section from '../../components/Section/Section';
 import SectionLoading from '../../components/Section/SectionLoading/SectionLoading';
 import CardsList from '../../components/CardsList/CardsList';
 import Tabs from '../../components/UI/Tabs/Tabs';
 import DataNotAvailable from '../../components/DataNotAvailable/DataNotAvailable';
-import { catchFetchError, extractEnumData } from '../../utils/utils';
 import ImageDummyAvatar from '../../components/ImageDummies/ImageDummyAvatar';
 import InfoBullet from './InfoBullet/InfoBullet';
 import { Gender, Species } from '../../utils/data';
+import { catchFetchError, extractEnumData } from '../../utils/utils';
 
 export default function CharacterInfo() {
   const { id: pageID } = useParams();
-  const [pageData, setPageData] = useState<TCharacter[]>();
+  const [pageData, setPageData] = useState<TDataCharacter[]>();
   const [loadingInfo, setLoadingInfo] = useState(true);
   const location = useLocation();
 

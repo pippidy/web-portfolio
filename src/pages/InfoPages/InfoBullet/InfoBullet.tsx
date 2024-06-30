@@ -1,4 +1,4 @@
-import { TComponentChildren } from '../../../types/types';
+import { TComponentChildren } from '../../../types/main';
 
 export default function InfoBullet({
   name,

@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
-import { TModal } from '../../../types/types';
 import { createPortal } from 'react-dom';
 import { useLocation } from 'react-router-dom';
 import ModalContext from '../../../contexts/ModalContext';
+import { TModal } from '../../../types/modal';
 
 export default function Modal({
   children,

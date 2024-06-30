@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import Section from '../../components/Section/Section';
+import { TDataCompany } from '../../types/data';
 import { getData } from '../../api/api';
-import { TCompany } from '../../types/types';
+import Section from '../../components/Section/Section';
 import SectionLoading from '../../components/Section/SectionLoading/SectionLoading';
 import {
   catchFetchError,
@@ -17,7 +17,7 @@ import InfoBullet from './InfoBullet/InfoBullet';
 
 export default function CompanyInfo() {
   const { id: pageID } = useParams();
-  const [pageData, setPageData] = useState<TCompany[]>();
+  const [pageData, setPageData] = useState<TDataCompany[]>();
   const [loadingInfo, setLoadingInfo] = useState(true);
   const location = useLocation();
 

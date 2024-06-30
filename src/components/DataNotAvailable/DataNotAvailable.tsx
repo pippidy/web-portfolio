@@ -1,4 +1,4 @@
-import { TDataNotAvailable } from '../../types/types';
+import { TDataNotAvailable } from '../../types/main';
 
 export default function DataNotAvailable({
   text = 'No data available',

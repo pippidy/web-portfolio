@@ -6,11 +6,10 @@ import DataNotAvailable from '../../components/DataNotAvailable/DataNotAvailable
 import ImageDummyAvatar from '../../components/ImageDummies/ImageDummyAvatar';
 import Tabs from '../../components/UI/Tabs/Tabs';
 import InfoBullet from '../InfoPages/InfoBullet/InfoBullet';
-import FormUpdateUsername from './FormUpdateUsername';
-import FormUpdateAvatar from './FormUpdateAvatar';
 
 // @ts-expect-error
 import { ReactComponent as IconAvatar } from '../../assets/svg/avatar.svg';
+import FormUpdate from './FormUpdate';
 
 export default function Profile() {
   const auth = useAuth();
@@ -74,10 +73,12 @@ export default function Profile() {
         <>
           <ul className="profile-menu">
             <li className="profile-menu__item">
-              <FormUpdateUsername setUsername={setUsername} />
+              <FormUpdate setter={setUsername} type="username" />
             </li>
+
             <li className="profile-menu__item">
-              <FormUpdateAvatar setAvatar={setAvatar} />
+              <FormUpdate setter={setAvatar} type="avatar" />
+
               {avatar ? (
                 <img
                   className="profile-menu__img"

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import Section from '../../components/Section/Section';
 import { getData } from '../../api/api';
-import { TGame } from '../../types/types';
+import { TDataGame } from '../../types/data';
 import SectionLoading from '../../components/Section/SectionLoading/SectionLoading';
 import { catchFetchError, formatDate } from '../../utils/utils';
 import CardsList from '../../components/CardsList/CardsList';
@@ -14,7 +14,7 @@ import InfoBullet from './InfoBullet/InfoBullet';
 
 export default function GameInfo() {
   const { id: pageID } = useParams();
-  const [pageData, setPageData] = useState<TGame[]>();
+  const [pageData, setPageData] = useState<TDataGame[]>();
   const location = useLocation();
   const [loadingInfo, setLoadingInfo] = useState(true);
 

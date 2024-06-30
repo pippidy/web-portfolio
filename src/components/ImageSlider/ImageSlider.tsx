@@ -1,4 +1,4 @@
-import { TImageSlider } from '../../types/types';
+import { TImageSlider } from '../../types/main';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 

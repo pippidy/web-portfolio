@@ -5,6 +5,16 @@
   gap: 10px;
   width: 100%;
 
+  &.success {
+    & input {
+      border-color: $color-blue;
+
+      &::placeholder {
+        color: $color-blue-light;
+      }
+    }
+  }
+
   &.error {
     & label,
     & input {
@@ -50,14 +60,6 @@
     &:focus,
     &:focus-visible {
       border-color: $color-grey-dark;
-    }
-
-    &.success {
-      border-color: $color-blue;
-
-      &::placeholder {
-        color: $color-blue-light;
-      }
     }
   }
 

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { TSignOutButton } from '../../types/types';
 import { doSignOut } from '../../firebase/auth';
+import { TSignOutButton } from '../../types/auth';
 
 export default function SignOutButton({ children, className }: TSignOutButton) {
   const nav = useNavigate();
