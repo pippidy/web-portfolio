@@ -1,8 +1,8 @@
-import { TDataNotAvailable } from '../../types/main';
+import { TDataNotAvailableProps } from '../../types/main';
 
 export default function DataNotAvailable({
   text = 'No data available',
-}: TDataNotAvailable) {
+}: TDataNotAvailableProps) {
   return (
     <div className="data-not-available">
       <span>{text}</span>

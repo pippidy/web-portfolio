@@ -8,16 +8,16 @@ export type TCard = {
   linkPrefix?: TLinkPrefix;
 };
 
-export type TGameCard = TCard &
+export type TGameCardProps = TCard &
   TDataGame & {
     cardSize?: TCardSize;
   };
 
-export type TCompanyCard = TCard & TDataCompany;
+export type TCompanyCardProps = TCard & TDataCompany;
 
-export type TCharacterCard = TCard & TDataCharacter;
+export type TCharacterCardProps = TCard & TDataCharacter;
 
-export type TCardsList = {
+export type TCardsListProps = {
   endpoint?: string;
   search?: string;
   fields?: string;

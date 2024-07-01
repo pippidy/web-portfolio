@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useLocation } from 'react-router-dom';
 import ModalContext from '../../../contexts/ModalContext';
-import { TModal } from '../../../types/modal';
+import { TModalProps } from '../../../types/modal';
 import Button from '../Buttons/Button/Button';
 
 export default function Modal({
@@ -10,7 +10,7 @@ export default function Modal({
   isOpened,
   setIsOpened,
   classList = '',
-}: TModal) {
+}: TModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 

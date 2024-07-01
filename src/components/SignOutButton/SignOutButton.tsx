@@ -1,8 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { doSignOut } from '../../firebase/auth';
-import { TSignOutButton } from '../../types/auth';
+import { TSignOutButtonProps } from '../../types/auth';
+import Button from '../UI/Buttons/Button/Button';
 
-export default function SignOutButton({ children, className }: TSignOutButton) {
+export default function SignOutButton({
+  children,
+  className,
+}: TSignOutButtonProps) {
   const nav = useNavigate();
 
   function onClick() {
@@ -10,8 +14,8 @@ export default function SignOutButton({ children, className }: TSignOutButton) {
   }
 
   return (
-    <button onClick={onClick} className={className}>
+    <Button onClick={onClick} className={className}>
       {children}
-    </button>
+    </Button>
   );
 }

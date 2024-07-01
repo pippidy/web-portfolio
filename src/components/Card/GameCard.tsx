@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { TGameCard } from '../../types/cards';
+import { TGameCardProps } from '../../types/cards';
 import ImageDummyGames from '../ImageDummies/ImageDummyDefault';
 
 // @ts-expect-error
@@ -15,7 +15,7 @@ export default function GameCard({
   first_release_date,
   linkPrefix = '',
   cardSize = 'default',
-}: TGameCard) {
+}: TGameCardProps) {
   return (
     <div className="card card-flying">
       {cardSize !== 'mini' && (

@@ -6,7 +6,7 @@ import { TModalControl } from './modal';
 export type TAuthType = 'signUp' | 'signIn';
 export type TUser = TUserFirebase | undefined | null;
 
-export type TAuthForm = {
+export type TAuthFormProps = {
   authType: TAuthType;
   setAuthType: Dispatch<SetStateAction<TAuthType>>;
   modal: TModalControl;
@@ -29,7 +29,7 @@ export type TAuthValues = {
   password: string;
 };
 
-export type TSignOutButton = {
+export type TSignOutButtonProps = {
   children: TComponentChildren;
   className?: string;
 };

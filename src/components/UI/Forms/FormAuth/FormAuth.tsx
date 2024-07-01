@@ -16,11 +16,15 @@ import { catchFetchError, validateForm } from '../../../../utils/utils';
 import InputBlock from '../../Inputs/InputBlock/InputBlock';
 import ModalContext from '../../../../contexts/ModalContext';
 import LoadingSimple from '../../LoadingSimple/LoadingSimple';
-import { TAuthForm, TAuthValues } from '../../../../types/auth';
+import { TAuthFormProps, TAuthValues } from '../../../../types/auth';
 import { TInput } from '../../../../types/ui';
 import Button from '../../Buttons/Button/Button';
 
-export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
+export default function FormAuth({
+  authType,
+  setAuthType,
+  modal,
+}: TAuthFormProps) {
   const formRef = useRef<HTMLFormElement>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [fetchError, setFetchError] = useState<TError>();

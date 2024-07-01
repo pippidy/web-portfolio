@@ -1,7 +1,7 @@
 import { NavigateFunction } from 'react-router-dom';
 import { TEndpoint } from './main';
 
-export type TPagination = {
+export type TPaginationProps = {
   pagesAmount: number;
   currentPage: number;
   length?: number;

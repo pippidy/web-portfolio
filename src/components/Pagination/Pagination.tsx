@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { TPagination } from '../../types/pagination';
+import { TPaginationProps } from '../../types/pagination';
 
 function Pagination({
   pagesAmount,
   currentPage,
   length = 11, // Odd numbers look better
-}: TPagination) {
+}: TPaginationProps) {
   const [pagesRender, setPagesRender] = useState<JSX.Element[]>([]);
 
   useEffect(() => {

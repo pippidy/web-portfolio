@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getCategories } from '../../../api/api';
-import { TCatalogueMenu, TCategory } from '../../../types/main';
+import { TCatalogueMenuProps, TCategory } from '../../../types/main';
 import { catchFetchError } from '../../../utils/utils';
 
-export default function CatalogueMenu({ category, endpoint }: TCatalogueMenu) {
+export default function CatalogueMenu({
+  category,
+  endpoint,
+}: TCatalogueMenuProps) {
   const [categoriesList, setCategoriesList] = useState<TCategory[]>();
   const [loading, setLoadingMenu] = useState(true);
 

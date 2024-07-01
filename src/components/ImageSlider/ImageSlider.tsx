@@ -1,4 +1,4 @@
-import { TImageSlider } from '../../types/main';
+import { TImageSliderProps } from '../../types/main';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ export default function ImageSlider({
   text,
   currentImage,
   setCurrentImage,
-}: TImageSlider) {
+}: TImageSliderProps) {
   function nextImage() {
     if (data && currentImage === data.length - 1) {
       setCurrentImage(0);

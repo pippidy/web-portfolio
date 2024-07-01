@@ -1,10 +1,10 @@
-import { TSectionHeader } from '../../types/main';
+import { TSectionHeaderProps } from '../../types/main';
 
 export default function SectionHeader({
   title,
   collapsed,
   setCollapsed,
-}: TSectionHeader) {
+}: TSectionHeaderProps) {
   function onClick() {
     setCollapsed(!collapsed);
   }

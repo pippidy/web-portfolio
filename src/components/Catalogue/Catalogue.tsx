@@ -2,7 +2,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Section from '../Section/Section';
 import CardsList from '../CardsList/CardsList';
 import { useEffect } from 'react';
-import { TCatalogue } from '../../types/main';
+import { TCatalogueProps } from '../../types/main';
 import Pagination from '../Pagination/Pagination';
 import usePaginationData from '../../hooks/usePaginationData';
 import CatalogueMenu from './CatalogueMenu/CatalogueMenu';
@@ -11,7 +11,7 @@ export default function Catalogue({
   category,
   endpoint = 'games',
   title,
-}: TCatalogue) {
+}: TCatalogueProps) {
   const { id: pageID } = useParams();
 
   // Preparing data for pagination

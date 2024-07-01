@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { TDataFull } from '../../types/data';
-import { TCardsList } from '../../types/cards';
+import { TCardsListProps } from '../../types/cards';
 import { getData } from '../../api/api';
 import GameCard from '../Card/GameCard';
 import CharacterCard from '../Card/CharacterCard';
@@ -21,7 +21,7 @@ export default function CardsList({
   linkPrefix,
   cardSize = 'default',
   offset,
-}: TCardsList) {
+}: TCardsListProps) {
   const [data, setData] = useState<TDataFull[]>();
   const [loading, setLoading] = useState(true);
   const location = useLocation();

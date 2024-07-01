@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import SectionHeader from './SectionHeader';
-import { TSection } from '../../types/main';
+import { TSectionProps } from '../../types/main';
 import cn from 'classnames';
 
-export default function Section({ title, children, className = '' }: TSection) {
+export default function Section({
+  title,
+  children,
+  className = '',
+}: TSectionProps) {
   const [collapsed, setCollapsed] = useState(false);
 
   // Classnames

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { TCharacterCard } from '../../types/cards';
+import { TCharacterCardProps } from '../../types/cards';
 import ImageDummyAvatar from '../ImageDummies/ImageDummyAvatar';
 
 export default function CharacterCard({
@@ -7,7 +7,7 @@ export default function CharacterCard({
   name,
   mug_shot,
   linkPrefix,
-}: TCharacterCard) {
+}: TCharacterCardProps) {
   return (
     <div className="card card-flying" title={name}>
       <Link className="card__link" to={`${linkPrefix}character/${id}`}>

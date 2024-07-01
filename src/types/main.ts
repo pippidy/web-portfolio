@@ -43,31 +43,31 @@ export type TCutLongString = {
   end?: string; // three dots at the end of the title for example
 };
 
-export type TTabs = {
+export type TTabsProps = {
   tabs: string[];
   children?: TComponentChildren[];
   title?: string | null | undefined;
 };
 
-export type TDataNotAvailable = {
+export type TDataNotAvailableProps = {
   text?: string;
 };
 
 export type TCategory = TNameAndID;
 
-export type TSection = {
+export type TSectionProps = {
   title: string;
   children?: TComponentChildren;
   className?: string;
 };
 
-export type TSectionHeader = {
+export type TSectionHeaderProps = {
   title: string;
   collapsed: boolean;
   setCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export type TImageGallery = {
+export type TImageGalleryProps = {
   endpoint: 'screenshots' | 'artworks';
   imageSize: string;
   fields?: string;
@@ -76,7 +76,7 @@ export type TImageGallery = {
   text?: 'Image' | 'Screenshot' | 'Artwork';
 };
 
-export type TImageSlider = {
+export type TImageSliderProps = {
   data: TDataFull[] | undefined;
   imageSize: string;
   text: string;
@@ -84,13 +84,13 @@ export type TImageSlider = {
   setCurrentImage: Dispatch<SetStateAction<number>>;
 };
 
-export type TCatalogue = {
+export type TCatalogueProps = {
   endpoint: TEndpoint;
   category: string;
   title: string;
 };
 
-export type TCatalogueMenu = {
+export type TCatalogueMenuProps = {
   endpoint: TEndpoint;
   category: string;
 };

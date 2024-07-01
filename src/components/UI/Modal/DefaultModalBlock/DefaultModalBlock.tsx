@@ -1,6 +1,8 @@
-import { TDefaultModalBlock } from '../../../../types/modal';
+import { TDefaultModalBlockProps } from '../../../../types/modal';
 
-export default function DefaultModalBlock({ children }: TDefaultModalBlock) {
+export default function DefaultModalBlock({
+  children,
+}: TDefaultModalBlockProps) {
   return (
     <div className="modal-default block-default block-default_shadowDown">
       {children}
