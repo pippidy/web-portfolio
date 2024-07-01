@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Section from '../../components/Section/Section';
 import { Link } from 'react-router-dom';
+import Button from '../../components/UI/Buttons/Button/Button';
 
 export default function About() {
   const [language, setLanguage] = useState<'ru' | 'eng'>('eng');
@@ -9,18 +10,19 @@ export default function About() {
     <Section title="About">
       <div className="about">
         <div className="about__lang">
-          <button
+          <Button
             onClick={() => setLanguage('eng')}
             className={language === 'eng' ? 'active' : ''}
           >
             Eng
-          </button>
-          <button
+          </Button>
+
+          <Button
             onClick={() => setLanguage('ru')}
             className={language === 'ru' ? 'active' : ''}
           >
             Ru
-          </button>
+          </Button>
         </div>
 
         <div className="about__separator"></div>

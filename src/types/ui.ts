@@ -1,4 +1,7 @@
-export type TInputElement = {
+import { ButtonHTMLAttributes } from 'react';
+import { TComponentChildren } from './main';
+
+export type TInput = {
   id?: number | string;
   customError?: string;
   className?: string;
@@ -15,11 +18,17 @@ export type TInputElement = {
     maxLength?: number;
     minLength?: number;
   };
-  label?: TLabelElement;
+  label?: TLabel;
 };
 
-export type TLabelElement = {
+export type TLabel = {
   text: string;
   for?: string;
   className?: string;
+};
+
+export type TButton = ButtonHTMLAttributes<HTMLButtonElement> & {
+  className?: string;
+  onClick?: Function;
+  children?: TComponentChildren;
 };

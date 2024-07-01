@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { TTabs } from '../../../types/main';
 import cn from 'classnames';
 import { useLocation } from 'react-router-dom';
+import Button from '../Buttons/Button/Button';
 
 export default function Tabs({ tabs, children, title = '' }: TTabs) {
   const [toggle, setToggle] = useState<number>(0);
@@ -43,14 +44,14 @@ export default function Tabs({ tabs, children, title = '' }: TTabs) {
 
             return (
               <li className="tabs__menu-item" key={`tabLink_${index}`}>
-                <button
+                <Button
                   className={className}
                   onClick={() => toggleTab(index)}
                   title={`Switch to ${tabName} tab`}
                   role="tab"
                 >
                   {tabName}
-                </button>
+                </Button>
               </li>
             );
           })}

@@ -76,46 +76,4 @@
       }
     }
   }
-
-  &__button-default {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 50px;
-    width: 100%;
-    padding: 10px 20px;
-    background-color: $color-blue;
-    border-radius: $border-radius-main;
-    font-family: $font-family-secondary;
-    font-size: 1.8rem;
-    color: #fff;
-    text-transform: uppercase;
-    box-shadow: 0px 3px 0px $color-grey-dark;
-    transition: box-shadow $transition-fast ease, color $transition-fast ease,
-      background-color $transition-fast ease;
-
-    &:hover,
-    &:focus {
-      background-color: $color-blue-darker;
-      outline: none;
-      text-decoration: underline;
-    }
-
-    &:active {
-      box-shadow: none;
-      background-color: $color-yellow;
-    }
-
-    // TODO: use scss functions and also create component
-    &:disabled {
-      background-color: $color-grey;
-      box-shadow: none;
-      pointer-events: none;
-
-      &:hover {
-        transform: none;
-        text-decoration: none;
-      }
-    }
-  }
 }

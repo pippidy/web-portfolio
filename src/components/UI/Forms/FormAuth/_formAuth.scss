@@ -41,16 +41,6 @@
   &__text {
     margin-top: 2.5rem;
     font-size: 1.5rem;
-
-    & button {
-      color: $color-blue;
-      font-weight: bold;
-      text-transform: capitalize;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
   }
 
   &__loading-button {

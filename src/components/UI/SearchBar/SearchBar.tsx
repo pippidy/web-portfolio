@@ -10,6 +10,7 @@ import { catchFetchError, cutLongString } from '../../../utils/utils';
 import { ReactComponent as SearchIcon } from '../../../assets/svg/search.svg';
 // @ts-expect-error
 import { ReactComponent as CrossIcon } from '../../../assets/svg/cross.svg';
+import Button from '../Buttons/Button/Button';
 
 export default function SearchBar() {
   const [data, setData] = useState<TDataGame[] | undefined>();
@@ -118,15 +119,15 @@ export default function SearchBar() {
             </div>
           )}
 
-          <button
+          <Button
             type="submit"
             className="search__button search__button_submit"
             title="Submit search"
           >
             <SearchIcon className="search__svg" />
-          </button>
+          </Button>
 
-          <button
+          <Button
             onClick={() => {
               onReset();
               if (inputRef.current) {
@@ -140,7 +141,7 @@ export default function SearchBar() {
             title="Reset search"
           >
             <CrossIcon className="search__svg" />
-          </button>
+          </Button>
 
           <div className={`search__results ${isSearching ? 'active' : ''}`}>
             {data && data.length > 0 ? (

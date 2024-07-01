@@ -7,7 +7,7 @@ import {
   useState,
 } from 'react';
 import { TError } from '../../../../types/main';
-import { TInputElement } from '../../../../types/ui';
+import { TInput } from '../../../../types/ui';
 import ModalContext from '../../../../contexts/ModalContext';
 import cn from 'classnames';
 
@@ -19,16 +19,17 @@ export default function InputBlock({
   resetTrigger,
   attributes,
   label,
-}: TInputElement) {
+}: TInput) {
   const [isError, setIsError] = useState<TError>({ status: false });
   const isModalOpened = useContext(ModalContext);
   const inputRef = useRef<HTMLInputElement>(null);
   const id = useId();
+
   let mainClass = cn(`${className} input-block`, {
     error: isError.status,
   });
 
-  // Resetting input when parent component changes trigger or when parent modal is closed/opened
+  // Resetting input on trigger or when parent modal is closed/opened
   useEffect(() => {
     setIsError({ status: false });
 
@@ -39,9 +40,9 @@ export default function InputBlock({
 
   function validateInput(evt: ChangeEvent<HTMLInputElement>) {
     const input = evt.currentTarget;
-    const valid = input.validity.valid;
+    const isValid = input.validity.valid;
 
-    if (!valid) {
+    if (!isValid) {
       // Setting custom message on pattern mismatch
       if (input.validity.patternMismatch) {
         input.setCustomValidity(customError);
@@ -73,9 +74,6 @@ export default function InputBlock({
         }}
         onBlur={(evt) => {
           validateInput(evt);
-        }}
-        onReset={() => {
-          console.log(123);
         }}
         {...attributes}
       />

@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { useLocation } from 'react-router-dom';
 import ModalContext from '../../../contexts/ModalContext';
 import { TModal } from '../../../types/modal';
+import Button from '../Buttons/Button/Button';
 
 export default function Modal({
   children,
@@ -40,11 +41,11 @@ export default function Modal({
 
             <div className="modal__container">
               <div className="modal__close-container">
-                <button
+                <Button
                   onClick={closeModal}
                   className="modal__close-button icon-cross"
                   title="Close modal"
-                ></button>
+                ></Button>
               </div>
               {children}
             </div>

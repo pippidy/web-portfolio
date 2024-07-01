@@ -17,7 +17,8 @@ import InputBlock from '../../Inputs/InputBlock/InputBlock';
 import ModalContext from '../../../../contexts/ModalContext';
 import LoadingSimple from '../../LoadingSimple/LoadingSimple';
 import { TAuthForm, TAuthValues } from '../../../../types/auth';
-import { TInputElement } from '../../../../types/ui';
+import { TInput } from '../../../../types/ui';
+import Button from '../../Buttons/Button/Button';
 
 export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
   const formRef = useRef<HTMLFormElement>(null);
@@ -42,7 +43,7 @@ export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
     setFetchError({ status: false });
   }, [authType]);
 
-  const inputs: TInputElement[] = useMemo(
+  const inputs: TInput[] = useMemo(
     () => [
       {
         id: 1,
@@ -139,12 +140,13 @@ export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
               : authType === 'signUp' &&
                 'You successfully created new account!'}
           </h2>
-          <button
+
+          <Button
+            className="button-default"
             onClick={() => modal.setIsOpened(false)}
-            className="modal__button-default"
           >
             Ok
-          </button>
+          </Button>
         </div>
       ) : (
         <form
@@ -192,9 +194,9 @@ export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
           </div>
 
           {/* SUBMIT BUTTON */}
-          <button
+          <Button
             disabled={isLoading ? true : false}
-            className="form-auth__button-submit modal__button-default"
+            className="button-default form-auth__button-submit"
             type="submit"
           >
             {isLoading ? (
@@ -207,7 +209,7 @@ export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
             ) : (
               authType === 'signIn' && 'Sign in'
             )}
-          </button>
+          </Button>
 
           {/* ERROR */}
           {fetchError && fetchError.status && (
@@ -218,17 +220,25 @@ export default function FormAuth({ authType, setAuthType, modal }: TAuthForm) {
           {authType === 'signUp' ? (
             <p className="form-auth__text">
               Already have an account?{' '}
-              <button onClick={() => setAuthType('signIn')} type="button">
+              <Button
+                className="button-anchor"
+                onClick={() => setAuthType('signIn')}
+                type="button"
+              >
                 Sign in
-              </button>
+              </Button>
             </p>
           ) : (
             authType === 'signIn' && (
               <p className="form-auth__text">
                 Don't have an account?{' '}
-                <button onClick={() => setAuthType('signUp')} type="button">
+                <Button
+                  className="button-anchor"
+                  onClick={() => setAuthType('signUp')}
+                  type="button"
+                >
                   Sign up
-                </button>
+                </Button>
               </p>
             )
           )}

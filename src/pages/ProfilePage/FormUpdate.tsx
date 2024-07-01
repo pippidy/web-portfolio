@@ -3,6 +3,7 @@ import { validateForm } from '../../utils/utils';
 import { doUpdateProfile } from '../../firebase/auth';
 import { TError } from '../../types/main';
 import LoadingSimple from '../../components/UI/LoadingSimple/LoadingSimple';
+import Button from '../../components/UI/Buttons/Button/Button';
 
 export default function FormUpdate({
   setter,
@@ -113,13 +114,13 @@ export default function FormUpdate({
         </div>
       </div>
 
-      <button
+      <Button
         disabled={(!value.length || error.status) && true}
         type="submit"
         className="profile-menu__form-submit"
       >
         {isLoading ? <LoadingSimple /> : 'Apply'}
-      </button>
+      </Button>
     </form>
   );
 }

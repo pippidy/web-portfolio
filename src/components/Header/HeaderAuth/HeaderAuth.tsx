@@ -10,6 +10,7 @@ import cn from 'classnames';
 
 // @ts-expect-error
 import { ReactComponent as PersonIcon } from '../../../assets/svg/person.svg';
+import Button from '../../UI/Buttons/Button/Button';
 
 export default function HeaderAuth() {
   const auth = useAuth();
@@ -51,7 +52,7 @@ export default function HeaderAuth() {
               </p>
               <p>
                 Please{' '}
-                <button
+                <Button
                   className="header-auth__content-button"
                   onClick={() => {
                     setAuthType('signUp');
@@ -59,9 +60,9 @@ export default function HeaderAuth() {
                   }}
                 >
                   Sign Up
-                </button>{' '}
+                </Button>{' '}
                 or{' '}
-                <button
+                <Button
                   className="header-auth__content-button"
                   onClick={() => {
                     setAuthType('signIn');
@@ -69,7 +70,7 @@ export default function HeaderAuth() {
                   }}
                 >
                   Sign In
-                </button>
+                </Button>
               </p>
             </>
           )}
