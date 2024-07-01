@@ -8,6 +8,7 @@ export type TInput = {
   onChange?: Function;
   resetTrigger?: string | number | boolean;
   value?: string;
+  // TODO: Use corresponding React type
   attributes: {
     name: string;
     type: string;

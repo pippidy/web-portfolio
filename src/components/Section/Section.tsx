@@ -14,6 +14,7 @@ export default function Section({ title, children, className = '' }: TSection) {
     }
   );
 
+  // TODO: Remake it with grid for height animation
   return (
     <>
       <section className={classSection}>

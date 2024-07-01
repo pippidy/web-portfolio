@@ -7,6 +7,7 @@ export default function InfoBullet({
   name: string;
   children: TComponentChildren;
 }) {
+  // TODO: Remake it with grid for adaptivity
   return (
     <div className="info-bullet">
       <div className="info-bullet__name">{name}:</div>
