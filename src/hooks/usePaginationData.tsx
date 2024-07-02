@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getDataCount } from '../api/api';
 import { TUsePaginationData } from '../types/pagination';
+import { catchFetchError } from '../utils/utils';
 
 export default function usePaginationData({
   fetchLimit = 100,
@@ -21,9 +22,13 @@ export default function usePaginationData({
       endpoint: endpoint,
       filter: dataFilter ? dataFilter : '',
       signal: signal,
-    }).then((data) => {
-      setPagesAmount(Math.floor(data.count / fetchLimit));
-    });
+    })
+      .then((data) => {
+        setPagesAmount(Math.floor(data.count / fetchLimit));
+      })
+      .catch((error) => {
+        catchFetchError(error);
+      });
 
     return () => {
       controller.abort();

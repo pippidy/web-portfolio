@@ -1,68 +1,27 @@
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import { TDataFull } from '../../types/data';
 import { TCardsListProps } from '../../types/cards';
-import { getData } from '../../api/api';
 import GameCard from '../Card/GameCard';
 import CharacterCard from '../Card/CharacterCard';
 import CompanyCard from '../Card/CompanyCard';
 import SectionLoading from '../Section/SectionLoading/SectionLoading';
 import cn from 'classnames';
 import DataNotAvailable from '../DataNotAvailable/DataNotAvailable';
-import { catchFetchError } from '../../utils/utils';
+import useGetData from '../../hooks/useGetData';
 
 export default function CardsList({
-  endpoint = 'games',
-  search,
-  fields = '*',
-  limit,
-  sort,
-  filter,
+  apiOptions,
   linkPrefix,
   cardSize = 'default',
-  offset,
 }: TCardsListProps) {
-  const [data, setData] = useState<TDataFull[]>();
-  const [loading, setLoading] = useState(true);
-  const location = useLocation();
+  const { endpoint } = apiOptions;
+  const { data, loading } = useGetData({
+    ...apiOptions,
+  });
 
   // Main classes
   const classCardList = cn('cards-list', {
     'cards-list_compact': cardSize === 'compact',
     'cards-list_mini': cardSize === 'mini',
   });
-
-  useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
-
-    // TODO: Maybe move it to a custom hook
-    getData({
-      endpoint: endpoint,
-      search: search,
-      fields: fields,
-      limit: limit,
-      sort: sort,
-      filter: filter,
-      offset: offset,
-      signal: signal,
-    })
-      .then((data) => {
-        setData(data);
-      })
-      .catch((error) => {
-        catchFetchError(error);
-      })
-      .finally(() => setLoading(false));
-
-    return () => {
-      controller.abort();
-    };
-  }, [endpoint, search, fields, limit, sort, filter, offset]);
-
-  useEffect(() => {
-    setLoading(true);
-  }, [location]);
 
   return (
     <>

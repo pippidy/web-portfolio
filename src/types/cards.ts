@@ -1,4 +1,5 @@
 import { TDataCharacter, TDataCompany, TDataGame } from './data';
+import { TApiOptions } from './main';
 
 export type TLinkPrefix = '../' | '';
 
@@ -18,13 +19,7 @@ export type TCompanyCardProps = TCard & TDataCompany;
 export type TCharacterCardProps = TCard & TDataCharacter;
 
 export type TCardsListProps = {
-  endpoint?: string;
-  search?: string;
-  fields?: string;
-  limit?: number;
-  sort?: string;
-  filter?: string;
-  offset?: number;
+  apiOptions: TApiOptions;
   linkPrefix?: TLinkPrefix;
   cardSize?: TCardSize;
 };

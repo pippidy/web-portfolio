@@ -35,11 +35,13 @@ export default function Companies() {
       {pagination}
 
       <CardsList
-        endpoint="companies"
-        fields={'name,logo.url'}
-        limit={fetchLimit}
-        offset={fetchLimit * currentPage}
-        sort="logo"
+        apiOptions={{
+          endpoint: 'companies',
+          fields: 'name,logo.url',
+          limit: fetchLimit,
+          offset: fetchLimit * currentPage,
+          sort: 'logo',
+        }}
         cardSize="mini"
         linkPrefix="../"
       />

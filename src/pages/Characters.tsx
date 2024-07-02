@@ -35,11 +35,13 @@ export default function Characters() {
       {pagination}
 
       <CardsList
-        endpoint="characters"
-        fields={'name,mug_shot.url'}
-        limit={fetchLimit}
-        offset={fetchLimit * currentPage}
-        sort="mug_shot"
+        apiOptions={{
+          endpoint: 'characters',
+          fields: 'name,mug_shot.url',
+          limit: fetchLimit,
+          offset: fetchLimit * currentPage,
+          sort: 'mug_shot',
+        }}
         cardSize="mini"
         linkPrefix="../"
       />

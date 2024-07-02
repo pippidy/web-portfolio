@@ -9,10 +9,12 @@ export default function Search() {
   return (
     <Section title="Search results">
       <CardsList
-        endpoint="games"
-        search={query}
-        fields="name,cover.image_id,aggregated_rating,first_release_date"
-        limit={500}
+        apiOptions={{
+          endpoint: 'games',
+          search: query,
+          fields: 'name,cover.image_id,aggregated_rating,first_release_date',
+          limit: 500,
+        }}
         linkPrefix="../"
       />
     </Section>

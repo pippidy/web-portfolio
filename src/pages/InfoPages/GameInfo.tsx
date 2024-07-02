@@ -189,13 +189,15 @@ export default function GameInfo() {
           <>
             {pageData && pageData[0].similar_games ? (
               <CardsList
-                endpoint="games"
-                fields="name,cover.url,cover.image_id,aggregated_rating"
-                filter={`id = ${
-                  Array.isArray(pageData[0].similar_games)
-                    ? `(${pageData[0].similar_games.join(',')})`
-                    : pageData[0].similar_games
-                }`}
+                apiOptions={{
+                  endpoint: 'games',
+                  fields: 'name,cover.url,cover.image_id,aggregated_rating',
+                  filter: `id = ${
+                    Array.isArray(pageData[0].similar_games)
+                      ? `(${pageData[0].similar_games.join(',')})`
+                      : pageData[0].similar_games
+                  }`,
+                }}
                 linkPrefix="../"
                 cardSize="compact"
               />

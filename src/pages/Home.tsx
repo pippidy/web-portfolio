@@ -9,28 +9,37 @@ export default function Home() {
     <>
       <Section title="Recent releases">
         <CardsList
-          fields={fields}
-          limit={6}
-          sort={'first_release_date desc'}
-          filter={filter}
+          apiOptions={{
+            endpoint: 'games',
+            fields: fields,
+            limit: 6,
+            sort: 'first_release_date desc',
+            filter: filter,
+          }}
         />
       </Section>
 
       <Section title="Most rated games">
         <CardsList
-          fields={fields}
-          limit={6}
-          sort={'aggregated_rating desc'}
-          filter={filter}
+          apiOptions={{
+            endpoint: 'games',
+            fields: fields,
+            limit: 6,
+            sort: 'aggregated_rating desc',
+            filter: filter,
+          }}
         />
       </Section>
 
       <Section title="Least rated games">
         <CardsList
-          fields={fields}
-          limit={6}
-          sort={'aggregated_rating asc'}
-          filter={filter}
+          apiOptions={{
+            endpoint: 'games',
+            fields: fields,
+            limit: 6,
+            sort: 'aggregated_rating asc',
+            filter: filter,
+          }}
         />
       </Section>
     </>

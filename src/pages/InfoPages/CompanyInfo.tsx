@@ -127,13 +127,15 @@ export default function CompanyInfo() {
           <>
             {pageData && pageData[0].developed ? (
               <CardsList
-                endpoint="games"
-                fields="name,cover.url,cover.image_id,aggregated_rating"
-                filter={`id = ${
-                  Array.isArray(pageData[0].developed)
-                    ? `(${pageData[0].developed.join(',')})`
-                    : pageData[0].developed
-                }`}
+                apiOptions={{
+                  endpoint: 'games',
+                  fields: 'name,cover.url,cover.image_id,aggregated_rating',
+                  filter: `id = ${
+                    Array.isArray(pageData[0].developed)
+                      ? `(${pageData[0].developed.join(',')})`
+                      : pageData[0].developed
+                  }`,
+                }}
                 linkPrefix="../"
                 cardSize="compact"
               />
@@ -146,13 +148,15 @@ export default function CompanyInfo() {
           <>
             {pageData && pageData[0].published ? (
               <CardsList
-                endpoint="games"
-                fields="name,cover.url,cover.image_id,aggregated_rating"
-                filter={`id = ${
-                  Array.isArray(pageData[0].published)
-                    ? `(${pageData[0].published.join(',')})`
-                    : pageData[0].published
-                }`}
+                apiOptions={{
+                  endpoint: 'games',
+                  fields: 'name,cover.url,cover.image_id,aggregated_rating',
+                  filter: `id = ${
+                    Array.isArray(pageData[0].published)
+                      ? `(${pageData[0].published.join(',')})`
+                      : pageData[0].published
+                  }`,
+                }}
                 linkPrefix="../"
                 cardSize="compact"
               />

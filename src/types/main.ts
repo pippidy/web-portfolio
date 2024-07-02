@@ -1,6 +1,16 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { TDataFull } from './data';
 
+export type TApiOptions = {
+  endpoint: string;
+  search?: string;
+  fields?: string;
+  limit?: number;
+  sort?: string;
+  filter?: string;
+  offset?: number;
+};
+
 export type TComponentChildren = React.ReactNode;
 
 export type TEndpoint = 'games' | 'characters' | 'companies';

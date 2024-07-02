@@ -61,16 +61,16 @@ export default function CatalogueMenu({
           </li>
 
           {categoriesList &&
-            categoriesList.map((category) => {
+            categoriesList.map((item) => {
               return (
-                <li key={category.id}>
+                <li key={item.id}>
                   <NavLink
                     onClick={() => window.scrollTo(0, 0)}
                     className="catalogue-menu__link"
-                    to={`/${endpoint}/${category}/${category.id}#page=1`}
-                    title={`Browse ${category.name} category`}
+                    to={`/${endpoint}/${category}/${item.id}#page=1`}
+                    title={`Browse ${item.name} category`}
                   >
-                    {category.name}
+                    {item.name}
                   </NavLink>
                 </li>
               );

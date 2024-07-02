@@ -54,12 +54,15 @@ export default function Catalogue({
         {/* Main part with cards */}
         <div className="catalogue__main">
           <CardsList
-            endpoint={endpoint}
-            fields="name,cover.image_id,aggregated_rating,first_release_date"
-            limit={fetchLimit}
-            sort="aggregated_rating desc"
-            filter={pageID === 'all' ? '' : `${category} = ${pageID}`}
-            offset={fetchLimit * currentPage}
+            apiOptions={{
+              endpoint: endpoint,
+              fields:
+                'name,cover.image_id,aggregated_rating,first_release_date',
+              limit: fetchLimit,
+              sort: 'aggregated_rating desc',
+              filter: pageID === 'all' ? '' : `${category} = ${pageID}`,
+              offset: fetchLimit * currentPage,
+            }}
             linkPrefix="../"
             cardSize="compact"
           />

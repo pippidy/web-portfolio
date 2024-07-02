@@ -124,13 +124,15 @@ export default function CharacterInfo() {
           <>
             {pageData && pageData[0].games ? (
               <CardsList
-                endpoint="games"
-                fields="name,cover.url,cover.image_id,aggregated_rating"
-                filter={`id = ${
-                  Array.isArray(pageData[0].games)
-                    ? `(${pageData[0].games.join(',')})`
-                    : pageData[0].games
-                }`}
+                apiOptions={{
+                  endpoint: 'games',
+                  fields: 'name,cover.url,cover.image_id,aggregated_rating',
+                  filter: `id = ${
+                    Array.isArray(pageData[0].games)
+                      ? `(${pageData[0].games.join(',')})`
+                      : pageData[0].games
+                  }`,
+                }}
                 linkPrefix="../"
                 cardSize="compact"
               />
