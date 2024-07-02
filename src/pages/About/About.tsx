@@ -4,24 +4,24 @@ import { Link } from 'react-router-dom';
 import Button from '../../components/UI/Buttons/Button/Button';
 
 export default function About() {
-  const [language, setLanguage] = useState<'ru' | 'eng'>('eng');
+  const [language, setLanguage] = useState<'ru' | 'eng'>('ru');
 
   return (
     <Section title="About">
       <div className="about">
         <div className="about__lang">
           <Button
-            onClick={() => setLanguage('eng')}
-            className={language === 'eng' ? 'active' : ''}
-          >
-            Eng
-          </Button>
-
-          <Button
             onClick={() => setLanguage('ru')}
             className={language === 'ru' ? 'active' : ''}
           >
             Ru
+          </Button>
+
+          <Button
+            onClick={() => setLanguage('eng')}
+            className={language === 'eng' ? 'active' : ''}
+          >
+            Eng
           </Button>
         </div>
 

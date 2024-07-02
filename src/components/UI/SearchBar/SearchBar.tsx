@@ -34,7 +34,7 @@ export default function SearchBar() {
     if (searchQuery) nav(`/search#${searchQuery}`);
   }
 
-  // Initializing search by resetting current Data and sending new request if needed
+  // Initializing search by resetting current data and sending new request if needed
   // You're able to reset search by passing an empty string
   function initSearch(query: string) {
     setData(undefined);

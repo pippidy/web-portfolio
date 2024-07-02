@@ -36,6 +36,7 @@ export default function CardsList({
     const controller = new AbortController();
     const signal = controller.signal;
 
+    // TODO: Maybe move it to a custom hook
     getData({
       endpoint: endpoint,
       search: search,
