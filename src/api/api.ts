@@ -28,16 +28,13 @@ const configAPI: TConfigAPI = {
 };
 
 export const getData = async ({
-  endpoint,
-  search,
-  fields = '*',
-  filter,
-  limit,
-  sort,
-  offset,
+  apiOptions,
   signal,
 }: TGetData): Promise<TDataFull[] | undefined> => {
+  const { endpoint, search, fields, filter, limit, sort, offset } = apiOptions;
+
   // Query example: "fields name,cover.image_id,videos.*,screenshots.*,aggregated_rating; limit 6; sort first_release_date desc; where aggregated_rating > 0;"
+  // TODO: Refactor it
   const body = `${search ? `search "${search}";` : ''}fields ${fields}; ${
     limit ? `limit ${limit};` : ''
   } ${sort ? `sort ${sort};` : ''} ${filter ? `where ${filter};` : ''} ${

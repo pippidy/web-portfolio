@@ -1,5 +1,5 @@
 import { TCardSize } from './cards';
-import { TEndpoint, TNameAndID } from './main';
+import { TApiOptions, TEndpoint, TNameAndID } from './main';
 
 export type TDataFull = TDataGame & TDataCharacter & TDataCompany & TDataImage;
 
@@ -59,14 +59,12 @@ export type TDataVideo = {
 };
 
 export type TGetData = {
-  endpoint: string;
-  search?: string;
-  fields?: string;
-  limit?: number;
-  sort?: string; // example "sort aggregated_rating desc"
-  filter?: string; // example "genre = 2" or "id = (2254,5534,2523)"
-  offset?: number;
+  apiOptions: TApiOptions;
   signal?: AbortSignal;
+};
+
+export type TUseGetDataProps = TApiOptions & {
+  pageID?: string | number; // The dependency used inside info pages only so far
 };
 
 export type TGetDataCount = {

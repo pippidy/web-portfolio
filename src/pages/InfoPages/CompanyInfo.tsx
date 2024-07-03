@@ -1,69 +1,45 @@
-import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
-import { TDataCompany } from '../../types/data';
-import { getData } from '../../api/api';
+import { useParams } from 'react-router-dom';
 import Section from '../../components/Section/Section';
 import SectionLoading from '../../components/Section/SectionLoading/SectionLoading';
-import {
-  catchFetchError,
-  formatDate,
-  getCountryFromISO,
-} from '../../utils/utils';
+import { formatDate, getCountryFromISO } from '../../utils/utils';
 import CardsList from '../../components/CardsList/CardsList';
 import Tabs from '../../components/UI/Tabs/Tabs';
 import DataNotAvailable from '../../components/DataNotAvailable/DataNotAvailable';
 import ImageDummyDefault from '../../components/ImageDummies/ImageDummyDefault';
 import InfoBullet from './InfoBullet/InfoBullet';
+import useGetData from '../../hooks/useGetData';
 
 export default function CompanyInfo() {
   const { id: pageID } = useParams();
-  const [pageData, setPageData] = useState<TDataCompany[]>();
-  const [loadingInfo, setLoadingInfo] = useState(true);
-  const location = useLocation();
-
-  // Resetting loading after page change
-  useEffect(() => {
-    setLoadingInfo(true);
-  }, [location]);
-
-  // Fetching data
-  useEffect(() => {
-    getData({
-      endpoint: 'companies',
-      filter: `id = ${pageID}`,
-      fields:
-        'name,logo.image_id,published,developed,start_date,description,websites.url,country',
-    })
-      .then((data) => {
-        setPageData(data);
-      })
-      .catch((error) => {
-        catchFetchError(error);
-      })
-      .finally(() => setLoadingInfo(false));
-  }, [pageID]);
+  const { data, loading } = useGetData({
+    endpoint: 'companies',
+    filter: `id = ${pageID}`,
+    fields:
+      'name,logo.image_id,published,developed,start_date,description,websites.url,country',
+    pageID,
+  });
 
   return (
     <>
       <Section title="Company info">
         <Tabs
           tabs={['Info', 'Developed games', 'Published games']}
-          title={pageData && pageData[0].name}
+          title={data && data[0].name}
         >
           {/* INFO TAB*/}
           <>
-            {loadingInfo ? (
+            {loading ? (
               <SectionLoading />
             ) : (
               <>
-                {pageData ? (
+                {data ? (
                   <div className="info-page__content">
-                    {pageData[0].logo ? (
+                    {data[0].logo ? (
                       <div className="info-page__cover-holder card-flying card-flying_slide-right">
                         <img
                           className="info-page__cover-image"
-                          src={`//images.igdb.com/igdb/image/upload/t_thumb_2x/${pageData[0].logo.image_id}.jpg`}
-                          alt={`${pageData[0].name && pageData[0].name} logo`}
+                          src={`//images.igdb.com/igdb/image/upload/t_thumb_2x/${data[0].logo.image_id}.jpg`}
+                          alt={`${data[0].name && data[0].name} logo`}
                         />
                       </div>
                     ) : (
@@ -75,29 +51,29 @@ export default function CompanyInfo() {
                       <ul className="info-page__data-list">
                         <li>
                           <InfoBullet name="Foundation date">
-                            {formatDate({ timestamp: pageData[0].start_date })}
+                            {formatDate({ timestamp: data[0].start_date })}
                           </InfoBullet>
                         </li>
 
-                        {pageData[0].country && (
+                        {data[0].country && (
                           <li>
                             <InfoBullet name="Country">
                               {getCountryFromISO({
-                                isoCode: pageData[0].country,
+                                isoCode: data[0].country,
                               })}
                             </InfoBullet>
                           </li>
                         )}
 
-                        {pageData[0].websites && (
+                        {data[0].websites && (
                           <li>
                             <InfoBullet name="Website">
                               <a
-                                href={pageData[0].websites[0].url}
+                                href={data[0].websites[0].url}
                                 target="_blank"
                                 rel="noreferrer"
                               >
-                                {pageData[0].websites[0].url}
+                                {data[0].websites[0].url}
                               </a>
                             </InfoBullet>
                           </li>
@@ -105,11 +81,11 @@ export default function CompanyInfo() {
                       </ul>
 
                       <article className="info-article">
-                        {pageData[0].description && (
+                        {data[0].description && (
                           <div>
                             <h3 className="info-article__title">Description</h3>
                             <p className="text-default">
-                              {pageData[0].description}
+                              {data[0].description}
                             </p>
                           </div>
                         )}
@@ -125,15 +101,15 @@ export default function CompanyInfo() {
 
           {/* DEVELOPED GAMES TAB */}
           <>
-            {pageData && pageData[0].developed ? (
+            {data && data[0].developed ? (
               <CardsList
                 apiOptions={{
                   endpoint: 'games',
                   fields: 'name,cover.url,cover.image_id,aggregated_rating',
                   filter: `id = ${
-                    Array.isArray(pageData[0].developed)
-                      ? `(${pageData[0].developed.join(',')})`
-                      : pageData[0].developed
+                    Array.isArray(data[0].developed)
+                      ? `(${data[0].developed.join(',')})`
+                      : data[0].developed
                   }`,
                 }}
                 linkPrefix="../"
@@ -146,15 +122,15 @@ export default function CompanyInfo() {
 
           {/* PUBLISHED GAMES TAB */}
           <>
-            {pageData && pageData[0].published ? (
+            {data && data[0].published ? (
               <CardsList
                 apiOptions={{
                   endpoint: 'games',
                   fields: 'name,cover.url,cover.image_id,aggregated_rating',
                   filter: `id = ${
-                    Array.isArray(pageData[0].published)
-                      ? `(${pageData[0].published.join(',')})`
-                      : pageData[0].published
+                    Array.isArray(data[0].published)
+                      ? `(${data[0].published.join(',')})`
+                      : data[0].published
                   }`,
                 }}
                 linkPrefix="../"

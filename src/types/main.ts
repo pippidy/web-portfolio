@@ -2,18 +2,23 @@ import React, { Dispatch, SetStateAction } from 'react';
 import { TDataFull } from './data';
 
 export type TApiOptions = {
-  endpoint: string;
+  endpoint: TEndpoint;
+  fields: string;
   search?: string;
-  fields?: string;
   limit?: number;
-  sort?: string;
-  filter?: string;
+  sort?: string; // example "sort aggregated_rating desc"
+  filter?: string; // example "genre = 2" or "id = (2254,5534,2523)"
   offset?: number;
 };
 
 export type TComponentChildren = React.ReactNode;
 
-export type TEndpoint = 'games' | 'characters' | 'companies';
+export type TEndpoint =
+  | 'games'
+  | 'characters'
+  | 'companies'
+  | 'screenshots'
+  | 'artworks';
 
 export type TError = {
   status?: boolean;
@@ -78,11 +83,8 @@ export type TSectionHeaderProps = {
 };
 
 export type TImageGalleryProps = {
-  endpoint: 'screenshots' | 'artworks';
+  apiOptions: TApiOptions;
   imageSize: string;
-  fields?: string;
-  limit?: number;
-  filter?: string;
   text?: 'Image' | 'Screenshot' | 'Artwork';
 };
 

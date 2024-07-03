@@ -46,10 +46,12 @@ export default function SearchBar() {
         setIsLoading(true);
 
         getData({
-          endpoint: 'games',
-          search: query,
-          fields: 'name,cover.url',
-          limit: 5,
+          apiOptions: {
+            endpoint: 'games',
+            search: query,
+            fields: 'name,cover.url',
+            limit: 5,
+          },
         })
           .then((data) => {
             setData(data);

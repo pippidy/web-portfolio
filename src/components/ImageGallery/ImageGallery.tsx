@@ -1,51 +1,25 @@
-import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useState } from 'react';
 import { TImageGalleryProps } from '../../types/main';
-import { TDataFull } from '../../types/data';
-import { getData } from '../../api/api';
 import SectionLoading from '../Section/SectionLoading/SectionLoading';
 import ImageSlider from '../ImageSlider/ImageSlider';
 import Modal from '../UI/Modal/Modal';
-import { catchFetchError } from '../../utils/utils';
+import useGetData from '../../hooks/useGetData';
 
 export default function ImageGallery({
-  endpoint,
+  apiOptions,
   imageSize = 't_thumb',
-  fields = '*',
-  limit,
-  filter,
   text = 'Image',
 }: TImageGalleryProps) {
-  const [data, setData] = useState<TDataFull[]>();
+  const { data, loading } = useGetData({
+    ...apiOptions,
+  });
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
-  const [loading, setLoading] = useState(true);
-  const location = useLocation();
 
   function openImage(index: number) {
     setCurrentImage(index);
     setIsModalOpened(true);
   }
-
-  useEffect(() => {
-    getData({
-      endpoint: endpoint,
-      fields: fields,
-      limit: limit,
-      filter: filter,
-    })
-      .then((data) => {
-        setData(data);
-      })
-      .catch((error) => {
-        catchFetchError(error);
-      })
-      .finally(() => setLoading(false));
-  }, [endpoint, fields, limit, filter]);
-
-  useEffect(() => {
-    setLoading(true);
-  }, [location]);
 
   return (
     <>
