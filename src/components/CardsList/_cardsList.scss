@@ -35,6 +35,16 @@
     & .image-dummy__text {
       font-size: 1.5rem;
     }
+
+    .button-like__notification {
+      width: min-content;
+      text-align: center;
+
+      &::before {
+        inset-inline: auto;
+        right: 15px;
+      }
+    }
   }
 
   &_mini {

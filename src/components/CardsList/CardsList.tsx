@@ -17,7 +17,6 @@ export default function CardsList({
     ...apiOptions,
   });
 
-  // Main classes
   const classCardList = cn('cards-list', {
     'cards-list_compact': cardSize === 'compact',
     'cards-list_mini': cardSize === 'mini',
