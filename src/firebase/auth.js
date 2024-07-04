@@ -27,6 +27,8 @@ export async function doSignOut() {
 }
 
 export async function doUpdateProfile({ userName, userAvatar }) {
+  console.log(userAvatar, userName);
+
   return updateProfile(auth.currentUser, {
     displayName: userName,
     photoURL: userAvatar,

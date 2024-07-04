@@ -45,8 +45,10 @@ export default function FormUpdate({
     if (isValid) {
       setIsLoading(true);
 
-      // TODO: Fix props
-      doUpdateProfile({ userName: value, userAvatar: undefined })
+      doUpdateProfile({
+        userName: type === 'username' ? value : undefined,
+        userAvatar: type === 'avatar' ? value : undefined,
+      })
         .then(() => {
           setter(value);
           formRef.current && formRef.current.reset();
