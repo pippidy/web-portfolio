@@ -22,6 +22,15 @@ export default function Footer() {
           rel="noreferrer"
         >
           IGDB API
+        </a>{' '}
+        | Hosted by{' '}
+        <a
+          className="link-accent"
+          href="https://www.netlify.com/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Netlify
         </a>
       </h2>
     </footer>
