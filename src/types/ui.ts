@@ -8,17 +8,7 @@ export type TInput = {
   onChange?: Function;
   resetTrigger?: string | number | boolean;
   value?: string;
-  // TODO: Use corresponding React type
-  attributes: {
-    name: string;
-    type: string;
-    placeholder?: string;
-    autoComplete?: string;
-    pattern?: string;
-    required?: boolean;
-    maxLength?: number;
-    minLength?: number;
-  };
+  attributes: ComponentProps<'input'>;
   label?: TLabel;
 };
 

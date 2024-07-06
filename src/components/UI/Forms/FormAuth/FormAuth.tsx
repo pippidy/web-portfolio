@@ -47,6 +47,7 @@ export default function FormAuth({
     setFetchError({ status: false });
   }, [authType]);
 
+  // TODO: Put it inside a hook
   const inputs: TInput[] = useMemo(
     () => [
       {
@@ -185,7 +186,7 @@ export default function FormAuth({
                   <InputBlock
                     key={input.id}
                     {...input}
-                    value={values && values[input.attributes.name]}
+                    value={values && values[input.attributes.name as string]}
                     onChange={onChange}
                     className="form-auth__input"
                     resetTrigger={authType}
