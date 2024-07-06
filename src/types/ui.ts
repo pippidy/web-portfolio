@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes } from 'react';
+import { ComponentProps } from 'react';
 import { TComponentChildren } from './main';
 
 export type TInput = {
@@ -28,7 +28,7 @@ export type TLabel = {
   className?: string;
 };
 
-export type TButton = ButtonHTMLAttributes<HTMLButtonElement> & {
+export type TButton = ComponentProps<'button'> & {
   className?: string;
   onClick?: Function;
   children?: TComponentChildren;
