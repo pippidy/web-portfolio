@@ -1,3 +1,5 @@
+import { type TError } from '../../../../types/main';
+import { type TAuthFormProps, type TAuthValues } from '../../../../types/auth';
 import {
   ChangeEvent,
   FormEvent,
@@ -11,12 +13,10 @@ import {
   doCreateWithEmailAndPassword,
   doSignInWithEmailAndPassword,
 } from '../../../../firebase/auth';
-import { TError } from '../../../../types/main';
 import { catchFetchError, validateForm } from '../../../../utils/utils';
 import InputBlock from '../../Inputs/InputBlock/InputBlock';
 import ModalContext from '../../../../contexts/ModalContext';
 import LoadingSimple from '../../LoadingSimple/LoadingSimple';
-import { TAuthFormProps, TAuthValues } from '../../../../types/auth';
 import { TInput } from '../../../../types/ui';
 import Button from '../../Buttons/Button/Button';
 

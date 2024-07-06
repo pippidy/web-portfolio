@@ -1,6 +1,6 @@
+import { type TSignOutButtonProps } from '../../types/auth';
 import { useNavigate } from 'react-router-dom';
 import { doSignOut } from '../../firebase/auth';
-import { TSignOutButtonProps } from '../../types/auth';
 import Button from '../UI/Buttons/Button/Button';
 
 export default function SignOutButton({

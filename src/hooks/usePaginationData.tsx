@@ -1,7 +1,7 @@
+import { type TUsePaginationData } from '../types/pagination';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getDataCount } from '../api/api';
-import { TUsePaginationData } from '../types/pagination';
 import { catchFetchError } from '../utils/utils';
 
 export default function usePaginationData({

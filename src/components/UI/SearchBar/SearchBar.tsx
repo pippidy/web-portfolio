@@ -1,6 +1,6 @@
+import { type TDataGame } from '../../../types/data';
 import { FormEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { TDataGame } from '../../../types/data';
 import { getData } from '../../../api/api';
 import useOutsideClick from '../../../hooks/useOutsideClick';
 import LoadingSimple from '../LoadingSimple/LoadingSimple';

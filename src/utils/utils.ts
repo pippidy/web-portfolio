@@ -1,11 +1,11 @@
-import iso from 'iso-3166-1';
 import {
-  TCutLongString,
-  TExtractEnumData,
-  TError,
-  TFormatDate,
-  TGetCountryFromISO,
+  type TCutLongString,
+  type TExtractEnumData,
+  type TError,
+  type TFormatDate,
+  type TGetCountryFromISO,
 } from '../types/main';
+import iso from 'iso-3166-1';
 
 export function handleFetchResults(res: Response) {
   if (res.ok) {

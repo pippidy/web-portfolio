@@ -1,10 +1,10 @@
+import { type TAuthType } from '../../../types/auth';
 import { useState } from 'react';
-import { TAuthType } from '../../../types/auth';
+import { Link } from 'react-router-dom';
 import Modal from '../../UI/Modal/Modal';
 import FormAuth from '../../UI/Forms/FormAuth/FormAuth';
 import DefaultModalBlock from '../../UI/Modal/DefaultModalBlock/DefaultModalBlock';
 import { useAuth } from '../../../contexts/AuthContext';
-import { Link } from 'react-router-dom';
 import SignOutButton from '../../SignOutButton/SignOutButton';
 import cn from 'classnames';
 

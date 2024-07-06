@@ -1,5 +1,5 @@
+import { type TCharacterCardProps } from '../../types/cards';
 import { Link } from 'react-router-dom';
-import { TCharacterCardProps } from '../../types/cards';
 import ImageDummyAvatar from '../ImageDummies/ImageDummyAvatar';
 
 export default function CharacterCard({

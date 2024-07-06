@@ -1,8 +1,8 @@
+import { type TModalProps } from '../../../types/modal';
 import { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useLocation } from 'react-router-dom';
 import ModalContext from '../../../contexts/ModalContext';
-import { TModalProps } from '../../../types/modal';
 import Button from '../Buttons/Button/Button';
 
 export default function Modal({

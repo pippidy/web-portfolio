@@ -1,4 +1,4 @@
-import { TButton } from '../../../../types/ui';
+import { type TButton } from '../../../../types/ui';
 
 export default function Button({
   onClick,

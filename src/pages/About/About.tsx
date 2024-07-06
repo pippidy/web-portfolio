@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Section from '../../components/Section/Section';
 import { Link } from 'react-router-dom';
+import Section from '../../components/Section/Section';
 import Button from '../../components/UI/Buttons/Button/Button';
 
 export default function About() {

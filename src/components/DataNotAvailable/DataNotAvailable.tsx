@@ -1,4 +1,4 @@
-import { TDataNotAvailableProps } from '../../types/main';
+import { type TDataNotAvailableProps } from '../../types/main';
 
 export default function DataNotAvailable({
   text = 'No data available',

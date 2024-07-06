@@ -1,8 +1,10 @@
 import SearchBar from '../UI/SearchBar/SearchBar';
-// @ts-expect-error
-import logo from '../../assets/svg/logo.svg';
 import HeaderAuth from './HeaderAuth/HeaderAuth';
 import HeaderMenu from './HeaderMenu/HeaderMenu';
+
+// TODO: Figure such errors out
+// @ts-expect-error
+import logo from '../../assets/svg/logo.svg';
 
 export default function Header() {
   return (

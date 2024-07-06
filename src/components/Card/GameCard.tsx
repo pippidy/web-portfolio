@@ -1,5 +1,5 @@
+import { type TGameCardProps } from '../../types/cards';
 import { Link } from 'react-router-dom';
-import { TGameCardProps } from '../../types/cards';
 import ImageDummyGames from '../ImageDummies/ImageDummyDefault';
 
 // @ts-expect-error

@@ -1,3 +1,4 @@
+import { type TAuthContext, type TUser } from '../types/auth';
 import {
   useContext,
   useEffect,
@@ -7,7 +8,6 @@ import {
 } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase/firebase';
-import { TAuthContext, TUser } from '../types/auth';
 
 const AuthContext = createContext<TAuthContext>(null);
 

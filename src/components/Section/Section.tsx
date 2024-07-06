@@ -1,6 +1,6 @@
+import { type TSectionProps } from '../../types/main';
 import { useState } from 'react';
 import SectionHeader from './SectionHeader';
-import { TSectionProps } from '../../types/main';
 import cn from 'classnames';
 
 export default function Section({

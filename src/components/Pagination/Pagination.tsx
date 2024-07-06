@@ -1,6 +1,6 @@
+import { type TPaginationProps } from '../../types/pagination';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { TPaginationProps } from '../../types/pagination';
 
 function Pagination({
   pagesAmount,
@@ -8,29 +8,28 @@ function Pagination({
   length = 11, // Odd numbers look better
 }: TPaginationProps) {
   const [pagesRender, setPagesRender] = useState<JSX.Element[]>([]);
+  function fillPagesArray(
+    pagesArray: JSX.Element[],
+    page: number,
+    currentPage: number
+  ): JSX.Element[] {
+    pagesArray.push(
+      <li className="pagination__item" key={`pag_${page}`}>
+        <Link
+          onClick={() => window.scrollTo(0, 0)}
+          className={`pagination__link ${currentPage === page && 'current'}`}
+          to={`#page=${page}`}
+          title={`Go to page ${page}`}
+        >
+          {page}
+        </Link>
+      </li>
+    );
+
+    return pagesArray;
+  }
 
   useEffect(() => {
-    function fillPagesArray(
-      pagesArray: JSX.Element[],
-      page: number,
-      currentPage: number
-    ): JSX.Element[] {
-      pagesArray.push(
-        <li className="pagination__item" key={`pag_${page}`}>
-          <Link
-            onClick={() => window.scrollTo(0, 0)}
-            className={`pagination__link ${currentPage === page && 'current'}`}
-            to={`#page=${page}`}
-            title={`Go to page ${page}`}
-          >
-            {page}
-          </Link>
-        </li>
-      );
-
-      return pagesArray;
-    }
-
     function createPagination() {
       let pagesArray: JSX.Element[] = [];
 

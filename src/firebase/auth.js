@@ -1,3 +1,5 @@
+// TODO: Rewrite in TS
+
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,

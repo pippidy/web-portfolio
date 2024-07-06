@@ -1,6 +1,6 @@
+import { type TDataFull, type TUseGetDataProps } from '../types/data';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { TDataFull, TUseGetDataProps } from '../types/data';
 import { getData } from '../api/api';
 import { catchFetchError } from '../utils/utils';
 

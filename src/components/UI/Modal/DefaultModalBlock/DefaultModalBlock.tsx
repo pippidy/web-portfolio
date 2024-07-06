@@ -1,4 +1,4 @@
-import { TDefaultModalBlockProps } from '../../../../types/modal';
+import { type TDefaultModalBlockProps } from '../../../../types/modal';
 
 export default function DefaultModalBlock({
   children,

@@ -1,8 +1,8 @@
+import { type TTabsProps } from '../../../types/main';
 import { useEffect, useState } from 'react';
-import { TTabsProps } from '../../../types/main';
-import cn from 'classnames';
 import { useLocation } from 'react-router-dom';
 import Button from '../Buttons/Button/Button';
+import cn from 'classnames';
 
 export default function Tabs({ tabs, children, title = '' }: TTabsProps) {
   const [toggle, setToggle] = useState<number>(0);

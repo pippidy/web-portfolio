@@ -1,3 +1,5 @@
+import { type TError } from '../../../../types/main';
+import { type TInput } from '../../../../types/ui';
 import {
   ChangeEvent,
   useContext,
@@ -6,8 +8,6 @@ import {
   useRef,
   useState,
 } from 'react';
-import { TError } from '../../../../types/main';
-import { TInput } from '../../../../types/ui';
 import ModalContext from '../../../../contexts/ModalContext';
 import cn from 'classnames';
 
@@ -59,6 +59,7 @@ export default function InputBlock({
     }
   }
 
+  // TODO: Put label in separate component
   return (
     <div className={mainClass}>
       {/** LABEL */}

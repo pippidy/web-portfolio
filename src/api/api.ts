@@ -1,5 +1,9 @@
-import { TDataFull, TGetData, TGetDataCount } from '../types/data';
-import { TConfigAPI, TCategory } from '../types/main';
+import { type TConfigAPI, type TCategory } from '../types/main';
+import {
+  type TDataFull,
+  type TGetData,
+  type TGetDataCount,
+} from '../types/data';
 import { handleFetchResults } from '../utils/utils';
 
 const userID = 'owlnvuu4x73puzega7fmhzymfe3voy';

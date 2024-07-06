@@ -1,5 +1,5 @@
+import { type TImageGalleryProps } from '../../types/main';
 import { useState } from 'react';
-import { TImageGalleryProps } from '../../types/main';
 import SectionLoading from '../Section/SectionLoading/SectionLoading';
 import ImageSlider from '../ImageSlider/ImageSlider';
 import Modal from '../UI/Modal/Modal';

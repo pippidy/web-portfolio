@@ -1,9 +1,9 @@
+import { type TError } from '../../types/main';
 import { ChangeEvent, FormEvent, useMemo, useRef, useState } from 'react';
-import { validateForm } from '../../utils/utils';
 import { doUpdateProfile } from '../../firebase/auth';
-import { TError } from '../../types/main';
 import LoadingSimple from '../../components/UI/LoadingSimple/LoadingSimple';
 import Button from '../../components/UI/Buttons/Button/Button';
+import { validateForm } from '../../utils/utils';
 
 export default function FormUpdate({
   setter,

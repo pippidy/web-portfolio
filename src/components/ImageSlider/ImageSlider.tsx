@@ -1,6 +1,6 @@
-import { TImageSliderProps } from '../../types/main';
-import cn from 'classnames';
+import { type TImageSliderProps } from '../../types/main';
 import { Link } from 'react-router-dom';
+import cn from 'classnames';
 
 // @ts-expect-error
 import { ReactComponent as ArrowIcon } from '../../assets/svg/arrow-circle.svg';

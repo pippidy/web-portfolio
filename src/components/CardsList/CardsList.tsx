@@ -1,11 +1,11 @@
-import { TCardsListProps } from '../../types/cards';
+import { type TCardsListProps } from '../../types/cards';
 import GameCard from '../Card/GameCard';
 import CharacterCard from '../Card/CharacterCard';
 import CompanyCard from '../Card/CompanyCard';
 import SectionLoading from '../Section/SectionLoading/SectionLoading';
-import cn from 'classnames';
 import DataNotAvailable from '../DataNotAvailable/DataNotAvailable';
 import useGetData from '../../hooks/useGetData';
+import cn from 'classnames';
 
 export default function CardsList({
   apiOptions,

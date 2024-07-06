@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { type TCatalogueMenuProps, type TCategory } from '../../../types/main';
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getCategories } from '../../../api/api';
-import { TCatalogueMenuProps, TCategory } from '../../../types/main';
 import { catchFetchError } from '../../../utils/utils';
 
 export default function CatalogueMenu({
