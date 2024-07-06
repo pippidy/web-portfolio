@@ -217,8 +217,8 @@ export default function FormAuth({
           </Button>
 
           {/* ERROR */}
-          {fetchError && fetchError.status && (
-            <p className="form-auth__error">{fetchError.message}</p>
+          {fetchError?.status && (
+            <p className="form-auth__error">{fetchError?.message}</p>
           )}
 
           {/* ADDITIONAL INFO */}

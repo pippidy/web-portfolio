@@ -60,21 +60,20 @@ export default function CatalogueMenu({
             </NavLink>
           </li>
 
-          {categoriesList &&
-            categoriesList.map((item) => {
-              return (
-                <li key={item.id}>
-                  <NavLink
-                    onClick={() => window.scrollTo(0, 0)}
-                    className="catalogue-menu__link"
-                    to={`/${endpoint}/${category}/${item.id}#page=1`}
-                    title={`Browse ${item.name} category`}
-                  >
-                    {item.name}
-                  </NavLink>
-                </li>
-              );
-            })}
+          {categoriesList?.map((item) => {
+            return (
+              <li key={item.id}>
+                <NavLink
+                  onClick={() => window.scrollTo(0, 0)}
+                  className="catalogue-menu__link"
+                  to={`/${endpoint}/${category}/${item.id}#page=1`}
+                  title={`Browse ${item.name} category`}
+                >
+                  {item.name}
+                </NavLink>
+              </li>
+            );
+          })}
         </ul>
       )}
     </>

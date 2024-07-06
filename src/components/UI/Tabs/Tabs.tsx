@@ -59,24 +59,23 @@ export default function Tabs({ tabs, children, title = '' }: TTabsProps) {
       </header>
 
       <div className="tabs__holder">
-        {children &&
-          children.map((child, index) => {
-            const className = cn('tabs__content', {
-              'pos-left': index < toggle,
-              'pos-right': index > toggle,
-              displayed: toggle === index,
-            });
+        {children?.map((child, index) => {
+          const className = cn('tabs__content', {
+            'pos-left': index < toggle,
+            'pos-right': index > toggle,
+            displayed: toggle === index,
+          });
 
-            return (
-              <div
-                id={`tab_${index}`}
-                className={className}
-                key={`tabContent_${index}`}
-              >
-                {child}
-              </div>
-            );
-          })}
+          return (
+            <div
+              id={`tab_${index}`}
+              className={className}
+              key={`tabContent_${index}`}
+            >
+              {child}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

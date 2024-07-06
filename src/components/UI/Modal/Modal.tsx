@@ -21,14 +21,12 @@ export default function Modal({
   useEffect(() => setIsOpened(false), [location, setIsOpened]);
 
   useEffect(() => {
-    if (modalRef.current) {
-      if (isOpened) {
-        modalRef.current.classList.remove('animated');
-        modalRef.current.classList.add('opened');
-      } else {
-        modalRef.current && modalRef.current.classList.add('animated');
-        modalRef.current && modalRef.current.classList.remove('opened');
-      }
+    if (isOpened) {
+      modalRef?.current?.classList.remove('animated');
+      modalRef?.current?.classList.add('opened');
+    } else {
+      modalRef?.current?.classList.add('animated');
+      modalRef?.current?.classList.remove('opened');
     }
   }, [isOpened]);
 

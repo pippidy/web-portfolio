@@ -56,7 +56,7 @@ export default function ImageSlider({
             </>
           )}
 
-          {data?.map((item, index) => {
+          {data.map((item, index) => {
             const cardClass = cn('image-slider__card', {
               current: index === currentImage,
               prev: index < currentImage,
