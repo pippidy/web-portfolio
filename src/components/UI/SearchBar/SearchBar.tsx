@@ -5,12 +5,12 @@ import { getData } from '../../../api/api';
 import useOutsideClick from '../../../hooks/useOutsideClick';
 import LoadingSimple from '../LoadingSimple/LoadingSimple';
 import { catchFetchError, cutLongString } from '../../../utils/utils';
+import Button from '../Buttons/Button/Button';
 
 // @ts-expect-error
 import { ReactComponent as SearchIcon } from '../../../assets/svg/search.svg';
 // @ts-expect-error
 import { ReactComponent as CrossIcon } from '../../../assets/svg/cross.svg';
-import Button from '../Buttons/Button/Button';
 
 export default function SearchBar() {
   const [data, setData] = useState<TDataGame[] | undefined>();

@@ -26,15 +26,27 @@
     &_clickable:active {
       background-color: $color-yellow;
     }
+
+    &:has(.menu-header__submenu-icon) {
+      padding-inline: 20px;
+    }
   }
 
   &__submenu {
     position: relative;
     cursor: default;
 
-    &:hover .menu-header__submenu-holder,
-    &:focus .menu-header__submenu-holder {
-      display: block;
+    &:hover,
+    &:focus {
+      & .menu-header__submenu-holder,
+      & .menu-header__submenu-holder {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      & .menu-header__submenu-icon {
+        transform: translateY(-50%) rotate(180deg);
+      }
     }
 
     &-name {
@@ -43,7 +55,6 @@
     }
 
     &-holder {
-      display: none;
       position: absolute;
       z-index: 1;
       top: 0;
@@ -54,6 +65,9 @@
       background-color: #fff;
       border-radius: 10px;
       border: 2px solid $color-grey-dark;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity $transition-medium ease-in;
     }
 
     &-list {
@@ -68,11 +82,31 @@
       font-size: 1.8rem;
       text-transform: none;
       color: $color-grey-darker;
+      transition: color $transition-medium ease,
+        background-color $transition-medium ease;
 
       &:hover {
         color: $color-grey-dark;
         text-decoration: underline;
       }
+
+      &:active {
+        color: $color-yellow;
+      }
+
+      &:has(.active) {
+        background-color: $color-grey-dark;
+        color: #fff;
+        pointer-events: none;
+      }
+    }
+
+    &-icon {
+      position: absolute;
+      top: 50%;
+      right: -15px;
+      transform: translateY(-50%);
+      transition: transform $transition-medium ease;
     }
   }
 }

@@ -36,6 +36,7 @@
     position: relative;
     z-index: 11;
     width: 100%;
+    min-height: 41px;
     padding: 10px 15px;
     padding-left: 40px;
     padding-right: 40px;
@@ -164,6 +165,21 @@
       &::before {
         border-width: 2px;
       }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .search {
+    // TODO: I should rework it probably somehow
+    &__form {
+      &.focused {
+        width: 110%;
+      }
+    }
+
+    &__input {
+      font-size: 1.4rem;
     }
   }
 }

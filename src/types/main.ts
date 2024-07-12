@@ -106,3 +106,8 @@ export type TCatalogueMenuProps = {
   endpoint: TEndpoint;
   category: string;
 };
+
+export type THeaderSubmenuProps = {
+  title: string;
+  children: TComponentChildren[];
+};
