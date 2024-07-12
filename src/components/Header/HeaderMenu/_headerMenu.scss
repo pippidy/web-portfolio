@@ -80,8 +80,9 @@
     &-item {
       font-family: Oswald, Helvetica, sans-serif;
       font-size: 1.8rem;
-      text-transform: none;
       color: $color-grey-darker;
+      border-radius: $border-radius-smaller;
+      text-transform: none;
       transition: color $transition-medium ease,
         background-color $transition-medium ease;
 

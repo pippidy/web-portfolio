@@ -27,6 +27,7 @@ $color-blue-light: #bccbe6;
 $padding-block-main: 10px 25px;
 
 $border-radius-main: 10px;
+$border-radius-smaller: calc($border-radius-main / 2);
 
 $transition-instant: 0.1s;
 $transition-fast: 0.2s;
