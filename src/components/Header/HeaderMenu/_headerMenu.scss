@@ -67,7 +67,7 @@
       border: 2px solid $color-grey-dark;
       opacity: 0;
       pointer-events: none;
-      transition: opacity $transition-medium ease-in;
+      transition: opacity $transition-fast ease-in-out;
     }
 
     &-list {
