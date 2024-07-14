@@ -1,0 +1,50 @@
+.contacts {
+  display: flex;
+  align-items: center;
+  flex: 1 1;
+  font-size: 2rem;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: max-content;
+    margin: 0 auto;
+
+    &-item {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+
+      &-title {
+        min-width: 150px;
+        padding: 10px 20px;
+        font-family: $font-family-secondary;
+        text-align: center;
+        color: #fff;
+        background-color: $color-grey-dark;
+        border-radius: $border-radius-main;
+        outline: 3px solid $color-yellow;
+
+        &::selection {
+          background-color: $color-yellow;
+          color: $color-grey-dark;
+        }
+      }
+
+      &-content {
+        text-decoration: underline;
+        text-underline-offset: 6px;
+
+        &::selection {
+          background-color: $color-yellow;
+          color: #fff;
+        }
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

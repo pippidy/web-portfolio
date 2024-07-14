@@ -6,7 +6,7 @@ import Tabs from '../../components/UI/Tabs/Tabs';
 import ImageGallery from '../../components/ImageGallery/ImageGallery';
 import DataNotAvailable from '../../components/DataNotAvailable/DataNotAvailable';
 import ImageDummyDefault from '../../components/ImageDummies/ImageDummyDefault';
-import InfoBullet from './InfoBullet/InfoBullet';
+import InfoItem from './InfoItem/InfoItem';
 import useGetData from '../../hooks/useGetData';
 import { formatDate } from '../../utils/utils';
 
@@ -51,44 +51,44 @@ export default function GameInfo() {
                     <div className="info-page__data-holder">
                       <ul className="info-page__data-list">
                         <li>
-                          <InfoBullet name="Rating">
+                          <InfoItem name="Rating">
                             {!data[0].aggregated_rating
                               ? 'n/a'
                               : Number(data[0].aggregated_rating?.toFixed(0))}
-                          </InfoBullet>
+                          </InfoItem>
                         </li>
 
                         <li>
-                          <InfoBullet name="Release date">
+                          <InfoItem name="Release date">
                             {formatDate({
                               timestamp: data[0].first_release_date,
                             })}
-                          </InfoBullet>
+                          </InfoItem>
                         </li>
 
                         {data[0].platforms && (
                           <li>
-                            <InfoBullet name="Platforms">
+                            <InfoItem name="Platforms">
                               {data[0].platforms.map((platform, index, arr) => {
                                 if (index !== arr.length - 1) {
                                   return `${platform.abbreviation}, `;
                                 }
                                 return platform.abbreviation;
                               })}
-                            </InfoBullet>
+                            </InfoItem>
                           </li>
                         )}
 
                         {data[0].genres && (
                           <li>
-                            <InfoBullet name="Genres">
+                            <InfoItem name="Genres">
                               {data[0].genres.map((genre, index, arr) => {
                                 if (index !== arr.length - 1) {
                                   return `${genre.name}, `;
                                 }
                                 return genre.name;
                               })}
-                            </InfoBullet>
+                            </InfoItem>
                           </li>
                         )}
                       </ul>

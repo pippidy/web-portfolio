@@ -7,10 +7,11 @@
 
 // Pages
 @import './pages/InfoPages/infoPages';
-@import './pages/InfoPages/InfoBullet/infoBullet';
+@import './pages/InfoPages/InfoItem/infoItem';
 @import './pages/ErrorPages/errorPages';
 @import './pages/ProfilePage/profilePage';
 @import './pages/About/about';
+@import './pages/Contacts/contacts';
 
 // UI
 @import './components/UI/Forms/FormAuth/formAuth';

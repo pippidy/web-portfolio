@@ -8,7 +8,7 @@ import ImageDummyAvatar from '../../components/ImageDummies/ImageDummyAvatar';
 import { Gender, Species } from '../../utils/data';
 import { extractEnumData } from '../../utils/utils';
 import useGetData from '../../hooks/useGetData';
-import InfoBullet from './InfoBullet/InfoBullet';
+import InfoItem from './InfoItem/InfoItem';
 
 export default function CharacterInfo() {
   const { id: pageID } = useParams();
@@ -51,31 +51,31 @@ export default function CharacterInfo() {
                       <ul className="info-page__data-list">
                         {data[0].country_name && (
                           <li>
-                            <InfoBullet name="Country">
+                            <InfoItem name="Country">
                               {data[0].country_name}
-                            </InfoBullet>
+                            </InfoItem>
                           </li>
                         )}
 
                         {data[0].gender !== undefined && (
                           <li>
-                            <InfoBullet name="Gender">
+                            <InfoItem name="Gender">
                               {extractEnumData({
                                 id: data[0].gender + 1,
                                 enumObject: Gender,
                               })}
-                            </InfoBullet>
+                            </InfoItem>
                           </li>
                         )}
 
                         {data[0].species && (
                           <li>
-                            <InfoBullet name="Species">
+                            <InfoItem name="Species">
                               {extractEnumData({
                                 id: data[0].species,
                                 enumObject: Species,
                               })}
-                            </InfoBullet>
+                            </InfoItem>
                           </li>
                         )}
                       </ul>

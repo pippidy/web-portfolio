@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import DataNotAvailable from '../../components/DataNotAvailable/DataNotAvailable';
 import ImageDummyAvatar from '../../components/ImageDummies/ImageDummyAvatar';
 import Tabs from '../../components/UI/Tabs/Tabs';
-import InfoBullet from '../InfoPages/InfoBullet/InfoBullet';
+import InfoItem from '../InfoPages/InfoItem/InfoItem';
 
 // @ts-expect-error
 import { ReactComponent as IconAvatar } from '../../assets/svg/avatar.svg';
@@ -53,13 +53,13 @@ export default function Profile() {
                 <ul className="info-page__data-list">
                   {username && (
                     <li>
-                      <InfoBullet name="Name">{username}</InfoBullet>
+                      <InfoItem name="Name">{username}</InfoItem>
                     </li>
                   )}
 
                   {email && (
                     <li>
-                      <InfoBullet name="Email">{email}</InfoBullet>
+                      <InfoItem name="Email">{email}</InfoItem>
                     </li>
                   )}
                 </ul>

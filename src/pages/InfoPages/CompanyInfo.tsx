@@ -6,7 +6,7 @@ import CardsList from '../../components/CardsList/CardsList';
 import Tabs from '../../components/UI/Tabs/Tabs';
 import DataNotAvailable from '../../components/DataNotAvailable/DataNotAvailable';
 import ImageDummyDefault from '../../components/ImageDummies/ImageDummyDefault';
-import InfoBullet from './InfoBullet/InfoBullet';
+import InfoItem from './InfoItem/InfoItem';
 import useGetData from '../../hooks/useGetData';
 
 export default function CompanyInfo() {
@@ -50,24 +50,24 @@ export default function CompanyInfo() {
                     <div className="info-page__data-holder">
                       <ul className="info-page__data-list">
                         <li>
-                          <InfoBullet name="Foundation date">
+                          <InfoItem name="Foundation date">
                             {formatDate({ timestamp: data[0].start_date })}
-                          </InfoBullet>
+                          </InfoItem>
                         </li>
 
                         {data[0].country && (
                           <li>
-                            <InfoBullet name="Country">
+                            <InfoItem name="Country">
                               {getCountryFromISO({
                                 isoCode: data[0].country,
                               })}
-                            </InfoBullet>
+                            </InfoItem>
                           </li>
                         )}
 
                         {data[0].websites && (
                           <li>
-                            <InfoBullet name="Website">
+                            <InfoItem name="Website">
                               <a
                                 href={data[0].websites[0].url}
                                 target="_blank"
@@ -75,7 +75,7 @@ export default function CompanyInfo() {
                               >
                                 {data[0].websites[0].url}
                               </a>
-                            </InfoBullet>
+                            </InfoItem>
                           </li>
                         )}
                       </ul>

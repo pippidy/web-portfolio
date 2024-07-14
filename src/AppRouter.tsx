@@ -20,6 +20,7 @@ import NotFound from './pages/ErrorPages/NotFound';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import AuthError from './pages/ErrorPages/AuthError';
 import About from './pages/About/About';
+import Contacts from './pages/Contacts/Contacts';
 
 const AppRouter = createBrowserRouter(
   createRoutesFromElements(
@@ -27,8 +28,8 @@ const AppRouter = createBrowserRouter(
       <Route index element={<Home />} />
 
       <Route path="profile" element={<ProfilePage />} />
-
       <Route path="about" element={<About />} />
+      <Route path="contacts" element={<Contacts />} />
 
       <Route path="search" element={<Search />} />
 

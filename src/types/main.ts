@@ -111,3 +111,10 @@ export type THeaderSubmenuProps = {
   title: string;
   children: TComponentChildren[];
 };
+
+export type TInfoItemProps = { name: string; children: TComponentChildren };
+
+export type TContactsItem = {
+  title: string;
+  children: TComponentChildren;
+};

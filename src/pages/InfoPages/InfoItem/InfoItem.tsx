@@ -1,12 +1,6 @@
-import { type TComponentChildren } from '../../../types/main';
+import { type TInfoItemProps } from '../../../types/main';
 
-export default function InfoBullet({
-  name,
-  children,
-}: {
-  name: string;
-  children: TComponentChildren;
-}) {
+export default function InfoItem({ name, children }: TInfoItemProps) {
   // TODO: Remake it with grid for adaptivity and probably move it to the UI folder
   return (
     <div className="info-bullet">

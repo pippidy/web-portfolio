@@ -2,6 +2,7 @@ p::selection,
 h1::selection,
 h2::selection,
 h3::selection {
+  // TODO: Use scss functions to make it more universal
   background-color: $color-yellow;
   color: #fff;
 }
