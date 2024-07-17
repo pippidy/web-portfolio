@@ -8,7 +8,7 @@ export default function RootLayout() {
       <Header />
 
       <h1 className="title-main block-default_shadowDown">
-        Browse our collections
+        Browse our database
       </h1>
 
       <main className="main">
