@@ -36,14 +36,15 @@ export default function About() {
           </p>
         ) : (
           <p>
-            Сайт сделан исключительно для демонстрации навыков. Фичи будут
-            добавляться со временем, параллельно занимаюсь рефакторингом и
-            оптимизацией. Пока что без мобильной версии(min-width: 768px).
+            Сайт сделан для демонстрации навыков. Фичи будут добавляться со
+            временем, параллельно занимаюсь рефакторингом и оптимизацией. Пока
+            что без мобильной версии(min-width: 768px).
           </p>
         )}
 
         <div>
           <h3 className="info-article__title">Github:</h3>
+
           <p>
             <a
               className="link-default"
@@ -62,21 +63,27 @@ export default function About() {
             <li>
               <p>React v18(create-react-app)</p>
             </li>
+
             <li>
               <p>React Router</p>
             </li>
+
             <li>
               <p>TypeScript</p>
             </li>
+
             <li>
               <p>SCSS</p>
             </li>
+
             <li>
               <p>Git</p>
             </li>
+
             <li>
               <p>IGDB API</p>
             </li>
+
             <li>
               <p>Adobe Illustrator</p>
             </li>

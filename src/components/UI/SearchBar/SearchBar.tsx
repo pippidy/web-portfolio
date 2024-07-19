@@ -22,7 +22,7 @@ export default function SearchBar() {
   const location = useLocation();
   const nav = useNavigate();
 
-  // Reset the form visually when clicked outside it. Simple onBlur for input didn't work in this case
+  // Reset form visually when clicked outside it. Simple onBlur for input didn't work in this case
   useOutsideClick(() => {
     formRef.current?.classList.remove('focused');
     setIsSearching(false);
