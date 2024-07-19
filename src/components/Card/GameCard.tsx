@@ -1,10 +1,10 @@
 import { type TGameCardProps } from '../../types/cards';
 import { Link } from 'react-router-dom';
 import ImageDummyGames from '../ImageDummies/ImageDummyDefault';
+import ButtonLike from '../UI/Buttons/ButtonLike/ButtonLike';
 
 // @ts-expect-error
 import { ReactComponent as CalendarIcon } from '../../assets/svg/calendar.svg';
-import ButtonLike from '../UI/Buttons/ButtonLike/ButtonLike';
 
 export default function GameCard({
   id,

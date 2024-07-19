@@ -9,7 +9,7 @@ export default function CatalogueMenu({
   endpoint,
 }: TCatalogueMenuProps) {
   const [categoriesList, setCategoriesList] = useState<TCategory[]>();
-  const [loading, setLoadingMenu] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -22,7 +22,7 @@ export default function CatalogueMenu({
       .catch((error) => {
         catchFetchError(error);
       })
-      .finally(() => setLoadingMenu(false));
+      .finally(() => setLoading(false));
 
     return () => {
       controller.abort();
