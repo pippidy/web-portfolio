@@ -8,13 +8,13 @@ export default function SliderCard({
   className,
   imageSize,
   text,
-  data,
+  imageID,
 }: TSliderCardProps) {
   return (
     <div key={`slider-card_${index}`} className={className}>
       <a
         className="image-slider__link"
-        href={`//images.igdb.com/igdb/image/upload/t_1080p/${data.image_id}.jpg`}
+        href={`//images.igdb.com/igdb/image/upload/t_1080p/${imageID}.jpg`}
         target="_blank"
         rel="noreferrer"
         title="Open full size image"
@@ -22,7 +22,7 @@ export default function SliderCard({
         <ZoomIcon />
         <img
           className="image-slider__image"
-          src={`//images.igdb.com/igdb/image/upload/t_${imageSize}/${data.image_id}.jpg`}
+          src={`//images.igdb.com/igdb/image/upload/t_${imageSize}/${imageID}.jpg`}
           alt=""
           loading="lazy"
         />

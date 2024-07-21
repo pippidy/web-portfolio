@@ -4,6 +4,8 @@ import SectionLoading from '../Section/SectionLoading/SectionLoading';
 import ImageSlider from '../ImageSlider/ImageSlider';
 import Modal from '../UI/Modal/Modal';
 import useGetData from '../../hooks/useGetData';
+import DataNotAvailable from '../DataNotAvailable/DataNotAvailable';
+import GalleryCard from './GalleryCard';
 
 export default function ImageGallery({
   apiOptions,
@@ -29,28 +31,18 @@ export default function ImageGallery({
         <ul className="image-gallery">
           {data.map((item, index) => {
             return (
-              <li
+              <GalleryCard
+                index={index}
                 onClick={() => openImage(index)}
-                key={`image-gallery-card_${index}`}
-                className="image-gallery__card card-flying cursor-pointer"
-              >
-                <img
-                  className="image-gallery__image"
-                  src={`//images.igdb.com/igdb/image/upload/t_${imageSize}/${item.image_id}.jpg`}
-                  alt=""
-                  loading="lazy"
-                />
-                <span className="image-gallery__text">{`${text} №${
-                  index + 1
-                }`}</span>
-              </li>
+                imageID={item.image_id}
+                imageSize={imageSize}
+                text={text}
+              />
             );
           })}
         </ul>
       ) : (
-        <div className="data-not-available">
-          <h3>No data available</h3>
-        </div>
+        <DataNotAvailable />
       )}
 
       <Modal

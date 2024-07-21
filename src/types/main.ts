@@ -124,5 +124,9 @@ export type TSliderCardProps = {
   className: string;
   imageSize: string;
   text: string;
-  data: TDataImage;
+  imageID: string;
+};
+
+export type TGalleryCardProps = Omit<TSliderCardProps, 'className'> & {
+  onClick: (index: number) => void;
 };

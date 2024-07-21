@@ -67,7 +67,7 @@ export default function ImageSlider({
                 className={cardClass}
                 imageSize={imageSize}
                 text={text}
-                data={item}
+                imageID={item.image_id}
               />
             );
           })}
