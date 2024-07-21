@@ -1,11 +1,9 @@
 import { type TImageSliderProps } from '../../types/main';
-import { Link } from 'react-router-dom';
+import SliderCard from './SliderCard';
 import cn from 'classnames';
 
 // @ts-expect-error
 import { ReactComponent as ArrowIcon } from '../../assets/svg/arrow-circle.svg';
-// @ts-expect-error
-import { ReactComponent as ZoomIcon } from '../../assets/svg/zoom.svg';
 
 export default function ImageSlider({
   data,
@@ -64,27 +62,13 @@ export default function ImageSlider({
             });
 
             return (
-              <div key={`slider-card_${index}`} className={cardClass}>
-                <Link
-                  className="image-slider__link"
-                  to={`//images.igdb.com/igdb/image/upload/t_1080p/${item.image_id}.jpg`}
-                  target="_blank"
-                  rel="noreferrer"
-                  title="Open full size image"
-                >
-                  <ZoomIcon />
-                  <img
-                    className="image-slider__image"
-                    src={`//images.igdb.com/igdb/image/upload/t_${imageSize}/${item.image_id}.jpg`}
-                    alt=""
-                    loading="lazy"
-                  />
-                </Link>
-
-                <span className="image-slider__text">{`${text} №${
-                  index + 1
-                }`}</span>
-              </div>
+              <SliderCard
+                index={index}
+                className={cardClass}
+                imageSize={imageSize}
+                text={text}
+                data={item}
+              />
             );
           })}
         </div>

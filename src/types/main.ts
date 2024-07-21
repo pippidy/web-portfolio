@@ -1,5 +1,5 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { TDataFull } from './data';
+import React, { type Dispatch, type SetStateAction } from 'react';
+import { type TDataImage } from './data';
 
 export type TApiOptions = {
   endpoint: TEndpoint;
@@ -89,7 +89,7 @@ export type TImageGalleryProps = {
 };
 
 export type TImageSliderProps = {
-  data: TDataFull[] | undefined;
+  data: TDataImage[] | undefined;
   imageSize: string;
   text: string;
   currentImage: number;
@@ -117,4 +117,12 @@ export type TInfoItemProps = { name: string; children: TComponentChildren };
 export type TContactsItem = {
   title: string;
   children: TComponentChildren;
+};
+
+export type TSliderCardProps = {
+  index: number;
+  className: string;
+  imageSize: string;
+  text: string;
+  data: TDataImage;
 };
