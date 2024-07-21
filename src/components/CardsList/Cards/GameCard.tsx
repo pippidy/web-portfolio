@@ -20,6 +20,7 @@ export default function GameCard({
     <div className="card card-flying">
       {cardSize !== 'mini' && (
         <header className="card__header" aria-hidden="true">
+          {/* RATING */}
           <div className="card__rating" title="Aggregated rating">
             R:{' '}
             {aggregated_rating ? (
@@ -29,10 +30,12 @@ export default function GameCard({
             )}
           </div>
 
+          {/* LIKE BUTTON */}
           <div className="card__like">
             <ButtonLike />
           </div>
 
+          {/* RELEASE DATE */}
           {cardSize !== 'compact' && (
             <div className="card__date" title="Release date">
               <CalendarIcon
