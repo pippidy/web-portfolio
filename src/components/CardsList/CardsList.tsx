@@ -1,7 +1,7 @@
 import { type TCardsListProps } from '../../types/cards';
-import GameCard from '../Card/GameCard';
-import CharacterCard from '../Card/CharacterCard';
-import CompanyCard from '../Card/CompanyCard';
+import GameCard from './Cards/GameCard';
+import CharacterCard from './Cards/CharacterCard';
+import CompanyCard from './Cards/CompanyCard';
 import SectionLoading from '../Section/SectionLoading/SectionLoading';
 import DataNotAvailable from '../DataNotAvailable/DataNotAvailable';
 import useGetData from '../../hooks/useGetData';
