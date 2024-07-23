@@ -1,46 +1,48 @@
-# Getting Started with Create React App
+# REACT v18 ПОРТФОЛИО
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## ИНТРО
 
-## Available Scripts
+Проект представляет собой SPA на React 18(Create React App + TypeScript + SCSS) с использованием публичного IGDB API. Не использовал готовых компонентов(кроме некоторых utility-библиотек), стилей или помощи от ИИ-чатов. Дизайн тоже набросал сам по ходу работы. Стараюсь реализовать все типовые задачи, встречающиеся на коммерческих проектах, например: слайдер, табы, пагинация, роутинг, модалки и т.д. Минимальная ширина экрана 768px.
 
-In the project directory, you can run:
+## АВТОРИЗАЦИЯ
 
-### `npm start`
+Авторизация основана на Firebase. Все настройки и нужные функции хранятся в `/src/firebase`. Данные о пользователе прокидываются на все страницы через контекст `AuthContext`. В профиле пользователя можно обновить имя и аватарку. Эта страница перенаправляет неавторизованного пользователя на страницу с ошибкой `AuthError.tsx`.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## РОУТИНГ
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Роутинг построен на React-router-dom v6. Все настройки в `/AppRouter.tsx`. Есть страница 404.
 
-### `npm test`
+## API.TS
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### getData()
 
-### `npm run build`
+Промис, который создаёт тело запроса из пришедших аргументов и отправляет на сервер. Опциональная переменная signal используется для отмены запроса.
+Пример отправляемой строки: `fields name,cover.image_id,videos,screenshots,aggregated_rating; limit 6; sort first_release_date desc; where aggregated_rating > 0;`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### getDataCount()
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Промис для получения количества элементов по выбранному эндпоинту с нужными настройками фильтрации. Пример тела запроса: `where genre = 2`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### getCategories()
 
-### `npm run eject`
+Получение названий и id категорий.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## HOOKS
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### useGetData()
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Получает и возвращает данные с сервера. Также возвращает индикатор загрузки и объект с ошибкой `TError`. Используется `AbortController` для сброса неактуальных запросов.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### useOutsideClick()
 
-## Learn More
+Простой хук для отслеживания клика за пределами переданного элемента.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### usePaginationData
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Подготавливает и возвращает данные для пагинации: кол-во страниц и номер текущей страницы, добытый из хэша. Для подсчёта страниц получаем кол-во элементов из базы данных через `getDataCount` и делим с округлением на кол-во элементов на одной странице(переменная `fetchLimit`, по умолчанию равна 100).
+
+## МОДАЛЬНЫЕ ОКНА
+
+Модальные окна вставляются через портал в `body` и имеют свой контекст `ModalContext`, который пробрасывает внутрь переменную `isOpened`. Чтобы получить стандартное окно, содержимое модалки можно обернуть в `DefaultModalBlock`.
+
+## ПОИСК

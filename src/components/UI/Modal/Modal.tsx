@@ -45,6 +45,7 @@ export default function Modal({
                   title="Close modal"
                 ></Button>
               </div>
+
               {children}
             </div>
           </div>

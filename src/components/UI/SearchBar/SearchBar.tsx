@@ -1,11 +1,12 @@
 import { type TDataGame } from '../../../types/data';
 import { FormEvent, useCallback, useEffect, useRef, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { getData } from '../../../api/api';
 import useOutsideClick from '../../../hooks/useOutsideClick';
 import LoadingSimple from '../LoadingSimple/LoadingSimple';
-import { catchFetchError, cutLongString } from '../../../utils/utils';
+import { catchFetchError } from '../../../utils/utils';
 import Button from '../Buttons/Button/Button';
+import SearchBarResults from './SearchBarResults';
 
 // @ts-expect-error
 import { ReactComponent as SearchIcon } from '../../../assets/svg/search.svg';
@@ -50,7 +51,7 @@ export default function SearchBar() {
             endpoint: 'games',
             search: query,
             fields: 'name,cover.url',
-            limit: 5,
+            limit: 10,
           },
         })
           .then((data) => {
@@ -81,6 +82,7 @@ export default function SearchBar() {
     formRef.current?.classList.remove('focused');
   }, [location, onReset]);
 
+  // TODO: Make custom hook
   // Sending request only when user stopped typing
   useEffect(() => {
     const delayDebounce = setTimeout(() => {
@@ -147,29 +149,7 @@ export default function SearchBar() {
 
           <div className={`search__results ${isSearching ? 'active' : ''}`}>
             {data && data.length > 0 ? (
-              <ul className="search__results-list">
-                {data.map((item, index) => {
-                  return (
-                    <li key={`search_${index}`}>
-                      <Link
-                        className="search__results-link"
-                        to={`game/${item.id}`}
-                        title={item.name}
-                        aria-label={`Info page for game ${item.name}`}
-                      >
-                        {item.cover && (
-                          <img
-                            src={item.cover.url}
-                            alt={`Search preview for ${item.name}`}
-                          />
-                        )}
-                        {item.name &&
-                          cutLongString({ string: item.name, length: 45 })}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
+              <SearchBarResults data={data} />
             ) : (
               !isLoading && (
                 <ul className="search__results-list search__results-list_not-found">

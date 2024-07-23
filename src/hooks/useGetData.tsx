@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getData } from '../api/api';
 import { catchFetchError } from '../utils/utils';
+import { TError } from '../types/main';
 
 export default function useGetData({
   endpoint,
@@ -16,7 +17,7 @@ export default function useGetData({
 }: TUseGetDataProps) {
   const [data, setData] = useState<TDataFull[]>();
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState();
+  const [error, setError] = useState<TError>();
   const location = useLocation();
 
   useEffect(() => {
