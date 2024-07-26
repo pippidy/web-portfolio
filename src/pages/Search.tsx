@@ -4,7 +4,7 @@ import CardsList from '../components/CardsList/CardsList';
 
 export default function Search() {
   const { hash } = useLocation();
-  const query = hash.substring(1);
+  const query = hash.substring(1).replace('%20', ' ');
 
   return (
     <Section title="Search results">

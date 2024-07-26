@@ -1,12 +1,10 @@
-import { type TDataGame } from '../../../types/data';
 import { FormEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getData } from '../../../api/api';
 import useOutsideClick from '../../../hooks/useOutsideClick';
 import LoadingSimple from '../LoadingSimple/LoadingSimple';
-import { catchFetchError } from '../../../utils/utils';
 import Button from '../Buttons/Button/Button';
 import SearchBarResults from './SearchBarResults';
+import useSearch from '../../../hooks/useSearch';
 
 // @ts-expect-error
 import { ReactComponent as SearchIcon } from '../../../assets/svg/search.svg';
@@ -14,83 +12,44 @@ import { ReactComponent as SearchIcon } from '../../../assets/svg/search.svg';
 import { ReactComponent as CrossIcon } from '../../../assets/svg/cross.svg';
 
 export default function SearchBar() {
-  const [data, setData] = useState<TDataGame[] | undefined>();
-  const [searchQuery, setSearchQuery] = useState('');
-  const [isSearching, setIsSearching] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [query, setQuery] = useState('');
+  const { data, setData, isSearching, setIsSearching, isLoading, error } =
+    useSearch({ query: query });
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const location = useLocation();
   const nav = useNavigate();
 
-  // Reset form visually when clicked outside it. Simple onBlur for input didn't work in this case
+  // Reset form visually when clicked outside it. Simple onBlur for input didn't work in this particular case
   useOutsideClick(() => {
     formRef.current?.classList.remove('focused');
-    setIsSearching(false);
   }, formRef);
 
   // Redirecting to game page on submit
   function onSubmit(e: FormEvent) {
     e.preventDefault();
-    if (searchQuery) nav(`/search#${searchQuery}`);
+    if (query) nav(`/search#${query}`);
   }
 
-  // Initializing search by resetting current data and sending new request if needed
-  // You're able to reset search by passing an empty string
-  function initSearch(query: string) {
-    setData(undefined);
-
-    if (query.length > 0) {
-      setIsSearching(true);
-
-      if (query.length > 2) {
-        setIsLoading(true);
-
-        getData({
-          apiOptions: {
-            endpoint: 'games',
-            search: query,
-            fields: 'name,cover.url',
-            limit: 10,
-          },
-        })
-          .then((data) => {
-            setData(data);
-          })
-          .catch((error) => {
-            catchFetchError(error);
-          })
-          .finally(() => setIsLoading(false));
-      }
-    } else {
-      setIsSearching(false);
-    }
+  function onFocus() {
+    formRef.current?.classList.add('focused');
   }
 
-  // Resetting search proccess and clearing the input
   const onReset = useCallback(() => {
-    initSearch('');
+    setData(undefined);
+    setIsSearching(false);
 
     if (inputRef.current) {
       inputRef.current.value = '';
     }
-  }, []);
+  }, [setData, setIsSearching]);
 
   // Resetting search field and form on page change
   useEffect(() => {
     onReset();
     formRef.current?.classList.remove('focused');
+    inputRef.current?.blur();
   }, [location, onReset]);
-
-  // TODO: Make custom hook
-  // Sending request only when user stopped typing
-  useEffect(() => {
-    const delayDebounce = setTimeout(() => {
-      initSearch(searchQuery);
-    }, 300);
-
-    return () => clearTimeout(delayDebounce);
-  }, [searchQuery]);
 
   return (
     <div className="search">
@@ -101,15 +60,12 @@ export default function SearchBar() {
       >
         <div className="search__inner">
           <label>
-            <span className="visually-hidden">game search</span>
+            <span className="visually-hidden">search game</span>
 
             <input
               ref={inputRef}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              onFocus={(e) => {
-                formRef.current?.classList.add('focused');
-                initSearch(e.target.value);
-              }}
+              onChange={(e) => setQuery(e.target.value)}
+              onFocus={() => onFocus()}
               type="text"
               className="search__input"
               placeholder="Search games..."
@@ -134,6 +90,7 @@ export default function SearchBar() {
           <Button
             onClick={() => {
               onReset();
+
               if (inputRef.current) {
                 inputRef.current.focus();
               }
@@ -151,11 +108,19 @@ export default function SearchBar() {
             {data && data.length > 0 ? (
               <SearchBarResults data={data} />
             ) : (
-              !isLoading && (
+              !isLoading &&
+              !error && (
                 <ul className="search__results-list search__results-list_not-found">
                   <li>No games found</li>
                 </ul>
               )
+            )}
+
+            {error && (
+              <ul className="search__results-list search__results-list_error">
+                <li>{error.message}</li>
+                <li>Please, try again!</li>
+              </ul>
             )}
           </div>
         </div>

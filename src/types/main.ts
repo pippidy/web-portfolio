@@ -130,3 +130,8 @@ export type TSliderCardProps = {
 export type TGalleryCardProps = Omit<TSliderCardProps, 'className'> & {
   onClick: (index: number) => void;
 };
+
+export type TUseSearchProps = {
+  query: string;
+  limit?: number;
+};

@@ -18,8 +18,8 @@ export function handleFetchResults(res: Response) {
 export function catchFetchError(error: TError, callback?: Function) {
   const errorObj = {
     status: true,
-    code: error.code,
-    message: error.message,
+    code: typeof error === 'string' ? '' : error.code,
+    message: typeof error === 'string' ? error : error.message,
   };
 
   if (callback) {
