@@ -4,13 +4,13 @@ import { useLocation } from 'react-router-dom';
 import Button from '../Buttons/Button/Button';
 import cn from 'classnames';
 
-export default function Tabs({ tabs, children, title = '' }: TTabsProps) {
-  const [toggle, setToggle] = useState<number>(0);
+export default function Tabs({ tabs, title = '', children }: TTabsProps) {
+  const [active, setActive] = useState<number>(0);
   const location = useLocation();
 
   // Switch to the first tab on page change
   useEffect(() => {
-    setToggle(0);
+    setActive(0);
   }, [location]);
 
   function toggleTab(id: number) {
@@ -18,7 +18,7 @@ export default function Tabs({ tabs, children, title = '' }: TTabsProps) {
     document.body.classList.add('overflow-hidden'); // To fix bug with scroll jumping
 
     // Animation changes sides depending on tab index
-    if (id < toggle || id === 0) {
+    if (id < active || id === 0) {
       activeTabElement?.classList.add('move-out_right');
     } else {
       activeTabElement?.classList.add('move-out_left');
@@ -27,8 +27,8 @@ export default function Tabs({ tabs, children, title = '' }: TTabsProps) {
     document.querySelector(`#tab_${id}`)?.classList.add('displayed');
 
     setTimeout(() => {
-      setToggle(id);
-      document.body.classList.remove('overflow-hidden');
+      setActive(id);
+      document.body.classList.remove('overflow-hidden'); // To fix bug with scroll jumping
     }, 200);
   }
 
@@ -39,7 +39,7 @@ export default function Tabs({ tabs, children, title = '' }: TTabsProps) {
         <ul className="tabs__menu" role="tablist">
           {tabs.map((tabName, index) => {
             const className = cn('tabs__menu-button', {
-              current: toggle === index,
+              current: active === index,
             });
 
             return (
@@ -61,9 +61,9 @@ export default function Tabs({ tabs, children, title = '' }: TTabsProps) {
       <div className="tabs__holder">
         {children?.map((child, index) => {
           const className = cn('tabs__content', {
-            'pos-left': index < toggle,
-            'pos-right': index > toggle,
-            displayed: toggle === index,
+            'pos-left': index < active,
+            'pos-right': index > active,
+            displayed: active === index,
           });
 
           return (

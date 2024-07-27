@@ -60,8 +60,8 @@ export type TCutLongString = {
 
 export type TTabsProps = {
   tabs: string[];
-  children?: TComponentChildren[];
   title?: string | null | undefined;
+  children?: TComponentChildren[];
 };
 
 export type TDataNotAvailableProps = {
