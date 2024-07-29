@@ -11,7 +11,7 @@ export default function SliderCard({
   imageID,
 }: TSliderCardProps) {
   return (
-    <div key={`slider-card_${index}`} className={className}>
+    <div className={className}>
       <a
         className="image-slider__link"
         href={`//images.igdb.com/igdb/image/upload/t_1080p/${imageID}.jpg`}

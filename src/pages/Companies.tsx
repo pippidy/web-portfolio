@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import CardsList from '../components/CardsList/CardsList';
 import Pagination from '../components/Pagination/Pagination';
 import Section from '../components/Section/Section';
-import usePaginationData from '../hooks/usePaginationData';
+import usePagesAmount from '../hooks/usePagesAmount';
 
 export default function Companies() {
   const nav = useNavigate();
@@ -11,11 +11,15 @@ export default function Companies() {
   const fetchLimit = 102;
 
   // Preparing data for pagination
-  const { pagesAmount, currentPage } = usePaginationData({
+  const { pagesAmount, currentPage } = usePagesAmount({
     fetchLimit: fetchLimit,
     endpoint: 'companies',
     pageID: pageID,
   });
+
+  const pagination = (
+    <Pagination pagesAmount={pagesAmount} currentPage={currentPage} />
+  );
 
   // Redirecting if page is non-existent
   useEffect(() => {
@@ -25,10 +29,6 @@ export default function Companies() {
       nav(`/characters#page=1`);
     }
   }, [nav, pagesAmount, currentPage]);
-
-  const pagination = (
-    <Pagination pagesAmount={pagesAmount} currentPage={currentPage} />
-  );
 
   return (
     <Section title="Companies">

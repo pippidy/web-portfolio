@@ -4,17 +4,18 @@ import { Link } from 'react-router-dom';
 
 function Pagination({
   pagesAmount,
+  pagesLimit = 11, // Odd numbers look better
   currentPage,
-  length = 11, // Odd numbers look better
 }: TPaginationProps) {
   const [pagesRender, setPagesRender] = useState<JSX.Element[]>([]);
+
   function fillPagesArray(
     pagesArray: JSX.Element[],
     page: number,
     currentPage: number
   ): JSX.Element[] {
     pagesArray.push(
-      <li className="pagination__item" key={`pag_${page}`}>
+      <li className="pagination__item" key={`page_${page}`}>
         <Link
           onClick={() => window.scrollTo(0, 0)}
           className={`pagination__link ${currentPage === page && 'current'}`}
@@ -30,51 +31,43 @@ function Pagination({
   }
 
   useEffect(() => {
-    function createPagination() {
-      let pagesArray: JSX.Element[] = [];
+    let pagesArray: JSX.Element[] = [];
 
-      if (currentPage < length) {
-        // First chunk of pages
-        for (let i = 1; i <= length; i++) {
-          if (i > pagesAmount) break;
-          fillPagesArray(pagesArray, i, currentPage);
-        }
-      } else if (currentPage >= pagesAmount) {
-        // Last chunk of pages
-        for (let i = currentPage - (length - 1); i <= pagesAmount; i++) {
-          fillPagesArray(pagesArray, i, currentPage);
-        }
-      } else {
-        // Middle chunk of pages
-        const halfLength = Math.floor(length / 2);
-        const isLengthOdd = length % 2 !== 0;
-        const leftSide = isLengthOdd ? halfLength : halfLength - 1; // Amount of pages before current
-        const rightSide = halfLength; // Amount of pages after current
-
-        for (
-          let i = currentPage - leftSide;
-          i <= currentPage + rightSide;
-          i++
-        ) {
-          fillPagesArray(pagesArray, i, currentPage);
-        }
+    if (currentPage < pagesLimit) {
+      // First chunk of pages
+      for (let i = 1; i <= pagesLimit; i++) {
+        if (i > pagesAmount) break;
+        fillPagesArray(pagesArray, i, currentPage);
       }
+    } else if (currentPage >= pagesAmount - (pagesLimit - 2)) {
+      // Last chunk of pages
+      for (let i = pagesAmount - (pagesLimit - 1); i <= pagesAmount; i++) {
+        fillPagesArray(pagesArray, i, currentPage);
+      }
+    } else {
+      // Middle chunk of pages
+      const halfLength = Math.floor(pagesLimit / 2);
+      const isLengthOdd = pagesLimit % 2 !== 0;
+      const leftSide = isLengthOdd ? halfLength : halfLength - 1; // Amount of pages before current
+      const rightSide = halfLength; // Amount of pages after current
 
-      setPagesRender(pagesArray);
+      for (let i = currentPage - leftSide; i <= currentPage + rightSide; i++) {
+        fillPagesArray(pagesArray, i, currentPage);
+      }
     }
 
-    createPagination();
-  }, [currentPage, pagesAmount, length]);
+    setPagesRender(pagesArray);
+  }, [currentPage, pagesAmount, pagesLimit]);
 
   return (
     <ul className="pagination">
-      {/* First and Prev links */}
-      {pagesAmount > length && (
+      {pagesAmount > pagesLimit && (
         <>
-          <li className="pagination__item" key="pag_first">
+          {/* 'FIRST' LINK */}
+          <li className="pagination__item" key="page_first">
             <Link
               className={`pagination__link ${
-                currentPage < length ? 'inactive' : ''
+                currentPage < pagesLimit ? 'inactive' : ''
               }`}
               to={`#page=${1}`}
               title="Go to the first page"
@@ -83,7 +76,8 @@ function Pagination({
             </Link>
           </li>
 
-          <li className="pagination__item" key="pag_prev">
+          {/* 'PREV' LINK */}
+          <li className="pagination__item" key="page_prev">
             <Link
               className={`pagination__link ${
                 currentPage === 1 ? 'inactive' : ''
@@ -97,13 +91,13 @@ function Pagination({
         </>
       )}
 
-      {/* Pages */}
+      {/* PAGES */}
       {pagesRender.length > 0 ? pagesRender.map((page) => page) : ''}
 
-      {/* Last and Next links */}
-      {pagesAmount > 10 && (
+      {pagesAmount > pagesLimit && (
         <>
-          <li className="pagination__item" key="pag_next">
+          {/* 'NEXT' LINK */}
+          <li className="pagination__item" key="page_next">
             <Link
               className={`pagination__link ${
                 currentPage === pagesAmount ? 'inactive' : ''
@@ -115,10 +109,11 @@ function Pagination({
             </Link>
           </li>
 
-          <li className="pagination__item" key="pag_last">
+          {/* 'LAST' LINK */}
+          <li className="pagination__item" key="page_last">
             <Link
               className={`pagination__link ${
-                currentPage === pagesAmount ? 'inactive' : ''
+                currentPage >= pagesAmount - (pagesLimit - 2) ? 'inactive' : ''
               }`}
               to={`#page=${pagesAmount}`}
               title="Go to the last page"

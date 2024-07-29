@@ -33,6 +33,7 @@ export default function ImageGallery({
             return (
               <GalleryCard
                 index={index}
+                key={`image-gallery-card_${index}`}
                 onClick={() => openImage(index)}
                 imageID={item.image_id}
                 imageSize={imageSize}

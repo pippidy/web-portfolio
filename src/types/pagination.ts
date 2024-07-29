@@ -3,8 +3,8 @@ import { TEndpoint } from './main';
 
 export type TPaginationProps = {
   pagesAmount: number;
+  pagesLimit?: number;
   currentPage: number;
-  length?: number;
 };
 
 export type TUsePaginationData = {

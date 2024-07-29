@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Section from '../Section/Section';
 import CardsList from '../CardsList/CardsList';
 import Pagination from '../Pagination/Pagination';
-import usePaginationData from '../../hooks/usePaginationData';
+import usePagesAmount from '../../hooks/usePagesAmount';
 import CatalogueMenu from './CatalogueMenu/CatalogueMenu';
 
 export default function Catalogue({
@@ -15,11 +15,15 @@ export default function Catalogue({
   const { id: pageID } = useParams();
 
   // Preparing data for pagination
-  const { pagesAmount, currentPage } = usePaginationData({
+  const { pagesAmount, currentPage } = usePagesAmount({
     endpoint: endpoint,
     pageID: pageID,
     dataFilter: pageID === 'all' ? '' : `where ${category} = ${pageID}`,
   });
+
+  const pagination = (
+    <Pagination pagesAmount={pagesAmount} currentPage={currentPage} />
+  );
 
   const nav = useNavigate();
   const fetchLimit = 100;
@@ -32,10 +36,6 @@ export default function Catalogue({
       nav(`/${endpoint}/${category}/${pageID}#page=1`);
     }
   }, [nav, pagesAmount, currentPage, category, endpoint, pageID]);
-
-  const pagination = (
-    <Pagination pagesAmount={pagesAmount} currentPage={currentPage} />
-  );
 
   return (
     <Section title={title}>
