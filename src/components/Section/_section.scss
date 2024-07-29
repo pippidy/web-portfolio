@@ -107,6 +107,10 @@
       height: 0;
     }
   }
+
+  &__pagination-holder {
+    min-height: 22px;
+  }
 }
 
 .section-separator {

@@ -26,11 +26,6 @@ export type TError = {
   message?: string;
 };
 
-export type TExtractEnumData = {
-  id: number | undefined;
-  enumObject: any;
-};
-
 export type TNameAndID = {
   id?: number;
   name?: string;

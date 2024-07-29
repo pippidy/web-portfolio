@@ -6,7 +6,6 @@ import Tabs from '../../components/UI/Tabs/Tabs';
 import DataNotAvailable from '../../components/DataNotAvailable/DataNotAvailable';
 import ImageDummyAvatar from '../../components/ImageDummies/ImageDummyAvatar';
 import { Gender, Species } from '../../utils/data';
-import { extractEnumData } from '../../utils/utils';
 import useGetData from '../../hooks/useGetData';
 import InfoItem from './InfoItem/InfoItem';
 
@@ -57,13 +56,11 @@ export default function CharacterInfo() {
                           </li>
                         )}
 
+                        {/* Do not remove "!== undefined"! */}
                         {data[0].gender !== undefined && (
                           <li>
                             <InfoItem name="Gender">
-                              {extractEnumData({
-                                id: data[0].gender + 1,
-                                enumObject: Gender,
-                              })}
+                              {Gender[data[0].gender + 1]}
                             </InfoItem>
                           </li>
                         )}
@@ -71,10 +68,7 @@ export default function CharacterInfo() {
                         {data[0].species && (
                           <li>
                             <InfoItem name="Species">
-                              {extractEnumData({
-                                id: data[0].species,
-                                enumObject: Species,
-                              })}
+                              {Species[data[0].species]}
                             </InfoItem>
                           </li>
                         )}

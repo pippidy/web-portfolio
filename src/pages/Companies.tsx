@@ -32,7 +32,7 @@ export default function Companies() {
 
   return (
     <Section title="Companies">
-      {pagination}
+      <div className="section__pagination-holder">{pagination}</div>
 
       <CardsList
         apiOptions={{

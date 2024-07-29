@@ -1,6 +1,5 @@
 import {
   type TCutLongString,
-  type TExtractEnumData,
   type TError,
   type TFormatDate,
   type TGetCountryFromISO,
@@ -18,7 +17,7 @@ export function handleFetchResults(res: Response) {
 export function catchFetchError(error: TError, callback?: Function) {
   const errorObj = {
     status: true,
-    code: typeof error === 'string' ? '' : error.code,
+    code: typeof error === 'string' ? 'unknown code' : error.code,
     message: typeof error === 'string' ? error : error.message,
   };
 
@@ -26,12 +25,7 @@ export function catchFetchError(error: TError, callback?: Function) {
     callback(errorObj);
   }
 
-  console.log(error.code, error.message);
-}
-
-export function extractEnumData({ id, enumObject }: TExtractEnumData) {
-  if (!id) return undefined;
-  return enumObject[id];
+  console.log('Error: ', errorObj.code, errorObj.message);
 }
 
 export function cutLongString({
@@ -62,6 +56,7 @@ export function formatDate({
 
     return new Date(unixTime).toLocaleString(locale, options);
   }
+
   return 'n/a';
 }
 
@@ -70,9 +65,10 @@ export function getCountryFromISO({
   length = 'full',
 }: TGetCountryFromISO): string {
   const res = iso.whereNumeric(isoCode);
-  let countryName = '';
 
   if (res) {
+    let countryName = '';
+
     if (length === 'full') countryName = res.country;
     if (length === 'medium') countryName = res.alpha3;
     if (length === 'short') countryName = res.alpha2;
