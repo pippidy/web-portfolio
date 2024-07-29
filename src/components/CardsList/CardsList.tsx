@@ -9,7 +9,7 @@ import cn from 'classnames';
 
 export default function CardsList({
   apiOptions,
-  linkPrefix,
+  linkPrefix = '',
   cardSize = 'default',
 }: TCardsListProps) {
   const { endpoint } = apiOptions;

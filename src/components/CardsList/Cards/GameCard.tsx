@@ -13,7 +13,7 @@ export default function GameCard({
   coverSize,
   aggregated_rating,
   first_release_date,
-  linkPrefix = '',
+  linkPrefix,
   cardSize = 'default',
 }: TGameCardProps) {
   return (

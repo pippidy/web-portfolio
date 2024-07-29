@@ -4,13 +4,13 @@ import ImageDummyDefault from '../../ImageDummies/ImageDummyDefault';
 
 export default function CompanyCard({
   id,
-  linkPrefix: linkPath,
+  linkPrefix,
   name,
   logo,
 }: TCompanyCardProps) {
   return (
     <div className="card card-flying" title={name}>
-      <Link className="card__link" to={`${linkPath}company/${id}`}>
+      <Link className="card__link" to={`${linkPrefix}company/${id}`}>
         {logo ? (
           <img className="card__image" src={logo.url} alt={`Logo of ${name}`} />
         ) : (
