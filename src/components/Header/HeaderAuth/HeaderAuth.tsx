@@ -80,14 +80,7 @@ export default function HeaderAuth() {
       {(!auth?.userSignedIn || isAuthModalOpened) && (
         <Modal isOpened={isAuthModalOpened} setIsOpened={setIsAuthModalOpened}>
           <DefaultModalBlock>
-            <FormAuth
-              authType={authType}
-              setAuthType={setAuthType}
-              modal={{
-                isOpened: isAuthModalOpened,
-                setIsOpened: setIsAuthModalOpened,
-              }}
-            />
+            <FormAuth authType={authType} setAuthType={setAuthType} />
           </DefaultModalBlock>
         </Modal>
       )}

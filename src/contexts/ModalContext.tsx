@@ -1,5 +1,6 @@
 import { createContext } from 'react';
 
-const ModalContext = createContext(false);
+// TODO: I should probably deal with the any
+const ModalContext = createContext({} as any);
 
 export default ModalContext;

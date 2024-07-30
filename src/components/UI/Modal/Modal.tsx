@@ -33,7 +33,9 @@ export default function Modal({
   return (
     <>
       {createPortal(
-        <ModalContext.Provider value={isOpened}>
+        <ModalContext.Provider
+          value={{ isModalOpened: isOpened, setIsModalOpened: setIsOpened }}
+        >
           <div ref={modalRef} className={`modal ${classList}`}>
             <div onClick={closeModal} className="modal__overlay"></div>
 

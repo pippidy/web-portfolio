@@ -1,7 +1,6 @@
 import { TComponentChildren } from './main';
 import { User as TUserFirebase } from 'firebase/auth';
 import { Dispatch, SetStateAction } from 'react';
-import { TModalControl } from './modal';
 
 export type TAuthType = 'signUp' | 'signIn';
 export type TUser = TUserFirebase | undefined | null;
@@ -9,7 +8,6 @@ export type TUser = TUserFirebase | undefined | null;
 export type TAuthFormProps = {
   authType: TAuthType;
   setAuthType: Dispatch<SetStateAction<TAuthType>>;
-  modal: TModalControl;
 };
 
 export type TProtectedRoute = {
