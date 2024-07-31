@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import Section from '../../components/Section/Section';
 import { useAuth } from '../../contexts/AuthContext';
 import { useEffect, useState } from 'react';
-import DataNotAvailable from '../../components/DataNotAvailable/DataNotAvailable';
+import DataNotAvailable from '../../components/UI/DataNotAvailable/DataNotAvailable';
 import ImageDummyAvatar from '../../components/ImageDummies/ImageDummyAvatar';
 import Tabs from '../../components/UI/Tabs/Tabs';
 import InfoItem from '../InfoPages/InfoItem/InfoItem';

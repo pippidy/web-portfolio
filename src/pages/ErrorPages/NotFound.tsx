@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import Section from '../../components/Section/Section';
+import ErrorBlock from '../../components/UI/ErrorBlock/ErrorBlock';
 
 export default function NotFound() {
   const location = useLocation();
@@ -7,20 +8,18 @@ export default function NotFound() {
   return (
     <>
       <Section title="Error Page" className="section_error">
-        <div className="error-page">
-          <div className="error-page__container">
-            <h3 className="error-page__title">Error 404</h3>
-            <p className="error-page__text">
-              Page <span>"{location.pathname}"</span> doesn't exist.
-            </p>
-            <p className="error-page__text">
-              You may return to{' '}
-              <Link to="/" className="link-accent">
-                Homepage
-              </Link>
-            </p>
-          </div>
-        </div>
+        <ErrorBlock title="Error 404">
+          <p className="error-block__text">
+            Page <span>"{location.pathname}"</span> doesn't exist.
+          </p>
+
+          <p className="error-block__text">
+            You may return to{' '}
+            <Link to="/" className="link-accent">
+              Homepage
+            </Link>
+          </p>
+        </ErrorBlock>
       </Section>
     </>
   );

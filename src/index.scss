@@ -6,21 +6,22 @@
 @import './styles/app';
 
 // Pages
-@import './pages/InfoPages/infoPages';
 @import './pages/InfoPages/InfoItem/infoItem';
-@import './pages/ErrorPages/errorPages';
 @import './pages/ProfilePage/profilePage';
-@import './pages/About/about';
+@import './pages/InfoPages/infoPages';
 @import './pages/Contacts/contacts';
+@import './pages/About/about';
 
 // UI
-@import './components/UI/Forms/FormAuth/formAuth';
-@import './components/UI/Inputs/InputBlock/inputBlock';
+@import './components/UI/DataNotAvailable/dataNotAvailable';
 @import './components/UI/Buttons/ButtonLike/buttonLike';
+@import './components/UI/Inputs/InputBlock/inputBlock';
 @import './components/UI/LoadingSimple/loadingSimple';
-@import './components/UI/Tabs/tabs';
+@import './components/UI/Forms/FormAuth/formAuth';
+@import './components/UI/ErrorBlock/errorBlock';
 @import './components/UI/SearchBar/searchBar';
 @import './components/UI/Buttons/buttons';
+@import './components/UI/Tabs/tabs';
 
 // Modal
 @import './components/UI/Modal/modal';
@@ -52,5 +53,4 @@
 @import './components/Catalogue/CatalogueMenu/catalogueMenu';
 
 // Various components
-@import './components/DataNotAvailable/dataNotAvailable';
 @import './components/Pagination/pagination';

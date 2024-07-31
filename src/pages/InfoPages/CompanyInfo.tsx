@@ -4,14 +4,15 @@ import SectionLoading from '../../components/Section/SectionLoading/SectionLoadi
 import { formatDate, getCountryFromISO } from '../../utils/utils';
 import CardsList from '../../components/CardsList/CardsList';
 import Tabs from '../../components/UI/Tabs/Tabs';
-import DataNotAvailable from '../../components/DataNotAvailable/DataNotAvailable';
+import DataNotAvailable from '../../components/UI/DataNotAvailable/DataNotAvailable';
 import ImageDummyDefault from '../../components/ImageDummies/ImageDummyDefault';
 import InfoItem from './InfoItem/InfoItem';
 import useGetData from '../../hooks/useGetData';
+import DataError from '../../components/UI/DataError/DataError';
 
 export default function CompanyInfo() {
   const { id: pageID } = useParams();
-  const { data, loading } = useGetData({
+  const { data, loading, error } = useGetData({
     endpoint: 'companies',
     filter: `id = ${pageID}`,
     fields:
@@ -22,125 +23,131 @@ export default function CompanyInfo() {
   return (
     <>
       <Section title="Company info">
-        <Tabs
-          tabs={['Info', 'Developed games', 'Published games']}
-          title={data && data[0].name}
-        >
-          {/* INFO TAB*/}
-          <>
-            {loading ? (
-              <SectionLoading />
-            ) : (
-              <>
-                {data ? (
-                  <div className="info-page__content">
-                    {data[0].logo ? (
-                      <div className="info-page__cover-holder card-flying card-flying_slide-right">
-                        <img
-                          className="info-page__cover-image"
-                          src={`//images.igdb.com/igdb/image/upload/t_thumb_2x/${data[0].logo.image_id}.jpg`}
-                          alt={`${data[0].name && data[0].name} logo`}
-                        />
-                      </div>
-                    ) : (
-                      <div className="info-page__cover-holder info-page__cover-holder_no-image">
-                        <ImageDummyDefault />
-                      </div>
-                    )}
-                    <div className="info-page__data-holder">
-                      <ul className="info-page__data-list">
-                        <li>
-                          <InfoItem name="Foundation date">
-                            {formatDate({ timestamp: data[0].start_date })}
-                          </InfoItem>
-                        </li>
-
-                        {data[0].country && (
+        {error ? (
+          <DataError error={error} />
+        ) : (
+          <Tabs
+            tabs={['Info', 'Developed games', 'Published games']}
+            title={data && data[0].name}
+          >
+            {/* INFO TAB*/}
+            <>
+              {loading ? (
+                <SectionLoading />
+              ) : (
+                <>
+                  {data ? (
+                    <div className="info-page__content">
+                      {data[0].logo ? (
+                        <div className="info-page__cover-holder card-flying card-flying_slide-right">
+                          <img
+                            className="info-page__cover-image"
+                            src={`//images.igdb.com/igdb/image/upload/t_thumb_2x/${data[0].logo.image_id}.jpg`}
+                            alt={`${data[0].name && data[0].name} logo`}
+                          />
+                        </div>
+                      ) : (
+                        <div className="info-page__cover-holder info-page__cover-holder_no-image">
+                          <ImageDummyDefault />
+                        </div>
+                      )}
+                      <div className="info-page__data-holder">
+                        <ul className="info-page__data-list">
                           <li>
-                            <InfoItem name="Country">
-                              {getCountryFromISO({
-                                isoCode: data[0].country,
-                              })}
+                            <InfoItem name="Foundation date">
+                              {formatDate({ timestamp: data[0].start_date })}
                             </InfoItem>
                           </li>
-                        )}
 
-                        {data[0].websites && (
-                          <li>
-                            <InfoItem name="Website">
-                              <a
-                                href={data[0].websites[0].url}
-                                target="_blank"
-                                rel="noreferrer"
-                              >
-                                {data[0].websites[0].url}
-                              </a>
-                            </InfoItem>
-                          </li>
-                        )}
-                      </ul>
+                          {data[0].country && (
+                            <li>
+                              <InfoItem name="Country">
+                                {getCountryFromISO({
+                                  isoCode: data[0].country,
+                                })}
+                              </InfoItem>
+                            </li>
+                          )}
 
-                      <article className="info-article">
-                        {data[0].description && (
-                          <div>
-                            <h3 className="info-article__title">Description</h3>
-                            <p className="text-default">
-                              {data[0].description}
-                            </p>
-                          </div>
-                        )}
-                      </article>
+                          {data[0].websites && (
+                            <li>
+                              <InfoItem name="Website">
+                                <a
+                                  href={data[0].websites[0].url}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  {data[0].websites[0].url}
+                                </a>
+                              </InfoItem>
+                            </li>
+                          )}
+                        </ul>
+
+                        <article className="info-article">
+                          {data[0].description && (
+                            <div>
+                              <h3 className="info-article__title">
+                                Description
+                              </h3>
+                              <p className="text-default">
+                                {data[0].description}
+                              </p>
+                            </div>
+                          )}
+                        </article>
+                      </div>
                     </div>
-                  </div>
-                ) : (
-                  <DataNotAvailable text="No info available" />
-                )}
-              </>
-            )}
-          </>
+                  ) : (
+                    <DataNotAvailable text="No info available" />
+                  )}
+                </>
+              )}
+            </>
 
-          {/* DEVELOPED GAMES TAB */}
-          <>
-            {data && data[0].developed ? (
-              <CardsList
-                apiOptions={{
-                  endpoint: 'games',
-                  fields: 'name,cover.url,cover.image_id,aggregated_rating',
-                  filter: `id = ${
-                    Array.isArray(data[0].developed)
-                      ? `(${data[0].developed.join(',')})`
-                      : data[0].developed
-                  }`,
-                }}
-                linkPrefix="../"
-                cardSize="compact"
-              />
-            ) : (
-              <DataNotAvailable text="No developed games available" />
-            )}
-          </>
+            {/* DEVELOPED GAMES TAB */}
+            <>
+              {data && data[0].developed ? (
+                <CardsList
+                  apiOptions={{
+                    endpoint: 'games',
+                    fields: 'name,cover.url,cover.image_id,aggregated_rating',
+                    filter: `id = ${
+                      Array.isArray(data[0].developed)
+                        ? `(${data[0].developed.join(',')})`
+                        : data[0].developed
+                    }`,
+                  }}
+                  linkPrefix="../"
+                  cardSize="compact"
+                />
+              ) : (
+                <DataNotAvailable text="No developed games available" />
+              )}
+            </>
 
-          {/* PUBLISHED GAMES TAB */}
-          <>
-            {data && data[0].published ? (
-              <CardsList
-                apiOptions={{
-                  endpoint: 'games',
-                  fields: 'name,cover.url,cover.image_id,aggregated_rating',
-                  filter: `id = ${
-                    Array.isArray(data[0].published)
-                      ? `(${data[0].published.join(',')})`
-                      : data[0].published
-                  }`,
-                }}
-                linkPrefix="../"
-                cardSize="compact"
-              />
-            ) : (
-              <DataNotAvailable text="No published games available" />
-            )}
-          </>
-        </Tabs>
+            {/* PUBLISHED GAMES TAB */}
+            <>
+              {data && data[0].published ? (
+                <CardsList
+                  apiOptions={{
+                    endpoint: 'games',
+                    fields: 'name,cover.url,cover.image_id,aggregated_rating',
+                    filter: `id = ${
+                      Array.isArray(data[0].published)
+                        ? `(${data[0].published.join(',')})`
+                        : data[0].published
+                    }`,
+                  }}
+                  linkPrefix="../"
+                  cardSize="compact"
+                />
+              ) : (
+                <DataNotAvailable text="No published games available" />
+              )}
+            </>
+          </Tabs>
+        )}
       </Section>
     </>
   );

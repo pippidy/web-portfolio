@@ -4,15 +4,16 @@ import SectionLoading from '../Section/SectionLoading/SectionLoading';
 import ImageSlider from '../ImageSlider/ImageSlider';
 import Modal from '../UI/Modal/Modal';
 import useGetData from '../../hooks/useGetData';
-import DataNotAvailable from '../DataNotAvailable/DataNotAvailable';
+import DataNotAvailable from '../UI/DataNotAvailable/DataNotAvailable';
 import GalleryCard from './GalleryCard';
+import DataError from '../UI/DataError/DataError';
 
 export default function ImageGallery({
   apiOptions,
   imageSize = 't_thumb',
   text = 'Image',
 }: TImageGalleryProps) {
-  const { data, loading } = useGetData({
+  const { data, loading, error } = useGetData({
     ...apiOptions,
   });
   const [isModalOpened, setIsModalOpened] = useState(false);
@@ -42,6 +43,8 @@ export default function ImageGallery({
             );
           })}
         </ul>
+      ) : error ? (
+        <DataError error={error} />
       ) : (
         <DataNotAvailable />
       )}

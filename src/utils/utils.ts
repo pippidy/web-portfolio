@@ -17,7 +17,7 @@ export function handleFetchResults(res: Response) {
 export function catchFetchError(error: TError, callback?: Function) {
   const errorObj = {
     status: true,
-    code: typeof error === 'string' ? 'unknown code' : error.code,
+    code: typeof error === 'string' ? 'unknown' : error.code,
     message: typeof error === 'string' ? error : error.message,
   };
 
@@ -25,7 +25,11 @@ export function catchFetchError(error: TError, callback?: Function) {
     callback(errorObj);
   }
 
-  console.log('Error: ', errorObj.code, errorObj.message);
+  console.error(
+    'ERROR',
+    `code: ${errorObj.code} |`,
+    `text: ${errorObj.message}`
+  );
 }
 
 export function cutLongString({

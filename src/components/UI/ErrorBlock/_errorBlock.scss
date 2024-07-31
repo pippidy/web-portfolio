@@ -1,4 +1,4 @@
-.error-page {
+.error-block {
   position: absolute;
   inset-block: 0;
   inset-inline: 10%;
@@ -16,11 +16,13 @@
   }
 
   &__title {
+    margin-bottom: 25px;
     font-size: 8rem;
     text-align: center;
     -webkit-text-stroke: 2px $color-grey-dark;
     color: $color-red;
     font-family: $font-family-secondary;
+    line-height: 8rem;
   }
 
   &__text {

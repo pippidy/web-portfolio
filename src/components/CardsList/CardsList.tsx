@@ -3,9 +3,10 @@ import GameCard from './Cards/GameCard';
 import CharacterCard from './Cards/CharacterCard';
 import CompanyCard from './Cards/CompanyCard';
 import SectionLoading from '../Section/SectionLoading/SectionLoading';
-import DataNotAvailable from '../DataNotAvailable/DataNotAvailable';
+import DataNotAvailable from '../UI/DataNotAvailable/DataNotAvailable';
 import useGetData from '../../hooks/useGetData';
 import cn from 'classnames';
+import DataError from '../UI/DataError/DataError';
 
 export default function CardsList({
   apiOptions,
@@ -13,7 +14,7 @@ export default function CardsList({
   cardSize = 'default',
 }: TCardsListProps) {
   const { endpoint } = apiOptions;
-  const { data, loading } = useGetData({
+  const { data, loading, error } = useGetData({
     ...apiOptions,
   });
 
@@ -68,7 +69,7 @@ export default function CardsList({
           })}
         </ul>
       ) : (
-        <DataNotAvailable text="No data available." />
+        error && <DataError error={error} />
       )}
     </>
   );
