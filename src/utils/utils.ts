@@ -17,7 +17,7 @@ export function handleFetchResults(res: Response) {
 export function catchFetchError(error: TError, callback?: Function) {
   const errorObj = {
     status: true,
-    code: typeof error === 'string' ? 'unknown' : error.code,
+    code: error.code ? error.code : 'unknown',
     message: typeof error === 'string' ? error : error.message,
   };
 
