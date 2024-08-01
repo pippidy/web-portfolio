@@ -32,7 +32,7 @@ export default function Characters() {
 
   return (
     <Section title="Characters">
-      <div className="section__pagination-holder">{pagination}</div>
+      {pagination}
 
       <CardsList
         apiOptions={{

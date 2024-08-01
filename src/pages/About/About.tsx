@@ -104,9 +104,9 @@ export default function About() {
                     Custom pagination:{' '}
                     <Link
                       className="link-default"
-                      to="http://localhost:3000/games/genres/all#page=1"
+                      to="/games/genres/all#page=1"
                     >
-                      http://localhost:3000/games/genres/all#page=1
+                      /games/genres/all#page=1
                     </Link>
                     ;
                   </p>
@@ -115,11 +115,8 @@ export default function About() {
                 <li>
                   <p>
                     Custom tabs, modal windows and image gallery with a slider:{' '}
-                    <Link
-                      className="link-default"
-                      to="http://localhost:3000/game/1942"
-                    >
-                      http://localhost:3000/game/1942
+                    <Link className="link-default" to="/game/1942">
+                      /game/1942
                     </Link>
                     ;
                   </p>
@@ -147,9 +144,9 @@ export default function About() {
                     Кастомная пагинация:{' '}
                     <Link
                       className="link-default"
-                      to="http://localhost:3000/games/genres/all#page=1"
+                      to="/games/genres/all#page=1"
                     >
-                      http://localhost:3000/games/genres/all#page=1
+                      /games/genres/all#page=1
                     </Link>
                     ;
                   </p>
@@ -159,11 +156,8 @@ export default function About() {
                   <p>
                     Кастомные табы, модальные окна и галерея картинок со
                     слайдером:{' '}
-                    <Link
-                      className="link-default"
-                      to="http://localhost:3000/game/1942"
-                    >
-                      http://localhost:3000/game/1942
+                    <Link className="link-default" to="/game/1942">
+                      /game/1942
                     </Link>
                     ;
                   </p>

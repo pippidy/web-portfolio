@@ -15,7 +15,6 @@ export default function Tabs({ tabs, title = '', children }: TTabsProps) {
 
   function toggleTab(id: number) {
     const activeTabElement = document.querySelector('.active');
-    document.body.classList.add('overflow-hidden'); // To fix bug with scroll jumping
 
     // Animation changes sides depending on tab index
     if (id < active || id === 0) {
@@ -28,7 +27,6 @@ export default function Tabs({ tabs, title = '', children }: TTabsProps) {
 
     setTimeout(() => {
       setActive(id);
-      document.body.classList.remove('overflow-hidden'); // To fix bug with scroll jumping
     }, 200);
   }
 

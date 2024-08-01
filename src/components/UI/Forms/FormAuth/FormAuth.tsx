@@ -3,7 +3,6 @@ import { type TAuthFormProps, type TAuthValues } from '../../../../types/auth';
 import {
   ChangeEvent,
   FormEvent,
-  useContext,
   useEffect,
   useMemo,
   useRef,
@@ -15,17 +14,17 @@ import {
 } from '../../../../firebase/auth';
 import { catchFetchError, validateForm } from '../../../../utils/utils';
 import InputBlock from '../../Inputs/InputBlock/InputBlock';
-import ModalContext from '../../../../contexts/ModalContext';
 import LoadingSimple from '../../LoadingSimple/LoadingSimple';
 import { TInput } from '../../../../types/ui';
 import Button from '../../Buttons/Button/Button';
+import useModal from '../../../../hooks/useModal';
 
 export default function FormAuth({ authType, setAuthType }: TAuthFormProps) {
   const formRef = useRef<HTMLFormElement>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [fetchError, setFetchError] = useState<TError>();
   const [isSuccess, setIsSuccess] = useState(false);
-  const { isModalOpened, setIsModalOpened } = useContext(ModalContext);
+  const { isModalOpened, setIsModalOpened } = useModal();
   const [values, setValues] = useState<TAuthValues>({
     email: '',
     password: '',
@@ -43,7 +42,6 @@ export default function FormAuth({ authType, setAuthType }: TAuthFormProps) {
     setFetchError({ status: false });
   }, [authType]);
 
-  // TODO: Put it inside a hook
   const inputs: TInput[] = useMemo(
     () => [
       {

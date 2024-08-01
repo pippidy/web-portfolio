@@ -1,15 +1,8 @@
 import { type TError } from '../../../../types/main';
 import { type TInput } from '../../../../types/ui';
-import {
-  ChangeEvent,
-  useContext,
-  useEffect,
-  useId,
-  useRef,
-  useState,
-} from 'react';
-import ModalContext from '../../../../contexts/ModalContext';
+import { ChangeEvent, useEffect, useId, useRef, useState } from 'react';
 import cn from 'classnames';
+import useModal from '../../../../hooks/useModal';
 
 export default function InputBlock({
   customError = '',
@@ -21,7 +14,7 @@ export default function InputBlock({
   label,
 }: TInput) {
   const [isError, setIsError] = useState<TError>({ status: false });
-  const isModalOpened = useContext(ModalContext);
+  const isModalOpened = useModal();
   const inputRef = useRef<HTMLInputElement>(null);
   const id = useId();
 

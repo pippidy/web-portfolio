@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px 0;
+  min-height: 22px;
   color: $color-grey-darker;
   background-color: transparent;
   transition: background-color $transition-medium ease;

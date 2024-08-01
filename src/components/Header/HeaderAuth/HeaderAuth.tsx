@@ -6,11 +6,11 @@ import FormAuth from '../../UI/Forms/FormAuth/FormAuth';
 import DefaultModalBlock from '../../UI/Modal/DefaultModalBlock/DefaultModalBlock';
 import { useAuth } from '../../../contexts/AuthContext';
 import SignOutButton from '../../SignOutButton/SignOutButton';
+import Button from '../../UI/Buttons/Button/Button';
 import cn from 'classnames';
 
 // @ts-expect-error
 import { ReactComponent as PersonIcon } from '../../../assets/svg/person.svg';
-import Button from '../../UI/Buttons/Button/Button';
 
 export default function HeaderAuth() {
   const auth = useAuth();
@@ -38,6 +38,7 @@ export default function HeaderAuth() {
                     Profile page
                   </Link>
                 </li>
+
                 <li>
                   <SignOutButton className="header-auth__menu-item">
                     Sign out
@@ -50,6 +51,7 @@ export default function HeaderAuth() {
               <p className="header-auth__content-title">
                 You're not authorized!
               </p>
+
               <p>
                 Please{' '}
                 <Button
