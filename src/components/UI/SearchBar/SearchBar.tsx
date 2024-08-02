@@ -36,7 +36,7 @@ export default function SearchBar() {
   }
 
   const onReset = useCallback(() => {
-    setData(undefined);
+    setData(null);
     setIsSearching(false);
 
     if (inputRef.current) {

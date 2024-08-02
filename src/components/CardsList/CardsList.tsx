@@ -39,9 +39,7 @@ export default function CardsList({
                     cover={data?.cover}
                     coverSize="cover_big"
                     aggregated_rating={data?.aggregated_rating}
-                    first_release_date={
-                      data ? data.first_release_date : undefined
-                    }
+                    first_release_date={data && data.first_release_date}
                     linkPrefix={linkPrefix}
                     cardSize={cardSize}
                   />

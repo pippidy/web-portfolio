@@ -5,14 +5,14 @@ import { getData } from '../api/api';
 import { catchFetchError } from '../utils/utils';
 
 export default function useSearch({ query, limit = 10 }: TUseSearchProps) {
-  const [data, setData] = useState<TDataGame[] | undefined>();
+  const [data, setData] = useState<TDataGame[] | null>();
   const [isSearching, setIsSearching] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<TError>();
 
   const doSearch = useCallback(
     (query: string) => {
-      setData(undefined);
+      setData(null);
 
       if (query.length > 0) {
         setIsSearching(true);
