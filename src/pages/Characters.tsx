@@ -40,7 +40,7 @@ export default function Characters() {
           fields: 'name,mug_shot.url',
           limit: fetchLimit,
           offset: fetchLimit * currentPage,
-          sort: 'mug_shot',
+          sort: { property: 'mug_shot' },
         }}
         cardSize="mini"
         linkPrefix="../"

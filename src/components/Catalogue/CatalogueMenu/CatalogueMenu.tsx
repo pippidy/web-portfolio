@@ -15,7 +15,7 @@ export default function CatalogueMenu({
     const controller = new AbortController();
     const signal = controller.signal;
 
-    getCategories(category, signal)
+    getCategories({ category, signal })
       .then((categories) => {
         setCategoriesList(categories);
       })

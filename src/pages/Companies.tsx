@@ -40,7 +40,7 @@ export default function Companies() {
           fields: 'name,logo.url',
           limit: fetchLimit,
           offset: fetchLimit * currentPage,
-          sort: 'logo',
+          sort: { property: 'logo' },
         }}
         cardSize="mini"
         linkPrefix="../"

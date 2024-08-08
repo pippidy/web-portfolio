@@ -15,6 +15,8 @@ export function handleFetchResults(res: Response) {
 }
 
 export function catchFetchError(error: TError, callback?: Function) {
+  if (error.code === 20) return; // Do not handle signal abortion errors
+
   const errorObj = {
     status: true,
     code: error.code ? error.code : 'unknown',

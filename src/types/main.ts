@@ -5,9 +5,12 @@ export type TApiOptions = {
   endpoint: TEndpoint;
   fields: string;
   search?: string;
-  limit?: number;
-  sort?: string; // example "sort aggregated_rating desc"
+  sort?: {
+    property: string;
+    order?: 'desc' | 'asc';
+  };
   filter?: string; // example "genre = 2" or "id = (2254,5534,2523)"
+  limit?: number;
   offset?: number;
 };
 
@@ -33,7 +36,7 @@ export type TNameAndID = {
 
 export type TConfigAPI = {
   baseURL: string;
-  headers: {};
+  headers: Record<string, string>;
 };
 
 export type TFormatDate = {

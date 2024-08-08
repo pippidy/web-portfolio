@@ -72,3 +72,12 @@ export type TGetDataCount = {
   filter?: string;
   signal?: AbortSignal;
 };
+
+export type TDataCount = {
+  count: number;
+};
+
+export type TGetCategories = {
+  category: string;
+  signal?: AbortSignal;
+};

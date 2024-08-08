@@ -13,7 +13,10 @@ export default function Home() {
             endpoint: 'games',
             fields: fields,
             limit: 6,
-            sort: 'first_release_date desc',
+            sort: {
+              property: 'first_release_date',
+              order: 'desc',
+            },
             filter: filter,
           }}
         />
@@ -25,7 +28,10 @@ export default function Home() {
             endpoint: 'games',
             fields: fields,
             limit: 6,
-            sort: 'aggregated_rating desc',
+            sort: {
+              property: 'aggregated_rating',
+              order: 'desc',
+            },
             filter: filter,
           }}
         />
@@ -37,7 +43,10 @@ export default function Home() {
             endpoint: 'games',
             fields: fields,
             limit: 6,
-            sort: 'aggregated_rating asc',
+            sort: {
+              property: 'aggregated_rating',
+              order: 'asc',
+            },
             filter: filter,
           }}
         />

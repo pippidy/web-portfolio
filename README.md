@@ -1,8 +1,10 @@
 # REACT v18 ПОРТФОЛИО
 
+СТЕК: React v18(CRA), TypeScript, SCSS, React-Router, Firebase, IGDB API(REST).
+
 ## ИНТРО
 
-Проект представляет собой SPA на React 18(Create React App + TypeScript + SCSS) с применением публичного IGDB API. Не использовал готовых компонентов(кроме некоторых utility-библиотек), стилей или помощи от ИИ-чатов. Дизайн тоже набросал сам по ходу работы. Стараюсь реализовать все типовые задачи, встречающиеся на коммерческих проектах, например: слайдер, табы, пагинация, роутинг, модалки и т.д. Минимальная ширина экрана 768px.
+Проект представляет собой SPA с применением публичного IGDB API. Не использовал готовых компонентов(кроме некоторых utility-библиотек), стилей или помощи от ИИ-чатов. Дизайн тоже набросал сам по ходу работы. Стараюсь реализовать все типовые задачи, встречающиеся на коммерческих проектах, например: слайдер, табы, пагинация, роутинг, модалки и т.д. Минимальная ширина экрана 768px.
 
 Для обхода CORS настроен прокси, как локально, так и на netlify. Настройки netlify прокси в `/netlify.toml`.
 
@@ -16,10 +18,26 @@
 
 ## API.TS
 
+[IGDB API](https://api-docs.igdb.com/#getting-started) даёт доступ к базе данных с видеоиграми. Авторизация работает через функцию `fetchAuth`, которая отсылает `userID` и `clientSecret` на сервер, возвращая с сервера объект в котором хранится `access_token`.
+
+### createConfig()
+
+Асинхронная функция, которая получает объект с авторизацией в переменную `auth` и возвращает конфиг с `baseURL` и `headers`. Должна использоваться перед каждым запросом к API с дальнейшей передачей конфига в `fetch`.
+
 ### getData()
 
 Промис, который создаёт тело запроса из пришедших аргументов и отправляет на сервер. Опциональная переменная `signal` используется для отмены запроса.
-Пример синтаксиса отправляемой строки: `fields name,cover.image_id,videos.*,screenshots.*,aggregated_rating; limit 6; sort first_release_date desc; where aggregated_rating > 0;`
+Пример синтаксиса тела запроса: `fields name,cover.image_id,videos.*,screenshots.*,aggregated_rating; limit 6; sort first_release_date desc; where aggregated_rating > 0;`
+
+Пропсы для настройки запроса(тип `TApiOptions`):
+
+- `endpoint: string` Список доступных ендпоинтов: games, characters, companies, screenshots, artworks;
+- `fields: string` Запрашиваемые поля, например: `fields name;`, `fields cover.image screenshots.id;`. Можно запросить все доступные поля, например: `fields *;` или `fields country.*`;
+- `search: string` Передаётся поисковая строка и превращается в `search "${search}";`;
+- `sort: string` Превращается в `sort ${sort.property} ${sort.order};`. Принимается свойство для сортировки и порядок(`asc`, `desc`). По-умолчанию порядок `asc`;
+- `filter: string` Превращается в `where ${filter};`. Пример передаваемой строки для фильтрации: `aggregated_rating > 0;`;
+- `limit: number` Ограничение на кол-во элементов;
+- `offset: number` С какого элемента выдавать данные. Нужно для пагинации.
 
 ### getDataCount()
 

@@ -59,7 +59,7 @@ export default function Catalogue({
               fields:
                 'name,cover.image_id,aggregated_rating,first_release_date',
               limit: fetchLimit,
-              sort: 'aggregated_rating desc',
+              sort: { property: 'aggregated_rating', order: 'desc' },
               filter: pageID === 'all' ? '' : `${category} = ${pageID}`,
               offset: fetchLimit * currentPage,
             }}
