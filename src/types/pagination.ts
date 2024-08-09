@@ -10,7 +10,7 @@ export type TPaginationProps = {
 export type TUsePaginationData = {
   endpoint: TEndpoint;
   fetchLimit?: number;
-  pageID: string | undefined;
+  pageID?: string | undefined;
   dataFilter?: string;
 };
 

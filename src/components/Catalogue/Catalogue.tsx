@@ -1,5 +1,5 @@
-import { type TCatalogueProps } from '../../types/main';
-import { useEffect } from 'react';
+import { type TApiOptions, type TCatalogueProps } from '../../types/main';
+import { useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Section from '../Section/Section';
 import CardsList from '../CardsList/CardsList';
@@ -37,6 +37,15 @@ export default function Catalogue({
     }
   }, [nav, pagesAmount, currentPage, category, endpoint, pageID]);
 
+  const apiOptionsRef = useRef<TApiOptions>({
+    endpoint: endpoint,
+    fields: 'name,cover.image_id,aggregated_rating,first_release_date',
+    limit: fetchLimit,
+    sort: { property: 'aggregated_rating', order: 'desc' },
+    filter: pageID === 'all' ? '' : `${category} = ${pageID}`,
+    offset: fetchLimit * currentPage,
+  });
+
   return (
     <Section title={title}>
       <div className="catalogue">
@@ -54,15 +63,7 @@ export default function Catalogue({
         {/* Main part with cards */}
         <div className="catalogue__main">
           <CardsList
-            apiOptions={{
-              endpoint: endpoint,
-              fields:
-                'name,cover.image_id,aggregated_rating,first_release_date',
-              limit: fetchLimit,
-              sort: { property: 'aggregated_rating', order: 'desc' },
-              filter: pageID === 'all' ? '' : `${category} = ${pageID}`,
-              offset: fetchLimit * currentPage,
-            }}
+            apiOptions={apiOptionsRef.current}
             linkPrefix="../"
             cardSize="compact"
           />

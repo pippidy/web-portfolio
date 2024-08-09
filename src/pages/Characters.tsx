@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { type TApiOptions } from '../types/main';
+import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CardsList from '../components/CardsList/CardsList';
 import Pagination from '../components/Pagination/Pagination';
 import Section from '../components/Section/Section';
@@ -7,14 +8,12 @@ import usePagesAmount from '../hooks/usePagesAmount';
 
 export default function Characters() {
   const nav = useNavigate();
-  const { id: pageID } = useParams();
   const fetchLimit = 102;
 
   // Preparing data for pagination
   const { pagesAmount, currentPage } = usePagesAmount({
     fetchLimit: fetchLimit,
     endpoint: 'characters',
-    pageID: pageID,
   });
 
   const pagination = (
@@ -30,18 +29,20 @@ export default function Characters() {
     }
   }, [nav, pagesAmount, currentPage]);
 
+  const apiOtionsRef = useRef<TApiOptions>({
+    endpoint: 'characters',
+    fields: 'name,mug_shot.url',
+    limit: fetchLimit,
+    offset: fetchLimit * currentPage,
+    sort: { property: 'mug_shot' },
+  });
+
   return (
     <Section title="Characters">
       {pagination}
 
       <CardsList
-        apiOptions={{
-          endpoint: 'characters',
-          fields: 'name,mug_shot.url',
-          limit: fetchLimit,
-          offset: fetchLimit * currentPage,
-          sort: { property: 'mug_shot' },
-        }}
+        apiOptions={apiOtionsRef.current}
         cardSize="mini"
         linkPrefix="../"
       />

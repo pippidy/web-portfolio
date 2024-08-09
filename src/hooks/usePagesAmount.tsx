@@ -33,7 +33,7 @@ export default function usePagesAmount({
     return () => {
       controller.abort();
     };
-  }, [endpoint, fetchLimit, pageID, pagesAmount, dataFilter]);
+  }, [endpoint, fetchLimit, pageID, dataFilter]);
 
   return { pagesAmount, currentPage, location };
 }
