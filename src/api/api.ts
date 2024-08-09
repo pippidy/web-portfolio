@@ -1,7 +1,7 @@
 import { type TConfigAPI, type TCategory } from '../types/main';
 import {
-  TDataCount,
-  TGetCategories,
+  type TDataCount,
+  type TGetCategories,
   type TDataFull,
   type TGetData,
   type TGetDataCount,
