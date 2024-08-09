@@ -1,4 +1,4 @@
-import { type TApiOptions } from '../types/main';
+import { type TSort } from '../types/main';
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CardsList from '../components/CardsList/CardsList';
@@ -29,20 +29,20 @@ export default function Characters() {
     }
   }, [nav, pagesAmount, currentPage]);
 
-  const apiOtionsRef = useRef<TApiOptions>({
-    endpoint: 'characters',
-    fields: 'name,mug_shot.url',
-    limit: fetchLimit,
-    offset: fetchLimit * currentPage,
-    sort: { property: 'mug_shot' },
-  });
+  const sortRef = useRef<TSort>({ property: 'mug_shot' });
 
   return (
     <Section title="Characters">
       {pagination}
 
       <CardsList
-        apiOptions={apiOtionsRef.current}
+        apiOptions={{
+          endpoint: 'characters',
+          fields: 'name,mug_shot.url',
+          limit: fetchLimit,
+          offset: fetchLimit * currentPage,
+          sort: sortRef.current,
+        }}
         cardSize="mini"
         linkPrefix="../"
       />

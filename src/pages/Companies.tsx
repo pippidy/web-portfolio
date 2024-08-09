@@ -1,10 +1,10 @@
+import { type TSort } from '../types/main';
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CardsList from '../components/CardsList/CardsList';
 import Pagination from '../components/Pagination/Pagination';
 import Section from '../components/Section/Section';
 import usePagesAmount from '../hooks/usePagesAmount';
-import { TApiOptions } from '../types/main';
 
 export default function Companies() {
   const nav = useNavigate();
@@ -29,20 +29,20 @@ export default function Companies() {
     }
   }, [nav, pagesAmount, currentPage]);
 
-  const apiOptionsRef = useRef<TApiOptions>({
-    endpoint: 'companies',
-    fields: 'name,logo.url',
-    limit: fetchLimit,
-    offset: fetchLimit * currentPage,
-    sort: { property: 'logo' },
-  });
+  const sortRef = useRef<TSort>({ property: 'logo' });
 
   return (
     <Section title="Companies">
       {pagination}
 
       <CardsList
-        apiOptions={apiOptionsRef.current}
+        apiOptions={{
+          endpoint: 'companies',
+          fields: 'name,logo.url',
+          limit: fetchLimit,
+          offset: fetchLimit * currentPage,
+          sort: sortRef.current,
+        }}
         cardSize="mini"
         linkPrefix="../"
       />

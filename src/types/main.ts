@@ -5,13 +5,15 @@ export type TApiOptions = {
   endpoint: TEndpoint;
   fields: string;
   search?: string;
-  sort?: {
-    property: string;
-    order?: 'desc' | 'asc';
-  };
+  sort?: TSort;
   filter?: string; // example "genre = 2" or "id = (2254,5534,2523)"
   limit?: number;
   offset?: number;
+};
+
+export type TSort = {
+  property: string;
+  order?: 'desc' | 'asc';
 };
 
 export type TComponentChildren = React.ReactNode;
