@@ -17,7 +17,11 @@ export default function Characters() {
   });
 
   const pagination = (
-    <Pagination pagesAmount={pagesAmount} currentPage={currentPage} />
+    <Pagination
+      pagesAmount={pagesAmount}
+      currentPage={currentPage}
+      pagesLimit={17}
+    />
   );
 
   // Redirecting if page is non-existent

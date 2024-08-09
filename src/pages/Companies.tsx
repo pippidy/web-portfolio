@@ -17,7 +17,11 @@ export default function Companies() {
   });
 
   const pagination = (
-    <Pagination pagesAmount={pagesAmount} currentPage={currentPage} />
+    <Pagination
+      pagesAmount={pagesAmount}
+      currentPage={currentPage}
+      pagesLimit={15}
+    />
   );
 
   // Redirecting if page is non-existent
