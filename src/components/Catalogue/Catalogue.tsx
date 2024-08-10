@@ -47,6 +47,7 @@ export default function Catalogue({
       <div className="catalogue">
         <div className="catalogue__category-title">Genres</div>
 
+        {/* Menu */}
         <nav className="catalogue__nav" role="menu">
           <CatalogueMenu endpoint={endpoint} category={category} />
         </nav>

@@ -43,6 +43,7 @@ export const getData = async ({
   const { endpoint, search, fields, filter, limit, sort, offset } = apiOptions;
   const config = await createConfig();
 
+  // Creating separate queries to concatenate them into body later
   const querySearch = search ? `search "${search}";` : '';
   const queryFields = `fields ${fields};`;
   const queryLimit = limit ? `limit ${limit};` : '';
@@ -53,7 +54,6 @@ export const getData = async ({
   const queryOffset = offset ? `offset ${offset};` : '';
 
   // Body example: "fields name,cover.image_id,videos.*,screenshots.*,aggregated_rating; limit 6; sort first_release_date desc; where aggregated_rating > 0;"
-  // You have to separate each query with a ";"
   const body = `${querySearch} ${queryFields} ${queryLimit} ${querySort} ${queryFilter} ${queryOffset}`;
 
   return fetch(config.baseURL + `/${endpoint}`, {

@@ -10,18 +10,16 @@ export default function Section({
 }: TSectionProps) {
   const [collapsed, setCollapsed] = useState(false);
 
-  // Classnames
-  const classSection = cn(
+  const mainClass = cn(
     `section block-default block-default_shadowDown ${className}`,
     {
       collapsed: collapsed,
     }
   );
 
-  // TODO: Remake it with grid for height animation
   return (
     <>
-      <section className={classSection}>
+      <section className={mainClass}>
         <SectionHeader
           title={title}
           collapsed={collapsed}
