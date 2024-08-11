@@ -26,8 +26,7 @@ export type TEndpoint =
   | 'artworks';
 
 export type TError = {
-  status?: boolean;
-  code?: number;
+  code?: number | string;
   message?: string;
 };
 

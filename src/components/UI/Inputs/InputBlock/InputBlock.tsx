@@ -13,18 +13,18 @@ export default function InputBlock({
   attributes,
   label,
 }: TInput) {
-  const [isError, setIsError] = useState<TError>({ status: false });
+  const [error, setError] = useState<TError | null>(null);
   const isModalOpened = useModal();
   const inputRef = useRef<HTMLInputElement>(null);
   const id = useId();
 
   let mainClass = cn(`${className} input-block`, {
-    error: isError.status,
+    error: error,
   });
 
   // Resetting input on trigger or when parent modal is closed/opened
   useEffect(() => {
-    setIsError({ status: false });
+    setError(null);
 
     if (inputRef.current) {
       inputRef.current.value = '';
@@ -32,27 +32,23 @@ export default function InputBlock({
   }, [resetTrigger, isModalOpened]);
 
   function validateInput(evt: ChangeEvent<HTMLInputElement>) {
-    const input = evt.currentTarget;
+    const input = evt.target;
     const isValid = input.validity.valid;
 
     if (!isValid) {
       // Setting custom message on pattern mismatch
-      if (input.validity.patternMismatch) {
-        input.setCustomValidity(customError);
-      } else {
-        input.setCustomValidity('');
-      }
+      input.setCustomValidity(
+        input.validity.patternMismatch ? customError : ''
+      );
 
-      setIsError({
-        status: true,
+      setError({
         message: input.validationMessage,
       });
     } else {
-      setIsError({ status: false });
+      setError(null);
     }
   }
 
-  // TODO: Put label in separate component
   return (
     <div className={mainClass}>
       {/** LABEL */}
@@ -63,8 +59,11 @@ export default function InputBlock({
         ref={inputRef}
         id={id}
         onChange={(evt) => {
-          if (isError.status) validateInput(evt); // If error has been shown start dynamic validation on change
           onChange && onChange(evt);
+          if (error) validateInput(evt);
+        }}
+        onInput={(evt: ChangeEvent<HTMLInputElement>) => {
+          evt.target.setCustomValidity('');
         }}
         onBlur={(evt) => {
           validateInput(evt);
@@ -73,7 +72,7 @@ export default function InputBlock({
       />
 
       {/** ERROR */}
-      <span className="input-block__error">{isError.message}</span>
+      <span className="input-block__error">{error && error.message}</span>
     </div>
   );
 }

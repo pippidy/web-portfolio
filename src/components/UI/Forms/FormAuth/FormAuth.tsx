@@ -22,7 +22,7 @@ import useModal from '../../../../hooks/useModal';
 export default function FormAuth({ authType, setAuthType }: TAuthFormProps) {
   const formRef = useRef<HTMLFormElement>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [fetchError, setFetchError] = useState<TError>();
+  const [fetchError, setFetchError] = useState<TError | null>();
   const [isSuccess, setIsSuccess] = useState(false);
   const { isModalOpened, setIsModalOpened } = useModal();
   const [values, setValues] = useState<TAuthValues>({
@@ -32,15 +32,13 @@ export default function FormAuth({ authType, setAuthType }: TAuthFormProps) {
 
   // Resetting form when modal is opened/closed
   useEffect(() => {
-    if (formRef.current) {
-      formRef.current.reset();
-    }
+    if (formRef.current) formRef.current.reset();
   }, [isModalOpened]);
 
-  // Clearing fetch errors on authType change
+  // Clearing fetch errors on authType change and values change
   useEffect(() => {
-    setFetchError({ status: false });
-  }, [authType]);
+    setFetchError(null);
+  }, [authType, values]);
 
   const inputs: TInput[] = useMemo(
     () => [
@@ -194,7 +192,7 @@ export default function FormAuth({ authType, setAuthType }: TAuthFormProps) {
 
           {/* SUBMIT BUTTON */}
           <Button
-            disabled={isLoading ? true : false}
+            disabled={isLoading || fetchError ? true : false}
             className="button-default form-auth__button-submit"
             type="submit"
           >
@@ -211,7 +209,7 @@ export default function FormAuth({ authType, setAuthType }: TAuthFormProps) {
           </Button>
 
           {/* ERROR */}
-          {fetchError?.status && (
+          {fetchError && (
             <p className="form-auth__error">{fetchError?.message}</p>
           )}
 

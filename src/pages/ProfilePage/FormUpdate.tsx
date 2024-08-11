@@ -15,7 +15,7 @@ export default function FormUpdate({
   const [value, setValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [error, setError] = useState<TError>({ status: false });
+  const [error, setError] = useState<TError | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -62,7 +62,6 @@ export default function FormUpdate({
     } else {
       if (inputRef.current) {
         setError({
-          status: true,
           message: inputRef.current.validationMessage,
         });
       }
@@ -71,7 +70,7 @@ export default function FormUpdate({
 
   function onChange(evt: ChangeEvent<HTMLInputElement>) {
     setValue(evt.target.value);
-    if (error && evt.target.validity.valid) setError({ status: false });
+    if (error && evt.target.validity.valid) setError(null);
   }
 
   return (
@@ -85,7 +84,7 @@ export default function FormUpdate({
     >
       <div
         className={`input-block ${
-          error.status ? 'error' : isSuccess ? 'success' : ''
+          error ? 'error' : isSuccess ? 'success' : ''
         }`}
       >
         <label htmlFor={config.id} className={isSuccess ? 'success' : ''}>
@@ -113,12 +112,12 @@ export default function FormUpdate({
           >
             Done!
           </span>
-          <span className="input-block__error">{error.message}</span>
+          <span className="input-block__error">{error && error.message}</span>
         </div>
       </div>
 
       <Button
-        disabled={(!value.length || error.status) && true}
+        disabled={!value.length || error ? true : false}
         type="submit"
         className="profile-menu__form-submit"
       >
