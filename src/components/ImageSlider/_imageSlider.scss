@@ -4,7 +4,7 @@
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   border-radius: $border-radius-main;
-  box-shadow: -2px 2px 0 rgba(17, 17, 17, 0.9);
+  // box-shadow: -2px 2px 0 rgba(17, 17, 17, 0.9);
   overflow: hidden;
 
   &__card {
@@ -13,6 +13,7 @@
     align-items: center;
     grid-column: 1/-1;
     grid-row: 1/-1;
+    min-width: 430px;
     background-color: $color-grey-dark;
     border-radius: 10px;
     opacity: 0;
@@ -31,6 +32,15 @@
 
     &.next {
       transform: translateX(100vw);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url(../../assets/img/paper_01.jpg);
+      opacity: 0.3;
+      mix-blend-mode: multiply;
     }
   }
 
@@ -63,11 +73,16 @@
       &::before,
       & svg {
         opacity: 1;
+        transform: scale(1);
       }
     }
 
+    // Magnifying glass icon
     & svg {
       width: 100px;
+      transform: scale(0);
+      transition: opacity $transition-fast ease-in-out,
+        transform $transition-fast ease;
     }
   }
 
@@ -75,6 +90,7 @@
     width: min(90vw, 1280px);
     max-height: 720px;
     object-fit: contain;
+    border-bottom: 2px solid $color-grey-light;
   }
 
   &__button {

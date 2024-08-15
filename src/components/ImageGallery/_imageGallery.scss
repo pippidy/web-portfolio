@@ -11,7 +11,7 @@
     align-items: center;
     flex-basis: max(45%, 430px);
     height: max-content;
-    max-height: 298px;
+    min-height: 298px;
     padding: 15px;
     padding-bottom: 0;
     color: $color-grey-dark;
@@ -23,6 +23,15 @@
       border: 0;
       background-color: $color-yellow-lighter;
     }
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url(../../assets/img/paper_01.jpg);
+      opacity: 0.3;
+      mix-blend-mode: multiply;
+    }
   }
 
   &__image {
@@ -31,6 +40,7 @@
     object-fit: cover;
     filter: grayscale(90%);
     transition: filter $transition-medium ease;
+    border: 2px solid $color-grey-light;
   }
 
   &__text {
