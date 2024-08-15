@@ -32,36 +32,46 @@ function Pagination({
 
   useEffect(() => {
     let pagesArray: JSX.Element[] = [];
-    let elementDots = <li className="pagination__item">...</li>;
+    let elementDots = (
+      <li className="pagination__item" key="page_dots">
+        ...
+      </li>
+    );
 
-    if (currentPage < pagesLimit) {
-      // First chunk of pages
-      for (let i = 1; i <= pagesLimit; i++) {
-        if (i > pagesAmount) break;
-        fillPagesArray(pagesArray, i, currentPage);
+    if (pagesAmount > 0) {
+      if (currentPage < pagesLimit) {
+        // First chunk of pages
+        for (let i = 1; i <= pagesLimit; i++) {
+          if (i > pagesAmount) break;
+          fillPagesArray(pagesArray, i, currentPage);
+        }
+
+        pagesArray.push(elementDots);
+      } else if (currentPage >= pagesAmount - (pagesLimit - 2)) {
+        // Last chunk of pages
+        for (let i = pagesAmount - (pagesLimit - 1); i <= pagesAmount; i++) {
+          fillPagesArray(pagesArray, i, currentPage);
+        }
+
+        pagesArray.unshift(elementDots);
+      } else {
+        // Middle chunk of pages
+        const halfLength = Math.floor(pagesLimit / 2);
+        const isLengthOdd = pagesLimit % 2 !== 0;
+        const leftSide = isLengthOdd ? halfLength : halfLength - 1; // Amount of pages before current
+        const rightSide = halfLength; // Amount of pages after current
+
+        for (
+          let i = currentPage - leftSide;
+          i <= currentPage + rightSide;
+          i++
+        ) {
+          fillPagesArray(pagesArray, i, currentPage);
+        }
+
+        pagesArray.unshift(elementDots);
+        pagesArray.push(elementDots);
       }
-
-      pagesArray.push(elementDots);
-    } else if (currentPage >= pagesAmount - (pagesLimit - 2)) {
-      // Last chunk of pages
-      for (let i = pagesAmount - (pagesLimit - 1); i <= pagesAmount; i++) {
-        fillPagesArray(pagesArray, i, currentPage);
-      }
-
-      pagesArray.unshift(elementDots);
-    } else {
-      // Middle chunk of pages
-      const halfLength = Math.floor(pagesLimit / 2);
-      const isLengthOdd = pagesLimit % 2 !== 0;
-      const leftSide = isLengthOdd ? halfLength : halfLength - 1; // Amount of pages before current
-      const rightSide = halfLength; // Amount of pages after current
-
-      for (let i = currentPage - leftSide; i <= currentPage + rightSide; i++) {
-        fillPagesArray(pagesArray, i, currentPage);
-      }
-
-      pagesArray.unshift(elementDots);
-      pagesArray.push(elementDots);
     }
 
     setPagesRender(pagesArray);
