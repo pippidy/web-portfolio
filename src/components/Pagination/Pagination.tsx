@@ -32,6 +32,7 @@ function Pagination({
 
   useEffect(() => {
     let pagesArray: JSX.Element[] = [];
+    let elementDots = <li className="pagination__item">...</li>;
 
     if (currentPage < pagesLimit) {
       // First chunk of pages
@@ -39,11 +40,15 @@ function Pagination({
         if (i > pagesAmount) break;
         fillPagesArray(pagesArray, i, currentPage);
       }
+
+      pagesArray.push(elementDots);
     } else if (currentPage >= pagesAmount - (pagesLimit - 2)) {
       // Last chunk of pages
       for (let i = pagesAmount - (pagesLimit - 1); i <= pagesAmount; i++) {
         fillPagesArray(pagesArray, i, currentPage);
       }
+
+      pagesArray.unshift(elementDots);
     } else {
       // Middle chunk of pages
       const halfLength = Math.floor(pagesLimit / 2);
@@ -54,6 +59,9 @@ function Pagination({
       for (let i = currentPage - leftSide; i <= currentPage + rightSide; i++) {
         fillPagesArray(pagesArray, i, currentPage);
       }
+
+      pagesArray.unshift(elementDots);
+      pagesArray.push(elementDots);
     }
 
     setPagesRender(pagesArray);

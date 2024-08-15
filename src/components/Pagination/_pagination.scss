@@ -9,10 +9,13 @@
   transition: background-color $transition-medium ease;
   container-type: inline-size;
 
-  &__link {
-    padding: 5px 9px;
+  &__item {
     font-family: $font-family-accent;
     font-size: 1.5rem;
+  }
+
+  &__link {
+    padding: 5px 9px;
 
     &:hover {
       color: $color-grey-dark;
