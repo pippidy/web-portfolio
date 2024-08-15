@@ -47,6 +47,8 @@
   &__link {
     flex: 1;
     display: flex;
+    position: relative;
+    z-index: 1;
 
     &::before,
     & svg {
