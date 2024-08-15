@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function Pagination({
   pagesAmount,
-  pagesLimit = 11, // Odd numbers look better
+  pagesLimit = 9, // Odd numbers look better
   currentPage,
 }: TPaginationProps) {
   const [pagesRender, setPagesRender] = useState<JSX.Element[]>([]);
