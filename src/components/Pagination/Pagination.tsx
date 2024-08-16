@@ -79,7 +79,7 @@ function Pagination({
           fillPagesArray(pagesArray, i, currentPage);
         }
 
-        // Adding dots at the beginning and end
+        // Adding dots at the beginning and at the end
         pagesArray.unshift(elementDotsStart);
         pagesArray.push(elementDotsEnd);
       }
