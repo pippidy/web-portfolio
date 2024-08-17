@@ -75,10 +75,15 @@ export default function GameInfo() {
                               <InfoItem name="Platforms">
                                 {data[0].platforms.map(
                                   (platform, index, arr) => {
-                                    if (index !== arr.length - 1) {
-                                      return `${platform.abbreviation}, `;
+                                    // Sometimes API returns undefined
+                                    if (platform.abbreviation !== undefined) {
+                                      if (index !== arr.length - 1) {
+                                        return `${platform.abbreviation}, `;
+                                      }
+                                      return platform.abbreviation;
                                     }
-                                    return platform.abbreviation;
+
+                                    return null;
                                   }
                                 )}
                               </InfoItem>

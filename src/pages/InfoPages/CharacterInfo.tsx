@@ -60,7 +60,7 @@ export default function CharacterInfo() {
                             </li>
                           )}
 
-                          {/* Do not remove "!== undefined"! */}
+                          {/* Sometimes API returns undefined */}
                           {data[0].gender !== undefined && (
                             <li>
                               <InfoItem name="Gender">
