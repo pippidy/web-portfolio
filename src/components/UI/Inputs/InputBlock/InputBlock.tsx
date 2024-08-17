@@ -8,6 +8,7 @@ export default function InputBlock({
   customError = '',
   className = '',
   onChange,
+  alwaysValidate,
   value,
   resetTrigger,
   attributes,
@@ -60,7 +61,7 @@ export default function InputBlock({
         id={id}
         onChange={(evt) => {
           onChange && onChange(evt);
-          if (error) validateInput(evt);
+          if (error || alwaysValidate) validateInput(evt);
         }}
         onInput={(evt: ChangeEvent<HTMLInputElement>) => {
           evt.target.setCustomValidity('');

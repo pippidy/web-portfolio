@@ -76,6 +76,7 @@ export default function FormAuth({ authType, setAuthType }: TAuthFormProps) {
       {
         id: 3,
         customError: 'Passwords do not match!',
+        alwaysValidate: true,
         attributes: {
           name: 'passwordConfirm',
           type: 'password',

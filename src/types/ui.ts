@@ -6,6 +6,7 @@ export type TInput = {
   customError?: string;
   className?: string;
   onChange?: Function;
+  alwaysValidate?: boolean;
   resetTrigger?: string | number | boolean;
   value?: string;
   attributes: ComponentProps<'input'>;
