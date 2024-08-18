@@ -1,74 +1,27 @@
 import { type TCardsListProps } from '../../types/cards';
-import GameCard from './Cards/GameCard';
-import CharacterCard from './Cards/CharacterCard';
-import CompanyCard from './Cards/CompanyCard';
-import SectionLoading from '../Section/SectionLoading/SectionLoading';
-import DataNotAvailable from '../UI/DataNotAvailable/DataNotAvailable';
 import useGetData from '../../hooks/useGetData';
-import cn from 'classnames';
-import DataError from '../UI/DataError/DataError';
+import CardsRender from '../CardsRender/CardsRender';
 
 export default function CardsList({
   apiOptions,
-  linkPrefix = '',
-  cardSize = 'default',
+  linkPrefix,
+  cardSize,
 }: TCardsListProps) {
-  const { endpoint } = apiOptions;
+  const { endpoint: cardType } = apiOptions;
   const { data, loading, error } = useGetData({
     ...apiOptions,
   });
 
-  const classCardList = cn('cards-list', {
-    'cards-list_compact': cardSize === 'compact',
-    'cards-list_mini': cardSize === 'mini',
-  });
-
   return (
     <>
-      {loading ? (
-        <SectionLoading />
-      ) : data && data.length > 0 ? (
-        <ul className={classCardList}>
-          {data.map((data) => {
-            return (
-              <li className="cards-list__item" key={data.id}>
-                {endpoint === 'games' ? (
-                  <GameCard
-                    id={data.id}
-                    name={data.name}
-                    cover={data?.cover}
-                    coverSize="cover_big"
-                    aggregated_rating={data?.aggregated_rating}
-                    first_release_date={data && data.first_release_date}
-                    linkPrefix={linkPrefix}
-                    cardSize={cardSize}
-                  />
-                ) : endpoint === 'characters' ? (
-                  <CharacterCard
-                    id={data.id}
-                    name={data.name}
-                    mug_shot={data.mug_shot}
-                    cardSize={cardSize}
-                    linkPrefix={linkPrefix}
-                  />
-                ) : endpoint === 'companies' ? (
-                  <CompanyCard
-                    id={data.id}
-                    name={data.name}
-                    logo={data.logo}
-                    cardSize={cardSize}
-                    linkPrefix={linkPrefix}
-                  />
-                ) : (
-                  <DataNotAvailable text="No data available." />
-                )}
-              </li>
-            );
-          })}
-        </ul>
-      ) : (
-        error && <DataError error={error} />
-      )}
+      <CardsRender
+        data={data}
+        loading={loading}
+        error={error}
+        cardSize={cardSize}
+        cardType={cardType}
+        linkPrefix={linkPrefix}
+      />
     </>
   );
 }

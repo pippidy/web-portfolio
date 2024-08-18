@@ -1,6 +1,6 @@
-import { type TCompanyCardProps } from '../../../types/cards';
+import { type TCompanyCardProps } from '../../types/cards';
 import { Link } from 'react-router-dom';
-import ImageDummyDefault from '../../ImageDummies/ImageDummyDefault';
+import ImageDummyDefault from '../ImageDummies/ImageDummyDefault';
 
 export default function CompanyCard({
   id,
