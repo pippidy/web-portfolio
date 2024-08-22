@@ -5,6 +5,7 @@ import CardsList from '../components/CardsList/CardsList';
 import Pagination from '../components/Pagination/Pagination';
 import Section from '../components/Section/Section';
 import usePagesAmount from '../hooks/usePagesAmount';
+import { countPaginationOffset } from '../utils/utils';
 
 export default function Companies() {
   const nav = useNavigate();
@@ -44,7 +45,7 @@ export default function Companies() {
           endpoint: 'companies',
           fields: 'name,logo.url',
           limit: fetchLimit,
-          offset: fetchLimit * currentPage,
+          offset: countPaginationOffset(currentPage, fetchLimit),
           sort: sortRef.current,
         }}
         cardSize="mini"

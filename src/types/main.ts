@@ -1,5 +1,4 @@
-import React, { type Dispatch, type SetStateAction } from 'react';
-import { type TDataImage } from './data';
+import React from 'react';
 
 export type TApiOptions = {
   endpoint: TEndpoint;
@@ -57,80 +56,11 @@ export type TCutLongString = {
   end?: string; // three dots at the end of the title for example
 };
 
-export type TTabsProps = {
-  tabs: string[];
-  title?: string | null | undefined;
-  children?: TComponentChildren[];
-};
-
-export type TDataNotAvailableProps = {
-  text?: string;
-};
-
 export type TCategory = TNameAndID;
-
-export type TSectionProps = {
-  title: string;
-  children?: TComponentChildren;
-  className?: string;
-};
-
-export type TSectionHeaderProps = {
-  title: string;
-  collapsed: boolean;
-  setCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-export type TImageGalleryProps = {
-  apiOptions: TApiOptions;
-  imageSize: string;
-  text?: 'Image' | 'Screenshot' | 'Artwork';
-};
-
-export type TImageSliderProps = {
-  data: TDataImage[] | undefined;
-  imageSize: string;
-  text: string;
-  currentImage: number;
-  setCurrentImage: Dispatch<SetStateAction<number>>;
-};
-
-export type TCatalogueProps = {
-  endpoint: TEndpoint;
-  category: string;
-  title: string;
-};
-
-export type TCatalogueMenuProps = {
-  endpoint: TEndpoint;
-  category: string;
-};
-
-export type THeaderSubmenuProps = {
-  title: string;
-  children: TComponentChildren[];
-};
 
 export type TInfoItemProps = { name: string; children: TComponentChildren };
 
 export type TContactsItem = {
   title: string;
   children: TComponentChildren;
-};
-
-export type TSliderCardProps = {
-  index: number;
-  className: string;
-  imageSize: string;
-  text: string;
-  imageID: string;
-};
-
-export type TGalleryCardProps = Omit<TSliderCardProps, 'className'> & {
-  onClick: (index: number) => void;
-};
-
-export type TUseSearchProps = {
-  query: string;
-  limit?: number;
 };

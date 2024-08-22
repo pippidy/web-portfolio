@@ -1,4 +1,5 @@
-import { type TSort, type TCatalogueProps } from '../../types/main';
+import { type TSort } from '../../types/main';
+import { type TCatalogueProps } from '../../types/props';
 import { useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Section from '../Section/Section';
@@ -6,11 +7,13 @@ import CardsList from '../CardsList/CardsList';
 import Pagination from '../Pagination/Pagination';
 import usePagesAmount from '../../hooks/usePagesAmount';
 import CatalogueMenu from './CatalogueMenu/CatalogueMenu';
+import { countPaginationOffset } from '../../utils/utils';
 
 export default function Catalogue({
   category,
   endpoint = 'games',
   title,
+  fetchLimit = 100,
 }: TCatalogueProps) {
   const { id: pageID } = useParams();
 
@@ -26,7 +29,6 @@ export default function Catalogue({
   );
 
   const nav = useNavigate();
-  const fetchLimit = 100;
 
   // Redirecting if page is non-existent
   useEffect(() => {
@@ -66,7 +68,7 @@ export default function Catalogue({
                 'name,cover.image_id,aggregated_rating,first_release_date',
               limit: fetchLimit,
               filter: pageID === 'all' ? '' : `${category} = ${pageID}`,
-              offset: fetchLimit * currentPage,
+              offset: countPaginationOffset(currentPage, fetchLimit),
               sort: sortRef.current,
             }}
             linkPrefix="../"

@@ -16,7 +16,7 @@ import { catchFetchError, validateForm } from '../../../../utils/utils';
 import InputBlock from '../../Inputs/InputBlock/InputBlock';
 import LoadingSimple from '../../LoadingSimple/LoadingSimple';
 import { TInput } from '../../../../types/ui';
-import Button from '../../Buttons/Button/Button';
+import Button from '../../Buttons/ButtonDefault/ButtonDefault';
 import useModal from '../../../../hooks/useModal';
 
 export default function FormAuth({ authType, setAuthType }: TAuthFormProps) {

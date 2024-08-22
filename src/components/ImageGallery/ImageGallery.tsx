@@ -1,8 +1,8 @@
-import { type TImageGalleryProps } from '../../types/main';
+import { type TImageGalleryProps } from '../../types/props';
 import { useState } from 'react';
 import SectionLoading from '../Section/SectionLoading/SectionLoading';
 import ImageSlider from '../ImageSlider/ImageSlider';
-import Modal from '../UI/Modal/Modal';
+import Modal from '../Modal/Modal';
 import useGetData from '../../hooks/useGetData';
 import DataNotAvailable from '../UI/DataNotAvailable/DataNotAvailable';
 import GalleryCard from './GalleryCard';

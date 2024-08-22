@@ -1,4 +1,4 @@
-import { type TSectionHeaderProps } from '../../types/main';
+import { type TSectionHeaderProps } from '../../types/props';
 
 export default function SectionHeader({
   title,

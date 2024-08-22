@@ -5,6 +5,7 @@ import CardsList from '../components/CardsList/CardsList';
 import Pagination from '../components/Pagination/Pagination';
 import Section from '../components/Section/Section';
 import usePagesAmount from '../hooks/usePagesAmount';
+import { countPaginationOffset } from '../utils/utils';
 
 export default function Characters() {
   const nav = useNavigate();
@@ -44,7 +45,7 @@ export default function Characters() {
           endpoint: 'characters',
           fields: 'name,mug_shot.url',
           limit: fetchLimit,
-          offset: fetchLimit * currentPage,
+          offset: countPaginationOffset(currentPage, fetchLimit),
           sort: sortRef.current,
         }}
         cardSize="mini"

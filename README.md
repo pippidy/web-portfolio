@@ -34,7 +34,7 @@
 - `endpoint: string` Список доступных ендпоинтов: games, characters, companies, screenshots, artworks;
 - `fields: string` Запрашиваемые поля, например: `fields name;`, `fields cover.image screenshots.id;`. Можно запросить все доступные поля, например: `fields *;` или `fields country.*`;
 - `search: string` Передаётся поисковая строка и превращается в `search "${search}";`;
-- `sort: string` Превращается в `sort ${sort.property} ${sort.order};`. Принимается свойство для сортировки и порядок(`asc`, `desc`). По-умолчанию порядок `asc`;
+- `sort: string` Превращается в `sort ${sort.property} ${sort.order};`. Принимает свойство для сортировки и порядок(`asc`, `desc`). По-умолчанию порядок `asc`;
 - `filter: string` Превращается в `where ${filter};`. Пример передаваемой строки для фильтрации: `aggregated_rating > 0;`;
 - `limit: number` Ограничение на кол-во элементов;
 - `offset: number` С какого элемента выдавать данные. Нужно для пагинации.

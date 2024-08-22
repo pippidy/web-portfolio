@@ -3,7 +3,7 @@ import Section from '../../components/Section/Section';
 import SectionLoading from '../../components/Section/SectionLoading/SectionLoading';
 import { formatDate, getCountryFromISO } from '../../utils/utils';
 import CardsList from '../../components/CardsList/CardsList';
-import Tabs from '../../components/UI/Tabs/Tabs';
+import Tabs from '../../components/Tabs/Tabs';
 import DataNotAvailable from '../../components/UI/DataNotAvailable/DataNotAvailable';
 import ImageDummyDefault from '../../components/ImageDummies/ImageDummyDefault';
 import InfoItem from './InfoItem/InfoItem';

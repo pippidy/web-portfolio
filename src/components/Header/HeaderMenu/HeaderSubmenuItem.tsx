@@ -1,4 +1,4 @@
-import { THeaderSubmenuProps as THeaderSubmenuItemProps } from '../../../types/main';
+import { THeaderSubmenuProps as THeaderSubmenuItemProps } from '../../../types/props';
 
 // @ts-expect-error
 import { ReactComponent as ArrowIcon } from '../../../assets/svg/arrow-down.svg';

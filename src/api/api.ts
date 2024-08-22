@@ -24,6 +24,7 @@ async function fetchAuth() {
 
 async function createConfig() {
   const auth = await fetchAuth();
+
   const config: TConfigAPI = {
     baseURL: process.env.REACT_APP_PROXY_PREFIX || '', // Proxy prefix is used for production only
     headers: {

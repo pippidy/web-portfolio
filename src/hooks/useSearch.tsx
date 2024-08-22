@@ -1,5 +1,6 @@
+import { type TError } from '../types/main';
 import { type TDataGame } from '../types/data';
-import { type TError, type TUseSearchProps } from '../types/main';
+import { type TUseSearchProps } from '../types/props';
 import { useCallback, useEffect, useState } from 'react';
 import { getData } from '../api/api';
 import { catchFetchError } from '../utils/utils';

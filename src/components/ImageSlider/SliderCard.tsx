@@ -1,4 +1,4 @@
-import { type TSliderCardProps } from '../../types/main';
+import { type TSliderCardProps } from '../../types/props';
 
 // @ts-expect-error
 import { ReactComponent as ZoomIcon } from '../../assets/svg/zoom.svg';

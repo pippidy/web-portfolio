@@ -1,4 +1,5 @@
-import { type TCatalogueMenuProps, type TCategory } from '../../../types/main';
+import { type TCategory } from '../../../types/main';
+import { type TCatalogueMenuProps } from '../../../types/props';
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getCategories } from '../../../api/api';

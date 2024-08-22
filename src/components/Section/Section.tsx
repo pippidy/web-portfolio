@@ -1,4 +1,4 @@
-import { type TSectionProps } from '../../types/main';
+import { type TSectionProps } from '../../types/props';
 import { useState } from 'react';
 import SectionHeader from './SectionHeader';
 import cn from 'classnames';

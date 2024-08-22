@@ -1,5 +1,5 @@
-import { ComponentProps } from 'react';
-import { TComponentChildren } from './main';
+import { type ComponentProps } from 'react';
+import { type TComponentChildren } from './main';
 
 export type TInput = {
   id?: number | string;

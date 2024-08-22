@@ -1,7 +1,7 @@
-import { type TTabsProps } from '../../../types/main';
+import { type TTabsProps } from '../../types/props';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import Button from '../Buttons/Button/Button';
+import Button from '../UI/Buttons/ButtonDefault/ButtonDefault';
 import cn from 'classnames';
 
 export default function Tabs({ tabs, title = '', children }: TTabsProps) {

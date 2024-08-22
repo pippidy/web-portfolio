@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import Section from '../../components/Section/Section';
 import SectionLoading from '../../components/Section/SectionLoading/SectionLoading';
 import CardsList from '../../components/CardsList/CardsList';
-import Tabs from '../../components/UI/Tabs/Tabs';
+import Tabs from '../../components/Tabs/Tabs';
 import ImageGallery from '../../components/ImageGallery/ImageGallery';
 import DataNotAvailable from '../../components/UI/DataNotAvailable/DataNotAvailable';
 import ImageDummyDefault from '../../components/ImageDummies/ImageDummyDefault';

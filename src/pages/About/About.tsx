@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Section from '../../components/Section/Section';
-import Button from '../../components/UI/Buttons/Button/Button';
+import Button from '../../components/UI/Buttons/ButtonDefault/ButtonDefault';
 
 export default function About() {
   const [language, setLanguage] = useState<'ru' | 'eng'>('ru');

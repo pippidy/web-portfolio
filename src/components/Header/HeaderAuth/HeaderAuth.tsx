@@ -1,12 +1,12 @@
 import { type TAuthType } from '../../../types/auth';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Modal from '../../UI/Modal/Modal';
+import Modal from '../../Modal/Modal';
 import FormAuth from '../../UI/Forms/FormAuth/FormAuth';
-import DefaultModalBlock from '../../UI/Modal/DefaultModalBlock/DefaultModalBlock';
+import DefaultModalBlock from '../../Modal/DefaultModalBlock/DefaultModalBlock';
 import { useAuth } from '../../../contexts/AuthContext';
 import SignOutButton from '../../SignOutButton/SignOutButton';
-import Button from '../../UI/Buttons/Button/Button';
+import Button from '../../UI/Buttons/ButtonDefault/ButtonDefault';
 import cn from 'classnames';
 
 // @ts-expect-error

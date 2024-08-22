@@ -1,4 +1,4 @@
-import { type TGalleryCardProps } from '../../types/main';
+import { type TGalleryCardProps } from '../../types/props';
 
 export default function GalleryCard({
   index,

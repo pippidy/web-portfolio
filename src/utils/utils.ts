@@ -93,3 +93,11 @@ export function validateForm(form: HTMLFormElement): boolean {
 
   return true;
 }
+
+export function countPaginationOffset(
+  currentPage: number,
+  fetchLimit: number
+): number {
+  currentPage = --currentPage;
+  return currentPage * fetchLimit;
+}

@@ -1,4 +1,4 @@
-import { type TImageSliderProps } from '../../types/main';
+import { type TImageSliderProps } from '../../types/props';
 import SliderCard from './SliderCard';
 import cn from 'classnames';
 

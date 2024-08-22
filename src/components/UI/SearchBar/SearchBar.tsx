@@ -2,7 +2,7 @@ import { FormEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useOutsideClick from '../../../hooks/useOutsideClick';
 import LoadingSimple from '../LoadingSimple/LoadingSimple';
-import Button from '../Buttons/Button/Button';
+import Button from '../Buttons/ButtonDefault/ButtonDefault';
 import SearchBarResults from './SearchBarResults';
 import useSearch from '../../../hooks/useSearch';
 

@@ -2,7 +2,7 @@ import { type TError } from '../../types/main';
 import { ChangeEvent, FormEvent, useMemo, useRef, useState } from 'react';
 import { doUpdateProfile } from '../../firebase/auth';
 import LoadingSimple from '../../components/UI/LoadingSimple/LoadingSimple';
-import Button from '../../components/UI/Buttons/Button/Button';
+import Button from '../../components/UI/Buttons/ButtonDefault/ButtonDefault';
 import { validateForm } from '../../utils/utils';
 
 export default function FormUpdate({

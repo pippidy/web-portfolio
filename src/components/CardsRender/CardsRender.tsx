@@ -1,4 +1,4 @@
-import { type TCardsRenderProps } from './types';
+import { type TCardsRenderProps } from '../../types/props';
 import DataError from '../UI/DataError/DataError';
 import DataNotAvailable from '../UI/DataNotAvailable/DataNotAvailable';
 import SectionLoading from '../Section/SectionLoading/SectionLoading';
