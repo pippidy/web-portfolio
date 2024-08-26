@@ -6,51 +6,51 @@
 @import './styles/app';
 
 // Pages
-@import './pages/InfoPages/InfoItem/infoItem';
-@import './pages/ProfilePage/profilePage';
-@import './pages/InfoPages/infoPages';
-@import './pages/Contacts/contacts';
-@import './pages/About/about';
+@import './components/routing/pages/InfoPages/InfoItem/infoItem';
+@import './components/routing/pages/ProfilePage/profilePage';
+@import './components/routing/pages/InfoPages/infoPages';
+@import './components/routing/pages/Contacts/contacts';
+@import './components/routing/pages/About/about';
 
-// UI
-@import './components/UI/DataNotAvailable/dataNotAvailable';
+// Modal
+@import './components/UI/Modal/modal';
+@import './components/UI/Modal/DefaultModalBlock/defaultModalBlock';
+
+// Header
+@import './components/UI/Header/header';
+@import './components/UI/Header/HeaderAuth/headerAuth';
+@import './components/UI/Header/HeaderMenu/headerMenu';
+
+// Footer
+@import './components/UI/Footer/footer';
+
+// Section
+@import './components/UI/Section/section';
+@import './components/UI/Section/SectionLoading/sectionLoading';
+
+// Cards
+@import './components/UI/Cards/cards';
+@import './components/UI/CardsRender/cardsRender';
+
+// Images
+@import './components/UI/ImageGallery/imageGallery';
+@import './components/UI/ImageSlider/imageSlider';
+@import './components/UI/ImageDummies/imageDummy';
+
+// Catalogue
+@import './components/UI/Catalogue/catalogue';
+@import './components/UI/Catalogue/CatalogueMenu/catalogueMenu';
+
+// Pagination
+@import './components/UI/Pagination/pagination';
+
+// Various UI
 @import './components/UI/Buttons/ButtonLike/buttonLike';
+@import './components/UI/Buttons/buttonDefault/buttonDefault';
 @import './components/UI/Inputs/InputBlock/inputBlock';
 @import './components/UI/LoadingSimple/loadingSimple';
 @import './components/UI/Forms/FormAuth/formAuth';
+@import './components/UI/DataNotAvailable/dataNotAvailable';
 @import './components/UI/ErrorBlock/errorBlock';
 @import './components/UI/SearchBar/searchBar';
-@import './components/UI/Buttons/buttons';
-@import './components/Tabs/tabs';
-
-// Modal
-@import './components/Modal/modal';
-@import './components/Modal/DefaultModalBlock/defaultModalBlock';
-
-// Header
-@import './components/Header/header';
-@import './components/Header/HeaderAuth/headerAuth';
-@import './components/Header/HeaderMenu/headerMenu';
-
-// Footer
-@import './components/Footer/footer';
-
-// Section
-@import './components/Section/section';
-@import './components/Section/SectionLoading/sectionLoading';
-
-// Cards
-@import './components/Cards/cards';
-@import './components/CardsRender/cardsRender';
-
-// Images
-@import './components/ImageGallery/imageGallery';
-@import './components/ImageSlider/imageSlider';
-@import './components/ImageDummies/imageDummy';
-
-// Catalogue
-@import './components/Catalogue/catalogue';
-@import './components/Catalogue/CatalogueMenu/catalogueMenu';
-
-// Various components
-@import './components/Pagination/pagination';
+@import './components/UI/Tabs/tabs';

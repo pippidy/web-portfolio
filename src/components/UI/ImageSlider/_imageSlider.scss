@@ -1,0 +1,162 @@
+.image-slider {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  border-radius: $border-radius-main;
+  // box-shadow: -2px 2px 0 rgba(17, 17, 17, 0.9);
+  overflow: hidden;
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-column: 1/-1;
+    grid-row: 1/-1;
+    min-width: 430px;
+    background-color: $color-grey-dark;
+    border-radius: 10px;
+    opacity: 0;
+    transform: translateX(-100vw);
+    transition: transform $transition-medium ease-out,
+      opacity $transition-fast ease-out;
+
+    &.current {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    &.prev {
+      transform: translateX(-100vw);
+    }
+
+    &.next {
+      transform: translateX(100vw);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url(../../../assets/img/paper_01.jpg);
+      opacity: 0.3;
+      mix-blend-mode: multiply;
+    }
+  }
+
+  &__link {
+    flex: 1;
+    display: flex;
+    position: relative;
+    z-index: 1;
+
+    &::before,
+    & svg {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      aspect-ratio: 1 / 1;
+      opacity: 0;
+      transition: opacity $transition-medium ease;
+    }
+
+    &::before {
+      content: '';
+      width: 35%;
+      background: radial-gradient(
+        ellipse closest-side,
+        rgba($color-grey-dark, 0.75),
+        transparent
+      );
+      border-radius: 50%;
+    }
+
+    &:hover {
+      &::before,
+      & svg {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    // Magnifying glass icon
+    & svg {
+      width: 100px;
+      transform: scale(0);
+      transition: opacity $transition-fast ease-in-out,
+        transform $transition-fast ease;
+    }
+  }
+
+  &__image {
+    width: min(90vw, 1280px);
+    max-height: 720px;
+    object-fit: contain;
+    border-bottom: 2px solid $color-grey-light;
+  }
+
+  &__button {
+    position: absolute;
+    z-index: 101;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8.1%;
+    height: 100%;
+    background-color: rgba($color-grey-dark, 0.2);
+    transition: background-color $transition-fast ease-in-out;
+
+    &:hover {
+      background-color: rgba($color-grey-dark, 0.8);
+
+      & svg {
+        opacity: 1;
+      }
+    }
+
+    &:active svg {
+      animation: squishY 0.3s linear;
+    }
+
+    &_prev {
+      left: 0;
+      transform: rotate(180deg);
+    }
+
+    &_next {
+      right: 0;
+    }
+
+    & svg {
+      opacity: 0.2;
+      width: 60%;
+      aspect-ratio: 1 / 1;
+      transition: opacity $transition-fast ease-in-out;
+    }
+  }
+
+  &__text {
+    width: 100%;
+    padding-block: 15px;
+    font-family: $font-family-handwriting;
+    font-size: 4rem;
+    background-color: $color-yellow;
+  }
+}
+
+.modal-image-slider {
+  & .modal__close-container {
+    top: 0;
+    right: 0;
+    width: 8.1%;
+  }
+
+  & .modal__close-button {
+    color: #fff;
+    opacity: 0.75;
+  }
+
+  & .icon-cross {
+    height: 20px;
+  }
+}

@@ -2,7 +2,7 @@ import { type TError } from '../../../../types/main';
 import { type TInput } from '../../../../types/ui';
 import { ChangeEvent, useEffect, useId, useRef, useState } from 'react';
 import cn from 'classnames';
-import useModal from '../../../../hooks/useModal';
+import useModal from '../../../hooks/useModal';
 
 export default function InputBlock({
   customError = '',

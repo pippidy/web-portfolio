@@ -1,15 +1,15 @@
 import { FormEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import useOutsideClick from '../../../hooks/useOutsideClick';
 import LoadingSimple from '../LoadingSimple/LoadingSimple';
-import Button from '../Buttons/ButtonDefault/ButtonDefault';
+import ButtonDefault from '../Buttons/ButtonDefault/ButtonDefault';
 import SearchBarResults from './SearchBarResults';
-import useSearch from '../../../hooks/useSearch';
 
 // @ts-expect-error
 import { ReactComponent as SearchIcon } from '../../../assets/svg/search.svg';
 // @ts-expect-error
 import { ReactComponent as CrossIcon } from '../../../assets/svg/cross.svg';
+import useSearch from '../../hooks/useSearch';
+import useOutsideClick from '../../hooks/useOutsideClick';
 
 export default function SearchBar() {
   const [query, setQuery] = useState('');
@@ -79,15 +79,15 @@ export default function SearchBar() {
             </div>
           )}
 
-          <Button
+          <ButtonDefault
             type="submit"
             className="search__button search__button_submit"
             title="Submit search"
           >
             <SearchIcon className="search__svg" />
-          </Button>
+          </ButtonDefault>
 
-          <Button
+          <ButtonDefault
             onClick={() => {
               onReset();
 
@@ -102,7 +102,7 @@ export default function SearchBar() {
             title="Reset search"
           >
             <CrossIcon className="search__svg" />
-          </Button>
+          </ButtonDefault>
 
           <div className={`search__results ${isSearching ? 'active' : ''}`}>
             {data && data.length > 0 ? (

@@ -16,8 +16,8 @@ import { catchFetchError, validateForm } from '../../../../utils/utils';
 import InputBlock from '../../Inputs/InputBlock/InputBlock';
 import LoadingSimple from '../../LoadingSimple/LoadingSimple';
 import { TInput } from '../../../../types/ui';
-import Button from '../../Buttons/ButtonDefault/ButtonDefault';
-import useModal from '../../../../hooks/useModal';
+import ButtonDefault from '../../Buttons/ButtonDefault/ButtonDefault';
+import useModal from '../../../hooks/useModal';
 
 export default function FormAuth({ authType, setAuthType }: TAuthFormProps) {
   const formRef = useRef<HTMLFormElement>(null);
@@ -139,12 +139,12 @@ export default function FormAuth({ authType, setAuthType }: TAuthFormProps) {
                 'You successfully created new account!'}
           </h2>
 
-          <Button
+          <ButtonDefault
             className="button-default"
             onClick={() => setIsModalOpened(false)}
           >
             Ok
-          </Button>
+          </ButtonDefault>
         </div>
       ) : (
         <form
@@ -192,7 +192,7 @@ export default function FormAuth({ authType, setAuthType }: TAuthFormProps) {
           </div>
 
           {/* SUBMIT BUTTON */}
-          <Button
+          <ButtonDefault
             disabled={isLoading || fetchError ? true : false}
             className="button-default form-auth__button-submit"
             type="submit"
@@ -207,7 +207,7 @@ export default function FormAuth({ authType, setAuthType }: TAuthFormProps) {
             ) : (
               authType === 'signIn' && 'Sign in'
             )}
-          </Button>
+          </ButtonDefault>
 
           {/* ERROR */}
           {fetchError && (
@@ -218,25 +218,25 @@ export default function FormAuth({ authType, setAuthType }: TAuthFormProps) {
           {authType === 'signUp' ? (
             <p className="form-auth__text">
               Already have an account?{' '}
-              <Button
+              <ButtonDefault
                 className="button-anchor"
                 onClick={() => setAuthType('signIn')}
                 type="button"
               >
                 Sign in
-              </Button>
+              </ButtonDefault>
             </p>
           ) : (
             authType === 'signIn' && (
               <p className="form-auth__text">
                 Don't have an account?{' '}
-                <Button
+                <ButtonDefault
                   className="button-anchor"
                   onClick={() => setAuthType('signUp')}
                   type="button"
                 >
                   Sign up
-                </Button>
+                </ButtonDefault>
               </p>
             )
           )}

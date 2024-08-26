@@ -1,0 +1,51 @@
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+  gap: 20px;
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-basis: max(45%, 430px);
+    height: max-content;
+    min-height: 298px;
+    padding: 15px;
+    padding-bottom: 0;
+    color: $color-grey-dark;
+    background-color: $color-yellow-bleak;
+    border-radius: $border-radius-main;
+    box-shadow: -2px 2px 0 rgba($color-grey-dark, 0.9);
+
+    &.card-flying:hover {
+      border: 0;
+      background-color: $color-yellow-lighter;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url(../../../assets/img/paper_01.jpg);
+      opacity: 0.3;
+      mix-blend-mode: multiply;
+    }
+  }
+
+  &__image {
+    aspect-ratio: 16 / 9;
+    border-radius: $border-radius-main;
+    object-fit: cover;
+    filter: grayscale(90%);
+    transition: filter $transition-medium ease;
+    border: 2px solid $color-grey-light;
+  }
+
+  &__text {
+    padding-block: 1rem;
+    font-family: $font-family-handwriting;
+    font-size: 3rem;
+  }
+}
