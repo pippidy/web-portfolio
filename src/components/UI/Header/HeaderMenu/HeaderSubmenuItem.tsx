@@ -3,7 +3,7 @@ import { THeaderSubmenuProps as THeaderSubmenuItemProps } from '../../../../type
 // @ts-expect-error
 import { ReactComponent as ArrowIcon } from '../../../../assets/svg/arrow-down.svg';
 
-export default function HeaderSubmenuItem({
+export default function HeaderSubmenu({
   title,
   children,
 }: THeaderSubmenuItemProps) {
@@ -19,10 +19,10 @@ export default function HeaderSubmenuItem({
       </span>
       <div className="menu-header__submenu-holder">
         <ul className="menu-header__submenu-list">
-          {children?.map((item, index) => {
+          {children?.map((child, index) => {
             return (
               <li key={index} className="menu-header__submenu-item">
-                {item}
+                {child}
               </li>
             );
           })}

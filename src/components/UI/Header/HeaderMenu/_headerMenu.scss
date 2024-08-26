@@ -100,6 +100,15 @@
         color: #fff;
         pointer-events: none;
       }
+
+      & > a {
+        display: inline-block;
+        width: 100%;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
 
     &-icon {
