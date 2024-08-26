@@ -24,7 +24,8 @@ export default function usePagesAmount({
       signal: signal,
     })
       .then((data) => {
-        data && setPagesAmount(Math.floor(data.count / fetchLimit));
+        data && setPagesAmount(Math.ceil(data.count / fetchLimit));
+        console.log(data);
       })
       .catch((error) => {
         catchFetchError(error);

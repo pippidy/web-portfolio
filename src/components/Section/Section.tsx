@@ -25,8 +25,9 @@ export default function Section({
           collapsed={collapsed}
           setCollapsed={setCollapsed}
         />
-
-        <div className="section__content">{children}</div>
+        <div className="section__content">
+          <div className="section__content-inner">{children}</div>
+        </div>
       </section>
 
       <div className="section-separator"></div>

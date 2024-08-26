@@ -39,12 +39,23 @@
 
   &__content {
     position: relative;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
     justify-content: space-between;
-    gap: 20px;
     flex: 1;
     padding: 25px;
+    transition: grid-template-rows $transition-medium,
+      padding-block $transition-medium, overflow $transition-medium;
+
+    &-inner {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+      opacity: 1;
+      transition: opacity $transition-medium;
+    }
   }
 
   &__title {
@@ -100,7 +111,13 @@
     }
 
     & .section__content {
-      display: none;
+      grid-template-rows: 0fr;
+      padding-block: 0;
+
+      & .section__content-inner {
+        opacity: 0;
+        overflow: hidden;
+      }
     }
 
     & .spinner:before {

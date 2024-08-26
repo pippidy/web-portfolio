@@ -59,7 +59,7 @@ function Pagination({
         }
 
         // Adding dots at the end
-        pagesArray.push(elementDots('end'));
+        if (pagesAmount > pagesLimit) pagesArray.push(elementDots('end'));
       } else if (currentPage >= pagesAmount - (pagesLimit - 2)) {
         // Last chunk of pages
         for (let i = pagesAmount - (pagesLimit - 1); i <= pagesAmount; i++) {

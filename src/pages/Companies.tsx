@@ -9,7 +9,7 @@ import { countPaginationOffset } from '../utils/utils';
 
 export default function Companies() {
   const nav = useNavigate();
-  const fetchLimit = 102;
+  const fetchLimit = 105;
 
   // Preparing data for pagination
   const { pagesAmount, currentPage } = usePagesAmount({
