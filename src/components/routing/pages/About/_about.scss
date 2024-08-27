@@ -37,7 +37,8 @@
       flex-basis: 50%;
     }
 
-    & button {
+    &-button {
+      position: relative;
       padding-block: 10px;
       font-weight: bold;
       background-color: #fff;
@@ -48,13 +49,28 @@
         box-shadow $transition-medium ease,
         background-color $transition-medium ease, color $transition-medium ease;
 
+      // Element for animation
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: $color-blue;
+        border-radius: 7px;
+        transition: clip-path $transition-medium ease-out,
+          opacity $transition-medium ease-out;
+      }
+
       &:hover {
         color: #fff;
         transform: scale(1.05);
         background-color: $color-grey-dark;
       }
 
-      &:first-child {
+      // Left button
+      &_left {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
         box-shadow: -2px 2px 0 0 #fff, -4px 4px 0 0 $color-grey-dark;
@@ -62,9 +78,17 @@
         &:hover {
           box-shadow: -4px 4px 0 0 #fff, -6px 6px 0 0 $color-grey-dark;
         }
+
+        // Element for animation
+        &::after {
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+          clip-path: circle(0% at 100% 0%);
+        }
       }
 
-      &:last-child {
+      // Right button
+      &_right {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
         box-shadow: 2px 2px 0 0 #fff, 4px 4px 0 0 $color-grey-dark;
@@ -72,17 +96,34 @@
         &:hover {
           box-shadow: 4px 4px 0 0 #fff, 6px 6px 0 0 $color-grey-dark;
         }
+
+        // Element for animation
+        &::after {
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+          clip-path: circle(0% at 0% 0%);
+        }
       }
 
       &.active {
         position: relative;
         top: 1px;
         color: #fff;
-        background-color: $color-blue;
         border-color: $color-blue-dark;
+        border-width: 3px;
         box-shadow: none;
         pointer-events: none;
         transform: scale(0.92);
+
+        // Element for animation
+        &::after {
+          clip-path: circle(100% at 50% 50%);
+        }
+      }
+
+      &-text {
+        position: relative;
+        z-index: 1;
       }
     }
   }

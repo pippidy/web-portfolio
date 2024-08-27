@@ -1,28 +1,30 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import ButtonDefault from '../../../UI/Buttons/ButtonDefault/ButtonDefault';
 import Section from '../../../UI/Section/Section';
+import cn from 'classnames';
 
 export default function About() {
   const [language, setLanguage] = useState<'ru' | 'eng'>('ru');
+
+  const buttonRuClass = cn('about__lang-button about__lang-button_left', {
+    active: language === 'ru',
+  });
+
+  const buttonEngClass = cn('about__lang-button about__lang-button_right', {
+    active: language === 'eng',
+  });
 
   return (
     <Section title="About">
       <div className="about">
         <div className="about__lang">
-          <ButtonDefault
-            onClick={() => setLanguage('ru')}
-            className={language === 'ru' ? 'active' : ''}
-          >
-            Ru
-          </ButtonDefault>
+          <button onClick={() => setLanguage('ru')} className={buttonRuClass}>
+            <span className="about__lang-button-text">Ru</span>
+          </button>
 
-          <ButtonDefault
-            onClick={() => setLanguage('eng')}
-            className={language === 'eng' ? 'active' : ''}
-          >
-            Eng
-          </ButtonDefault>
+          <button onClick={() => setLanguage('eng')} className={buttonEngClass}>
+            <span className="about__lang-button-text">Eng</span>
+          </button>
         </div>
 
         <div className="about__separator"></div>
