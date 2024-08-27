@@ -12,11 +12,18 @@ export default function CharacterCard({
     <div className="card card-flying" title={name}>
       <Link className="card__link" to={`${linkPrefix}character/${id}`}>
         {mug_shot ? (
-          <img
-            className="card__image"
-            src={mug_shot.url}
-            alt={`Mugshot of ${name}`}
-          />
+          <div className="card__image-holder">
+            <img
+              className="card__image card__image_animate"
+              src={mug_shot.url}
+              alt={`Mugshot of ${name}`}
+            />
+            <img
+              className="card__image card__image_grayscale"
+              src={mug_shot.url}
+              alt={`Mugshot of ${name}`}
+            />
+          </div>
         ) : (
           <ImageDummyAvatar />
         )}

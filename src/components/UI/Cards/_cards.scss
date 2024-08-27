@@ -57,15 +57,32 @@
     height: 100%;
   }
 
+  &__image-holder {
+    position: relative;
+    height: 100%;
+  }
+
   &__image {
+    position: absolute;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(90%);
-    transition: filter $transition-medium ease;
+
+    &_grayscale {
+      filter: grayscale(90%);
+    }
+
+    // Image animation
+    &_animate {
+      z-index: 1;
+      filter: saturate(3) blur(1px);
+      clip-path: circle(0% at 50% 50%);
+      transition: clip-path $transition-fast ease, filter 0.4s ease-in;
+    }
   }
 
   &__name {
     position: absolute;
+    z-index: 2;
     bottom: 0;
     width: 100%;
     padding: 10px;
@@ -81,6 +98,7 @@
   }
 }
 
+// Animated card
 .card-flying {
   position: relative;
   z-index: 0;
@@ -112,9 +130,11 @@
       }
     }
 
-    & img {
-      filter: grayscale(0%);
-      transition: filter $transition-medium ease;
+    // Image animation
+    & .card__image_animate {
+      filter: saturate(1) blur(0px);
+      clip-path: circle(100% at 50% 50%);
+      transition: clip-path 0.5s ease-out, filter 0.3s ease-out;
     }
 
     & .card__rating {

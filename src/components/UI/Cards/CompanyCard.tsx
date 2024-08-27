@@ -12,7 +12,18 @@ export default function CompanyCard({
     <div className="card card-flying" title={name}>
       <Link className="card__link" to={`${linkPrefix}company/${id}`}>
         {logo ? (
-          <img className="card__image" src={logo.url} alt={`Logo of ${name}`} />
+          <div className="card__image-holder">
+            <img
+              className="card__image card__image_animate"
+              src={logo.url}
+              alt=""
+            />
+            <img
+              className="card__image card__image_grayscale"
+              src={logo.url}
+              alt={`Logo of ${name}`}
+            />
+          </div>
         ) : (
           <ImageDummyDefault />
         )}

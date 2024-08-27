@@ -58,12 +58,20 @@ export default function GameCard({
         title={name}
       >
         {cover ? (
-          <img
-            className="card__image"
-            src={`//images.igdb.com/igdb/image/upload/t_${coverSize}/${cover?.image_id}.jpg`}
-            alt={`Cover for ${name}`}
-            loading="lazy"
-          />
+          <div className="card__image-holder">
+            <img
+              className="card__image card__image_animate"
+              src={`//images.igdb.com/igdb/image/upload/t_${coverSize}/${cover?.image_id}.jpg`}
+              alt=""
+              loading="lazy"
+            />
+            <img
+              className="card__image card__image_grayscale"
+              src={`//images.igdb.com/igdb/image/upload/t_${coverSize}/${cover?.image_id}.jpg`}
+              alt={`Cover for ${name}`}
+              loading="lazy"
+            />
+          </div>
         ) : (
           <ImageDummyGames />
         )}
