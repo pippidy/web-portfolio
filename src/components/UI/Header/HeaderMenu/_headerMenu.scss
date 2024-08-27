@@ -38,14 +38,22 @@
 
     &:hover,
     &:focus {
+      // Holder animation
       & .menu-header__submenu-holder,
       & .menu-header__submenu-holder {
         opacity: 1;
         pointer-events: all;
       }
 
+      // Icon animation
       & .menu-header__submenu-icon {
         transform: translateY(-50%) rotate(180deg);
+      }
+
+      // Item animation
+      & .menu-header__submenu-item {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
 
@@ -83,8 +91,10 @@
       color: $color-grey-darker;
       border-radius: $border-radius-smaller;
       text-transform: none;
+      opacity: 0;
       transition: color $transition-medium ease,
-        background-color $transition-medium ease;
+        background-color $transition-medium ease, transform $transition-fast,
+        opacity $transition-fast;
 
       &:hover {
         color: $color-grey-dark;
@@ -101,7 +111,15 @@
         pointer-events: none;
       }
 
-      & > a {
+      &:nth-child(odd) {
+        transform: translateX(50%);
+      }
+
+      &:nth-child(even) {
+        transform: translateX(-50%);
+      }
+
+      &-link {
         display: inline-block;
         width: 100%;
 

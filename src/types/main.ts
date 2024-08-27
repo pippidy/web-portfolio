@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
 export type TApiOptions = {
   endpoint: TEndpoint;
@@ -15,7 +15,7 @@ export type TSort = {
   order?: 'desc' | 'asc';
 };
 
-export type TComponentChildren = React.ReactNode;
+export type TComponentChildren<T extends React.ReactNode> = T;
 
 export type TEndpoint =
   | 'games'
@@ -58,9 +58,12 @@ export type TCutLongString = {
 
 export type TCategory = TNameAndID;
 
-export type TInfoItemProps = { name: string; children: TComponentChildren };
+export type TInfoItemProps = {
+  name: string;
+  children: TComponentChildren<React.ReactNode>;
+};
 
 export type TContactsItem = {
   title: string;
-  children: TComponentChildren;
+  children: TComponentChildren<React.ReactNode>;
 };

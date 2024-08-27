@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 import { TComponentChildren } from './main';
 
 export type TModalProps = TModalControl & {
-  children: TComponentChildren;
+  children: TComponentChildren<React.ReactNode>;
   classList?: string; // Custom classes separeted by a space
 };
 
@@ -12,5 +12,5 @@ export type TModalControl = {
 };
 
 export type TDefaultModalBlockProps = {
-  children?: TComponentChildren;
+  children?: TComponentChildren<React.ReactNode>;
 };

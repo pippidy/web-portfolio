@@ -1,4 +1,5 @@
 import { THeaderSubmenuProps as THeaderSubmenuItemProps } from '../../../../types/props';
+import React from 'react';
 
 // @ts-expect-error
 import { ReactComponent as ArrowIcon } from '../../../../assets/svg/arrow-down.svg';
@@ -20,6 +21,10 @@ export default function HeaderSubmenu({
       <div className="menu-header__submenu-holder">
         <ul className="menu-header__submenu-list">
           {children?.map((child, index) => {
+            child = React.cloneElement(child, {
+              className: 'menu-header__submenu-item-link',
+            });
+
             return (
               <li key={index} className="menu-header__submenu-item">
                 {child}

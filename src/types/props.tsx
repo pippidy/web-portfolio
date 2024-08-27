@@ -1,4 +1,4 @@
-import { type Dispatch, type SetStateAction } from 'react';
+import { ReactElement, type Dispatch, type SetStateAction } from 'react';
 import { type TCardSize, type TLinkPrefix } from './cards';
 import { type TDataImage, type TDataFull } from './data';
 import {
@@ -36,7 +36,7 @@ export type TCardsRenderProps = {
 
 export type TSectionProps = {
   title: string;
-  children?: TComponentChildren;
+  children?: TComponentChildren<React.ReactNode>;
   className?: string;
 };
 
@@ -74,13 +74,13 @@ export type TCatalogueMenuProps = {
 
 export type THeaderSubmenuProps = {
   title: string;
-  children: TComponentChildren[];
+  children: TComponentChildren<ReactElement>[];
 };
 
 export type TTabsProps = {
   tabs: string[];
   title?: string | null | undefined;
-  children?: TComponentChildren[];
+  children?: TComponentChildren<React.ReactNode>[];
 };
 
 export type TDataNotAvailableProps = {

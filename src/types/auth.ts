@@ -11,7 +11,7 @@ export type TAuthFormProps = {
 };
 
 export type TProtectedRoute = {
-  children: TComponentChildren;
+  children: TComponentChildren<React.ReactNode>;
   user: TUser;
 };
 
@@ -28,6 +28,6 @@ export type TAuthValues = {
 };
 
 export type TSignOutButtonProps = {
-  children: TComponentChildren;
+  children: TComponentChildren<React.ReactNode>;
   className?: string;
 };

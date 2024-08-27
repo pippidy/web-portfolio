@@ -22,5 +22,5 @@ export type TLabel = {
 export type TButton = ComponentProps<'button'> & {
   className?: string;
   onClick?: Function;
-  children?: TComponentChildren;
+  children?: TComponentChildren<React.ReactNode>;
 };

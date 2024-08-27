@@ -5,7 +5,7 @@ export default function ErrorBlock({
   children,
 }: {
   title: string;
-  children: TComponentChildren;
+  children: TComponentChildren<React.ReactNode>;
 }) {
   return (
     <div className="error-block">
