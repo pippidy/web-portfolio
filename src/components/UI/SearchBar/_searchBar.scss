@@ -22,7 +22,7 @@
       }
 
       & .search__button_submit svg {
-        fill: $color-grey-dark;
+        fill: $color-grey-dark !important; // You need !important to rewrite hover from unfocused state
       }
 
       & .search__results.active {
@@ -38,6 +38,15 @@
     border: 2px solid $color-grey;
     border-radius: 10px;
     overflow: hidden;
+    transition: border-color $transition-fast;
+
+    &:hover {
+      border-color: $color-grey-darker;
+
+      & .search__button_submit svg {
+        fill: $color-grey-darker;
+      }
+    }
   }
 
   &__input {
