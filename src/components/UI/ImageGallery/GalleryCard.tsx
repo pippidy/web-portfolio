@@ -10,7 +10,7 @@ export default function GalleryCard({
   return (
     <li
       onClick={() => onClick(index)}
-      className="image-gallery__card card-flying cursor-pointer"
+      className="image-gallery__card card-flying animate-image-hover-trigger cursor-pointer"
     >
       <img
         className="image-gallery__image"

@@ -5,6 +5,7 @@ import ButtonLike from '../Buttons/ButtonLike/ButtonLike';
 
 // @ts-expect-error
 import { ReactComponent as CalendarIcon } from '../../../assets/svg/calendar.svg';
+import AnimateImage from '../AnimateImage/AnimateImage';
 
 export default function GameCard({
   id,
@@ -17,7 +18,7 @@ export default function GameCard({
   cardSize = 'default',
 }: TGameCardProps) {
   return (
-    <div className="card card-flying">
+    <div className="card card-flying animate-image-hover-trigger">
       {cardSize !== 'mini' && (
         <header className="card__header" aria-hidden="true">
           {/* RATING */}
@@ -58,20 +59,13 @@ export default function GameCard({
         title={name}
       >
         {cover ? (
-          <div className="card__image-holder">
+          <AnimateImage>
             <img
-              className="card__image card__image_animate"
-              src={`//images.igdb.com/igdb/image/upload/t_${coverSize}/${cover?.image_id}.jpg`}
-              alt=""
-              loading="lazy"
-            />
-            <img
-              className="card__image card__image_grayscale"
               src={`//images.igdb.com/igdb/image/upload/t_${coverSize}/${cover?.image_id}.jpg`}
               alt={`Cover for ${name}`}
               loading="lazy"
             />
-          </div>
+          </AnimateImage>
         ) : (
           <ImageDummyGames />
         )}

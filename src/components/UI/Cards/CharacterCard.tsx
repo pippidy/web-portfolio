@@ -1,6 +1,7 @@
 import { type TCharacterCardProps } from '../../../types/cards';
 import { Link } from 'react-router-dom';
 import ImageDummyAvatar from '../ImageDummies/ImageDummyAvatar';
+import AnimateImage from '../AnimateImage/AnimateImage';
 
 export default function CharacterCard({
   id,
@@ -9,21 +10,12 @@ export default function CharacterCard({
   linkPrefix,
 }: TCharacterCardProps) {
   return (
-    <div className="card card-flying" title={name}>
+    <div className="card card-flying animate-image-hover-trigger" title={name}>
       <Link className="card__link" to={`${linkPrefix}character/${id}`}>
         {mug_shot ? (
-          <div className="card__image-holder">
-            <img
-              className="card__image card__image_animate"
-              src={mug_shot.url}
-              alt={`Mugshot of ${name}`}
-            />
-            <img
-              className="card__image card__image_grayscale"
-              src={mug_shot.url}
-              alt={`Mugshot of ${name}`}
-            />
-          </div>
+          <AnimateImage>
+            <img src={mug_shot.url} alt={`Mugshot of ${name}`} />
+          </AnimateImage>
         ) : (
           <ImageDummyAvatar />
         )}

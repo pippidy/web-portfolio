@@ -57,29 +57,6 @@
     height: 100%;
   }
 
-  &__image-holder {
-    position: relative;
-    height: 100%;
-  }
-
-  &__image {
-    position: absolute;
-    height: 100%;
-    object-fit: cover;
-
-    &_grayscale {
-      filter: grayscale(90%);
-    }
-
-    // Image animation
-    &_animate {
-      z-index: 1;
-      filter: saturate(3) blur(1px);
-      clip-path: circle(0% at 50% 50%);
-      transition: clip-path $transition-fast ease, filter 0.4s ease-in;
-    }
-  }
-
   &__name {
     position: absolute;
     z-index: 2;
@@ -128,13 +105,6 @@
       & .heart-stroke {
         fill: $color-red;
       }
-    }
-
-    // Image animation
-    & .card__image_animate {
-      filter: saturate(1) blur(0px);
-      clip-path: circle(100% at 50% 50%);
-      transition: clip-path 0.5s ease-out, filter 0.3s ease-out;
     }
 
     & .card__rating {

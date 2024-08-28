@@ -25,7 +25,6 @@ export default function usePagesAmount({
     })
       .then((data) => {
         data && setPagesAmount(Math.ceil(data.count / fetchLimit));
-        console.log(data);
       })
       .catch((error) => {
         catchFetchError(error);
