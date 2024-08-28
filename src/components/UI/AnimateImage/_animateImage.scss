@@ -1,0 +1,27 @@
+.animate-image {
+  position: relative;
+  height: 100%;
+
+  &__image {
+    height: 100%;
+    object-fit: cover;
+
+    // Animatable clone image
+    &.animatable {
+      position: absolute;
+      z-index: 1;
+      filter: saturate(3) blur(1px);
+      clip-path: circle(0% at 50% 50%);
+      transition: clip-path $transition-fast ease, filter 0.4s ease-in;
+    }
+  }
+}
+
+// Stick to a parent element that should trigger the animation
+.animate-image-hover-trigger {
+  &:hover .animatable {
+    filter: saturate(1) blur(0px);
+    clip-path: circle(100% at 50% 50%);
+    transition: clip-path 0.5s ease-out, filter 0.3s ease-out;
+  }
+}
