@@ -88,9 +88,9 @@
 @media (max-width: 768px) {
   .cards-list {
     &__item {
-      flex-basis: 48%;
-      max-width: 100%;
-      min-height: 100%;
+      flex-basis: 30%;
+      max-width: initial;
+      min-height: initial;
     }
   }
 }
