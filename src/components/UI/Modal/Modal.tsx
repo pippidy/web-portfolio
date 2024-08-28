@@ -22,9 +22,13 @@ export default function Modal({
 
   useEffect(() => {
     if (isOpened) {
+      document.body.classList.add('overflow-hidden');
+
       modalRef?.current?.classList.remove('animated');
       modalRef?.current?.classList.add('opened');
     } else {
+      document.body.classList.remove('overflow-hidden');
+
       modalRef?.current?.classList.add('animated');
       modalRef?.current?.classList.remove('opened');
     }
