@@ -22,6 +22,10 @@
     &.card-flying:hover {
       border: 0;
       background-color: $color-yellow-lighter;
+
+      & .image-gallery__image {
+        filter: grayscale(0%);
+      }
     }
 
     &::before {
