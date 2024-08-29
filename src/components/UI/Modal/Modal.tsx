@@ -4,6 +4,7 @@ import { createPortal } from 'react-dom';
 import { useLocation } from 'react-router-dom';
 import ModalContext from '../../contexts/ModalContext';
 import ButtonDefault from '../Buttons/ButtonDefault/ButtonDefault';
+import useKey from '../../hooks/useKey';
 
 export default function Modal({
   children,
@@ -18,8 +19,17 @@ export default function Modal({
     setIsOpened(false);
   }
 
+  // Close modal with Escape
+  useKey({
+    key: 'Escape',
+    event: 'keyup',
+    callback: closeModal,
+  });
+
+  // Close modal on page change
   useEffect(() => setIsOpened(false), [location, setIsOpened]);
 
+  // Handle open/close
   useEffect(() => {
     if (isOpened) {
       document.body.classList.add('overflow-hidden');

@@ -68,8 +68,13 @@
       color: $color-grey-dark;
       font-size: 1.1em;
 
-      &:hover {
+      &:hover,
+      &:focus-visible {
         text-decoration: underline;
+      }
+
+      &:focus-visible {
+        outline: none;
       }
     }
   }

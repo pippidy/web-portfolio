@@ -10,6 +10,7 @@ import { ReactComponent as SearchIcon } from '../../../assets/svg/search.svg';
 import { ReactComponent as CrossIcon } from '../../../assets/svg/cross.svg';
 import useSearch from '../../hooks/useSearch';
 import useOutsideClick from '../../hooks/useOutsideClick';
+import useKey from '../../hooks/useKey';
 
 export default function SearchBar() {
   const [query, setQuery] = useState('');
@@ -20,7 +21,17 @@ export default function SearchBar() {
   const location = useLocation();
   const nav = useNavigate();
 
-  // Reset form visually when clicked outside it. Simple onBlur for input didn't work in this particular case
+  // Unfocus search with Escape
+  useKey({
+    key: 'Escape',
+    event: 'keyup',
+    callback: () => {
+      formRef.current?.classList.remove('focused');
+      inputRef.current?.blur();
+    },
+  });
+
+  // Reset form visually when clicked outside it. Simple onBlur for the input didn't work in this particular case
   useOutsideClick(() => {
     formRef.current?.classList.remove('focused');
   }, formRef);
