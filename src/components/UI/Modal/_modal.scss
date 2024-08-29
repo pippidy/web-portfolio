@@ -27,7 +27,7 @@
     position: absolute;
     inset: 0;
     background-color: $color-grey-dark;
-    opacity: 0.8;
+    opacity: $overlay-opacity;
   }
 
   &__container {

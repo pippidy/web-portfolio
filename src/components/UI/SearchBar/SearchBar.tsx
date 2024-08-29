@@ -1,49 +1,34 @@
 import { FormEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import LoadingSimple from '../LoadingSimple/LoadingSimple';
-import ButtonDefault from '../Buttons/ButtonDefault/ButtonDefault';
-import SearchBarResults from './SearchBarResults';
+import SearchBarResults from './SearchBarResults/SearchBarResults';
+import useSearch from '../../hooks/useSearch';
+import useOutsideClick from '../../hooks/useOutsideClick';
+import useKey from '../../hooks/useKey';
 
 // @ts-expect-error
 import { ReactComponent as SearchIcon } from '../../../assets/svg/search.svg';
 // @ts-expect-error
 import { ReactComponent as CrossIcon } from '../../../assets/svg/cross.svg';
-import useSearch from '../../hooks/useSearch';
-import useOutsideClick from '../../hooks/useOutsideClick';
-import useKey from '../../hooks/useKey';
 
 export default function SearchBar() {
   const [query, setQuery] = useState('');
   const { data, setData, isSearching, setIsSearching, isLoading, error } =
-    useSearch({ query: query });
+    useSearch({ query: query, limit: 20 });
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const location = useLocation();
   const nav = useNavigate();
 
-  // Unfocus search with Escape
-  useKey({
-    key: 'Escape',
-    event: 'keyup',
-    callback: () => {
-      formRef.current?.classList.remove('focused');
-      inputRef.current?.blur();
-    },
-  });
-
-  // Reset form visually when clicked outside it. Simple onBlur for the input didn't work in this particular case
-  useOutsideClick(() => {
-    formRef.current?.classList.remove('focused');
-  }, formRef);
-
-  // Redirecting to game page on submit
-  function onSubmit(e: FormEvent) {
-    e.preventDefault();
-    if (query) nav(`/search#${query}`);
-  }
-
   function onFocus() {
     formRef.current?.classList.add('focused');
+    document.body.classList.add('overlay', 'overflow-hidden');
+  }
+
+  function onBlur() {
+    formRef.current?.classList.remove('focused');
+    inputRef.current?.blur();
+    document.body.classList.remove('overlay', 'overflow-hidden');
   }
 
   const onReset = useCallback(() => {
@@ -55,11 +40,28 @@ export default function SearchBar() {
     }
   }, [setData, setIsSearching]);
 
+  // Unfocus search with Escape
+  useKey({
+    key: 'Escape',
+    event: 'keyup',
+    callback: onBlur,
+  });
+
+  // Reset form visually when clicked outside it. Simple onBlur for the input didn't work in this particular case
+  useOutsideClick(() => {
+    onBlur();
+  }, formRef);
+
+  // Redirecting to game page on submit
+  function onSubmit(e: FormEvent) {
+    e.preventDefault();
+    if (query) nav(`/search#${query}`);
+  }
+
   // Resetting search field and form on page change
   useEffect(() => {
     onReset();
-    formRef.current?.classList.remove('focused');
-    inputRef.current?.blur();
+    onBlur();
   }, [location, onReset]);
 
   return (
@@ -90,18 +92,17 @@ export default function SearchBar() {
             </div>
           )}
 
-          <ButtonDefault
+          <button
             type="submit"
             className="search__button search__button_submit"
             title="Submit search"
           >
             <SearchIcon className="search__svg" />
-          </ButtonDefault>
+          </button>
 
-          <ButtonDefault
+          <button
             onClick={() => {
               onReset();
-
               if (inputRef.current) {
                 inputRef.current.focus();
               }
@@ -113,27 +114,14 @@ export default function SearchBar() {
             title="Reset search"
           >
             <CrossIcon className="search__svg" />
-          </ButtonDefault>
+          </button>
 
-          <div className={`search__results ${isSearching ? 'active' : ''}`}>
-            {data && data.length > 0 ? (
-              <SearchBarResults data={data} />
-            ) : (
-              !isLoading &&
-              !error && (
-                <ul className="search__results-list search__results-list_not-found">
-                  <li>No games found</li>
-                </ul>
-              )
-            )}
-
-            {error && (
-              <ul className="search__results-list search__results-list_error">
-                <li>{error.message}</li>
-                <li>Please, try again!</li>
-              </ul>
-            )}
-          </div>
+          <SearchBarResults
+            data={data}
+            error={error}
+            isSearching={isSearching}
+            isLoading={isLoading}
+          />
         </div>
       </form>
     </div>

@@ -16,7 +16,7 @@
 
   & .icon-auth {
     position: relative;
-    z-index: 2;
+    z-index: 5;
     border: 2px solid $color-blue;
 
     &__svg {
@@ -26,7 +26,7 @@
 
   &__content {
     position: absolute;
-    z-index: 1;
+    z-index: 4;
     top: 0;
     right: 0;
     min-width: 250px;

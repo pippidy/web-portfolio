@@ -44,6 +44,10 @@
 // Pagination
 @import './components/UI/Pagination/pagination';
 
+// Search
+@import './components/UI/SearchBar/searchBar';
+@import './components/UI/SearchBar/SearchBarResults/searchBarResults';
+
 // Various UI
 @import './components/UI/Buttons/ButtonLike/buttonLike';
 @import './components/UI/Buttons/ButtonDefault/buttonDefault';
@@ -52,6 +56,5 @@
 @import './components/UI/Forms/FormAuth/formAuth';
 @import './components/UI/DataNotAvailable/dataNotAvailable';
 @import './components/UI/ErrorBlock/errorBlock';
-@import './components/UI/SearchBar/searchBar';
 @import './components/UI/Tabs/tabs';
 @import './components/UI/AnimateImage/animateImage';

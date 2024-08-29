@@ -25,7 +25,7 @@ export default function useSearch({ query, limit = 10 }: TUseSearchProps) {
             apiOptions: {
               endpoint: 'games',
               search: query,
-              fields: 'name,cover.url',
+              fields: 'name,cover.image_id',
               limit: limit,
             },
           })

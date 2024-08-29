@@ -201,6 +201,16 @@ h3::selection {
   }
 }
 
+.overlay::after {
+  content: '';
+  position: fixed;
+  z-index: 5;
+  inset: 0;
+  background-color: #111;
+  opacity: $overlay-opacity;
+  transition: opacity $transition-fast ease;
+}
+
 @media (max-width: 768px) {
   html {
     margin: 0;

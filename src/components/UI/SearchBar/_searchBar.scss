@@ -10,15 +10,16 @@
     height: 100%;
     transition: width 0.2s ease-in;
 
-    & .search__results {
+    & .search-results {
       display: none;
     }
 
     // Focused state
     &.focused {
-      width: 146%;
+      width: 340%;
 
       & .search__inner {
+        z-index: 6;
         border-color: $color-grey-dark;
       }
 
@@ -26,7 +27,7 @@
         fill: $color-grey-dark !important; // You need !important to rewrite hover from unfocused state
       }
 
-      & .search__results.active {
+      & .search-results.active {
         display: block;
       }
     }
@@ -34,7 +35,7 @@
 
   &__inner {
     position: absolute;
-    z-index: 1; // Will encouter bug if removed
+    z-index: 3; // Will encouter bug if removed
     width: 100%;
     border: 2px solid $color-grey;
     border-radius: 10px;
@@ -65,65 +66,6 @@
 
     &:focus-visible {
       outline: 0;
-    }
-  }
-
-  &__results {
-    position: relative;
-    z-index: 10;
-    display: none;
-    width: 100%;
-    background-color: #fff;
-
-    &-list {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      border-top: 1px solid $color-grey-dark;
-      padding: 10px;
-      font-size: 1.2rem;
-
-      &_not-found {
-        text-align: center;
-        font-family: $font-family-thin;
-        font-size: 1.8rem;
-        font-weight: bold;
-        font-style: italic;
-        color: $color-grey-darker;
-        background-color: #eee;
-      }
-
-      &_error {
-        background-color: $color-red-light;
-        text-align: center;
-        text-transform: uppercase;
-        font-weight: bold;
-        color: $color-red;
-      }
-    }
-
-    &-link {
-      display: flex;
-      gap: 5px;
-      min-height: 25px;
-      align-items: center;
-      border-radius: $border-radius-main;
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-
-      &:focus {
-        outline: 0;
-      }
-
-      &:hover,
-      &:focus {
-        background-color: $color-grey-dark;
-        color: #fff;
-      }
-
-      & img {
-        width: 25px;
-      }
     }
   }
 
@@ -195,8 +137,10 @@
   .search {
     // TODO: I should rework it probably somehow
     &__form {
+      width: 110%;
+
       &.focused {
-        width: 110%;
+        width: 317%;
       }
     }
 
