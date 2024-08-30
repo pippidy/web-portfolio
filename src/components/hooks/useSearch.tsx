@@ -18,7 +18,7 @@ export default function useSearch({ query, limit = 10 }: TUseSearchProps) {
       if (query.length > 0) {
         setIsSearching(true);
 
-        if (query.length > 2) {
+        if (query.length > 1) {
           setIsLoading(true);
 
           getData({
