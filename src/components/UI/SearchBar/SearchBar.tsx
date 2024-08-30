@@ -17,16 +17,17 @@ export default function SearchBar() {
     useSearch({ query: query, limit: 20 });
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const [isFocused, setIsFocused] = useState(false); // State for the form when it's focused and active
   const location = useLocation();
   const nav = useNavigate();
 
   function onFocus() {
-    formRef.current?.classList.add('focused');
+    setIsFocused(true);
     document.body.classList.add('overlay', 'overflow-hidden');
   }
 
   function onBlur() {
-    formRef.current?.classList.remove('focused');
+    setIsFocused(false);
     inputRef.current?.blur();
     document.body.classList.remove('overlay', 'overflow-hidden');
   }
@@ -44,12 +45,14 @@ export default function SearchBar() {
   useKey({
     key: 'Escape',
     event: 'keyup',
-    callback: onBlur,
+    callback: () => {
+      if (isFocused) onBlur();
+    },
   });
 
   // Reset form visually when clicked outside it. Simple onBlur for the input didn't work in this particular case
   useOutsideClick(() => {
-    onBlur();
+    if (isFocused) onBlur();
   }, formRef);
 
   // Redirecting to game page on submit
@@ -61,7 +64,9 @@ export default function SearchBar() {
   // Resetting search field and form on page change
   useEffect(() => {
     onReset();
-    onBlur();
+    if (isFocused) onBlur();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location, onReset]);
 
   return (
@@ -69,7 +74,7 @@ export default function SearchBar() {
       <form
         onSubmit={(e) => onSubmit(e)}
         ref={formRef}
-        className="search__form"
+        className={`search__form ${isFocused ? 'focused' : ''}`}
       >
         <div className="search__inner">
           <label>
