@@ -11,6 +11,7 @@ export default function useSearch({ query, limit = 10 }: TUseSearchProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<TError>();
 
+  // TODO: Add abort controller
   const doSearch = useCallback(
     (query: string) => {
       setData(null);
