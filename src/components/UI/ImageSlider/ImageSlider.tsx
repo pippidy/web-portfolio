@@ -1,6 +1,7 @@
 import { type TImageSliderProps } from '../../../types/props';
 import SliderCard from './SliderCard';
 import cn from 'classnames';
+import useKey from '../../hooks/useKey';
 
 // @ts-expect-error
 import { ReactComponent as ArrowIcon } from '../../../assets/svg/arrow-circle.svg';
@@ -27,6 +28,18 @@ export default function ImageSlider({
       setCurrentImage((prevState) => (prevState -= 1));
     }
   }
+
+  useKey({
+    key: 'ArrowRight',
+    event: 'keyup',
+    callback: nextImage,
+  });
+
+  useKey({
+    key: 'ArrowLeft',
+    event: 'keyup',
+    callback: prevImage,
+  });
 
   return (
     <>
