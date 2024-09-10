@@ -11,9 +11,8 @@ export default function useSearch({ query, limit = 10 }: TUseSearchProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<TError>();
 
-  // TODO: Add abort controller
   const doSearch = useCallback(
-    (query: string) => {
+    (query: string, signal: AbortSignal) => {
       setData(null);
 
       if (query.length > 0) {
@@ -29,6 +28,7 @@ export default function useSearch({ query, limit = 10 }: TUseSearchProps) {
               fields: 'name,cover.image_id',
               limit: limit,
             },
+            signal: signal,
           })
             .then((data) => {
               setData(data);
@@ -46,11 +46,17 @@ export default function useSearch({ query, limit = 10 }: TUseSearchProps) {
   );
 
   useEffect(() => {
-    const delayDebounce = setTimeout(() => {
-      doSearch(query);
-    }, 300);
+    const controller = new AbortController();
+    const signal = controller.signal;
 
-    return () => clearTimeout(delayDebounce);
+    const delayDebounce = setTimeout(() => {
+      doSearch(query, signal);
+    }, 500);
+
+    return () => {
+      clearTimeout(delayDebounce);
+      controller.abort();
+    };
   }, [query, doSearch]);
 
   return { data, setData, isSearching, setIsSearching, isLoading, error };
