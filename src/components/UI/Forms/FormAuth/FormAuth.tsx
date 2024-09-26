@@ -40,8 +40,7 @@ export default function FormAuth({ authType, setAuthType }: TAuthFormProps) {
     setFetchError(null);
   }, [authType, values]);
 
-  const inputs: TInput[] = useMemo(
-    () => [
+  const inputs: TInput[] = [
       {
         id: 1,
         attributes: {
@@ -89,9 +88,7 @@ export default function FormAuth({ authType, setAuthType }: TAuthFormProps) {
           className: 'form-auth__label',
         },
       },
-    ],
-    [values.password]
-  );
+    ];
 
   function onChange(evt: ChangeEvent<HTMLInputElement>) {
     setValues(values && { ...values, [evt.target.name]: evt.target.value });
