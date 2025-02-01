@@ -17,7 +17,7 @@ export default function SearchBar() {
     useSearch({ query: query, limit: 20 });
   const formRef = useRef<HTMLFormElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const [isFocused, setIsFocused] = useState(false); // State for the form when it's focused and active
+  const [isFocused, setIsFocused] = useState(false);
   const location = useLocation();
   const nav = useNavigate();
 
@@ -55,7 +55,7 @@ export default function SearchBar() {
     if (isFocused) onBlur();
   }, formRef);
 
-  // Redirecting to game page on submit
+  // Redirecting to search page on submit
   function onSubmit(e: FormEvent) {
     e.preventDefault();
     if (query) nav(`/search#${query}`);
@@ -80,6 +80,7 @@ export default function SearchBar() {
           <label>
             <span className="visually-hidden">search game</span>
 
+            {/* SEARCH FIELD */}
             <input
               ref={inputRef}
               onChange={(e) => setQuery(e.target.value)}
@@ -97,6 +98,7 @@ export default function SearchBar() {
             </div>
           )}
 
+          {/* SUBMIT BUTTON */}
           <button
             type="submit"
             className="search__button search__button_submit"
@@ -105,6 +107,7 @@ export default function SearchBar() {
             <SearchIcon className="search__svg" />
           </button>
 
+          {/* RESET BUTTON */}
           <button
             onClick={() => {
               onReset();
