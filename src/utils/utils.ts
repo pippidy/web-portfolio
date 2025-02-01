@@ -56,39 +56,32 @@ export function formatDate({
         year: 'numeric',
       };
     }
-
     return new Date(unixTime).toLocaleString(locale, options);
   }
-
   return 'n/a';
 }
 
 export function getCountryFromISO({
   isoCode,
-  length = 'full',
+  format = 'full',
 }: TGetCountryFromISO): string {
   const res = iso.whereNumeric(isoCode);
 
   if (res) {
     let countryName = '';
 
-    if (length === 'full') countryName = res.country;
-    if (length === 'medium') countryName = res.alpha3;
-    if (length === 'short') countryName = res.alpha2;
+    if (format === 'full') countryName = res.country;
+    if (format === 'medium') countryName = res.alpha3;
+    if (format === 'short') countryName = res.alpha2;
 
     return countryName;
   }
-
   return 'n/a';
 }
 
 export function validateForm(form: HTMLFormElement): boolean {
   const inputsArray = form.querySelectorAll('input');
-
-  for (let i = 0; i < inputsArray.length; i++) {
-    if (!inputsArray[i].validity.valid) return false;
-  }
-
+  inputsArray.forEach((_, i) => !inputsArray[i].validity.valid && false);
   return true;
 }
 

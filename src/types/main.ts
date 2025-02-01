@@ -47,7 +47,7 @@ export type TFormatDate = {
 
 export type TGetCountryFromISO = {
   isoCode: number;
-  length?: 'short' | 'medium' | 'full';
+  format?: 'short' | 'medium' | 'full';
 };
 
 export type TCutLongString = {
