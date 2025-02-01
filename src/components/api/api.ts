@@ -37,12 +37,13 @@ async function createConfig() {
   return config;
 }
 
+const config = await createConfig();
+
 export const getData = async ({
   apiOptions,
   signal,
 }: TGetData): Promise<TDataFull[] | undefined> => {
   const { endpoint, search, fields, filter, limit, sort, offset } = apiOptions;
-  const config = await createConfig();
 
   // Creating separate queries to concatenate them into body later
   const querySearch = search ? `search "${search}";` : '';
@@ -73,8 +74,6 @@ export const getDataCount = async ({
   filter,
   signal,
 }: TGetDataCount): Promise<TDataCount | undefined> => {
-  const config = await createConfig();
-
   return fetch(config.baseURL + `/${endpoint}/count`, {
     method: 'POST',
     headers: config.headers,
@@ -87,8 +86,6 @@ export const getCategories = async ({
   category,
   signal,
 }: TGetCategories): Promise<TCategory[] | undefined> => {
-  const config = await createConfig();
-
   return fetch(config.baseURL + `/${category}`, {
     method: 'POST',
     headers: config.headers,

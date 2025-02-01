@@ -6,11 +6,11 @@ import {
 } from '../types/main';
 import iso from 'iso-3166-1';
 
-export function handleFetchResults(res: Response) {
+export function handleFetchResults(res: Response): Promise<any> | undefined {
   if (res.ok) {
     return res.json();
   } else {
-    return Promise.reject(`Ошибка: ${res.status}`);
+    return Promise.reject(`Handling fetch results ERROR: ${res.status}`);
   }
 }
 
