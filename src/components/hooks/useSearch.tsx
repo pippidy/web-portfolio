@@ -11,7 +11,7 @@ export default function useSearch({ query, limit = 10 }: TUseSearchProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<TError>();
 
-  const doSearch = useCallback(
+  const fetchSearchData = useCallback(
     (query: string, signal: AbortSignal) => {
       setData(null);
 
@@ -30,12 +30,8 @@ export default function useSearch({ query, limit = 10 }: TUseSearchProps) {
             },
             signal: signal,
           })
-            .then((data) => {
-              setData(data);
-            })
-            .catch((error) => {
-              handleError(error, setError);
-            })
+            .then((data) => setData(data))
+            .catch((error) => handleError(error, setError))
             .finally(() => setIsLoading(false));
         }
       } else {
@@ -45,19 +41,19 @@ export default function useSearch({ query, limit = 10 }: TUseSearchProps) {
     [limit]
   );
 
+  // Fetching data after debounce delay
   useEffect(() => {
     const controller = new AbortController();
-    const signal = controller.signal;
 
     const delayDebounce = setTimeout(() => {
-      doSearch(query, signal);
+      fetchSearchData(query, controller.signal);
     }, 500);
 
     return () => {
       clearTimeout(delayDebounce);
       controller.abort();
     };
-  }, [query, doSearch]);
+  }, [query, fetchSearchData]);
 
   return { data, setData, isSearching, setIsSearching, isLoading, error };
 }

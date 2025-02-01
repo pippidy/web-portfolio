@@ -14,9 +14,8 @@ export default function CatalogueMenu({
 
   useEffect(() => {
     const controller = new AbortController();
-    const signal = controller.signal;
 
-    getCategories({ category, signal })
+    getCategories({ category, signal: controller.signal })
       .then((categories) => {
         setCategoriesList(categories);
       })

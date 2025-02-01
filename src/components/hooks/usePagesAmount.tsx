@@ -16,12 +16,11 @@ export default function usePagesAmount({
 
   useEffect(() => {
     const controller = new AbortController();
-    const signal = controller.signal;
 
     getDataCount({
       endpoint: endpoint,
       filter: dataFilter ? dataFilter : '',
-      signal: signal,
+      signal: controller.signal,
     })
       .then((data) => {
         data && setPagesAmount(Math.ceil(data.count / fetchLimit));

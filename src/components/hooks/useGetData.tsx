@@ -22,7 +22,6 @@ export default function useGetData({
 
   useEffect(() => {
     const controller = new AbortController();
-    const signal = controller.signal;
 
     getData({
       apiOptions: {
@@ -34,7 +33,7 @@ export default function useGetData({
         filter,
         offset,
       },
-      signal: signal,
+      signal: controller.signal,
     })
       .then((data) => setData(data))
       .catch((error) => handleError(error, setError))
