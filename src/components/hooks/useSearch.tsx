@@ -30,7 +30,9 @@ export default function useSearch({ query, limit = 10 }: TUseSearchProps) {
             },
             signal: signal,
           })
-            .then((data) => setData(data))
+            .then((data) => {
+              setData(data);
+            })
             .catch((error) => handleError(error, setError))
             .finally(() => setIsLoading(false));
         }

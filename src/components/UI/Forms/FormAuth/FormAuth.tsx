@@ -1,5 +1,6 @@
 import { type TError } from '../../../../types/main';
-import { type TAuthFormProps, type TAuthValues } from '../../../../types/auth';
+import { type TAuthValues } from '../../../../types/auth';
+import { type TAuthFormProps } from '../../../../types/props';
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
 import {
   doCreateWithEmailAndPassword,

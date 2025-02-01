@@ -1,4 +1,4 @@
-import { type TSignOutButtonProps as TButtonSignOutProps } from '../../../../types/auth';
+import { type TButtonSignOutProps } from '../../../../types/props';
 import { useNavigate } from 'react-router-dom';
 import { doSignOut } from '../../../../firebase/auth';
 

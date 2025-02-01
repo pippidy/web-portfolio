@@ -7,6 +7,7 @@ import {
   type TEndpoint,
   type TError,
 } from './main';
+import { TAuthType } from './auth';
 
 export type TSliderCardProps = {
   index: number;
@@ -85,4 +86,14 @@ export type TTabsProps = {
 
 export type TDataNotAvailableProps = {
   text?: string;
+};
+
+export type TAuthFormProps = {
+  authType: TAuthType;
+  setAuthType: Dispatch<SetStateAction<TAuthType>>;
+};
+
+export type TButtonSignOutProps = {
+  children: TComponentChildren<React.ReactNode>;
+  className?: string;
 };
