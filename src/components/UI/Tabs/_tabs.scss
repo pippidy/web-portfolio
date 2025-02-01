@@ -1,3 +1,5 @@
+@use '/src/styles/mixins/mq' as *;
+
 .tabs {
   display: flex;
   flex-direction: column;
@@ -44,6 +46,9 @@
       text-transform: uppercase;
       transition: color $transition-medium, font-weight $transition-fast;
       transition-timing-function: ease;
+      @include tablet {
+        font-size: 1.5rem;
+      }
 
       &:hover {
         color: $color-grey-dark;
@@ -128,14 +133,6 @@
 
     &.move-out_right {
       transform: translate(150%, -5%) scale(3);
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .tabs {
-    &__menu-button {
-      font-size: 1.5rem;
     }
   }
 }

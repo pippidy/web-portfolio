@@ -1,11 +1,4 @@
-p::selection,
-h1::selection,
-h2::selection,
-h3::selection {
-  // TODO: Use scss functions to make it more universal
-  background-color: $color-yellow;
-  color: #fff;
-}
+@use '/src/styles/mixins/mq' as *;
 
 .root {
   position: relative;
@@ -22,6 +15,12 @@ h3::selection {
     background-attachment: fixed;
     mix-blend-mode: multiply;
     opacity: 0.1;
+  }
+}
+
+@include tablet {
+  html {
+    margin: 0;
   }
 }
 
@@ -42,6 +41,15 @@ h3::selection {
   flex: 1;
   gap: 30px;
   padding-inline: 0;
+}
+
+p::selection,
+h1::selection,
+h2::selection,
+h3::selection {
+  // TODO: Use scss functions to make it more universal
+  background-color: $color-yellow;
+  color: #fff;
 }
 
 .block-default {
@@ -209,10 +217,4 @@ h3::selection {
   background-color: #111;
   opacity: $overlay-opacity;
   transition: opacity $transition-fast ease;
-}
-
-@media (max-width: 768px) {
-  html {
-    margin: 0;
-  }
 }

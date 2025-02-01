@@ -1,3 +1,5 @@
+@use '/src/styles/mixins/mq' as *;
+
 .pagination {
   display: flex;
   flex-wrap: wrap;
@@ -38,16 +40,8 @@
       color: $color-blue;
     }
   }
-}
 
-@container (min-width: 730px) {
-  .pagination__link {
-    padding-inline: 7px;
-  }
-}
-
-@media (max-width: 768px) {
-  .pagination {
+  @include tablet {
     &__link {
       padding-inline: 5px;
       font-size: 1.1rem;

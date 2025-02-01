@@ -1,3 +1,5 @@
+@use '/src/styles/mixins/mq' as *;
+
 .card {
   position: relative;
   z-index: 0;
@@ -73,6 +75,12 @@
     opacity: 0;
     transition: opacity $transition-medium ease-in-out;
   }
+
+  @include tablet {
+    &__like {
+      display: none;
+    }
+  }
 }
 
 // Animated card
@@ -144,14 +152,6 @@
     &:hover {
       transform: scale(1.2) translateX(25%);
       box-shadow: -35px 35px 0 rgba($color-grey-dark, 0.9);
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .card {
-    &__like {
-      display: none;
     }
   }
 }
