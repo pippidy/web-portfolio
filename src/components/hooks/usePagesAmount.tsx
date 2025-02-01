@@ -2,7 +2,7 @@ import { type TUsePaginationData as TUsePagesAmountProps } from '../../types/pag
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getDataCount } from '../api/api';
-import { catchFetchError } from '../../utils/utils';
+import { handleError } from '../../utils/utils';
 
 export default function usePagesAmount({
   fetchLimit = 100,
@@ -27,7 +27,7 @@ export default function usePagesAmount({
         data && setPagesAmount(Math.ceil(data.count / fetchLimit));
       })
       .catch((error) => {
-        catchFetchError(error);
+        handleError(error);
       });
 
     return () => {

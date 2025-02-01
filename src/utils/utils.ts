@@ -9,12 +9,10 @@ import iso from 'iso-3166-1';
 export function handleFetchResults(res: Response): Promise<any> | undefined {
   if (res.ok) {
     return res.json();
-  } else {
-    return Promise.reject(`Handling fetch results ERROR: ${res.status}`);
   }
 }
 
-export function catchFetchError(error: TError, callback?: Function) {
+export function handleError(error: TError, callback?: Function) {
   if (error.code === 20) return; // Do not handle signal abortion errors
 
   const errorObj: TError = {

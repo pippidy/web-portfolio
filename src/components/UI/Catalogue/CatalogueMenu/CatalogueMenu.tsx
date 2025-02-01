@@ -3,7 +3,7 @@ import { type TCatalogueMenuProps } from '../../../../types/props';
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getCategories } from '../../../api/api';
-import { catchFetchError } from '../../../../utils/utils';
+import { handleError } from '../../../../utils/utils';
 
 export default function CatalogueMenu({
   category,
@@ -21,7 +21,7 @@ export default function CatalogueMenu({
         setCategoriesList(categories);
       })
       .catch((error) => {
-        catchFetchError(error);
+        handleError(error);
       })
       .finally(() => setLoading(false));
 

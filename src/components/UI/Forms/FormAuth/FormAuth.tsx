@@ -1,17 +1,11 @@
 import { type TError } from '../../../../types/main';
 import { type TAuthFormProps, type TAuthValues } from '../../../../types/auth';
-import {
-  ChangeEvent,
-  FormEvent,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
 import {
   doCreateWithEmailAndPassword,
   doSignInWithEmailAndPassword,
 } from '../../../../firebase/auth';
-import { catchFetchError, validateForm } from '../../../../utils/utils';
+import { handleError, validateForm } from '../../../../utils/utils';
 import InputBlock from '../../Inputs/InputBlock/InputBlock';
 import LoadingSimple from '../../LoadingSimple/LoadingSimple';
 import { TInput } from '../../../../types/ui';
@@ -40,54 +34,54 @@ export default function FormAuth({ authType, setAuthType }: TAuthFormProps) {
   }, [authType, values]);
 
   const inputs: TInput[] = [
-      {
-        id: 1,
-        attributes: {
-          name: 'email',
-          type: 'email',
-          placeholder: 'name@mail.com',
-          autoComplete: 'email',
-          required: true,
-        },
-        label: {
-          text: 'Email',
-          className: 'form-auth__label',
-        },
+    {
+      id: 1,
+      attributes: {
+        name: 'email',
+        type: 'email',
+        placeholder: 'name@mail.com',
+        autoComplete: 'email',
+        required: true,
       },
-      {
-        id: 2,
-        customError:
-          'Password should be 8-20 characters long and also include at least 1 letter and 1 number and 1 special character!',
-        attributes: {
-          name: 'password',
-          type: 'password',
-          placeholder: '*********',
-          autoComplete: 'password-new',
-          pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-z0-9!@#$%^&*]{8,20}$`,
-          required: true,
-        },
-        label: {
-          text: 'Password',
-          className: 'form-auth__label',
-        },
+      label: {
+        text: 'Email',
+        className: 'form-auth__label',
       },
-      {
-        id: 3,
-        customError: 'Passwords do not match!',
-        alwaysValidate: true,
-        attributes: {
-          name: 'passwordConfirm',
-          type: 'password',
-          placeholder: '*********',
-          pattern: values.password,
-          required: true,
-        },
-        label: {
-          text: 'Password confirmation',
-          className: 'form-auth__label',
-        },
+    },
+    {
+      id: 2,
+      customError:
+        'Password should be 8-20 characters long and also include at least 1 letter and 1 number and 1 special character!',
+      attributes: {
+        name: 'password',
+        type: 'password',
+        placeholder: '*********',
+        autoComplete: 'password-new',
+        pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-z0-9!@#$%^&*]{8,20}$`,
+        required: true,
       },
-    ];
+      label: {
+        text: 'Password',
+        className: 'form-auth__label',
+      },
+    },
+    {
+      id: 3,
+      customError: 'Passwords do not match!',
+      alwaysValidate: true,
+      attributes: {
+        name: 'passwordConfirm',
+        type: 'password',
+        placeholder: '*********',
+        pattern: values.password,
+        required: true,
+      },
+      label: {
+        text: 'Password confirmation',
+        className: 'form-auth__label',
+      },
+    },
+  ];
 
   function onChange(evt: ChangeEvent<HTMLInputElement>) {
     setValues(values && { ...values, [evt.target.name]: evt.target.value });
@@ -106,7 +100,7 @@ export default function FormAuth({ authType, setAuthType }: TAuthFormProps) {
           .then((userCredentials) => {
             if (userCredentials) setIsSuccess(true);
           })
-          .catch((error) => catchFetchError(error, setFetchError))
+          .catch((error) => handleError(error, setFetchError))
           .finally(() => setIsLoading(false));
 
         return;
@@ -116,7 +110,7 @@ export default function FormAuth({ authType, setAuthType }: TAuthFormProps) {
           .then((userCredentials) => {
             if (userCredentials) setIsSuccess(true);
           })
-          .catch((error) => catchFetchError(error, setFetchError))
+          .catch((error) => handleError(error, setFetchError))
           .finally(() => setIsLoading(false));
 
         return;

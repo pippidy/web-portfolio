@@ -3,7 +3,7 @@ import { type TError } from '../../types/main';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getData } from '../api/api';
-import { catchFetchError } from '../../utils/utils';
+import { handleError } from '../../utils/utils';
 
 export default function useGetData({
   endpoint,
@@ -37,7 +37,7 @@ export default function useGetData({
       signal: signal,
     })
       .then((data) => setData(data))
-      .catch((error) => catchFetchError(error, setError))
+      .catch((error) => handleError(error, setError))
       .finally(() => setLoading(false));
 
     return () => {
