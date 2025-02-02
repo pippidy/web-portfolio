@@ -26,34 +26,34 @@ export default function SearchBar() {
     document.body.classList.add('overlay', 'overflow-hidden');
   }
 
+  // Unfocus input
   function onBlur() {
-    setIsFocused(false);
-    inputRef.current?.blur();
-    document.body.classList.remove('overlay', 'overflow-hidden');
+    if (isFocused) {
+      setIsFocused(false);
+      inputRef.current?.blur();
+      document.body.classList.remove('overlay', 'overflow-hidden');
+    }
   }
+
+  // Unfocus with Escape
+  useKey({
+    key: 'Escape',
+    event: 'keyup',
+    callback: () => onBlur(),
+  });
 
   const onReset = useCallback(() => {
     setData(null);
     setIsSearching(false);
-
-    if (inputRef.current) {
-      inputRef.current.value = '';
-    }
+    setQuery('');
   }, [setData, setIsSearching]);
 
-  // Unfocus search with Escape
-  useKey({
-    key: 'Escape',
-    event: 'keyup',
-    callback: () => {
-      if (isFocused) onBlur();
-    },
-  });
+  const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+  }, []);
 
   // Reset form visually when clicked outside it. Simple onBlur for the input didn't work in this particular case
-  useOutsideClick(() => {
-    if (isFocused) onBlur();
-  }, formRef);
+  useOutsideClick(() => isFocused && onBlur(), formRef);
 
   // Redirecting to search page on submit
   function onSubmit(e: FormEvent) {
@@ -63,7 +63,7 @@ export default function SearchBar() {
 
   // Resetting search field and form on page change
   useEffect(() => {
-    onReset();
+    if (query.length > 0) onReset();
     if (isFocused) onBlur();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -83,15 +83,17 @@ export default function SearchBar() {
             {/* SEARCH FIELD */}
             <input
               ref={inputRef}
-              onChange={(e) => setQuery(e.target.value)}
+              onChange={onChange}
               onFocus={() => onFocus()}
               type="text"
               className="search__input"
               placeholder="Search games..."
               name="search"
+              value={query}
             />
           </label>
 
+          {/* LOADING */}
           {isLoading && (
             <div className="search__loading">
               <LoadingSimple />
@@ -124,6 +126,7 @@ export default function SearchBar() {
             <CrossIcon className="search__svg" />
           </button>
 
+          {/* SEARCH RESULTS */}
           <SearchBarResults
             data={data}
             error={error}
