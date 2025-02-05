@@ -54,7 +54,7 @@ h3::selection {
 
 .block-default {
   background-color: #fff;
-  border: 2px solid $color-grey-dark;
+  border: 2px solid $black;
   border-radius: $border-radius-main;
 
   &_shadowDown {
@@ -75,9 +75,9 @@ h3::selection {
   font-size: 4rem;
   font-family: $font-family-accent;
   text-transform: uppercase;
-  color: $color-grey-dark;
+  color: $black;
   background-color: $color-yellow;
-  border: 2px solid $color-grey-dark;
+  border: 2px solid $black;
   border-left: 0;
   border-right: 0;
 
@@ -169,7 +169,7 @@ h3::selection {
   text-decoration: underline;
 
   &::selection {
-    background-color: $color-grey-dark;
+    background-color: $black;
     color: #fff;
   }
 
@@ -179,7 +179,7 @@ h3::selection {
 }
 
 .link-accent {
-  color: $color-grey-dark;
+  color: $black;
   font-weight: bold;
   text-decoration: underline;
 
@@ -194,13 +194,13 @@ h3::selection {
 
 .icon-auth {
   padding: 4px;
-  border: 2px solid $color-grey-dark;
+  border: 2px solid $black;
   border-radius: 50%;
   transition: background-color $transition-medium ease;
   background-color: #fff;
 
   &__svg {
-    color: $color-grey-dark;
+    color: $black;
     transition: color $transition-fast ease;
 
     & path {

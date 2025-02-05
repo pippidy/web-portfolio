@@ -2,7 +2,7 @@
   display: flex;
   gap: 10px;
   font-family: $font-family-secondary;
-  color: $color-grey-dark;
+  color: $black;
   font-size: 2rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -14,13 +14,13 @@
     border-radius: 10px;
 
     &.active {
-      background-color: $color-yellow-light;
-      outline: 2px solid $color-grey-dark;
+      background-color: $color-yellow-lighter;
+      outline: 2px solid $black;
       pointer-events: none;
     }
 
     &_clickable:hover {
-      outline: 2px solid $color-grey-dark;
+      outline: 2px solid $black;
     }
 
     &_clickable:active {
@@ -72,7 +72,7 @@
       padding-top: 40px;
       background-color: #fff;
       border-radius: 10px;
-      border: 2px solid $color-grey-dark;
+      border: 2px solid $black;
       opacity: 0;
       pointer-events: none;
       transition: opacity $transition-fast ease-in-out;
@@ -82,13 +82,13 @@
       padding: 10px 5px;
       padding-top: 5px;
       text-align: center;
-      border-top: 1px solid $color-grey-dark;
+      border-top: 1px solid $black;
     }
 
     &-item {
       font-family: Oswald, Helvetica, sans-serif;
       font-size: 1.8rem;
-      color: $color-grey-darker;
+      color: $color-grey-dark;
       border-radius: $border-radius-smaller;
       text-transform: none;
       opacity: 0;
@@ -97,7 +97,7 @@
         opacity $transition-fast;
 
       &:hover {
-        color: $color-grey-dark;
+        color: $black;
         text-decoration: underline;
       }
 
@@ -106,7 +106,7 @@
       }
 
       &:has(.active) {
-        background-color: $color-grey-dark;
+        background-color: $black;
         color: #fff;
         pointer-events: none;
       }

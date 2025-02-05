@@ -26,7 +26,7 @@
   }
 
   &__name {
-    background-color: $color-grey-darker;
+    background-color: $color-grey-dark;
 
     &::before,
     &::after {
@@ -38,19 +38,19 @@
     &::before {
       left: 100%;
       width: 5px;
-      background-color: $color-grey-darker;
+      background-color: $color-grey-dark;
     }
 
     &::after {
       right: -5px;
       width: 2px;
-      background-color: $color-grey-dark;
+      background-color: $black;
     }
   }
 
   &__text {
-    color: $color-grey-dark;
-    background-color: $color-yellow-light;
+    color: $black;
+    background-color: $color-yellow-lighter;
     border-top-right-radius: $border-radius-main;
     border-bottom-right-radius: $border-radius-main;
     padding-right: 20px;
@@ -61,7 +61,7 @@
       inset-block: 0;
       right: 100%;
       width: 5px;
-      background-color: $color-yellow-light;
+      background-color: $color-yellow-lighter;
     }
   }
 }

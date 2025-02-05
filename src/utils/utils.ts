@@ -7,9 +7,14 @@ import {
 import iso from 'iso-3166-1';
 
 export function handleFetchResults(res: Response): Promise<any> | undefined {
-  if (res.ok) {
-    return res.json();
-  }
+  if (res.ok) return res.json();
+
+  const error: TError = {
+    code: res.status,
+    message: res.statusText,
+  };
+
+  return Promise.reject(error);
 }
 
 export function handleError(error: TError, callback?: Function) {

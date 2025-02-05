@@ -8,7 +8,7 @@
     padding: 5px 10px;
     margin-bottom: 10px;
     background-color: #eee;
-    color: $color-grey-darker;
+    color: $color-grey-dark;
     font-size: 1.6rem;
     border-radius: $border-radius-main;
     border: 2px solid #fff;
@@ -19,8 +19,8 @@
     &:hover,
     &.active {
       color: #fff;
-      box-shadow: -2px 4px 0px $color-grey-dark;
-      background-color: $color-grey-dark;
+      box-shadow: -2px 4px 0px $black;
+      background-color: $black;
       transition: background-color $transition-fast ease,
         box-shadow $transition-fast ease-in, color $transition-fast ease;
       border: 2px solid #fff;
@@ -28,8 +28,8 @@
 
     &:active {
       background-color: $color-yellow;
-      color: $color-grey-dark;
-      box-shadow: -1px 2px 0px $color-grey-dark;
+      color: $black;
+      box-shadow: -1px 2px 0px $black;
       transform: scale(0.99);
       transition: background-color $transition-instant,
         color $transition-instant;

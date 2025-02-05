@@ -12,8 +12,8 @@
   &__header {
     position: relative;
     color: #fff;
-    background-color: $color-grey-dark;
-    border-bottom: 2px solid $color-grey-dark;
+    background-color: $black;
+    border-bottom: 2px solid $black;
     border-radius: 5px 5px 0 0;
     cursor: pointer;
 
@@ -67,9 +67,9 @@
       color: $color-yellow;
       text-align: center;
       text-transform: uppercase;
-      -webkit-text-stroke: 1px $color-grey-dark;
+      -webkit-text-stroke: 1px $black;
       letter-spacing: 3px;
-      text-shadow: -1px 1px 0 $color-grey-dark;
+      text-shadow: -1px 1px 0 $black;
       line-height: 1.1em;
 
       &::after {

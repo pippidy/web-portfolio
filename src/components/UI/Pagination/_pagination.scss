@@ -6,7 +6,7 @@
   justify-content: center;
   gap: 10px 0;
   min-height: 22px;
-  color: $color-grey-darker;
+  color: $color-grey-dark;
   background-color: transparent;
   transition: background-color $transition-medium ease;
   container-type: inline-size;
@@ -20,13 +20,13 @@
     padding: 5px 9px;
 
     &:hover {
-      color: $color-grey-dark;
+      color: $black;
       text-decoration: underline;
     }
 
     &.current {
       color: #fff;
-      background-color: $color-grey-dark;
+      background-color: $black;
       transition: background-color $transition-medium ease;
       pointer-events: none;
     }

@@ -22,13 +22,13 @@
         font-family: $font-family-secondary;
         text-align: center;
         color: #fff;
-        background-color: $color-grey-dark;
+        background-color: $black;
         border-radius: $border-radius-main;
         outline: 3px solid $color-yellow;
 
         &::selection {
           background-color: $color-yellow;
-          color: $color-grey-dark;
+          color: $black;
         }
       }
 

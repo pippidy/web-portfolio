@@ -15,7 +15,7 @@ export default function CardsRender({
   cardSize = 'default',
   linkPrefix = '',
 }: TCardsRenderProps) {
-  const classCardList = cn('cards-list', {
+  const mainClass = cn('cards-list', {
     'cards-list_compact': cardSize === 'compact',
     'cards-list_mini': cardSize === 'mini',
   });
@@ -25,7 +25,7 @@ export default function CardsRender({
       {loading ? (
         <SectionLoading />
       ) : data && data.length > 0 ? (
-        <ul className={classCardList}>
+        <ul className={mainClass}>
           {data.map((data) => {
             return (
               <li className="cards-list__item" key={data.id}>
@@ -48,23 +48,25 @@ export default function CardsRender({
                     cardSize={cardSize}
                     linkPrefix={linkPrefix}
                   />
-                ) : cardType === 'companies' ? (
-                  <CompanyCard
-                    id={data.id}
-                    name={data.name}
-                    logo={data.logo}
-                    cardSize={cardSize}
-                    linkPrefix={linkPrefix}
-                  />
                 ) : (
-                  <DataNotAvailable text="No data available." />
+                  cardType === 'companies' && (
+                    <CompanyCard
+                      id={data.id}
+                      name={data.name}
+                      logo={data.logo}
+                      cardSize={cardSize}
+                      linkPrefix={linkPrefix}
+                    />
+                  )
                 )}
               </li>
             );
           })}
         </ul>
+      ) : error ? (
+        <DataError error={error} />
       ) : (
-        error && <DataError error={error} />
+        <DataNotAvailable text="No data available. Try again later!" /> // When data object is empty but there's no error
       )}
     </>
   );

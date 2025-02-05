@@ -9,7 +9,7 @@
   border-radius: $border-radius-main;
   background-color: #444;
   overflow: hidden;
-  border: 6px solid $color-yellow-light;
+  border: 6px solid $color-yellow-lighter;
 
   &:has(.image-dummy) .card__name {
     opacity: 1;
@@ -21,7 +21,7 @@
     gap: 10px;
     inset-inline: 0;
     z-index: 2;
-    background-color: rgba($color-grey-dark, 1);
+    background-color: rgba($black, 1);
   }
 
   &__rating {
@@ -31,7 +31,7 @@
     font-weight: bold;
     color: #555;
     text-align: center;
-    background-color: $color-yellow-light;
+    background-color: $color-yellow-lighter;
     transition: color $transition-medium ease,
       background-color $transition-medium ease;
     border-bottom-left-radius: 50%;
@@ -39,7 +39,7 @@
     cursor: default;
 
     & span {
-      color: $color-grey-darker;
+      color: $color-grey-dark;
     }
   }
 
@@ -67,7 +67,7 @@
     padding: 10px;
     text-align: center;
     color: #fff;
-    background-color: $color-grey-dark;
+    background-color: $black;
     font-size: 1.2rem;
     white-space: nowrap;
     overflow: hidden;
@@ -87,7 +87,7 @@
 .card-flying {
   position: relative;
   z-index: 0;
-  box-shadow: -2px 2px 0 rgba($color-grey-dark, 0.9);
+  box-shadow: -2px 2px 0 rgba($black, 0.9);
   transition: transform 0.15s ease-in, z-index $transition-medium ease,
     box-shadow $transition-fast ease-out,
     background-color $transition-medium ease,
@@ -96,7 +96,7 @@
   &:hover {
     z-index: 2;
     border-color: $color-yellow;
-    box-shadow: -20px 25px 0 rgba($color-grey-dark, 0.9);
+    box-shadow: -20px 25px 0 rgba($black, 0.9);
     transform: scale(1.2);
     filter: grayscale(0);
     transition: transform $transition-fast ease-out,
@@ -105,7 +105,7 @@
       border-color $transition-medium ease;
 
     & .heart-icon .heart-fill {
-      fill: $color-grey-dark;
+      fill: $black;
     }
 
     & .heart-icon.liked {
@@ -116,7 +116,7 @@
     }
 
     & .card__rating {
-      color: $color-grey-dark;
+      color: $black;
       background-color: $color-yellow;
     }
 
@@ -131,7 +131,7 @@
 
       & .icon-dummy {
         & path {
-          fill: $color-red-light;
+          fill: $color-red-lighter;
           stroke: $color-red;
           transition: fill $transition-medium ease,
             stroke $transition-medium ease;
@@ -151,7 +151,7 @@
   &_slide-right {
     &:hover {
       transform: scale(1.2) translateX(25%);
-      box-shadow: -35px 35px 0 rgba($color-grey-dark, 0.9);
+      box-shadow: -35px 35px 0 rgba($black, 0.9);
     }
   }
 }

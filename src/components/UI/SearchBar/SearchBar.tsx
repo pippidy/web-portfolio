@@ -5,6 +5,7 @@ import SearchBarResults from './SearchBarResults/SearchBarResults';
 import useSearch from '../../hooks/useSearch';
 import useOutsideClick from '../../hooks/useOutsideClick';
 import useKey from '../../hooks/useKey';
+import cn from 'classnames';
 
 // @ts-expect-error
 import { ReactComponent as SearchIcon } from '../../../assets/svg/search.svg';
@@ -74,8 +75,17 @@ export default function SearchBar() {
       <form
         onSubmit={(e) => onSubmit(e)}
         ref={formRef}
-        className={`search__form ${isFocused ? 'focused' : ''}`}
+        className={cn('search__form', { focused: isFocused })}
       >
+        {/* SUBMIT BUTTON */}
+        <button
+          type="submit"
+          className={cn('search__button', { visible: query })}
+          title="Submit search"
+        >
+          Submit
+        </button>
+
         <div className="search__inner">
           <label>
             <span className="visually-hidden">search game</span>
@@ -100,14 +110,10 @@ export default function SearchBar() {
             </div>
           )}
 
-          {/* SUBMIT BUTTON */}
-          <button
-            type="submit"
-            className="search__button search__button_submit"
-            title="Submit search"
-          >
+          {/* SEARCH ICON */}
+          <div className="search__icon search__icon_search">
             <SearchIcon className="search__svg" />
-          </button>
+          </div>
 
           {/* RESET BUTTON */}
           <button
@@ -118,7 +124,7 @@ export default function SearchBar() {
               }
             }}
             type="reset"
-            className={`search__button search__button_reset ${
+            className={`search__icon search__icon_reset ${
               isSearching ? 'active' : ''
             }`}
             title="Reset search"

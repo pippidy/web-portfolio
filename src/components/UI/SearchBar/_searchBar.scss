@@ -3,7 +3,7 @@
 .search {
   position: relative;
   height: 45px;
-  color: $color-grey-dark;
+  color: $black;
 
   &__form {
     position: absolute;
@@ -21,18 +21,18 @@
 
     // Focused state
     &.focused {
-      width: 340%;
+      width: 325%;
       @include tablet {
         width: 317%;
       }
 
       & .search__inner {
         z-index: 6;
-        border-color: $color-grey-dark;
+        border-color: $black;
       }
 
-      & .search__button_submit svg {
-        fill: $color-grey-dark !important; // You need !important to rewrite hover from unfocused state
+      & .search__icon_search svg {
+        fill: $black !important; // You need !important to rewrite hover from unfocused state
       }
 
       & .search-results.active {
@@ -51,10 +51,10 @@
     transition: border-color $transition-fast;
 
     &:hover {
-      border-color: $color-grey-darker;
+      border-color: $color-grey-dark;
 
-      & .search__button_submit svg {
-        fill: $color-grey-darker;
+      & .search__icon_search svg {
+        fill: $color-grey-dark;
       }
     }
   }
@@ -80,13 +80,14 @@
     }
   }
 
-  &__button {
+  &__icon {
     position: absolute;
+    top: 0;
     z-index: 11;
     width: 35px;
     height: 43px;
 
-    &_submit {
+    &_search {
       left: 0;
 
       & svg {
@@ -111,8 +112,38 @@
       & svg {
         right: 8px;
         width: 20px;
-        fill: $color-red-light;
+        fill: $color-red-lighter;
       }
+    }
+  }
+
+  &__button {
+    position: absolute;
+    z-index: 11;
+    top: 2px;
+    left: -120px;
+    width: 105px;
+    height: 40px;
+    font-size: 1.5rem;
+    color: #fff;
+    background-color: $color-blue;
+    border-radius: $border-radius-main;
+    outline: 1px solid #fff;
+    opacity: 0;
+    pointer-events: none;
+    transition: transform $transition-fast ease-out;
+
+    &:hover {
+      background-color: $color-blue-dark;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    &.visible {
+      opacity: 1;
+      pointer-events: all;
     }
   }
 

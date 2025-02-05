@@ -35,8 +35,15 @@ export default function useGetData({
       },
       signal: controller.signal,
     })
-      .then((data) => setData(data))
-      .catch((error) => handleError(error, setError))
+      .then((data) => {
+        console.log(data);
+
+        setData(data);
+      })
+      .catch((err) => {
+        console.log('123' + err);
+        handleError(err, setError);
+      })
       .finally(() => setLoading(false));
 
     return () => {

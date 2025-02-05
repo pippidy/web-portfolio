@@ -20,7 +20,7 @@
       background: linear-gradient(
         to right,
         rgba(17, 17, 17, 0),
-        $color-grey-dark,
+        $black,
         rgba(17, 17, 17, 0)
       );
     }
@@ -42,7 +42,7 @@
       text-align: center;
       font-size: 1.6rem;
       font-weight: normal;
-      color: $color-grey-darker;
+      color: $color-grey-dark;
       text-transform: uppercase;
       transition: color $transition-medium, font-weight $transition-fast;
       transition-timing-function: ease;
@@ -51,7 +51,7 @@
       }
 
       &:hover {
-        color: $color-grey-dark;
+        color: $black;
       }
 
       &::after {
@@ -69,7 +69,7 @@
       }
 
       &.current {
-        color: $color-grey-dark;
+        color: $black;
         font-weight: bold;
         pointer-events: none;
       }
@@ -140,7 +140,7 @@
 @media (prefers-contrast) {
   .tabs {
     &__menu-button {
-      color: $color-grey-dark;
+      color: $black;
     }
   }
 }

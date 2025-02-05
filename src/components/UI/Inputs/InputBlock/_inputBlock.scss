@@ -10,7 +10,7 @@
       border-color: $color-blue;
 
       &::placeholder {
-        color: $color-blue-light;
+        color: $color-blue-bleak;
       }
     }
   }
@@ -31,7 +31,7 @@
       }
 
       &::placeholder {
-        color: $color-red-light;
+        color: $color-red-lighter;
         transition: color $transition-medium ease;
       }
     }
@@ -59,7 +59,7 @@
 
     &:focus,
     &:focus-visible {
-      border-color: $color-grey-dark;
+      border-color: $black;
     }
   }
 

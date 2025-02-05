@@ -9,7 +9,7 @@
 
   &__container {
     padding: 25px;
-    border: 2px solid $color-grey-dark;
+    border: 2px solid $black;
     border-radius: 10px;
     text-align: center;
     background: #eee;
@@ -19,7 +19,7 @@
     margin-bottom: 25px;
     font-size: 8rem;
     text-align: center;
-    -webkit-text-stroke: 2px $color-grey-dark;
+    -webkit-text-stroke: 2px $black;
     color: $color-red;
     font-family: $font-family-secondary;
     line-height: 8rem;
@@ -30,10 +30,10 @@
     font-size: 2.8rem;
     font-weight: 600;
     font-style: italic;
-    color: $color-grey-darker;
+    color: $color-grey-dark;
 
     & span {
-      color: $color-grey-dark;
+      color: $black;
     }
   }
 }

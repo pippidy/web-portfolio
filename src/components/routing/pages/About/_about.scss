@@ -30,7 +30,7 @@
     width: max(30%, 150px);
     margin: 0 auto;
     font-size: 1.8rem;
-    color: $color-grey-dark;
+    color: $black;
     text-transform: uppercase;
 
     & > * {
@@ -43,7 +43,7 @@
       font-weight: bold;
       background-color: #fff;
       border-radius: $border-radius-main;
-      border: 2px solid $color-grey-dark;
+      border: 2px solid $black;
       user-select: none;
       transition: transform $transition-medium ease,
         box-shadow $transition-medium ease,
@@ -66,17 +66,17 @@
       &:hover {
         color: #fff;
         transform: scale(1.05);
-        background-color: $color-grey-dark;
+        background-color: $black;
       }
 
       // Left button
       &_left {
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
-        box-shadow: -2px 2px 0 0 #fff, -4px 4px 0 0 $color-grey-dark;
+        box-shadow: -2px 2px 0 0 #fff, -4px 4px 0 0 $black;
 
         &:hover {
-          box-shadow: -4px 4px 0 0 #fff, -6px 6px 0 0 $color-grey-dark;
+          box-shadow: -4px 4px 0 0 #fff, -6px 6px 0 0 $black;
         }
 
         // Element for animation
@@ -91,10 +91,10 @@
       &_right {
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
-        box-shadow: 2px 2px 0 0 #fff, 4px 4px 0 0 $color-grey-dark;
+        box-shadow: 2px 2px 0 0 #fff, 4px 4px 0 0 $black;
 
         &:hover {
-          box-shadow: 4px 4px 0 0 #fff, 6px 6px 0 0 $color-grey-dark;
+          box-shadow: 4px 4px 0 0 #fff, 6px 6px 0 0 $black;
         }
 
         // Element for animation
@@ -109,7 +109,7 @@
         position: relative;
         top: 1px;
         color: #fff;
-        border-color: $color-blue-dark;
+        border-color: $color-blue-darker;
         border-width: 3px;
         box-shadow: none;
         pointer-events: none;
