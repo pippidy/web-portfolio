@@ -21,7 +21,7 @@
 
     &.card-flying:hover {
       border: 0;
-      background-color: $color-grey-light;
+      background-color: $color-yellow;
 
       & .image-gallery__image {
         filter: grayscale(0%);
