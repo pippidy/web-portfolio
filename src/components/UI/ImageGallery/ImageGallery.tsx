@@ -33,8 +33,8 @@ export default function ImageGallery({
           {data.map((item, index) => {
             return (
               <GalleryCard
+                key={item.image_id}
                 index={index}
-                key={`image-gallery-card_${index}`}
                 onClick={() => openImage(index)}
                 imageID={item.image_id}
                 imageSize={imageSize}
