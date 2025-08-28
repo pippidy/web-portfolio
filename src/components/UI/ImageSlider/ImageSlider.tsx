@@ -76,8 +76,8 @@ export default function ImageSlider({
 
             return (
               <SliderCard
+                key={index}
                 index={index}
-                key={`slider-card_${index}`}
                 className={cardClass}
                 imageSize={imageSize}
                 text={text}

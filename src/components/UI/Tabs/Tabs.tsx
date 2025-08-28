@@ -65,11 +65,7 @@ export default function Tabs({ tabs, title = '', children }: TTabsProps) {
           });
 
           return (
-            <div
-              id={`tab_${index}`}
-              className={className}
-              key={`tabContent_${index}`}
-            >
+            <div key={index} id={`tab_${index}`} className={className}>
               {child}
             </div>
           );
