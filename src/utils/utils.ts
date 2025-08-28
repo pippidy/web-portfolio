@@ -91,9 +91,7 @@ export function validateForm(form: HTMLFormElement): boolean {
 
   // Return false if at least one input is invalid
   for (let i = 0; i < inputsArray.length; i++) {
-    if (!inputsArray[i].validity.valid) {
-      return false;
-    }
+    if (!inputsArray[i].validity.valid) return false;
   }
 
   return true;
