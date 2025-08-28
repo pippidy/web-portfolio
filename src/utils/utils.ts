@@ -63,6 +63,7 @@ export function formatDate({
     }
     return new Date(unixTime).toLocaleString(locale, options);
   }
+
   return 'n/a';
 }
 
@@ -81,6 +82,7 @@ export function getCountryFromISO({
 
     return countryName;
   }
+
   return 'n/a';
 }
 
