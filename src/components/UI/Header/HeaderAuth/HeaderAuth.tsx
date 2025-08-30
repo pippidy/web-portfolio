@@ -79,7 +79,7 @@ export default function HeaderAuth() {
         </div>
       </div>
 
-      {(!auth?.userSignedIn || isAuthModalOpened) && (
+      {!auth?.userSignedIn && (
         <Modal isOpened={isAuthModalOpened} setIsOpened={setIsAuthModalOpened}>
           <DefaultModalBlock>
             <FormAuth authType={authType} setAuthType={setAuthType} />
