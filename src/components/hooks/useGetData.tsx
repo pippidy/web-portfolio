@@ -1,7 +1,6 @@
 import { type TDataFull, type TUseGetDataProps } from '../../types/data';
 import { type TError } from '../../types/main';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import { getData } from '../api/api';
 import { handleError } from '../../utils/utils';
 
@@ -18,10 +17,11 @@ export default function useGetData({
   const [data, setData] = useState<TDataFull[]>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<TError>();
-  const location = useLocation();
 
   useEffect(() => {
     const controller = new AbortController();
+
+    setLoading(true);
 
     getData({
       apiOptions: {
@@ -43,10 +43,6 @@ export default function useGetData({
       controller.abort();
     };
   }, [endpoint, search, fields, limit, sort, filter, offset, pageID]);
-
-  useEffect(() => {
-    setLoading(true);
-  }, [location]);
 
   return { data, loading, error };
 }
