@@ -1,5 +1,5 @@
 import { TCardSize } from './cards';
-import { TApiOptions, TEndpoint, TNameAndID } from './main';
+import { TQueryParams, TEndpoint, TNameAndID } from './main';
 
 export type TDataFull = TDataGame & TDataCharacter & TDataCompany & TDataImage;
 
@@ -59,11 +59,11 @@ export type TDataVideo = {
 };
 
 export type TGetData = {
-  apiOptions: TApiOptions;
+  queryParams: TQueryParams;
   signal?: AbortSignal;
 };
 
-export type TUseGetDataProps = TApiOptions & {
+export type TUseGetDataProps = TQueryParams & {
   pageID?: string | number; // The dependency used inside info pages only so far
 };
 

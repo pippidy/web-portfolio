@@ -2,7 +2,7 @@ import { ReactElement, type Dispatch, type SetStateAction } from 'react';
 import { type TCardSize, type TLinkPrefix } from './cards';
 import { type TDataImage, type TDataFull } from './data';
 import {
-  type TApiOptions,
+  type TQueryParams,
   type TComponentChildren,
   type TEndpoint,
   type TError,
@@ -48,7 +48,7 @@ export type TSectionHeaderProps = {
 };
 
 export type TImageGalleryProps = {
-  apiOptions: TApiOptions;
+  apiOptions: TQueryParams;
   imageSize: string;
   text?: 'Image' | 'Screenshot' | 'Artwork';
 };

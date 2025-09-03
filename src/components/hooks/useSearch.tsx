@@ -22,7 +22,7 @@ export default function useSearch({ query, limit = 10 }: TUseSearchProps) {
           setIsLoading(true);
 
           getData({
-            apiOptions: {
+            queryParams: {
               endpoint: 'games',
               search: query,
               fields: 'name,cover.image_id',

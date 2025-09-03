@@ -1,4 +1,4 @@
-import { type TConfigAPI, type TCategory } from '../../types/main';
+import { type TCategory } from '../../types/main';
 import {
   type TDataCount,
   type TGetCategories,
@@ -7,43 +7,15 @@ import {
   type TGetDataCount,
 } from '../../types/data';
 import { handleFetchResults } from '../../utils/utils';
+import { createAPIConfig } from './config';
 
-const userID = process.env.REACT_APP_IGDB_USER_ID;
-const clientSecret = process.env.REACT_APP_IGDB_CLIENT_SECRET;
-
-async function fetchAuth() {
-  return fetch(
-    `https://id.twitch.tv/oauth2/token?client_id=${userID}&client_secret=${clientSecret}&grant_type=client_credentials`,
-    {
-      method: 'POST',
-    }
-  ).then((res) => {
-    return handleFetchResults(res);
-  });
-}
-
-async function createConfig() {
-  const auth = await fetchAuth();
-
-  const config: TConfigAPI = {
-    baseURL: process.env.REACT_APP_PROXY_PREFIX || '', // Proxy prefix is used for production only
-    headers: {
-      Authorization: `Bearer ${auth?.access_token}`,
-      'Client-ID': userID ? userID : '',
-      'Content-Type': 'application/json',
-    },
-  };
-
-  return config;
-}
-
-const config = await createConfig();
+const config = await createAPIConfig();
 
 export const getData = async ({
-  apiOptions,
+  queryParams,
   signal,
 }: TGetData): Promise<TDataFull[] | undefined> => {
-  const { endpoint, search, fields, filter, limit, sort, offset } = apiOptions;
+  const { endpoint, search, fields, filter, limit, sort, offset } = queryParams;
 
   // Creating separate queries to concatenate them into body later
   const querySearch = search ? `search "${search}";` : '';

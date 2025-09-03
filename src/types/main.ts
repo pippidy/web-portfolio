@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type TApiOptions = {
+export type TQueryParams = {
   endpoint: TEndpoint;
   fields: string;
   search?: string;

@@ -24,7 +24,7 @@ export default function useGetData({
     setLoading(true);
 
     getData({
-      apiOptions: {
+      queryParams: {
         endpoint,
         search,
         fields,
