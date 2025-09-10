@@ -1,21 +1,25 @@
 import { NavigateFunction } from 'react-router-dom';
 import { TEndpoint } from './main';
 
-export type TPaginationProps = {
-  pagesAmount: number;
+export type TUsePagesCountProps = TPagesCountParams;
+
+export type TUsePagination = TPagesCountParams;
+
+export type TCreatePaginationUIProps = {
+  pagesCount: number;
   pagesLimit?: number;
   currentPage: number;
 };
 
-export type TUsePaginationData = {
+export type TPagesCountParams = {
   endpoint: TEndpoint;
   fetchLimit?: number;
-  pageID?: string | undefined;
   dataFilter?: string;
+  pagesLimit?: number;
 };
 
 export type THandlePaginationRedirect = {
   navigate: NavigateFunction;
   currentPage: number;
-  pagesAmount: number;
+  pagesCount: number;
 };

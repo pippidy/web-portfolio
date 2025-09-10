@@ -4,10 +4,9 @@ import { useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Section from '../Section/Section';
 import CardsList from '../CardsList/CardsList';
-import Pagination from '../Pagination/Pagination';
-import usePagesAmount from '../../hooks/usePagesAmount';
 import CatalogueMenu from './CatalogueMenu/CatalogueMenu';
 import { countPaginationOffset } from '../../../utils/utils';
+import usePagination from '../../hooks/pagination/usePagination';
 
 export default function Catalogue({
   category,
@@ -17,27 +16,22 @@ export default function Catalogue({
 }: TCatalogueProps) {
   const { id: pageID } = useParams();
 
-  // Preparing data for pagination
-  const { pagesAmount, currentPage } = usePagesAmount({
+  // Creating pagination
+  const { paginationUI, pagesCount, currentPage } = usePagination({
     endpoint: endpoint,
-    pageID: pageID,
     dataFilter: pageID === 'all' ? '' : `where ${category} = ${pageID}`,
   });
-
-  const pagination = (
-    <Pagination pagesAmount={pagesAmount} currentPage={currentPage} />
-  );
 
   const nav = useNavigate();
 
   // Redirecting if page is non-existent
   useEffect(() => {
-    if (currentPage > pagesAmount && pagesAmount > 0) {
-      nav(`/${endpoint}/${category}/${pageID}#page=${pagesAmount}`);
+    if (currentPage > pagesCount && pagesCount > 0) {
+      nav(`/${endpoint}/${category}/${pageID}#page=${pagesCount}`);
     } else if (currentPage <= 0) {
       nav(`/${endpoint}/${category}/${pageID}#page=1`);
     }
-  }, [nav, pagesAmount, currentPage, category, endpoint, pageID]);
+  }, [nav, pagesCount, currentPage, category, endpoint, pageID]);
 
   const sortRef = useRef<TSort>({
     property: 'aggregated_rating',
@@ -55,8 +49,8 @@ export default function Catalogue({
         </nav>
 
         {/* Top pagination */}
-        {pagesAmount !== 0 && (
-          <div className="catalogue__pagination_top">{pagination}</div>
+        {pagesCount !== 0 && (
+          <div className="catalogue__pagination_top">{paginationUI}</div>
         )}
 
         {/* Main part with cards */}
@@ -77,8 +71,8 @@ export default function Catalogue({
         </div>
 
         {/* Bottom pagination */}
-        {pagesAmount !== 0 && (
-          <div className="catalogue__pagination_bottom">{pagination}</div>
+        {pagesCount !== 0 && (
+          <div className="catalogue__pagination_bottom">{paginationUI}</div>
         )}
       </div>
     </Section>

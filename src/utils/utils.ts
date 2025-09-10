@@ -6,6 +6,10 @@ import {
 } from '../types/main';
 import iso from 'iso-3166-1';
 
+export function intRange(min: number, max: number): number[] {
+  return Array.from(new Array(Math.abs(max - min + 1)), (_, i) => i + min);
+}
+
 export function handleFetchResults(res: Response): Promise<any> | undefined {
   if (res.ok) return res.json();
 
