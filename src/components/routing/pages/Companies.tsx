@@ -20,9 +20,9 @@ export default function Companies() {
   // Redirecting if page is non-existent
   useEffect(() => {
     if (currentPage > pagesCount && pagesCount > 0) {
-      nav(`/characters#page=${pagesCount}`);
+      nav(`/companies#page=${pagesCount}`);
     } else if (currentPage <= 0) {
-      nav(`/characters#page=1`);
+      nav(`/companies#page=1`);
     }
   }, [nav, pagesCount, currentPage]);
 
