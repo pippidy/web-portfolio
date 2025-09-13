@@ -1,5 +1,5 @@
 import { type TUsePagination } from '../../../types/pagination';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import usePagesCount from './usePagesCount';
 import CreatePaginationUI from '../../UI/Pagination/CreatePaginationUI';
 
@@ -9,6 +9,7 @@ export default function usePagination({
   dataFilter,
   pagesLimit,
 }: TUsePagination) {
+  const nav = useNavigate();
   const location = useLocation();
   const currentPage = Number(location.hash.match(/[0-9]+/));
 
@@ -17,6 +18,13 @@ export default function usePagination({
     endpoint: endpoint,
     dataFilter: dataFilter,
   });
+
+  // Redirect
+  if (currentPage > pagesCount && pagesCount > 0) {
+    nav(`${location.pathname}#page=${pagesCount}`);
+  } else if (currentPage <= 0) {
+    nav(`${location.pathname}#page=1`);
+  }
 
   const paginationUI = (
     <CreatePaginationUI

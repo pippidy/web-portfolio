@@ -1,7 +1,7 @@
 import { type TSort } from '../../../types/main';
 import { type TCatalogueProps } from '../../../types/props';
-import { useEffect, useRef } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useRef } from 'react';
+import { useParams } from 'react-router-dom';
 import Section from '../Section/Section';
 import CardsList from '../CardsList/CardsList';
 import CatalogueMenu from './CatalogueMenu/CatalogueMenu';
@@ -21,17 +21,6 @@ export default function Catalogue({
     endpoint: endpoint,
     dataFilter: pageID === 'all' ? '' : `where ${category} = ${pageID}`,
   });
-
-  const nav = useNavigate();
-
-  // Redirecting if page is non-existent
-  useEffect(() => {
-    if (currentPage > pagesCount && pagesCount > 0) {
-      nav(`/${endpoint}/${category}/${pageID}#page=${pagesCount}`);
-    } else if (currentPage <= 0) {
-      nav(`/${endpoint}/${category}/${pageID}#page=1`);
-    }
-  }, [nav, pagesCount, currentPage, category, endpoint, pageID]);
 
   const sortRef = useRef<TSort>({
     property: 'aggregated_rating',
